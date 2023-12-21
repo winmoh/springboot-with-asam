@@ -65,10 +65,10 @@ RepositoryMethod:
     FindByMethod | DeleteByMethod | CustomQueryMethod;
 
 FindByMethod:
-    'find' 'by' properties+=Property ('And' properties+=Property)*;
+    'find' 'by' property=ID 'And' prop=ID ;
 
 DeleteByMethod:
-    'delete' 'by' properties+=Property;
+    'delete' 'by' property=ID 'And' prop=ID;
 
 CustomQueryMethod:
     'customQuery' '{' query=STRING '}';
@@ -76,15 +76,15 @@ CustomQueryMethod:
 // Service actions
 ServiceAction:
     'operation' name=ID '{'
-        'returns' returnType=Type
+        'returns' returnType=RType
         ('raises' exceptionType=Type)?
         ('implementation' implementation=STRING)?
-        ('params' parameters+=ActionParameter)*
+        'params''('(parameters+=ActionParameter)*')'
     '}';
 
 ControllerAction:
     method=HttpMethods 'action' name=ID '{'
-        'linkedTo' serviceAction=[ServiceAction]
+        'linkedTo' serviceAction=ID
         ('mappedAt' url=STRING)?
         parameters+=ActionParameter*
     '}';
@@ -98,6 +98,10 @@ Property:
 
 Type:
     VTypes | ListType | SetType;
+
+RType:
+    VTypes | ListType | ID;
+
 
 // PrimitiveType corrections
 
@@ -116,15 +120,16 @@ terminal PATH: /\/[a-zA-Z0-9_\-\/]+/;
 //VTypes is an attribute that would conatain the type of each attribute f our entities:/Double|Long|Float|Int|Boolean|Char|Byte|String/;
 
 
-type VTypes = 'Float' | 'Long' | 'Integer' | 'Char' | 'Boolean'| 'Byte';
+type VTypes = 'Float' | 'Long' | 'Integer' | 'Char' | 'Boolean'| 'Byte'|'String';
 VTypes returns VTypes:
-	Val1 |  Val2 |Val3 |Val4 |Val5 |Val6  ;
+	Val1 |  Val2 |Val3 |Val4 |Val5 |Val6|Val7  ;
 Val1 returns string: 'Float';
 Val2 returns string: 'Long';
 Val3 returns string: 'Integer';
 Val4 returns string:'Char';
 Val5 returns string: 'Boolean';
 Val6 returns string: 'Byte';
+Val7 returns string: 'String';
 
 
 // HttpMethods =/G=GET|P2=PUT|D=DELETE|P1=POST|P3=PATCH/;
