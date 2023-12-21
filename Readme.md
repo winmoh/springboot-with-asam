@@ -171,3 +171,451 @@ Sboot is a DSL language that can be used to generate Spring Boot REST APIs. It u
     hidden terminal SL_COMMENT: /\/\/[^\n\r]*/;
 </pre>
 
+## example of an possible Sboot instance
+### instance:
+    
+<pre>
+        project MyApplication
+        config {
+            server {
+                port 8080
+                cpath /api
+            }
+            database {
+                dbms Mysql
+                dname mydb
+                dport 3036
+                username user
+                password pass
+                
+            }
+        }
+
+        entity User {
+            id: Integer
+            name: String
+            email: String 
+        }
+
+        entity Product {
+            id: Integer
+            name: String
+            price: Float
+        }
+
+        dto UserDTO {
+            id: Integer
+            name: String
+        }
+
+        dto ProductDTO {
+            id: Integer
+            name: String
+            price: Float
+        }
+
+        service UserService pertainingTo User {
+            operation createUser {
+                returns UserDTO
+            params (userName: String userEmail: String)
+            }
+            operation updateUser {
+                returns UserDTO
+                params (userId:Integer userName: String)
+            }
+        }
+
+        service ProductService pertainingTo Product {
+            operation createProduct {
+                returns ProductDTO
+                params (productId: Integer  productName: String  productPrice: Float)
+            }
+            operation updateProduct {
+                returns ProductDTO
+                params (productId: Integer  productName: String)
+            }
+        }
+
+        controller UserController mappingTo User {
+            Post action createUserAction {
+                linkedTo createUser
+                mappedAt "/users/create"
+            }
+            Put action updateUserAction {
+                linkedTo updateUser
+                mappedAt "/users/update"
+            }
+        }
+
+        controller ProductController mappingTo Product {
+            Get action createProductAction {
+                linkedTo createProduct
+                mappedAt "/products/create"
+            }
+            Put action updateProductAction {
+                linkedTo updateProduct
+                mappedAt "/products/update"
+            }
+        }
+
+        repository UserRepository for User {
+            find by name And id
+            delete by id 
+        }
+
+        repository ProductRepository for Product {
+            find by name
+            delete by id
+        }
+
+    </pre>
+
+### Syntax tree for the instance:
+<pre>
+        {
+        $type: "Head", 
+        name: "MyApplication", 
+        configuration: 
+        {
+        $type: "Configuration", 
+        server: 
+        {
+        $type: "ServerInfo", 
+        port: 8080, 
+        path: "/api"
+        }, 
+        database: 
+        {
+        $type: "DatabaseInfo", 
+        type: "Mysql", 
+        name: "mydb", 
+        port: 3036, 
+        username: "user", 
+        password: "pass"
+        }
+        }, 
+        elements: 
+        [
+        {
+        $type: "Entity", 
+        name: "User", 
+        properties: 
+        [
+        {
+        $type: "Property", 
+        name: "id", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "Property", 
+        name: "name", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "Property", 
+        name: "email", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }
+        ]
+        }, 
+        {
+        $type: "Entity", 
+        name: "Product", 
+        properties: 
+        [
+        {
+        $type: "Property", 
+        name: "id", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "Property", 
+        name: "name", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "Property", 
+        name: "price", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }
+        ]
+        }, 
+        {
+        $type: "DTO", 
+        name: "UserDTO", 
+        properties: 
+        [
+        {
+        $type: "Property", 
+        name: "id", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "Property", 
+        name: "name", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }
+        ]
+        }, 
+        {
+        $type: "DTO", 
+        name: "ProductDTO", 
+        properties: 
+        [
+        {
+        $type: "Property", 
+        name: "id", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "Property", 
+        name: "name", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "Property", 
+        name: "price", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }
+        ]
+        }, 
+        {
+        $type: "Service", 
+        name: "UserService", 
+        entity: Reference('#/elements@0'), 
+        actions: 
+        [
+        {
+        $type: "ServiceAction", 
+        name: "createUser", 
+        returnType: 
+        {
+        $type: "RType"
+        }, 
+        parameters: 
+        [
+        {
+        $type: "ActionParameter", 
+        name: "userName", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "ActionParameter", 
+        name: "userEmail", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }
+        ]
+        }, 
+        {
+        $type: "ServiceAction", 
+        name: "updateUser", 
+        returnType: 
+        {
+        $type: "RType"
+        }, 
+        parameters: 
+        [
+        {
+        $type: "ActionParameter", 
+        name: "userId", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "ActionParameter", 
+        name: "userName", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }
+        ]
+        }
+        ]
+        }, 
+        {
+        $type: "Service", 
+        name: "ProductService", 
+        entity: Reference('#/elements@1'), 
+        actions: 
+        [
+        {
+        $type: "ServiceAction", 
+        name: "createProduct", 
+        returnType: 
+        {
+        $type: "RType"
+        }, 
+        parameters: 
+        [
+        {
+        $type: "ActionParameter", 
+        name: "productId", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "ActionParameter", 
+        name: "productName", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "ActionParameter", 
+        name: "productPrice", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }
+        ]
+        }, 
+        {
+        $type: "ServiceAction", 
+        name: "updateProduct", 
+        returnType: 
+        {
+        $type: "RType"
+        }, 
+        parameters: 
+        [
+        {
+        $type: "ActionParameter", 
+        name: "productId", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }, 
+        {
+        $type: "ActionParameter", 
+        name: "productName", 
+        type: 
+        {
+        $type: "Type"
+        }
+        }
+        ]
+        }
+        ]
+        }, 
+        {
+        $type: "Controller", 
+        name: "UserController", 
+        entity: Reference('#/elements@0'), 
+        actions: 
+        [
+        {
+        $type: "ControllerAction", 
+        method: "Post", 
+        name: "createUserAction", 
+        serviceAction: "createUser", 
+        url: "/users/create", 
+        parameters: []
+        }, 
+        {
+        $type: "ControllerAction", 
+        method: "Put", 
+        name: "updateUserAction", 
+        serviceAction: "updateUser", 
+        url: "/users/update", 
+        parameters: []
+        }
+        ]
+        }, 
+        {
+        $type: "Controller", 
+        name: "ProductController", 
+        entity: Reference('#/elements@1'), 
+        actions: 
+        [
+        {
+        $type: "ControllerAction", 
+        method: "Get", 
+        name: "createProductAction", 
+        serviceAction: "createProduct", 
+        url: "/products/create", 
+        parameters: []
+        }, 
+        {
+        $type: "ControllerAction", 
+        method: "Put", 
+        name: "updateProductAction", 
+        serviceAction: "updateProduct", 
+        url: "/products/update", 
+        parameters: []
+        }
+        ]
+        }, 
+        {
+        $type: "Repository", 
+        name: "UserRepository", 
+        entity: Reference('#/elements@0'), 
+        methods: 
+        [
+        {
+        $type: "FindByMethod", 
+        property: "name"
+        }, 
+        {
+        $type: ..., 
+        property: "id", 
+        prop: "name"
+        }
+        ]
+        }, 
+        {
+        $type: "Repository", 
+        name: "ProductRepository", 
+        entity: Reference('#/elements@1'), 
+        methods: [...]
+        }
+        ]
+        }
+</pre>
+
