@@ -1,22 +1,14 @@
-grammar Sboot
-
-
-
-
+grammar Sboot // You should give a name to your grammar
 
 // Entry rule
 entry Head:
-    'poject' name=ID
+    'project' name=ID
     configuration=Configuration?
-    elements+=Element*;
-
-//project name could be specifid as an entry in the dsl
-
-    
+    (elements+=Element)*;
 
 // Element types
 Element:
-    Entity | Service? | Controller | DTO? | Repository;
+    Entity | Service | Controller | DTO | Repository;
 
 // Configuration
 Configuration:
@@ -28,22 +20,22 @@ Configuration:
 ServerInfo:
     'server' '{'
         ('port' port=INT)?
-        ('context-path' path=PATH)?
-        
+        ('cpath' path=PATH)?
     '}';
 
 DatabaseInfo:
     'database' '{'
-        'url' url=STRING
-        'username' username=STRING
-        'password' password=STRING
-        'DBMS' dbtype=RDBMS
-        // Add more database-related properties as needed
+        'dbms' type=RDBMS
+        'dname' name=ID
+        'dport' port=INT
+        'username' username=ID
+        'password' password=ID
+        
     '}';
 
 // Entity definitions
 Entity:
-    'data' name=ID ('inherits' extends=[Entity])? '{'
+    'entity' name=ID ('inherits' extends=[Entity])? '{'
         properties+=Property*
     '}';
 
@@ -53,12 +45,12 @@ DTO:
     '}';
 
 Service:
-    'action' name=ID 'pertainingTo' entity=[Entity] '{'
+    'service' name=ID 'pertainingTo' entity=[Entity] '{'
         actions+=ServiceAction*
     '}';
 
 Controller:
-    'endpoint' name=ID 'mappingTo' entity=[Entity] '{'
+    'controller' name=ID 'mappingTo' entity=[Entity] '{'
         baseUrl=STRING?
         actions+=ControllerAction*
     '}';
@@ -92,7 +84,7 @@ ServiceAction:
 
 ControllerAction:
     method=HttpMethods 'action' name=ID '{'
-        'linkedTo' serviceAction=[ServiceAction] 
+        'linkedTo' serviceAction=[ServiceAction]
         ('mappedAt' url=STRING)?
         parameters+=ActionParameter*
     '}';
@@ -105,28 +97,56 @@ Property:
     name=ID ':' type=Type ('default' defaultValue=STRING)?;
 
 Type:
-    Primitives | ListType | SetType;
+    VTypes | ListType | SetType;
 
-//PrimitiveType : 'string' | 'integer' | 'long' | 'boolean' | 'double';
+// PrimitiveType corrections
+
 ListType: 'List<' type=Type '>';
 SetType: 'Set<' type=Type '>';
 
-/*enum HttpMethod {
-    GET : 'GET',
-    POST : 'POST',
-    PUT :'PUT',
-    DELETE : 'DELETE';
-}*/
+
+
+
 // Terminal rules
 terminal ID: /[_a-zA-Z][_a-zA-Z0-9]*/;
 terminal INT: /[0-9]+/;
 terminal STRING: /"[^"]*"/;
 terminal PATH: /\/[a-zA-Z0-9_\-\/]+/;
-terminal RDBMS returns string :/Mysql|Postgres|Mariadb|H2|Oracle|SQLite/;
-terminal HttpMethods returns string :/GET|POST|DELETE|PUT|PATCH/;
-terminal Primitives returns string :/Float|Int|Boulean|Char|Byte/;
 
-//terminal ignored while parsing
+//VTypes is an attribute that would conatain the type of each attribute f our entities:/Double|Long|Float|Int|Boolean|Char|Byte|String/;
+
+
+type VTypes = 'Float' | 'Long' | 'Integer' | 'Char' | 'Boolean'| 'Byte';
+VTypes returns VTypes:
+	Val1 |  Val2 |Val3 |Val4 |Val5 |Val6  ;
+Val1 returns string: 'Float';
+Val2 returns string: 'Long';
+Val3 returns string: 'Integer';
+Val4 returns string:'Char';
+Val5 returns string: 'Boolean';
+Val6 returns string: 'Byte';
+
+
+// HttpMethods =/G=GET|P2=PUT|D=DELETE|P1=POST|P3=PATCH/;
+type HttpMethods = 'Get' | 'Delete' | 'Post' | 'Put' | 'Patch';
+HttpMethods returns HttpMethods:
+	GET | POST | PUT |PATCH |DELETE ;
+GET returns string: 'Get';
+DELETE returns string: 'Delete';
+POST returns string: 'Post';
+PUT returns string:'Put';
+PATCH returns string: 'Patch';
+
+//DATABASE TYPES  THAT CAN BE ASSIGNED TO THE PROJECT
+type RDBMS = 'Mysql' | 'Postgres' | 'Mariadb' | 'h2' | 'Oracle';
+RDBMS returns RDBMS:
+	POSTGRES | MYSQL | MARIADB |H2 |ORACLE |H2;
+POSTGRES returns string: 'Postgres';
+MARIADB returns string: 'Mariadb';
+MYSQL returns string: 'Mysql';
+ORACLE returns string:'Oracle';
+H2 returns string: 'h2';
+// Ignored terminals
 hidden terminal WS: /\s+/;
 hidden terminal ML_COMMENT: /\/\*[\s\S]*?\*\//;
 hidden terminal SL_COMMENT: /\/\/[^\n\r]*/;
