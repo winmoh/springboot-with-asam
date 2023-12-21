@@ -1,0 +1,12 @@
+{
+    "projectName": "Sboot",
+    "languages": [{
+        "id": "sboot",
+        "grammar": "src/language/sboot.langium",
+        "fileExtensions": [".sboot"],
+        "textMate": {
+            "out": "syntaxes/sboot.tmLanguage.json"
+        }
+    }],
+    "out": "src/language/generated"
+}
