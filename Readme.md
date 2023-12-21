@@ -273,349 +273,311 @@ Sboot is a DSL language that can be used to generate Spring Boot REST APIs. It u
 ### Syntax tree for the instance:
 <pre>
         {
-        $type: "Head", 
-        name: "MyApplication", 
-        configuration: 
-        {
-        $type: "Configuration", 
-        server: 
-        {
-        $type: "ServerInfo", 
-        port: 8080, 
-        path: "/api"
-        }, 
-        database: 
-        {
-        $type: "DatabaseInfo", 
-        type: "Mysql", 
-        name: "mydb", 
-        port: 3036, 
-        username: "user", 
-        password: "pass"
-        }
-        }, 
-        elements: 
-        [
-        {
-        $type: "Entity", 
-        name: "User", 
-        properties: 
-        [
-        {
-        $type: "Property", 
-        name: "id", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "Property", 
-        name: "name", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "Property", 
-        name: "email", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }
-        ]
-        }, 
-        {
-        $type: "Entity", 
-        name: "Product", 
-        properties: 
-        [
-        {
-        $type: "Property", 
-        name: "id", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "Property", 
-        name: "name", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "Property", 
-        name: "price", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }
-        ]
-        }, 
-        {
-        $type: "DTO", 
-        name: "UserDTO", 
-        properties: 
-        [
-        {
-        $type: "Property", 
-        name: "id", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "Property", 
-        name: "name", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }
-        ]
-        }, 
-        {
-        $type: "DTO", 
-        name: "ProductDTO", 
-        properties: 
-        [
-        {
-        $type: "Property", 
-        name: "id", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "Property", 
-        name: "name", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "Property", 
-        name: "price", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }
-        ]
-        }, 
-        {
-        $type: "Service", 
-        name: "UserService", 
-        entity: Reference('#/elements@0'), 
-        actions: 
-        [
-        {
-        $type: "ServiceAction", 
-        name: "createUser", 
-        returnType: 
-        {
-        $type: "RType"
-        }, 
-        parameters: 
-        [
-        {
-        $type: "ActionParameter", 
-        name: "userName", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "ActionParameter", 
-        name: "userEmail", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }
-        ]
-        }, 
-        {
-        $type: "ServiceAction", 
-        name: "updateUser", 
-        returnType: 
-        {
-        $type: "RType"
-        }, 
-        parameters: 
-        [
-        {
-        $type: "ActionParameter", 
-        name: "userId", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "ActionParameter", 
-        name: "userName", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }
-        ]
-        }
-        ]
-        }, 
-        {
-        $type: "Service", 
-        name: "ProductService", 
-        entity: Reference('#/elements@1'), 
-        actions: 
-        [
-        {
-        $type: "ServiceAction", 
-        name: "createProduct", 
-        returnType: 
-        {
-        $type: "RType"
-        }, 
-        parameters: 
-        [
-        {
-        $type: "ActionParameter", 
-        name: "productId", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "ActionParameter", 
-        name: "productName", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "ActionParameter", 
-        name: "productPrice", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }
-        ]
-        }, 
-        {
-        $type: "ServiceAction", 
-        name: "updateProduct", 
-        returnType: 
-        {
-        $type: "RType"
-        }, 
-        parameters: 
-        [
-        {
-        $type: "ActionParameter", 
-        name: "productId", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }, 
-        {
-        $type: "ActionParameter", 
-        name: "productName", 
-        type: 
-        {
-        $type: "Type"
-        }
-        }
-        ]
-        }
-        ]
-        }, 
-        {
-        $type: "Controller", 
-        name: "UserController", 
-        entity: Reference('#/elements@0'), 
-        actions: 
-        [
-        {
-        $type: "ControllerAction", 
-        method: "Post", 
-        name: "createUserAction", 
-        serviceAction: "createUser", 
-        url: "/users/create", 
-        parameters: []
-        }, 
-        {
-        $type: "ControllerAction", 
-        method: "Put", 
-        name: "updateUserAction", 
-        serviceAction: "updateUser", 
-        url: "/users/update", 
-        parameters: []
-        }
-        ]
-        }, 
-        {
-        $type: "Controller", 
-        name: "ProductController", 
-        entity: Reference('#/elements@1'), 
-        actions: 
-        [
-        {
-        $type: "ControllerAction", 
-        method: "Get", 
-        name: "createProductAction", 
-        serviceAction: "createProduct", 
-        url: "/products/create", 
-        parameters: []
-        }, 
-        {
-        $type: "ControllerAction", 
-        method: "Put", 
-        name: "updateProductAction", 
-        serviceAction: "updateProduct", 
-        url: "/products/update", 
-        parameters: []
-        }
-        ]
-        }, 
-        {
-        $type: "Repository", 
-        name: "UserRepository", 
-        entity: Reference('#/elements@0'), 
-        methods: 
-        [
-        {
-        $type: "FindByMethod", 
-        property: "name"
-        }, 
-        {
-        $type: ..., 
-        property: "id", 
-        prop: "name"
-        }
-        ]
-        }, 
-        {
-        $type: "Repository", 
-        name: "ProductRepository", 
-        entity: Reference('#/elements@1'), 
-        methods: [...]
-        }
+        "$type": "Head",
+        "name": "MyApplication",
+        "configuration": {
+            "$type": "Configuration",
+            "server": {
+            "$type": "ServerInfo",
+            "port": "...",
+            "path": "/api"
+            },
+            "database": {
+            "$type": "DatabaseInfo",
+            "type": "Mysql",
+            "name": "mydb",
+            "port": 3036,
+            "username": "user",
+            "password": "pass"
+            }
+        },
+        "elements": [
+            {
+            "$type": "Entity",
+            "name": "User",
+            "properties": [
+                {
+                "$type": "Property",
+                "name": "id",
+                "type": {
+                    "$type": "Type"
+                }
+                },
+                {
+                "$type": "Property",
+                "name": "name",
+                "type": {
+                    "$type": "Type"
+                }
+                },
+                {
+                "$type": "Property",
+                "name": "email",
+                "type": {
+                    "$type": "Type"
+                }
+                }
+            ]
+            },
+            {
+            "$type": "Entity",
+            "name": "Product",
+            "properties": [
+                {
+                "$type": "Property",
+                "name": "id",
+                "type": {
+                    "$type": "Type"
+                }
+                },
+                {
+                "$type": "Property",
+                "name": "name",
+                "type": {
+                    "$type": "Type"
+                }
+                },
+                {
+                "$type": "Property",
+                "name": "price",
+                "type": {
+                    "$type": "Type"
+                }
+                }
+            ]
+            },
+            {
+            "$type": "DTO",
+            "name": "UserDTO",
+            "properties": [
+                {
+                "$type": "Property",
+                "name": "id",
+                "type": {
+                    "$type": "Type"
+                }
+                },
+                {
+                "$type": "Property",
+                "name": "name",
+                "type": {
+                    "$type": "Type"
+                }
+                }
+            ]
+            },
+            {
+            "$type": "DTO",
+            "name": "ProductDTO",
+            "properties": [
+                {
+                "$type": "Property",
+                "name": "id",
+                "type": {
+                    "$type": "Type"
+                }
+                },
+                {
+                "$type": "Property",
+                "name": "name",
+                "type": {
+                    "$type": "Type"
+                }
+                },
+                {
+                "$type": "Property",
+                "name": "price",
+                "type": {
+                    "$type": "Type"
+                }
+                }
+            ]
+            },
+            {
+            "$type": "Service",
+            "name": "UserService",
+            "entity": "Reference('#/elements@0')",
+            "actions": [
+                {
+                "$type": "ServiceAction",
+                "name": "createUser",
+                "returnType": {
+                    "$type": "RType"
+                },
+                "parameters": [
+                    {
+                    "$type": "ActionParameter",
+                    "name": "userName",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    },
+                    {
+                    "$type": "ActionParameter",
+                    "name": "userEmail",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    }
+                ]
+                },
+                {
+                "$type": "ServiceAction",
+                "name": "updateUser",
+                "returnType": {
+                    "$type": "RType"
+                },
+                "parameters": [
+                    {
+                    "$type": "ActionParameter",
+                    "name": "userId",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    },
+                    {
+                    "$type": "ActionParameter",
+                    "name": "userName",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    }
+                ]
+                }
+            ]
+            },
+            {
+            "$type": "Service",
+            "name": "ProductService",
+            "entity": "Reference('#/elements@1')",
+            "actions": [
+                {
+                "$type": "ServiceAction",
+                "name": "createProduct",
+                "returnType": {
+                    "$type": "RType"
+                },
+                "parameters": [
+                    {
+                    "$type": "ActionParameter",
+                    "name": "productId",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    },
+                    {
+                    "$type": "ActionParameter",
+                    "name": "productName",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    },
+                    {
+                    "$type": "ActionParameter",
+                    "name": "productPrice",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    }
+                ]
+                },
+                {
+                "$type": "ServiceAction",
+                "name": "updateProduct",
+                "returnType": {
+                    "$type": "RType"
+                },
+                "parameters": [
+                    {
+                    "$type": "ActionParameter",
+                    "name": "productId",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    },
+                    {
+                    "$type": "ActionParameter",
+                    "name": "productName",
+                    "type": {
+                        "$type": "Type"
+                    }
+                    }
+                ]
+                }
+            ]
+            },
+            {
+            "$type": "Controller",
+            "name": "UserController",
+            "entity": "Reference('#/elements@0')",
+            "actions": [
+                {
+                "$type": "ControllerAction",
+                "method": "Post",
+                "name": "createUserAction",
+                "serviceAction": "createUser",
+                "url": "/users/create",
+                "parameters": []
+                },
+                {
+                "$type": "ControllerAction",
+                "method": "Put",
+                "name": "updateUserAction",
+                "serviceAction": "updateUser",
+                "url": "/users/update",
+                "parameters": []
+                }
+            ]
+            },
+            {
+            "$type": "Controller",
+            "name": "ProductController",
+            "entity": "Reference('#/elements@1')",
+            "actions": [
+                {
+                "$type": "ControllerAction",
+                "method": "Get",
+                "name": "createProductAction",
+                "serviceAction": "createProduct",
+                "url": "/products/create",
+                "parameters": []
+                },
+                {
+                "$type": "ControllerAction",
+                "method": "Put",
+                "name": "updateProductAction",
+                "serviceAction": "updateProduct",
+                "url": "/products/update",
+                "parameters": []
+                }
+            ]
+            },
+            {
+            "$type": "Repository",
+            "name": "UserRepository",
+            "entity": "Reference('#/elements@0')",
+            "methods": [
+                {
+                "$type": "FindByMethod",
+                "property": "name"
+                },
+                {
+                "$type": "...",
+                "property": "id",
+                "prop": "name"
+                }
+            ]
+            },
+            {
+            "$type": "Repository",
+            "name": "ProductRepository",
+            "entity": "Reference('#/elements@1')",
+            "methods": [
+                // ...
+            ]
+            }
         ]
         }
-</pre>
+
+        </pre>
 
