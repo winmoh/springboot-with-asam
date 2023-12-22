@@ -1,5 +1,5 @@
 import { ValidationCategory, type ValidationAcceptor, type ValidationChecks } from 'langium';
-import { type SbootAstType, type Person, Controller, Service, DTO } from './generated/ast.js';
+import { type SbootAstType, type  Controller, Service, DTO, Repository } from './generated/ast.js';
 import type { SbootServices } from './sboot-module.js';
 
 /**
@@ -16,6 +16,9 @@ export function registerValidationChecks(services: SbootServices) {
         ControllerAction: validator.checkConfiguration,
         ServerInfo: validator.checkServiceInfo,
         DatabaseInfo: validator.checkDatabaseInfo
+        Repository: validator.checkRepository
+        
+
         
         
 
@@ -28,6 +31,7 @@ export function registerValidationChecks(services: SbootServices) {
  * Implementation of custom validations.
  */
 export class SbootValidator {
+    checkRepository(){}
     checkDatabaseInfo(){}
     checkServiceInfo(){}
     checkConfiguration(){
