@@ -1,0 +1,9 @@
+grammar org.xtext.example.asam.Asam with org.eclipse.xtext.common.Terminals
+
+generate asam "http://www.xtext.org/example/asam/Asam"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
