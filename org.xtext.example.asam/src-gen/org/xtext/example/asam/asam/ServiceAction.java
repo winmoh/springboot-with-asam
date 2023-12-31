@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.ServiceAction#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.ServiceAction#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.ServiceAction#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.ServiceAction#getExceptionType <em>Exception Type</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.ServiceAction#getImplementation <em>Implementation</em>}</li>
@@ -30,26 +30,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface ServiceAction extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.asam.asam.AsamPackage#getServiceAction_Name()
+   * @return the value of the '<em>Nom</em>' attribute.
+   * @see #setNom(String)
+   * @see org.xtext.example.asam.asam.AsamPackage#getServiceAction_Nom()
    * @model
    * @generated
    */
-  String getName();
+  String getNom();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.ServiceAction#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.asam.asam.ServiceAction#getNom <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Nom</em>' attribute.
+   * @see #getNom()
    * @generated
    */
-  void setName(String value);
+  void setNom(String value);
 
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.

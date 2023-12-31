@@ -69,13 +69,13 @@ public interface AsamPackage extends EPackage
   int SBOOT = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SBOOT__NAME = 0;
+  int SBOOT__NOM = 0;
 
   /**
    * The feature id for the '<em><b>Configuration</b></em>' containment reference.
@@ -115,13 +115,13 @@ public interface AsamPackage extends EPackage
   int ELEMENT = 1;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ELEMENT__NAME = 0;
+  int ELEMENT__NOM = 0;
 
   /**
    * The number of structural features of the '<em>Element</em>' class.
@@ -226,13 +226,13 @@ public interface AsamPackage extends EPackage
   int DATABASE_INFO__TYPE = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATABASE_INFO__NAME = 1;
+  int DATABASE_INFO__NOM = 1;
 
   /**
    * The feature id for the '<em><b>Port</b></em>' attribute.
@@ -281,13 +281,13 @@ public interface AsamPackage extends EPackage
   int ENTITY = 5;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENTITY__NAME = ELEMENT__NAME;
+  int ENTITY__NOM = ELEMENT__NOM;
 
   /**
    * The feature id for the '<em><b>Extends</b></em>' reference.
@@ -327,13 +327,13 @@ public interface AsamPackage extends EPackage
   int DTO = 6;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DTO__NAME = ELEMENT__NAME;
+  int DTO__NOM = ELEMENT__NOM;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -364,13 +364,13 @@ public interface AsamPackage extends EPackage
   int SERVICE = 7;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE__NAME = ELEMENT__NAME;
+  int SERVICE__NOM = ELEMENT__NOM;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -410,13 +410,13 @@ public interface AsamPackage extends EPackage
   int CONTROLLER = 8;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROLLER__NAME = ELEMENT__NAME;
+  int CONTROLLER__NOM = ELEMENT__NOM;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -465,13 +465,13 @@ public interface AsamPackage extends EPackage
   int REPOSITORY = 9;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REPOSITORY__NAME = ELEMENT__NAME;
+  int REPOSITORY__NOM = ELEMENT__NOM;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -632,13 +632,13 @@ public interface AsamPackage extends EPackage
   int SERVICE_ACTION = 14;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE_ACTION__NAME = 0;
+  int SERVICE_ACTION__NOM = 0;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -705,13 +705,13 @@ public interface AsamPackage extends EPackage
   int CONTROLLER_ACTION__METHOD = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROLLER_ACTION__NAME = 1;
+  int CONTROLLER_ACTION__NOM = 1;
 
   /**
    * The feature id for the '<em><b>Service Action</b></em>' attribute.
@@ -760,13 +760,13 @@ public interface AsamPackage extends EPackage
   int ACTION_PARAMETER = 16;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTION_PARAMETER__NAME = 0;
+  int ACTION_PARAMETER__NOM = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -806,13 +806,13 @@ public interface AsamPackage extends EPackage
   int PROPERTY = 17;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY__NAME = 0;
+  int PROPERTY__NOM = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1031,15 +1031,15 @@ public interface AsamPackage extends EPackage
   EClass getSboot();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Sboot#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Sboot#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.Sboot#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.Sboot#getNom()
    * @see #getSboot()
    * @generated
    */
-  EAttribute getSboot_Name();
+  EAttribute getSboot_Nom();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.Sboot#getConfiguration <em>Configuration</em>}'.
@@ -1074,15 +1074,15 @@ public interface AsamPackage extends EPackage
   EClass getElement();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Element#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Element#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.Element#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.Element#getNom()
    * @see #getElement()
    * @generated
    */
-  EAttribute getElement_Name();
+  EAttribute getElement_Nom();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.asam.asam.Configuration <em>Configuration</em>}'.
@@ -1170,15 +1170,15 @@ public interface AsamPackage extends EPackage
   EAttribute getDatabaseInfo_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DatabaseInfo#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DatabaseInfo#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.DatabaseInfo#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.DatabaseInfo#getNom()
    * @see #getDatabaseInfo()
    * @generated
    */
-  EAttribute getDatabaseInfo_Name();
+  EAttribute getDatabaseInfo_Nom();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DatabaseInfo#getPort <em>Port</em>}'.
@@ -1479,15 +1479,15 @@ public interface AsamPackage extends EPackage
   EClass getServiceAction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ServiceAction#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ServiceAction#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.ServiceAction#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.ServiceAction#getNom()
    * @see #getServiceAction()
    * @generated
    */
-  EAttribute getServiceAction_Name();
+  EAttribute getServiceAction_Nom();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.ServiceAction#getReturnType <em>Return Type</em>}'.
@@ -1555,15 +1555,15 @@ public interface AsamPackage extends EPackage
   EAttribute getControllerAction_Method();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ControllerAction#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ControllerAction#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.ControllerAction#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.ControllerAction#getNom()
    * @see #getControllerAction()
    * @generated
    */
-  EAttribute getControllerAction_Name();
+  EAttribute getControllerAction_Nom();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ControllerAction#getServiceAction <em>Service Action</em>}'.
@@ -1609,15 +1609,15 @@ public interface AsamPackage extends EPackage
   EClass getActionParameter();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ActionParameter#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ActionParameter#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.ActionParameter#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.ActionParameter#getNom()
    * @see #getActionParameter()
    * @generated
    */
-  EAttribute getActionParameter_Name();
+  EAttribute getActionParameter_Nom();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.ActionParameter#getType <em>Type</em>}'.
@@ -1652,15 +1652,15 @@ public interface AsamPackage extends EPackage
   EClass getProperty();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Property#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Property#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.Property#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.Property#getNom()
    * @see #getProperty()
    * @generated
    */
-  EAttribute getProperty_Name();
+  EAttribute getProperty_Nom();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.Property#getType <em>Type</em>}'.
@@ -1821,12 +1821,12 @@ public interface AsamPackage extends EPackage
     EClass SBOOT = eINSTANCE.getSboot();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SBOOT__NAME = eINSTANCE.getSboot_Name();
+    EAttribute SBOOT__NOM = eINSTANCE.getSboot_Nom();
 
     /**
      * The meta object literal for the '<em><b>Configuration</b></em>' containment reference feature.
@@ -1855,12 +1855,12 @@ public interface AsamPackage extends EPackage
     EClass ELEMENT = eINSTANCE.getElement();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ELEMENT__NAME = eINSTANCE.getElement_Name();
+    EAttribute ELEMENT__NOM = eINSTANCE.getElement_Nom();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.ConfigurationImpl <em>Configuration</em>}' class.
@@ -1933,12 +1933,12 @@ public interface AsamPackage extends EPackage
     EAttribute DATABASE_INFO__TYPE = eINSTANCE.getDatabaseInfo_Type();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DATABASE_INFO__NAME = eINSTANCE.getDatabaseInfo_Name();
+    EAttribute DATABASE_INFO__NOM = eINSTANCE.getDatabaseInfo_Nom();
 
     /**
      * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
@@ -2185,12 +2185,12 @@ public interface AsamPackage extends EPackage
     EClass SERVICE_ACTION = eINSTANCE.getServiceAction();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SERVICE_ACTION__NAME = eINSTANCE.getServiceAction_Name();
+    EAttribute SERVICE_ACTION__NOM = eINSTANCE.getServiceAction_Nom();
 
     /**
      * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
@@ -2243,12 +2243,12 @@ public interface AsamPackage extends EPackage
     EAttribute CONTROLLER_ACTION__METHOD = eINSTANCE.getControllerAction_Method();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONTROLLER_ACTION__NAME = eINSTANCE.getControllerAction_Name();
+    EAttribute CONTROLLER_ACTION__NOM = eINSTANCE.getControllerAction_Nom();
 
     /**
      * The meta object literal for the '<em><b>Service Action</b></em>' attribute feature.
@@ -2285,12 +2285,12 @@ public interface AsamPackage extends EPackage
     EClass ACTION_PARAMETER = eINSTANCE.getActionParameter();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ACTION_PARAMETER__NAME = eINSTANCE.getActionParameter_Name();
+    EAttribute ACTION_PARAMETER__NOM = eINSTANCE.getActionParameter_Nom();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -2319,12 +2319,12 @@ public interface AsamPackage extends EPackage
     EClass PROPERTY = eINSTANCE.getProperty();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROPERTY__NAME = eINSTANCE.getProperty_Name();
+    EAttribute PROPERTY__NOM = eINSTANCE.getProperty_Nom();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.

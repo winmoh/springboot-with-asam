@@ -3,7 +3,7 @@ grammar org.xtext.example.asam.Asam with org.eclipse.xtext.common.Terminals
 generate asam "http://www.xtext.org/example/asam/Asam"
 
 Sboot:
-    'project' name=ID
+    'project' nom=ID
     configuration=Configuration?
     elements+=Element*;
 
@@ -25,35 +25,35 @@ ServerInfo:
 DatabaseInfo:
     'database' '{'
         'dbms' type=RDBMS
-        'dname' name=ID
+        'dname' nom=ID
         'dport' port=INT
         'username' username=ID
         'password' password=ID
     '}';
 
 Entity:
-    'entity' name=ID ('inherits' extends=[Entity])? '{'
+    'entity' nom=ID ('inherits' extends=[Entity])? '{'
         properties+=Property*
     '}';
 
 DTO:
-    'dto' name=ID '{'
+    'dto' nom=ID '{'
         properties+=Property*
     '}';
 
 Service:
-    'service' name=ID 'pertainingTo' entity=[Controller] '{'
+    'service' nom=ID 'pertainingTo' entity=[Controller] '{'
         actions+=ServiceAction*
     '}';
 
 Controller:
-    'controller' name=ID 'mappingTo' entity=[Entity] '{'
+    'controller' nom=ID 'mappingTo' entity=[Entity] '{'
         baseUrl=STRING?
         actions+=ControllerAction*
     '}';
 
 Repository:
-    'repository' name=ID 'for' entity=[Entity] '{'
+    'repository' nom=ID 'for' entity=[Entity] '{'
         methods+=RepositoryMethod*
     '}';
 
@@ -70,7 +70,7 @@ CustomQueryMethod:
     'customQuery' '{' query=STRING '}';
 
 ServiceAction:
-    'operation' name=ID '{'
+    'operation' nom=ID '{'
         'returns' returnType=RType
         ('raises' exceptionType=Type)?
         ('implementation' implementation=STRING)?
@@ -78,17 +78,17 @@ ServiceAction:
     '}';
 
 ControllerAction:
-    method=HttpMethods 'action' name=ID '{'
+    method=HttpMethods 'action' nom=ID '{'
         'linkedTo' serviceAction=ID
         ('mappedAt' url=STRING)?
         parameters+=ActionParameter*
     '}';
 
 ActionParameter:
-    name=ID ':' type=Type ('default' defaultValue=STRING)?;
+    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
 
 Property:
-    name=ID ':' type=Type ('default' defaultValue=STRING)?;
+    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
 
 Type:
     Vtypes=VTypes | ListType | SetType;

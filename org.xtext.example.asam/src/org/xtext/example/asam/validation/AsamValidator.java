@@ -7,7 +7,10 @@ import java.util.HashSet;
 
 import org.eclipse.xtext.validation.Check;
 import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.Property;
+import org.xtext.example.asam.asam.Service;
 import org.xtext.example.asam.asam.AsamPackage;
+import org.xtext.example.asam.asam.Controller;
 
 
 /**
@@ -38,10 +41,46 @@ public class AsamValidator extends AbstractAsamValidator {
 		Entity current =entity.getExtends();
 		while(current!=null) {
 			if(vistedEntities.contains(current)) {
-				error ( " cycle in hierarchy of entity" +current.getName() , AsamPackage.eINSTANCE.getEntity_Extends());
+				error ( " cycle in hierarchy of entity" +current.getNom() , AsamPackage.eINSTANCE.getEntity_Extends());
 			}
 			vistedEntities.add(current);
 			current=current.getExtends();
+		}
+	}
+		
+		@Check
+		public void checkEntityNameStartsWithCapital(Entity entity) {
+			
+			if(Character.isLowerCase(entity.getNom().charAt(0))) {
+				 warning("Entity name  should start with a capital", 
+			                AsamPackage.Literals.ELEMENT__NOM);
+			}
+		}
+		
+		@Check
+		public void checkAttributeNameStartsWithLowercase(Property prop) {
+			
+			if(!Character.isLowerCase(prop.getNom().charAt(0))) {
+				 warning("Entity name  should start with a lower case", 
+			                AsamPackage.Literals.ELEMENT__NOM);
+			}
+		}
+		
+		@Check
+		public void checkControllerNameStartsWithCapital(Controller contr) {
+			
+			if(Character.isLowerCase(contr.getNom().charAt(0))) {
+				 warning("Controller name  should start with a capital", 
+			                AsamPackage.Literals.ELEMENT__NOM);
+			}
+		}
+		@Check
+		public void checkEntityNameStartsWithCapital(Service serv) {
+			
+			if(Character.isLowerCase(serv.getNom().charAt(0))) {
+				 warning("Entity name  should start with a capital", 
+			                AsamPackage.Literals.ELEMENT__NOM);
+			}
 		}
 		
 		
@@ -51,4 +90,4 @@ public class AsamValidator extends AbstractAsamValidator {
 	
 	
 	
-}
+

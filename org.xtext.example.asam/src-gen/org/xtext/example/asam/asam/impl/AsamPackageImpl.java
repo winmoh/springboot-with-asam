@@ -299,7 +299,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getSboot_Name()
+  public EAttribute getSboot_Nom()
   {
     return (EAttribute)sbootEClass.getEStructuralFeatures().get(0);
   }
@@ -343,7 +343,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getElement_Name()
+  public EAttribute getElement_Nom()
   {
     return (EAttribute)elementEClass.getEStructuralFeatures().get(0);
   }
@@ -442,7 +442,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getDatabaseInfo_Name()
+  public EAttribute getDatabaseInfo_Nom()
   {
     return (EAttribute)databaseInfoEClass.getEStructuralFeatures().get(1);
   }
@@ -761,7 +761,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getServiceAction_Name()
+  public EAttribute getServiceAction_Nom()
   {
     return (EAttribute)serviceActionEClass.getEStructuralFeatures().get(0);
   }
@@ -838,7 +838,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getControllerAction_Name()
+  public EAttribute getControllerAction_Nom()
   {
     return (EAttribute)controllerActionEClass.getEStructuralFeatures().get(1);
   }
@@ -893,7 +893,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getActionParameter_Name()
+  public EAttribute getActionParameter_Nom()
   {
     return (EAttribute)actionParameterEClass.getEStructuralFeatures().get(0);
   }
@@ -937,7 +937,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getProperty_Name()
+  public EAttribute getProperty_Nom()
   {
     return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
   }
@@ -1106,12 +1106,12 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     // Create classes and their features
     sbootEClass = createEClass(SBOOT);
-    createEAttribute(sbootEClass, SBOOT__NAME);
+    createEAttribute(sbootEClass, SBOOT__NOM);
     createEReference(sbootEClass, SBOOT__CONFIGURATION);
     createEReference(sbootEClass, SBOOT__ELEMENTS);
 
     elementEClass = createEClass(ELEMENT);
-    createEAttribute(elementEClass, ELEMENT__NAME);
+    createEAttribute(elementEClass, ELEMENT__NOM);
 
     configurationEClass = createEClass(CONFIGURATION);
     createEReference(configurationEClass, CONFIGURATION__SERVER);
@@ -1123,7 +1123,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     databaseInfoEClass = createEClass(DATABASE_INFO);
     createEAttribute(databaseInfoEClass, DATABASE_INFO__TYPE);
-    createEAttribute(databaseInfoEClass, DATABASE_INFO__NAME);
+    createEAttribute(databaseInfoEClass, DATABASE_INFO__NOM);
     createEAttribute(databaseInfoEClass, DATABASE_INFO__PORT);
     createEAttribute(databaseInfoEClass, DATABASE_INFO__USERNAME);
     createEAttribute(databaseInfoEClass, DATABASE_INFO__PASSWORD);
@@ -1162,7 +1162,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     createEAttribute(customQueryMethodEClass, CUSTOM_QUERY_METHOD__QUERY);
 
     serviceActionEClass = createEClass(SERVICE_ACTION);
-    createEAttribute(serviceActionEClass, SERVICE_ACTION__NAME);
+    createEAttribute(serviceActionEClass, SERVICE_ACTION__NOM);
     createEReference(serviceActionEClass, SERVICE_ACTION__RETURN_TYPE);
     createEReference(serviceActionEClass, SERVICE_ACTION__EXCEPTION_TYPE);
     createEAttribute(serviceActionEClass, SERVICE_ACTION__IMPLEMENTATION);
@@ -1170,18 +1170,18 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     controllerActionEClass = createEClass(CONTROLLER_ACTION);
     createEAttribute(controllerActionEClass, CONTROLLER_ACTION__METHOD);
-    createEAttribute(controllerActionEClass, CONTROLLER_ACTION__NAME);
+    createEAttribute(controllerActionEClass, CONTROLLER_ACTION__NOM);
     createEAttribute(controllerActionEClass, CONTROLLER_ACTION__SERVICE_ACTION);
     createEAttribute(controllerActionEClass, CONTROLLER_ACTION__URL);
     createEReference(controllerActionEClass, CONTROLLER_ACTION__PARAMETERS);
 
     actionParameterEClass = createEClass(ACTION_PARAMETER);
-    createEAttribute(actionParameterEClass, ACTION_PARAMETER__NAME);
+    createEAttribute(actionParameterEClass, ACTION_PARAMETER__NOM);
     createEReference(actionParameterEClass, ACTION_PARAMETER__TYPE);
     createEAttribute(actionParameterEClass, ACTION_PARAMETER__DEFAULT_VALUE);
 
     propertyEClass = createEClass(PROPERTY);
-    createEAttribute(propertyEClass, PROPERTY__NAME);
+    createEAttribute(propertyEClass, PROPERTY__NOM);
     createEReference(propertyEClass, PROPERTY__TYPE);
     createEAttribute(propertyEClass, PROPERTY__DEFAULT_VALUE);
 
@@ -1245,12 +1245,12 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(sbootEClass, Sboot.class, "Sboot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSboot_Name(), ecorePackage.getEString(), "name", null, 0, 1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSboot_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSboot_Configuration(), this.getConfiguration(), null, "configuration", null, 0, 1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSboot_Elements(), this.getElement(), null, "elements", null, 0, -1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getElement_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConfiguration_Server(), this.getServerInfo(), null, "server", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1262,7 +1262,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     initEClass(databaseInfoEClass, DatabaseInfo.class, "DatabaseInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDatabaseInfo_Type(), this.getRDBMS(), "type", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseInfo_Name(), ecorePackage.getEString(), "name", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDatabaseInfo_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDatabaseInfo_Port(), ecorePackage.getEInt(), "port", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDatabaseInfo_Username(), ecorePackage.getEString(), "username", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDatabaseInfo_Password(), ecorePackage.getEString(), "password", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1301,7 +1301,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     initEAttribute(getCustomQueryMethod_Query(), ecorePackage.getEString(), "query", null, 0, 1, CustomQueryMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(serviceActionEClass, ServiceAction.class, "ServiceAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getServiceAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getServiceAction_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getServiceAction_ReturnType(), this.getRType(), null, "returnType", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getServiceAction_ExceptionType(), this.getType(), null, "exceptionType", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getServiceAction_Implementation(), ecorePackage.getEString(), "implementation", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1309,18 +1309,18 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     initEClass(controllerActionEClass, ControllerAction.class, "ControllerAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getControllerAction_Method(), this.getHttpMethods(), "method", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getControllerAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getControllerAction_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getControllerAction_ServiceAction(), ecorePackage.getEString(), "serviceAction", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getControllerAction_Url(), ecorePackage.getEString(), "url", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getControllerAction_Parameters(), this.getActionParameter(), null, "parameters", null, 0, -1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(actionParameterEClass, ActionParameter.class, "ActionParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getActionParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, ActionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getActionParameter_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, ActionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getActionParameter_Type(), this.getType(), null, "type", null, 0, 1, ActionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getActionParameter_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 0, 1, ActionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getProperty_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProperty_Type(), this.getType(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProperty_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

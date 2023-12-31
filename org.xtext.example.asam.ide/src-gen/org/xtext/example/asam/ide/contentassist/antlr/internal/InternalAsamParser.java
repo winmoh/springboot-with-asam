@@ -3120,31 +3120,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Sboot__Group__1__Impl"
-    // InternalAsam.g:938:1: rule__Sboot__Group__1__Impl : ( ( rule__Sboot__NameAssignment_1 ) ) ;
+    // InternalAsam.g:938:1: rule__Sboot__Group__1__Impl : ( ( rule__Sboot__NomAssignment_1 ) ) ;
     public final void rule__Sboot__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:942:1: ( ( ( rule__Sboot__NameAssignment_1 ) ) )
-            // InternalAsam.g:943:1: ( ( rule__Sboot__NameAssignment_1 ) )
+            // InternalAsam.g:942:1: ( ( ( rule__Sboot__NomAssignment_1 ) ) )
+            // InternalAsam.g:943:1: ( ( rule__Sboot__NomAssignment_1 ) )
             {
-            // InternalAsam.g:943:1: ( ( rule__Sboot__NameAssignment_1 ) )
-            // InternalAsam.g:944:2: ( rule__Sboot__NameAssignment_1 )
+            // InternalAsam.g:943:1: ( ( rule__Sboot__NomAssignment_1 ) )
+            // InternalAsam.g:944:2: ( rule__Sboot__NomAssignment_1 )
             {
-             before(grammarAccess.getSbootAccess().getNameAssignment_1()); 
-            // InternalAsam.g:945:2: ( rule__Sboot__NameAssignment_1 )
-            // InternalAsam.g:945:3: rule__Sboot__NameAssignment_1
+             before(grammarAccess.getSbootAccess().getNomAssignment_1()); 
+            // InternalAsam.g:945:2: ( rule__Sboot__NomAssignment_1 )
+            // InternalAsam.g:945:3: rule__Sboot__NomAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Sboot__NameAssignment_1();
+            rule__Sboot__NomAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getSbootAccess().getNameAssignment_1()); 
+             after(grammarAccess.getSbootAccess().getNomAssignment_1()); 
 
             }
 
@@ -4918,31 +4918,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatabaseInfo__Group__5__Impl"
-    // InternalAsam.g:1532:1: rule__DatabaseInfo__Group__5__Impl : ( ( rule__DatabaseInfo__NameAssignment_5 ) ) ;
+    // InternalAsam.g:1532:1: rule__DatabaseInfo__Group__5__Impl : ( ( rule__DatabaseInfo__NomAssignment_5 ) ) ;
     public final void rule__DatabaseInfo__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1536:1: ( ( ( rule__DatabaseInfo__NameAssignment_5 ) ) )
-            // InternalAsam.g:1537:1: ( ( rule__DatabaseInfo__NameAssignment_5 ) )
+            // InternalAsam.g:1536:1: ( ( ( rule__DatabaseInfo__NomAssignment_5 ) ) )
+            // InternalAsam.g:1537:1: ( ( rule__DatabaseInfo__NomAssignment_5 ) )
             {
-            // InternalAsam.g:1537:1: ( ( rule__DatabaseInfo__NameAssignment_5 ) )
-            // InternalAsam.g:1538:2: ( rule__DatabaseInfo__NameAssignment_5 )
+            // InternalAsam.g:1537:1: ( ( rule__DatabaseInfo__NomAssignment_5 ) )
+            // InternalAsam.g:1538:2: ( rule__DatabaseInfo__NomAssignment_5 )
             {
-             before(grammarAccess.getDatabaseInfoAccess().getNameAssignment_5()); 
-            // InternalAsam.g:1539:2: ( rule__DatabaseInfo__NameAssignment_5 )
-            // InternalAsam.g:1539:3: rule__DatabaseInfo__NameAssignment_5
+             before(grammarAccess.getDatabaseInfoAccess().getNomAssignment_5()); 
+            // InternalAsam.g:1539:2: ( rule__DatabaseInfo__NomAssignment_5 )
+            // InternalAsam.g:1539:3: rule__DatabaseInfo__NomAssignment_5
             {
             pushFollow(FOLLOW_2);
-            rule__DatabaseInfo__NameAssignment_5();
+            rule__DatabaseInfo__NomAssignment_5();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDatabaseInfoAccess().getNameAssignment_5()); 
+             after(grammarAccess.getDatabaseInfoAccess().getNomAssignment_5()); 
 
             }
 
@@ -5628,31 +5628,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Entity__Group__1__Impl"
-    // InternalAsam.g:1775:1: rule__Entity__Group__1__Impl : ( ( rule__Entity__NameAssignment_1 ) ) ;
+    // InternalAsam.g:1775:1: rule__Entity__Group__1__Impl : ( ( rule__Entity__NomAssignment_1 ) ) ;
     public final void rule__Entity__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1779:1: ( ( ( rule__Entity__NameAssignment_1 ) ) )
-            // InternalAsam.g:1780:1: ( ( rule__Entity__NameAssignment_1 ) )
+            // InternalAsam.g:1779:1: ( ( ( rule__Entity__NomAssignment_1 ) ) )
+            // InternalAsam.g:1780:1: ( ( rule__Entity__NomAssignment_1 ) )
             {
-            // InternalAsam.g:1780:1: ( ( rule__Entity__NameAssignment_1 ) )
-            // InternalAsam.g:1781:2: ( rule__Entity__NameAssignment_1 )
+            // InternalAsam.g:1780:1: ( ( rule__Entity__NomAssignment_1 ) )
+            // InternalAsam.g:1781:2: ( rule__Entity__NomAssignment_1 )
             {
-             before(grammarAccess.getEntityAccess().getNameAssignment_1()); 
-            // InternalAsam.g:1782:2: ( rule__Entity__NameAssignment_1 )
-            // InternalAsam.g:1782:3: rule__Entity__NameAssignment_1
+             before(grammarAccess.getEntityAccess().getNomAssignment_1()); 
+            // InternalAsam.g:1782:2: ( rule__Entity__NomAssignment_1 )
+            // InternalAsam.g:1782:3: rule__Entity__NomAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Entity__NameAssignment_1();
+            rule__Entity__NomAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getEntityAccess().getNameAssignment_1()); 
+             after(grammarAccess.getEntityAccess().getNomAssignment_1()); 
 
             }
 
@@ -6287,31 +6287,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DTO__Group__1__Impl"
-    // InternalAsam.g:1991:1: rule__DTO__Group__1__Impl : ( ( rule__DTO__NameAssignment_1 ) ) ;
+    // InternalAsam.g:1991:1: rule__DTO__Group__1__Impl : ( ( rule__DTO__NomAssignment_1 ) ) ;
     public final void rule__DTO__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1995:1: ( ( ( rule__DTO__NameAssignment_1 ) ) )
-            // InternalAsam.g:1996:1: ( ( rule__DTO__NameAssignment_1 ) )
+            // InternalAsam.g:1995:1: ( ( ( rule__DTO__NomAssignment_1 ) ) )
+            // InternalAsam.g:1996:1: ( ( rule__DTO__NomAssignment_1 ) )
             {
-            // InternalAsam.g:1996:1: ( ( rule__DTO__NameAssignment_1 ) )
-            // InternalAsam.g:1997:2: ( rule__DTO__NameAssignment_1 )
+            // InternalAsam.g:1996:1: ( ( rule__DTO__NomAssignment_1 ) )
+            // InternalAsam.g:1997:2: ( rule__DTO__NomAssignment_1 )
             {
-             before(grammarAccess.getDTOAccess().getNameAssignment_1()); 
-            // InternalAsam.g:1998:2: ( rule__DTO__NameAssignment_1 )
-            // InternalAsam.g:1998:3: rule__DTO__NameAssignment_1
+             before(grammarAccess.getDTOAccess().getNomAssignment_1()); 
+            // InternalAsam.g:1998:2: ( rule__DTO__NomAssignment_1 )
+            // InternalAsam.g:1998:3: rule__DTO__NomAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__DTO__NameAssignment_1();
+            rule__DTO__NomAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDTOAccess().getNameAssignment_1()); 
+             after(grammarAccess.getDTOAccess().getNomAssignment_1()); 
 
             }
 
@@ -6695,31 +6695,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Service__Group__1__Impl"
-    // InternalAsam.g:2126:1: rule__Service__Group__1__Impl : ( ( rule__Service__NameAssignment_1 ) ) ;
+    // InternalAsam.g:2126:1: rule__Service__Group__1__Impl : ( ( rule__Service__NomAssignment_1 ) ) ;
     public final void rule__Service__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:2130:1: ( ( ( rule__Service__NameAssignment_1 ) ) )
-            // InternalAsam.g:2131:1: ( ( rule__Service__NameAssignment_1 ) )
+            // InternalAsam.g:2130:1: ( ( ( rule__Service__NomAssignment_1 ) ) )
+            // InternalAsam.g:2131:1: ( ( rule__Service__NomAssignment_1 ) )
             {
-            // InternalAsam.g:2131:1: ( ( rule__Service__NameAssignment_1 ) )
-            // InternalAsam.g:2132:2: ( rule__Service__NameAssignment_1 )
+            // InternalAsam.g:2131:1: ( ( rule__Service__NomAssignment_1 ) )
+            // InternalAsam.g:2132:2: ( rule__Service__NomAssignment_1 )
             {
-             before(grammarAccess.getServiceAccess().getNameAssignment_1()); 
-            // InternalAsam.g:2133:2: ( rule__Service__NameAssignment_1 )
-            // InternalAsam.g:2133:3: rule__Service__NameAssignment_1
+             before(grammarAccess.getServiceAccess().getNomAssignment_1()); 
+            // InternalAsam.g:2133:2: ( rule__Service__NomAssignment_1 )
+            // InternalAsam.g:2133:3: rule__Service__NomAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Service__NameAssignment_1();
+            rule__Service__NomAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getServiceAccess().getNameAssignment_1()); 
+             after(grammarAccess.getServiceAccess().getNomAssignment_1()); 
 
             }
 
@@ -7263,31 +7263,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Controller__Group__1__Impl"
-    // InternalAsam.g:2315:1: rule__Controller__Group__1__Impl : ( ( rule__Controller__NameAssignment_1 ) ) ;
+    // InternalAsam.g:2315:1: rule__Controller__Group__1__Impl : ( ( rule__Controller__NomAssignment_1 ) ) ;
     public final void rule__Controller__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:2319:1: ( ( ( rule__Controller__NameAssignment_1 ) ) )
-            // InternalAsam.g:2320:1: ( ( rule__Controller__NameAssignment_1 ) )
+            // InternalAsam.g:2319:1: ( ( ( rule__Controller__NomAssignment_1 ) ) )
+            // InternalAsam.g:2320:1: ( ( rule__Controller__NomAssignment_1 ) )
             {
-            // InternalAsam.g:2320:1: ( ( rule__Controller__NameAssignment_1 ) )
-            // InternalAsam.g:2321:2: ( rule__Controller__NameAssignment_1 )
+            // InternalAsam.g:2320:1: ( ( rule__Controller__NomAssignment_1 ) )
+            // InternalAsam.g:2321:2: ( rule__Controller__NomAssignment_1 )
             {
-             before(grammarAccess.getControllerAccess().getNameAssignment_1()); 
-            // InternalAsam.g:2322:2: ( rule__Controller__NameAssignment_1 )
-            // InternalAsam.g:2322:3: rule__Controller__NameAssignment_1
+             before(grammarAccess.getControllerAccess().getNomAssignment_1()); 
+            // InternalAsam.g:2322:2: ( rule__Controller__NomAssignment_1 )
+            // InternalAsam.g:2322:3: rule__Controller__NomAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Controller__NameAssignment_1();
+            rule__Controller__NomAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getControllerAccess().getNameAssignment_1()); 
+             after(grammarAccess.getControllerAccess().getNomAssignment_1()); 
 
             }
 
@@ -7927,31 +7927,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repository__Group__1__Impl"
-    // InternalAsam.g:2531:1: rule__Repository__Group__1__Impl : ( ( rule__Repository__NameAssignment_1 ) ) ;
+    // InternalAsam.g:2531:1: rule__Repository__Group__1__Impl : ( ( rule__Repository__NomAssignment_1 ) ) ;
     public final void rule__Repository__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:2535:1: ( ( ( rule__Repository__NameAssignment_1 ) ) )
-            // InternalAsam.g:2536:1: ( ( rule__Repository__NameAssignment_1 ) )
+            // InternalAsam.g:2535:1: ( ( ( rule__Repository__NomAssignment_1 ) ) )
+            // InternalAsam.g:2536:1: ( ( rule__Repository__NomAssignment_1 ) )
             {
-            // InternalAsam.g:2536:1: ( ( rule__Repository__NameAssignment_1 ) )
-            // InternalAsam.g:2537:2: ( rule__Repository__NameAssignment_1 )
+            // InternalAsam.g:2536:1: ( ( rule__Repository__NomAssignment_1 ) )
+            // InternalAsam.g:2537:2: ( rule__Repository__NomAssignment_1 )
             {
-             before(grammarAccess.getRepositoryAccess().getNameAssignment_1()); 
-            // InternalAsam.g:2538:2: ( rule__Repository__NameAssignment_1 )
-            // InternalAsam.g:2538:3: rule__Repository__NameAssignment_1
+             before(grammarAccess.getRepositoryAccess().getNomAssignment_1()); 
+            // InternalAsam.g:2538:2: ( rule__Repository__NomAssignment_1 )
+            // InternalAsam.g:2538:3: rule__Repository__NomAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Repository__NameAssignment_1();
+            rule__Repository__NomAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getRepositoryAccess().getNameAssignment_1()); 
+             after(grammarAccess.getRepositoryAccess().getNomAssignment_1()); 
 
             }
 
@@ -9580,31 +9580,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ServiceAction__Group__1__Impl"
-    // InternalAsam.g:3098:1: rule__ServiceAction__Group__1__Impl : ( ( rule__ServiceAction__NameAssignment_1 ) ) ;
+    // InternalAsam.g:3098:1: rule__ServiceAction__Group__1__Impl : ( ( rule__ServiceAction__NomAssignment_1 ) ) ;
     public final void rule__ServiceAction__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:3102:1: ( ( ( rule__ServiceAction__NameAssignment_1 ) ) )
-            // InternalAsam.g:3103:1: ( ( rule__ServiceAction__NameAssignment_1 ) )
+            // InternalAsam.g:3102:1: ( ( ( rule__ServiceAction__NomAssignment_1 ) ) )
+            // InternalAsam.g:3103:1: ( ( rule__ServiceAction__NomAssignment_1 ) )
             {
-            // InternalAsam.g:3103:1: ( ( rule__ServiceAction__NameAssignment_1 ) )
-            // InternalAsam.g:3104:2: ( rule__ServiceAction__NameAssignment_1 )
+            // InternalAsam.g:3103:1: ( ( rule__ServiceAction__NomAssignment_1 ) )
+            // InternalAsam.g:3104:2: ( rule__ServiceAction__NomAssignment_1 )
             {
-             before(grammarAccess.getServiceActionAccess().getNameAssignment_1()); 
-            // InternalAsam.g:3105:2: ( rule__ServiceAction__NameAssignment_1 )
-            // InternalAsam.g:3105:3: rule__ServiceAction__NameAssignment_1
+             before(grammarAccess.getServiceActionAccess().getNomAssignment_1()); 
+            // InternalAsam.g:3105:2: ( rule__ServiceAction__NomAssignment_1 )
+            // InternalAsam.g:3105:3: rule__ServiceAction__NomAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__ServiceAction__NameAssignment_1();
+            rule__ServiceAction__NomAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getServiceActionAccess().getNameAssignment_1()); 
+             after(grammarAccess.getServiceActionAccess().getNomAssignment_1()); 
 
             }
 
@@ -10960,31 +10960,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ControllerAction__Group__2__Impl"
-    // InternalAsam.g:3557:1: rule__ControllerAction__Group__2__Impl : ( ( rule__ControllerAction__NameAssignment_2 ) ) ;
+    // InternalAsam.g:3557:1: rule__ControllerAction__Group__2__Impl : ( ( rule__ControllerAction__NomAssignment_2 ) ) ;
     public final void rule__ControllerAction__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:3561:1: ( ( ( rule__ControllerAction__NameAssignment_2 ) ) )
-            // InternalAsam.g:3562:1: ( ( rule__ControllerAction__NameAssignment_2 ) )
+            // InternalAsam.g:3561:1: ( ( ( rule__ControllerAction__NomAssignment_2 ) ) )
+            // InternalAsam.g:3562:1: ( ( rule__ControllerAction__NomAssignment_2 ) )
             {
-            // InternalAsam.g:3562:1: ( ( rule__ControllerAction__NameAssignment_2 ) )
-            // InternalAsam.g:3563:2: ( rule__ControllerAction__NameAssignment_2 )
+            // InternalAsam.g:3562:1: ( ( rule__ControllerAction__NomAssignment_2 ) )
+            // InternalAsam.g:3563:2: ( rule__ControllerAction__NomAssignment_2 )
             {
-             before(grammarAccess.getControllerActionAccess().getNameAssignment_2()); 
-            // InternalAsam.g:3564:2: ( rule__ControllerAction__NameAssignment_2 )
-            // InternalAsam.g:3564:3: rule__ControllerAction__NameAssignment_2
+             before(grammarAccess.getControllerActionAccess().getNomAssignment_2()); 
+            // InternalAsam.g:3564:2: ( rule__ControllerAction__NomAssignment_2 )
+            // InternalAsam.g:3564:3: rule__ControllerAction__NomAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__ControllerAction__NameAssignment_2();
+            rule__ControllerAction__NomAssignment_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getControllerActionAccess().getNameAssignment_2()); 
+             after(grammarAccess.getControllerActionAccess().getNomAssignment_2()); 
 
             }
 
@@ -11704,31 +11704,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ActionParameter__Group__0__Impl"
-    // InternalAsam.g:3800:1: rule__ActionParameter__Group__0__Impl : ( ( rule__ActionParameter__NameAssignment_0 ) ) ;
+    // InternalAsam.g:3800:1: rule__ActionParameter__Group__0__Impl : ( ( rule__ActionParameter__NomAssignment_0 ) ) ;
     public final void rule__ActionParameter__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:3804:1: ( ( ( rule__ActionParameter__NameAssignment_0 ) ) )
-            // InternalAsam.g:3805:1: ( ( rule__ActionParameter__NameAssignment_0 ) )
+            // InternalAsam.g:3804:1: ( ( ( rule__ActionParameter__NomAssignment_0 ) ) )
+            // InternalAsam.g:3805:1: ( ( rule__ActionParameter__NomAssignment_0 ) )
             {
-            // InternalAsam.g:3805:1: ( ( rule__ActionParameter__NameAssignment_0 ) )
-            // InternalAsam.g:3806:2: ( rule__ActionParameter__NameAssignment_0 )
+            // InternalAsam.g:3805:1: ( ( rule__ActionParameter__NomAssignment_0 ) )
+            // InternalAsam.g:3806:2: ( rule__ActionParameter__NomAssignment_0 )
             {
-             before(grammarAccess.getActionParameterAccess().getNameAssignment_0()); 
-            // InternalAsam.g:3807:2: ( rule__ActionParameter__NameAssignment_0 )
-            // InternalAsam.g:3807:3: rule__ActionParameter__NameAssignment_0
+             before(grammarAccess.getActionParameterAccess().getNomAssignment_0()); 
+            // InternalAsam.g:3807:2: ( rule__ActionParameter__NomAssignment_0 )
+            // InternalAsam.g:3807:3: rule__ActionParameter__NomAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__ActionParameter__NameAssignment_0();
+            rule__ActionParameter__NomAssignment_0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getActionParameterAccess().getNameAssignment_0()); 
+             after(grammarAccess.getActionParameterAccess().getNomAssignment_0()); 
 
             }
 
@@ -12195,31 +12195,31 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Property__Group__0__Impl"
-    // InternalAsam.g:3962:1: rule__Property__Group__0__Impl : ( ( rule__Property__NameAssignment_0 ) ) ;
+    // InternalAsam.g:3962:1: rule__Property__Group__0__Impl : ( ( rule__Property__NomAssignment_0 ) ) ;
     public final void rule__Property__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:3966:1: ( ( ( rule__Property__NameAssignment_0 ) ) )
-            // InternalAsam.g:3967:1: ( ( rule__Property__NameAssignment_0 ) )
+            // InternalAsam.g:3966:1: ( ( ( rule__Property__NomAssignment_0 ) ) )
+            // InternalAsam.g:3967:1: ( ( rule__Property__NomAssignment_0 ) )
             {
-            // InternalAsam.g:3967:1: ( ( rule__Property__NameAssignment_0 ) )
-            // InternalAsam.g:3968:2: ( rule__Property__NameAssignment_0 )
+            // InternalAsam.g:3967:1: ( ( rule__Property__NomAssignment_0 ) )
+            // InternalAsam.g:3968:2: ( rule__Property__NomAssignment_0 )
             {
-             before(grammarAccess.getPropertyAccess().getNameAssignment_0()); 
-            // InternalAsam.g:3969:2: ( rule__Property__NameAssignment_0 )
-            // InternalAsam.g:3969:3: rule__Property__NameAssignment_0
+             before(grammarAccess.getPropertyAccess().getNomAssignment_0()); 
+            // InternalAsam.g:3969:2: ( rule__Property__NomAssignment_0 )
+            // InternalAsam.g:3969:3: rule__Property__NomAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__Property__NameAssignment_0();
+            rule__Property__NomAssignment_0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getPropertyAccess().getNameAssignment_0()); 
+             after(grammarAccess.getPropertyAccess().getNomAssignment_0()); 
 
             }
 
@@ -13107,9 +13107,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__SetType__Group__2__Impl"
 
 
-    // $ANTLR start "rule__Sboot__NameAssignment_1"
-    // InternalAsam.g:4274:1: rule__Sboot__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Sboot__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Sboot__NomAssignment_1"
+    // InternalAsam.g:4274:1: rule__Sboot__NomAssignment_1 : ( RULE_ID ) ;
+    public final void rule__Sboot__NomAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13120,9 +13120,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4279:2: ( RULE_ID )
             // InternalAsam.g:4280:3: RULE_ID
             {
-             before(grammarAccess.getSbootAccess().getNameIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getSbootAccess().getNomIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getSbootAccess().getNameIDTerminalRuleCall_1_0()); 
+             after(grammarAccess.getSbootAccess().getNomIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -13141,7 +13141,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Sboot__NameAssignment_1"
+    // $ANTLR end "rule__Sboot__NomAssignment_1"
 
 
     // $ANTLR start "rule__Sboot__ConfigurationAssignment_2"
@@ -13423,9 +13423,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DatabaseInfo__TypeAssignment_3"
 
 
-    // $ANTLR start "rule__DatabaseInfo__NameAssignment_5"
-    // InternalAsam.g:4394:1: rule__DatabaseInfo__NameAssignment_5 : ( RULE_ID ) ;
-    public final void rule__DatabaseInfo__NameAssignment_5() throws RecognitionException {
+    // $ANTLR start "rule__DatabaseInfo__NomAssignment_5"
+    // InternalAsam.g:4394:1: rule__DatabaseInfo__NomAssignment_5 : ( RULE_ID ) ;
+    public final void rule__DatabaseInfo__NomAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13436,9 +13436,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4399:2: ( RULE_ID )
             // InternalAsam.g:4400:3: RULE_ID
             {
-             before(grammarAccess.getDatabaseInfoAccess().getNameIDTerminalRuleCall_5_0()); 
+             before(grammarAccess.getDatabaseInfoAccess().getNomIDTerminalRuleCall_5_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getDatabaseInfoAccess().getNameIDTerminalRuleCall_5_0()); 
+             after(grammarAccess.getDatabaseInfoAccess().getNomIDTerminalRuleCall_5_0()); 
 
             }
 
@@ -13457,7 +13457,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DatabaseInfo__NameAssignment_5"
+    // $ANTLR end "rule__DatabaseInfo__NomAssignment_5"
 
 
     // $ANTLR start "rule__DatabaseInfo__PortAssignment_7"
@@ -13571,9 +13571,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DatabaseInfo__PasswordAssignment_11"
 
 
-    // $ANTLR start "rule__Entity__NameAssignment_1"
-    // InternalAsam.g:4454:1: rule__Entity__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Entity__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Entity__NomAssignment_1"
+    // InternalAsam.g:4454:1: rule__Entity__NomAssignment_1 : ( RULE_ID ) ;
+    public final void rule__Entity__NomAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13584,9 +13584,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4459:2: ( RULE_ID )
             // InternalAsam.g:4460:3: RULE_ID
             {
-             before(grammarAccess.getEntityAccess().getNameIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getEntityAccess().getNomIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getEntityAccess().getNameIDTerminalRuleCall_1_0()); 
+             after(grammarAccess.getEntityAccess().getNomIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -13605,7 +13605,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Entity__NameAssignment_1"
+    // $ANTLR end "rule__Entity__NomAssignment_1"
 
 
     // $ANTLR start "rule__Entity__ExtendsAssignment_2_1"
@@ -13694,9 +13694,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Entity__PropertiesAssignment_4"
 
 
-    // $ANTLR start "rule__DTO__NameAssignment_1"
-    // InternalAsam.g:4503:1: rule__DTO__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__DTO__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__DTO__NomAssignment_1"
+    // InternalAsam.g:4503:1: rule__DTO__NomAssignment_1 : ( RULE_ID ) ;
+    public final void rule__DTO__NomAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13707,9 +13707,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4508:2: ( RULE_ID )
             // InternalAsam.g:4509:3: RULE_ID
             {
-             before(grammarAccess.getDTOAccess().getNameIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getDTOAccess().getNomIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getDTOAccess().getNameIDTerminalRuleCall_1_0()); 
+             after(grammarAccess.getDTOAccess().getNomIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -13728,7 +13728,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DTO__NameAssignment_1"
+    // $ANTLR end "rule__DTO__NomAssignment_1"
 
 
     // $ANTLR start "rule__DTO__PropertiesAssignment_3"
@@ -13772,9 +13772,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DTO__PropertiesAssignment_3"
 
 
-    // $ANTLR start "rule__Service__NameAssignment_1"
-    // InternalAsam.g:4533:1: rule__Service__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Service__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Service__NomAssignment_1"
+    // InternalAsam.g:4533:1: rule__Service__NomAssignment_1 : ( RULE_ID ) ;
+    public final void rule__Service__NomAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13785,9 +13785,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4538:2: ( RULE_ID )
             // InternalAsam.g:4539:3: RULE_ID
             {
-             before(grammarAccess.getServiceAccess().getNameIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getServiceAccess().getNomIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getServiceAccess().getNameIDTerminalRuleCall_1_0()); 
+             after(grammarAccess.getServiceAccess().getNomIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -13806,7 +13806,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Service__NameAssignment_1"
+    // $ANTLR end "rule__Service__NomAssignment_1"
 
 
     // $ANTLR start "rule__Service__EntityAssignment_3"
@@ -13895,9 +13895,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Service__ActionsAssignment_5"
 
 
-    // $ANTLR start "rule__Controller__NameAssignment_1"
-    // InternalAsam.g:4582:1: rule__Controller__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Controller__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Controller__NomAssignment_1"
+    // InternalAsam.g:4582:1: rule__Controller__NomAssignment_1 : ( RULE_ID ) ;
+    public final void rule__Controller__NomAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13908,9 +13908,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4587:2: ( RULE_ID )
             // InternalAsam.g:4588:3: RULE_ID
             {
-             before(grammarAccess.getControllerAccess().getNameIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getControllerAccess().getNomIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getControllerAccess().getNameIDTerminalRuleCall_1_0()); 
+             after(grammarAccess.getControllerAccess().getNomIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -13929,7 +13929,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Controller__NameAssignment_1"
+    // $ANTLR end "rule__Controller__NomAssignment_1"
 
 
     // $ANTLR start "rule__Controller__EntityAssignment_3"
@@ -14055,9 +14055,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Controller__ActionsAssignment_6"
 
 
-    // $ANTLR start "rule__Repository__NameAssignment_1"
-    // InternalAsam.g:4646:1: rule__Repository__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Repository__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Repository__NomAssignment_1"
+    // InternalAsam.g:4646:1: rule__Repository__NomAssignment_1 : ( RULE_ID ) ;
+    public final void rule__Repository__NomAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -14068,9 +14068,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4651:2: ( RULE_ID )
             // InternalAsam.g:4652:3: RULE_ID
             {
-             before(grammarAccess.getRepositoryAccess().getNameIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getRepositoryAccess().getNomIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getRepositoryAccess().getNameIDTerminalRuleCall_1_0()); 
+             after(grammarAccess.getRepositoryAccess().getNomIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -14089,7 +14089,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Repository__NameAssignment_1"
+    // $ANTLR end "rule__Repository__NomAssignment_1"
 
 
     // $ANTLR start "rule__Repository__EntityAssignment_3"
@@ -14363,9 +14363,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__CustomQueryMethod__QueryAssignment_2"
 
 
-    // $ANTLR start "rule__ServiceAction__NameAssignment_1"
-    // InternalAsam.g:4770:1: rule__ServiceAction__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__ServiceAction__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__ServiceAction__NomAssignment_1"
+    // InternalAsam.g:4770:1: rule__ServiceAction__NomAssignment_1 : ( RULE_ID ) ;
+    public final void rule__ServiceAction__NomAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -14376,9 +14376,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4775:2: ( RULE_ID )
             // InternalAsam.g:4776:3: RULE_ID
             {
-             before(grammarAccess.getServiceActionAccess().getNameIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getServiceActionAccess().getNomIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getServiceActionAccess().getNameIDTerminalRuleCall_1_0()); 
+             after(grammarAccess.getServiceActionAccess().getNomIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -14397,7 +14397,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ServiceAction__NameAssignment_1"
+    // $ANTLR end "rule__ServiceAction__NomAssignment_1"
 
 
     // $ANTLR start "rule__ServiceAction__ReturnTypeAssignment_4"
@@ -14601,9 +14601,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ControllerAction__MethodAssignment_0"
 
 
-    // $ANTLR start "rule__ControllerAction__NameAssignment_2"
-    // InternalAsam.g:4860:1: rule__ControllerAction__NameAssignment_2 : ( RULE_ID ) ;
-    public final void rule__ControllerAction__NameAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__ControllerAction__NomAssignment_2"
+    // InternalAsam.g:4860:1: rule__ControllerAction__NomAssignment_2 : ( RULE_ID ) ;
+    public final void rule__ControllerAction__NomAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -14614,9 +14614,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4865:2: ( RULE_ID )
             // InternalAsam.g:4866:3: RULE_ID
             {
-             before(grammarAccess.getControllerActionAccess().getNameIDTerminalRuleCall_2_0()); 
+             before(grammarAccess.getControllerActionAccess().getNomIDTerminalRuleCall_2_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getControllerActionAccess().getNameIDTerminalRuleCall_2_0()); 
+             after(grammarAccess.getControllerActionAccess().getNomIDTerminalRuleCall_2_0()); 
 
             }
 
@@ -14635,7 +14635,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ControllerAction__NameAssignment_2"
+    // $ANTLR end "rule__ControllerAction__NomAssignment_2"
 
 
     // $ANTLR start "rule__ControllerAction__ServiceActionAssignment_5"
@@ -14753,9 +14753,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ControllerAction__ParametersAssignment_7"
 
 
-    // $ANTLR start "rule__ActionParameter__NameAssignment_0"
-    // InternalAsam.g:4920:1: rule__ActionParameter__NameAssignment_0 : ( RULE_ID ) ;
-    public final void rule__ActionParameter__NameAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__ActionParameter__NomAssignment_0"
+    // InternalAsam.g:4920:1: rule__ActionParameter__NomAssignment_0 : ( RULE_ID ) ;
+    public final void rule__ActionParameter__NomAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -14766,9 +14766,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4925:2: ( RULE_ID )
             // InternalAsam.g:4926:3: RULE_ID
             {
-             before(grammarAccess.getActionParameterAccess().getNameIDTerminalRuleCall_0_0()); 
+             before(grammarAccess.getActionParameterAccess().getNomIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getActionParameterAccess().getNameIDTerminalRuleCall_0_0()); 
+             after(grammarAccess.getActionParameterAccess().getNomIDTerminalRuleCall_0_0()); 
 
             }
 
@@ -14787,7 +14787,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ActionParameter__NameAssignment_0"
+    // $ANTLR end "rule__ActionParameter__NomAssignment_0"
 
 
     // $ANTLR start "rule__ActionParameter__TypeAssignment_2"
@@ -14868,9 +14868,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ActionParameter__DefaultValueAssignment_3_1"
 
 
-    // $ANTLR start "rule__Property__NameAssignment_0"
-    // InternalAsam.g:4965:1: rule__Property__NameAssignment_0 : ( RULE_ID ) ;
-    public final void rule__Property__NameAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__Property__NomAssignment_0"
+    // InternalAsam.g:4965:1: rule__Property__NomAssignment_0 : ( RULE_ID ) ;
+    public final void rule__Property__NomAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -14881,9 +14881,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4970:2: ( RULE_ID )
             // InternalAsam.g:4971:3: RULE_ID
             {
-             before(grammarAccess.getPropertyAccess().getNameIDTerminalRuleCall_0_0()); 
+             before(grammarAccess.getPropertyAccess().getNomIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getPropertyAccess().getNameIDTerminalRuleCall_0_0()); 
+             after(grammarAccess.getPropertyAccess().getNomIDTerminalRuleCall_0_0()); 
 
             }
 
@@ -14902,7 +14902,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Property__NameAssignment_0"
+    // $ANTLR end "rule__Property__NomAssignment_0"
 
 
     // $ANTLR start "rule__Property__TypeAssignment_2"

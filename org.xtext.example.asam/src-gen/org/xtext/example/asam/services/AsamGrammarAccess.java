@@ -29,20 +29,20 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Sboot");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cProjectKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Assignment cConfigurationAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cConfigurationConfigurationParserRuleCall_2_0 = (RuleCall)cConfigurationAssignment_2.eContents().get(0);
 		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cElementsElementParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
 		
 		//Sboot:
-		//    'project' name=ID
+		//    'project' nom=ID
 		//    configuration=Configuration?
 		//    elements+=Element*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'project' name=ID
+		//'project' nom=ID
 		//configuration=Configuration?
 		//elements+=Element*
 		public Group getGroup() { return cGroup; }
@@ -50,11 +50,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'project'
 		public Keyword getProjectKeyword_0() { return cProjectKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//nom=ID
+		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
 		
 		//configuration=Configuration?
 		public Assignment getConfigurationAssignment_2() { return cConfigurationAssignment_2; }
@@ -214,8 +214,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTypeRDBMSEnumRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
 		private final Keyword cDnameKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cNameAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cNameIDTerminalRuleCall_5_0 = (RuleCall)cNameAssignment_5.eContents().get(0);
+		private final Assignment cNomAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cNomIDTerminalRuleCall_5_0 = (RuleCall)cNomAssignment_5.eContents().get(0);
 		private final Keyword cDportKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cPortAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cPortINTTerminalRuleCall_7_0 = (RuleCall)cPortAssignment_7.eContents().get(0);
@@ -230,7 +230,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//DatabaseInfo:
 		//    'database' '{'
 		//        'dbms' type=RDBMS
-		//        'dname' name=ID
+		//        'dname' nom=ID
 		//        'dport' port=INT
 		//        'username' username=ID
 		//        'password' password=ID
@@ -239,7 +239,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//'database' '{'
 		//    'dbms' type=RDBMS
-		//    'dname' name=ID
+		//    'dname' nom=ID
 		//    'dport' port=INT
 		//    'username' username=ID
 		//    'password' password=ID
@@ -264,11 +264,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'dname'
 		public Keyword getDnameKeyword_4() { return cDnameKeyword_4; }
 		
-		//name=ID
-		public Assignment getNameAssignment_5() { return cNameAssignment_5; }
+		//nom=ID
+		public Assignment getNomAssignment_5() { return cNomAssignment_5; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_5_0() { return cNameIDTerminalRuleCall_5_0; }
+		public RuleCall getNomIDTerminalRuleCall_5_0() { return cNomIDTerminalRuleCall_5_0; }
 		
 		//'dport'
 		public Keyword getDportKeyword_6() { return cDportKeyword_6; }
@@ -304,8 +304,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Entity");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cEntityKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cInheritsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cExtendsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -317,12 +317,12 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Entity:
-		//    'entity' name=ID ('inherits' extends=[Entity])? '{'
+		//    'entity' nom=ID ('inherits' extends=[Entity])? '{'
 		//        properties+=Property*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'entity' name=ID ('inherits' extends=[Entity])? '{'
+		//'entity' nom=ID ('inherits' extends=[Entity])? '{'
 		//    properties+=Property*
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -330,11 +330,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'entity'
 		public Keyword getEntityKeyword_0() { return cEntityKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//nom=ID
+		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
 		
 		//('inherits' extends=[Entity])?
 		public Group getGroup_2() { return cGroup_2; }
@@ -367,20 +367,20 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.DTO");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDtoKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cPropertiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cPropertiesPropertyParserRuleCall_3_0 = (RuleCall)cPropertiesAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//DTO:
-		//    'dto' name=ID '{'
+		//    'dto' nom=ID '{'
 		//        properties+=Property*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'dto' name=ID '{'
+		//'dto' nom=ID '{'
 		//    properties+=Property*
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -388,11 +388,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'dto'
 		public Keyword getDtoKeyword_0() { return cDtoKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//nom=ID
+		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -410,8 +410,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Service");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cServiceKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Keyword cPertainingToKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cEntityControllerCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
@@ -422,12 +422,12 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Service:
-		//    'service' name=ID 'pertainingTo' entity=[Controller] '{'
+		//    'service' nom=ID 'pertainingTo' entity=[Controller] '{'
 		//        actions+=ServiceAction*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'service' name=ID 'pertainingTo' entity=[Controller] '{'
+		//'service' nom=ID 'pertainingTo' entity=[Controller] '{'
 		//    actions+=ServiceAction*
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -435,11 +435,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'service'
 		public Keyword getServiceKeyword_0() { return cServiceKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//nom=ID
+		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
 		
 		//'pertainingTo'
 		public Keyword getPertainingToKeyword_2() { return cPertainingToKeyword_2; }
@@ -469,8 +469,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Controller");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cControllerKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Keyword cMappingToKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
@@ -483,13 +483,13 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Controller:
-		//    'controller' name=ID 'mappingTo' entity=[Entity] '{'
+		//    'controller' nom=ID 'mappingTo' entity=[Entity] '{'
 		//        baseUrl=STRING?
 		//        actions+=ControllerAction*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'controller' name=ID 'mappingTo' entity=[Entity] '{'
+		//'controller' nom=ID 'mappingTo' entity=[Entity] '{'
 		//    baseUrl=STRING?
 		//    actions+=ControllerAction*
 		//'}'
@@ -498,11 +498,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'controller'
 		public Keyword getControllerKeyword_0() { return cControllerKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//nom=ID
+		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
 		
 		//'mappingTo'
 		public Keyword getMappingToKeyword_2() { return cMappingToKeyword_2; }
@@ -538,8 +538,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Repository");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRepositoryKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Keyword cForKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
@@ -550,12 +550,12 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Repository:
-		//    'repository' name=ID 'for' entity=[Entity] '{'
+		//    'repository' nom=ID 'for' entity=[Entity] '{'
 		//        methods+=RepositoryMethod*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'repository' name=ID 'for' entity=[Entity] '{'
+		//'repository' nom=ID 'for' entity=[Entity] '{'
 		//    methods+=RepositoryMethod*
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -563,11 +563,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'repository'
 		public Keyword getRepositoryKeyword_0() { return cRepositoryKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//nom=ID
+		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
 		
 		//'for'
 		public Keyword getForKeyword_2() { return cForKeyword_2; }
@@ -729,8 +729,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.ServiceAction");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cOperationKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cReturnsKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cReturnTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
@@ -751,7 +751,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//ServiceAction:
-		//    'operation' name=ID '{'
+		//    'operation' nom=ID '{'
 		//        'returns' returnType=RType
 		//        ('raises' exceptionType=Type)?
 		//        ('implementation' implementation=STRING)?
@@ -759,7 +759,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'operation' name=ID '{'
+		//'operation' nom=ID '{'
 		//    'returns' returnType=RType
 		//    ('raises' exceptionType=Type)?
 		//    ('implementation' implementation=STRING)?
@@ -770,11 +770,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'operation'
 		public Keyword getOperationKeyword_0() { return cOperationKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//nom=ID
+		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -836,8 +836,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cMethodAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cMethodHttpMethodsEnumRuleCall_0_0 = (RuleCall)cMethodAssignment_0.eContents().get(0);
 		private final Keyword cActionKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Assignment cNomAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNomIDTerminalRuleCall_2_0 = (RuleCall)cNomAssignment_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cLinkedToKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cServiceActionAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -851,14 +851,14 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//ControllerAction:
-		//    method=HttpMethods 'action' name=ID '{'
+		//    method=HttpMethods 'action' nom=ID '{'
 		//        'linkedTo' serviceAction=ID
 		//        ('mappedAt' url=STRING)?
 		//        parameters+=ActionParameter*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//method=HttpMethods 'action' name=ID '{'
+		//method=HttpMethods 'action' nom=ID '{'
 		//    'linkedTo' serviceAction=ID
 		//    ('mappedAt' url=STRING)?
 		//    parameters+=ActionParameter*
@@ -874,11 +874,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'action'
 		public Keyword getActionKeyword_1() { return cActionKeyword_1; }
 		
-		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		//nom=ID
+		public Assignment getNomAssignment_2() { return cNomAssignment_2; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		public RuleCall getNomIDTerminalRuleCall_2_0() { return cNomIDTerminalRuleCall_2_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
@@ -916,8 +916,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	public class ActionParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.ActionParameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cNomAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNomIDTerminalRuleCall_0_0 = (RuleCall)cNomAssignment_0.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
@@ -927,17 +927,17 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cDefaultValueSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cDefaultValueAssignment_3_1.eContents().get(0);
 		
 		//ActionParameter:
-		//    name=ID ':' type=Type ('default' defaultValue=STRING)?;
+		//    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' type=Type ('default' defaultValue=STRING)?
+		//nom=ID ':' type=Type ('default' defaultValue=STRING)?
 		public Group getGroup() { return cGroup; }
 		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//nom=ID
+		public Assignment getNomAssignment_0() { return cNomAssignment_0; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		public RuleCall getNomIDTerminalRuleCall_0_0() { return cNomIDTerminalRuleCall_0_0; }
 		
 		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
@@ -963,8 +963,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	public class PropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Property");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cNomAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNomIDTerminalRuleCall_0_0 = (RuleCall)cNomAssignment_0.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
@@ -974,17 +974,17 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cDefaultValueSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cDefaultValueAssignment_3_1.eContents().get(0);
 		
 		//Property:
-		//    name=ID ':' type=Type ('default' defaultValue=STRING)?;
+		//    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' type=Type ('default' defaultValue=STRING)?
+		//nom=ID ':' type=Type ('default' defaultValue=STRING)?
 		public Group getGroup() { return cGroup; }
 		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//nom=ID
+		public Assignment getNomAssignment_0() { return cNomAssignment_0; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		public RuleCall getNomIDTerminalRuleCall_0_0() { return cNomIDTerminalRuleCall_0_0; }
 		
 		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
@@ -1373,7 +1373,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 
 	
 	//Sboot:
-	//    'project' name=ID
+	//    'project' nom=ID
 	//    configuration=Configuration?
 	//    elements+=Element*;
 	public SbootElements getSbootAccess() {
@@ -1423,7 +1423,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	//DatabaseInfo:
 	//    'database' '{'
 	//        'dbms' type=RDBMS
-	//        'dname' name=ID
+	//        'dname' nom=ID
 	//        'dport' port=INT
 	//        'username' username=ID
 	//        'password' password=ID
@@ -1437,7 +1437,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Entity:
-	//    'entity' name=ID ('inherits' extends=[Entity])? '{'
+	//    'entity' nom=ID ('inherits' extends=[Entity])? '{'
 	//        properties+=Property*
 	//    '}';
 	public EntityElements getEntityAccess() {
@@ -1449,7 +1449,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//DTO:
-	//    'dto' name=ID '{'
+	//    'dto' nom=ID '{'
 	//        properties+=Property*
 	//    '}';
 	public DTOElements getDTOAccess() {
@@ -1461,7 +1461,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Service:
-	//    'service' name=ID 'pertainingTo' entity=[Controller] '{'
+	//    'service' nom=ID 'pertainingTo' entity=[Controller] '{'
 	//        actions+=ServiceAction*
 	//    '}';
 	public ServiceElements getServiceAccess() {
@@ -1473,7 +1473,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Controller:
-	//    'controller' name=ID 'mappingTo' entity=[Entity] '{'
+	//    'controller' nom=ID 'mappingTo' entity=[Entity] '{'
 	//        baseUrl=STRING?
 	//        actions+=ControllerAction*
 	//    '}';
@@ -1486,7 +1486,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Repository:
-	//    'repository' name=ID 'for' entity=[Entity] '{'
+	//    'repository' nom=ID 'for' entity=[Entity] '{'
 	//        methods+=RepositoryMethod*
 	//    '}';
 	public RepositoryElements getRepositoryAccess() {
@@ -1538,7 +1538,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//ServiceAction:
-	//    'operation' name=ID '{'
+	//    'operation' nom=ID '{'
 	//        'returns' returnType=RType
 	//        ('raises' exceptionType=Type)?
 	//        ('implementation' implementation=STRING)?
@@ -1553,7 +1553,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//ControllerAction:
-	//    method=HttpMethods 'action' name=ID '{'
+	//    method=HttpMethods 'action' nom=ID '{'
 	//        'linkedTo' serviceAction=ID
 	//        ('mappedAt' url=STRING)?
 	//        parameters+=ActionParameter*
@@ -1567,7 +1567,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//ActionParameter:
-	//    name=ID ':' type=Type ('default' defaultValue=STRING)?;
+	//    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
 	public ActionParameterElements getActionParameterAccess() {
 		return pActionParameter;
 	}
@@ -1577,7 +1577,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Property:
-	//    name=ID ':' type=Type ('default' defaultValue=STRING)?;
+	//    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}

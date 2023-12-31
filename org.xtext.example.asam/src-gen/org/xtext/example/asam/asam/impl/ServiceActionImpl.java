@@ -33,7 +33,7 @@ import org.xtext.example.asam.asam.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.impl.ServiceActionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ServiceActionImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ServiceActionImpl#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ServiceActionImpl#getExceptionType <em>Exception Type</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ServiceActionImpl#getImplementation <em>Implementation</em>}</li>
@@ -45,24 +45,24 @@ import org.xtext.example.asam.asam.Type;
 public class ServiceActionImpl extends MinimalEObjectImpl.Container implements ServiceAction
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String NOM_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String nom = NOM_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
@@ -141,9 +141,9 @@ public class ServiceActionImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    */
   @Override
-  public String getName()
+  public String getNom()
   {
-    return name;
+    return nom;
   }
 
   /**
@@ -152,12 +152,12 @@ public class ServiceActionImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setNom(String newNom)
   {
-    String oldName = name;
-    name = newName;
+    String oldNom = nom;
+    nom = newNom;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.SERVICE_ACTION__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.SERVICE_ACTION__NOM, oldNom, nom));
   }
 
   /**
@@ -330,8 +330,8 @@ public class ServiceActionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case AsamPackage.SERVICE_ACTION__NAME:
-        return getName();
+      case AsamPackage.SERVICE_ACTION__NOM:
+        return getNom();
       case AsamPackage.SERVICE_ACTION__RETURN_TYPE:
         return getReturnType();
       case AsamPackage.SERVICE_ACTION__EXCEPTION_TYPE:
@@ -355,8 +355,8 @@ public class ServiceActionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case AsamPackage.SERVICE_ACTION__NAME:
-        setName((String)newValue);
+      case AsamPackage.SERVICE_ACTION__NOM:
+        setNom((String)newValue);
         return;
       case AsamPackage.SERVICE_ACTION__RETURN_TYPE:
         setReturnType((RType)newValue);
@@ -385,8 +385,8 @@ public class ServiceActionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case AsamPackage.SERVICE_ACTION__NAME:
-        setName(NAME_EDEFAULT);
+      case AsamPackage.SERVICE_ACTION__NOM:
+        setNom(NOM_EDEFAULT);
         return;
       case AsamPackage.SERVICE_ACTION__RETURN_TYPE:
         setReturnType((RType)null);
@@ -414,8 +414,8 @@ public class ServiceActionImpl extends MinimalEObjectImpl.Container implements S
   {
     switch (featureID)
     {
-      case AsamPackage.SERVICE_ACTION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AsamPackage.SERVICE_ACTION__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.SERVICE_ACTION__RETURN_TYPE:
         return returnType != null;
       case AsamPackage.SERVICE_ACTION__EXCEPTION_TYPE:
@@ -439,8 +439,8 @@ public class ServiceActionImpl extends MinimalEObjectImpl.Container implements S
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (nom: ");
+    result.append(nom);
     result.append(", implementation: ");
     result.append(implementation);
     result.append(')');

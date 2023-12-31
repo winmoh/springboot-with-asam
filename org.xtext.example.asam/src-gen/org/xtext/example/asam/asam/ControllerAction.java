@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.ControllerAction#getMethod <em>Method</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.ControllerAction#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.ControllerAction#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.ControllerAction#getServiceAction <em>Service Action</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.ControllerAction#getUrl <em>Url</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.ControllerAction#getParameters <em>Parameters</em>}</li>
@@ -55,26 +55,26 @@ public interface ControllerAction extends EObject
   void setMethod(HttpMethods value);
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.asam.asam.AsamPackage#getControllerAction_Name()
+   * @return the value of the '<em>Nom</em>' attribute.
+   * @see #setNom(String)
+   * @see org.xtext.example.asam.asam.AsamPackage#getControllerAction_Nom()
    * @model
    * @generated
    */
-  String getName();
+  String getNom();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.ControllerAction#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.asam.asam.ControllerAction#getNom <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Nom</em>' attribute.
+   * @see #getNom()
    * @generated
    */
-  void setName(String value);
+  void setNom(String value);
 
   /**
    * Returns the value of the '<em><b>Service Action</b></em>' attribute.

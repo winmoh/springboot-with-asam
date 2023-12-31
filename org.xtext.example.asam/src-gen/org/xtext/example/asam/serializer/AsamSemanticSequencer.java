@@ -122,7 +122,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ActionParameter returns ActionParameter
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type defaultValue=STRING?)
+	 *     (nom=ID type=Type defaultValue=STRING?)
 	 * </pre>
 	 */
 	protected void sequence_ActionParameter(ISerializationContext context, ActionParameter semanticObject) {
@@ -150,7 +150,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ControllerAction returns ControllerAction
 	 *
 	 * Constraint:
-	 *     (method=HttpMethods name=ID serviceAction=ID url=STRING? parameters+=ActionParameter*)
+	 *     (method=HttpMethods nom=ID serviceAction=ID url=STRING? parameters+=ActionParameter*)
 	 * </pre>
 	 */
 	protected void sequence_ControllerAction(ISerializationContext context, ControllerAction semanticObject) {
@@ -165,7 +165,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Controller returns Controller
 	 *
 	 * Constraint:
-	 *     (name=ID entity=[Entity|ID] baseUrl=STRING? actions+=ControllerAction*)
+	 *     (nom=ID entity=[Entity|ID] baseUrl=STRING? actions+=ControllerAction*)
 	 * </pre>
 	 */
 	protected void sequence_Controller(ISerializationContext context, Controller semanticObject) {
@@ -201,7 +201,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DTO returns DTO
 	 *
 	 * Constraint:
-	 *     (name=ID properties+=Property*)
+	 *     (nom=ID properties+=Property*)
 	 * </pre>
 	 */
 	protected void sequence_DTO(ISerializationContext context, DTO semanticObject) {
@@ -215,15 +215,15 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DatabaseInfo returns DatabaseInfo
 	 *
 	 * Constraint:
-	 *     (type=RDBMS name=ID port=INT username=ID password=ID)
+	 *     (type=RDBMS nom=ID port=INT username=ID password=ID)
 	 * </pre>
 	 */
 	protected void sequence_DatabaseInfo(ISerializationContext context, DatabaseInfo semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DATABASE_INFO__TYPE));
-			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DATABASE_INFO__NAME));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__NOM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DATABASE_INFO__NOM));
 			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__PORT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DATABASE_INFO__PORT));
 			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__USERNAME) == ValueTransient.YES)
@@ -233,7 +233,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getDatabaseInfoAccess().getTypeRDBMSEnumRuleCall_3_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getDatabaseInfoAccess().getNameIDTerminalRuleCall_5_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDatabaseInfoAccess().getNomIDTerminalRuleCall_5_0(), semanticObject.getNom());
 		feeder.accept(grammarAccess.getDatabaseInfoAccess().getPortINTTerminalRuleCall_7_0(), semanticObject.getPort());
 		feeder.accept(grammarAccess.getDatabaseInfoAccess().getUsernameIDTerminalRuleCall_9_0(), semanticObject.getUsername());
 		feeder.accept(grammarAccess.getDatabaseInfoAccess().getPasswordIDTerminalRuleCall_11_0(), semanticObject.getPassword());
@@ -272,7 +272,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Entity returns Entity
 	 *
 	 * Constraint:
-	 *     (name=ID extends=[Entity|ID]? properties+=Property*)
+	 *     (nom=ID extends=[Entity|ID]? properties+=Property*)
 	 * </pre>
 	 */
 	protected void sequence_Entity(ISerializationContext context, Entity semanticObject) {
@@ -332,7 +332,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Property returns Property
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type defaultValue=STRING?)
+	 *     (nom=ID type=Type defaultValue=STRING?)
 	 * </pre>
 	 */
 	protected void sequence_Property(ISerializationContext context, Property semanticObject) {
@@ -367,7 +367,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Repository returns Repository
 	 *
 	 * Constraint:
-	 *     (name=ID entity=[Entity|ID] methods+=RepositoryMethod*)
+	 *     (nom=ID entity=[Entity|ID] methods+=RepositoryMethod*)
 	 * </pre>
 	 */
 	protected void sequence_Repository(ISerializationContext context, Repository semanticObject) {
@@ -381,7 +381,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Sboot returns Sboot
 	 *
 	 * Constraint:
-	 *     (name=ID configuration=Configuration? elements+=Element*)
+	 *     (nom=ID configuration=Configuration? elements+=Element*)
 	 * </pre>
 	 */
 	protected void sequence_Sboot(ISerializationContext context, Sboot semanticObject) {
@@ -409,7 +409,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ServiceAction returns ServiceAction
 	 *
 	 * Constraint:
-	 *     (name=ID returnType=RType exceptionType=Type? implementation=STRING? parameters+=ActionParameter*)
+	 *     (nom=ID returnType=RType exceptionType=Type? implementation=STRING? parameters+=ActionParameter*)
 	 * </pre>
 	 */
 	protected void sequence_ServiceAction(ISerializationContext context, ServiceAction semanticObject) {
@@ -424,7 +424,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Service returns Service
 	 *
 	 * Constraint:
-	 *     (name=ID entity=[Controller|ID] actions+=ServiceAction*)
+	 *     (nom=ID entity=[Controller|ID] actions+=ServiceAction*)
 	 * </pre>
 	 */
 	protected void sequence_Service(ISerializationContext context, Service semanticObject) {

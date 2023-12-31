@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.DatabaseInfo#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.DatabaseInfo#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.DatabaseInfo#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.DatabaseInfo#getPort <em>Port</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.DatabaseInfo#getUsername <em>Username</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.DatabaseInfo#getPassword <em>Password</em>}</li>
@@ -53,26 +53,26 @@ public interface DatabaseInfo extends EObject
   void setType(RDBMS value);
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.asam.asam.AsamPackage#getDatabaseInfo_Name()
+   * @return the value of the '<em>Nom</em>' attribute.
+   * @see #setNom(String)
+   * @see org.xtext.example.asam.asam.AsamPackage#getDatabaseInfo_Nom()
    * @model
    * @generated
    */
-  String getName();
+  String getNom();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.DatabaseInfo#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.asam.asam.DatabaseInfo#getNom <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Nom</em>' attribute.
+   * @see #getNom()
    * @generated
    */
-  void setName(String value);
+  void setNom(String value);
 
   /**
    * Returns the value of the '<em><b>Port</b></em>' attribute.

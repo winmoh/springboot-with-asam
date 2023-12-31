@@ -30,12 +30,12 @@
       <genEnumLiterals ecoreEnumLiteral="Asam.ecore#//RDBMS/ORACLE"/>
     </genEnums>
     <genClasses ecoreClass="Asam.ecore#//Sboot">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//Sboot/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//Sboot/nom"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//Sboot/configuration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//Sboot/elements"/>
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//Element">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//Element/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//Element/nom"/>
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//Configuration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//Configuration/server"/>
@@ -47,7 +47,7 @@
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//DatabaseInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//DatabaseInfo/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//DatabaseInfo/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//DatabaseInfo/nom"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//DatabaseInfo/port"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//DatabaseInfo/username"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//DatabaseInfo/password"/>
@@ -85,7 +85,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//CustomQueryMethod/query"/>
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//ServiceAction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ServiceAction/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ServiceAction/nom"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//ServiceAction/returnType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//ServiceAction/exceptionType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ServiceAction/implementation"/>
@@ -93,18 +93,18 @@
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//ControllerAction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ControllerAction/method"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ControllerAction/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ControllerAction/nom"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ControllerAction/serviceAction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ControllerAction/url"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//ControllerAction/parameters"/>
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//ActionParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ActionParameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ActionParameter/nom"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//ActionParameter/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//ActionParameter/defaultValue"/>
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//Property">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//Property/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//Property/nom"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//Property/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//Property/defaultValue"/>
     </genClasses>

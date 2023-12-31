@@ -169,12 +169,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSboot"
-    // InternalAsam.g:72:1: ruleSboot returns [EObject current=null] : (otherlv_0= 'project' ( (lv_name_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )* ) ;
+    // InternalAsam.g:72:1: ruleSboot returns [EObject current=null] : (otherlv_0= 'project' ( (lv_nom_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )* ) ;
     public final EObject ruleSboot() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
+        Token lv_nom_1_0=null;
         EObject lv_configuration_2_0 = null;
 
         EObject lv_elements_3_0 = null;
@@ -184,25 +184,25 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:78:2: ( (otherlv_0= 'project' ( (lv_name_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )* ) )
-            // InternalAsam.g:79:2: (otherlv_0= 'project' ( (lv_name_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )* )
+            // InternalAsam.g:78:2: ( (otherlv_0= 'project' ( (lv_nom_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )* ) )
+            // InternalAsam.g:79:2: (otherlv_0= 'project' ( (lv_nom_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )* )
             {
-            // InternalAsam.g:79:2: (otherlv_0= 'project' ( (lv_name_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )* )
-            // InternalAsam.g:80:3: otherlv_0= 'project' ( (lv_name_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )*
+            // InternalAsam.g:79:2: (otherlv_0= 'project' ( (lv_nom_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )* )
+            // InternalAsam.g:80:3: otherlv_0= 'project' ( (lv_nom_1_0= RULE_ID ) ) ( (lv_configuration_2_0= ruleConfiguration ) )? ( (lv_elements_3_0= ruleElement ) )*
             {
             otherlv_0=(Token)match(input,12,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getSbootAccess().getProjectKeyword_0());
             		
-            // InternalAsam.g:84:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalAsam.g:85:4: (lv_name_1_0= RULE_ID )
+            // InternalAsam.g:84:3: ( (lv_nom_1_0= RULE_ID ) )
+            // InternalAsam.g:85:4: (lv_nom_1_0= RULE_ID )
             {
-            // InternalAsam.g:85:4: (lv_name_1_0= RULE_ID )
-            // InternalAsam.g:86:5: lv_name_1_0= RULE_ID
+            // InternalAsam.g:85:4: (lv_nom_1_0= RULE_ID )
+            // InternalAsam.g:86:5: lv_nom_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_4); 
+            lv_nom_1_0=(Token)match(input,RULE_ID,FOLLOW_4); 
 
-            					newLeafNode(lv_name_1_0, grammarAccess.getSbootAccess().getNameIDTerminalRuleCall_1_0());
+            					newLeafNode(lv_nom_1_0, grammarAccess.getSbootAccess().getNomIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -210,8 +210,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_1_0,
+            						"nom",
+            						lv_nom_1_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -941,7 +941,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDatabaseInfo"
-    // InternalAsam.g:362:1: ruleDatabaseInfo returns [EObject current=null] : (otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_name_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}' ) ;
+    // InternalAsam.g:362:1: ruleDatabaseInfo returns [EObject current=null] : (otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_nom_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}' ) ;
     public final EObject ruleDatabaseInfo() throws RecognitionException {
         EObject current = null;
 
@@ -949,7 +949,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         Token otherlv_1=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        Token lv_name_5_0=null;
+        Token lv_nom_5_0=null;
         Token otherlv_6=null;
         Token lv_port_7_0=null;
         Token otherlv_8=null;
@@ -964,11 +964,11 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:368:2: ( (otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_name_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}' ) )
-            // InternalAsam.g:369:2: (otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_name_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}' )
+            // InternalAsam.g:368:2: ( (otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_nom_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}' ) )
+            // InternalAsam.g:369:2: (otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_nom_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}' )
             {
-            // InternalAsam.g:369:2: (otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_name_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}' )
-            // InternalAsam.g:370:3: otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_name_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}'
+            // InternalAsam.g:369:2: (otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_nom_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}' )
+            // InternalAsam.g:370:3: otherlv_0= 'database' otherlv_1= '{' otherlv_2= 'dbms' ( (lv_type_3_0= ruleRDBMS ) ) otherlv_4= 'dname' ( (lv_nom_5_0= RULE_ID ) ) otherlv_6= 'dport' ( (lv_port_7_0= RULE_INT ) ) otherlv_8= 'username' ( (lv_username_9_0= RULE_ID ) ) otherlv_10= 'password' ( (lv_password_11_0= RULE_ID ) ) otherlv_12= '}'
             {
             otherlv_0=(Token)match(input,19,FOLLOW_6); 
 
@@ -1017,15 +1017,15 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_4, grammarAccess.getDatabaseInfoAccess().getDnameKeyword_4());
             		
-            // InternalAsam.g:405:3: ( (lv_name_5_0= RULE_ID ) )
-            // InternalAsam.g:406:4: (lv_name_5_0= RULE_ID )
+            // InternalAsam.g:405:3: ( (lv_nom_5_0= RULE_ID ) )
+            // InternalAsam.g:406:4: (lv_nom_5_0= RULE_ID )
             {
-            // InternalAsam.g:406:4: (lv_name_5_0= RULE_ID )
-            // InternalAsam.g:407:5: lv_name_5_0= RULE_ID
+            // InternalAsam.g:406:4: (lv_nom_5_0= RULE_ID )
+            // InternalAsam.g:407:5: lv_nom_5_0= RULE_ID
             {
-            lv_name_5_0=(Token)match(input,RULE_ID,FOLLOW_17); 
+            lv_nom_5_0=(Token)match(input,RULE_ID,FOLLOW_17); 
 
-            					newLeafNode(lv_name_5_0, grammarAccess.getDatabaseInfoAccess().getNameIDTerminalRuleCall_5_0());
+            					newLeafNode(lv_nom_5_0, grammarAccess.getDatabaseInfoAccess().getNomIDTerminalRuleCall_5_0());
             				
 
             					if (current==null) {
@@ -1033,8 +1033,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_5_0,
+            						"nom",
+            						lv_nom_5_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -1196,12 +1196,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEntity"
-    // InternalAsam.g:504:1: ruleEntity returns [EObject current=null] : (otherlv_0= 'entity' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}' ) ;
+    // InternalAsam.g:504:1: ruleEntity returns [EObject current=null] : (otherlv_0= 'entity' ( (lv_nom_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}' ) ;
     public final EObject ruleEntity() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
+        Token lv_nom_1_0=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
         Token otherlv_4=null;
@@ -1213,25 +1213,25 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:510:2: ( (otherlv_0= 'entity' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}' ) )
-            // InternalAsam.g:511:2: (otherlv_0= 'entity' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}' )
+            // InternalAsam.g:510:2: ( (otherlv_0= 'entity' ( (lv_nom_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}' ) )
+            // InternalAsam.g:511:2: (otherlv_0= 'entity' ( (lv_nom_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}' )
             {
-            // InternalAsam.g:511:2: (otherlv_0= 'entity' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}' )
-            // InternalAsam.g:512:3: otherlv_0= 'entity' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}'
+            // InternalAsam.g:511:2: (otherlv_0= 'entity' ( (lv_nom_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}' )
+            // InternalAsam.g:512:3: otherlv_0= 'entity' ( (lv_nom_1_0= RULE_ID ) ) (otherlv_2= 'inherits' ( (otherlv_3= RULE_ID ) ) )? otherlv_4= '{' ( (lv_properties_5_0= ruleProperty ) )* otherlv_6= '}'
             {
             otherlv_0=(Token)match(input,25,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getEntityAccess().getEntityKeyword_0());
             		
-            // InternalAsam.g:516:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalAsam.g:517:4: (lv_name_1_0= RULE_ID )
+            // InternalAsam.g:516:3: ( (lv_nom_1_0= RULE_ID ) )
+            // InternalAsam.g:517:4: (lv_nom_1_0= RULE_ID )
             {
-            // InternalAsam.g:517:4: (lv_name_1_0= RULE_ID )
-            // InternalAsam.g:518:5: lv_name_1_0= RULE_ID
+            // InternalAsam.g:517:4: (lv_nom_1_0= RULE_ID )
+            // InternalAsam.g:518:5: lv_nom_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_20); 
+            lv_nom_1_0=(Token)match(input,RULE_ID,FOLLOW_20); 
 
-            					newLeafNode(lv_name_1_0, grammarAccess.getEntityAccess().getNameIDTerminalRuleCall_1_0());
+            					newLeafNode(lv_nom_1_0, grammarAccess.getEntityAccess().getNomIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -1239,8 +1239,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_1_0,
+            						"nom",
+            						lv_nom_1_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -1407,12 +1407,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDTO"
-    // InternalAsam.g:591:1: ruleDTO returns [EObject current=null] : (otherlv_0= 'dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}' ) ;
+    // InternalAsam.g:591:1: ruleDTO returns [EObject current=null] : (otherlv_0= 'dto' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}' ) ;
     public final EObject ruleDTO() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
+        Token lv_nom_1_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
         EObject lv_properties_3_0 = null;
@@ -1422,25 +1422,25 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:597:2: ( (otherlv_0= 'dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}' ) )
-            // InternalAsam.g:598:2: (otherlv_0= 'dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}' )
+            // InternalAsam.g:597:2: ( (otherlv_0= 'dto' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}' ) )
+            // InternalAsam.g:598:2: (otherlv_0= 'dto' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}' )
             {
-            // InternalAsam.g:598:2: (otherlv_0= 'dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}' )
-            // InternalAsam.g:599:3: otherlv_0= 'dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}'
+            // InternalAsam.g:598:2: (otherlv_0= 'dto' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}' )
+            // InternalAsam.g:599:3: otherlv_0= 'dto' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_properties_3_0= ruleProperty ) )* otherlv_4= '}'
             {
             otherlv_0=(Token)match(input,27,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDTOAccess().getDtoKeyword_0());
             		
-            // InternalAsam.g:603:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalAsam.g:604:4: (lv_name_1_0= RULE_ID )
+            // InternalAsam.g:603:3: ( (lv_nom_1_0= RULE_ID ) )
+            // InternalAsam.g:604:4: (lv_nom_1_0= RULE_ID )
             {
-            // InternalAsam.g:604:4: (lv_name_1_0= RULE_ID )
-            // InternalAsam.g:605:5: lv_name_1_0= RULE_ID
+            // InternalAsam.g:604:4: (lv_nom_1_0= RULE_ID )
+            // InternalAsam.g:605:5: lv_nom_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_6); 
+            lv_nom_1_0=(Token)match(input,RULE_ID,FOLLOW_6); 
 
-            					newLeafNode(lv_name_1_0, grammarAccess.getDTOAccess().getNameIDTerminalRuleCall_1_0());
+            					newLeafNode(lv_nom_1_0, grammarAccess.getDTOAccess().getNomIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -1448,8 +1448,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_1_0,
+            						"nom",
+            						lv_nom_1_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -1574,12 +1574,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleService"
-    // InternalAsam.g:659:1: ruleService returns [EObject current=null] : (otherlv_0= 'service' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}' ) ;
+    // InternalAsam.g:659:1: ruleService returns [EObject current=null] : (otherlv_0= 'service' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}' ) ;
     public final EObject ruleService() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
+        Token lv_nom_1_0=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
         Token otherlv_4=null;
@@ -1591,25 +1591,25 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:665:2: ( (otherlv_0= 'service' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}' ) )
-            // InternalAsam.g:666:2: (otherlv_0= 'service' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}' )
+            // InternalAsam.g:665:2: ( (otherlv_0= 'service' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}' ) )
+            // InternalAsam.g:666:2: (otherlv_0= 'service' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}' )
             {
-            // InternalAsam.g:666:2: (otherlv_0= 'service' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}' )
-            // InternalAsam.g:667:3: otherlv_0= 'service' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}'
+            // InternalAsam.g:666:2: (otherlv_0= 'service' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}' )
+            // InternalAsam.g:667:3: otherlv_0= 'service' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'pertainingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_actions_5_0= ruleServiceAction ) )* otherlv_6= '}'
             {
             otherlv_0=(Token)match(input,28,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getServiceAccess().getServiceKeyword_0());
             		
-            // InternalAsam.g:671:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalAsam.g:672:4: (lv_name_1_0= RULE_ID )
+            // InternalAsam.g:671:3: ( (lv_nom_1_0= RULE_ID ) )
+            // InternalAsam.g:672:4: (lv_nom_1_0= RULE_ID )
             {
-            // InternalAsam.g:672:4: (lv_name_1_0= RULE_ID )
-            // InternalAsam.g:673:5: lv_name_1_0= RULE_ID
+            // InternalAsam.g:672:4: (lv_nom_1_0= RULE_ID )
+            // InternalAsam.g:673:5: lv_nom_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_22); 
+            lv_nom_1_0=(Token)match(input,RULE_ID,FOLLOW_22); 
 
-            					newLeafNode(lv_name_1_0, grammarAccess.getServiceAccess().getNameIDTerminalRuleCall_1_0());
+            					newLeafNode(lv_nom_1_0, grammarAccess.getServiceAccess().getNomIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -1617,8 +1617,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_1_0,
+            						"nom",
+            						lv_nom_1_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -1768,12 +1768,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleController"
-    // InternalAsam.g:744:1: ruleController returns [EObject current=null] : (otherlv_0= 'controller' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}' ) ;
+    // InternalAsam.g:744:1: ruleController returns [EObject current=null] : (otherlv_0= 'controller' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}' ) ;
     public final EObject ruleController() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
+        Token lv_nom_1_0=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
         Token otherlv_4=null;
@@ -1786,25 +1786,25 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:750:2: ( (otherlv_0= 'controller' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}' ) )
-            // InternalAsam.g:751:2: (otherlv_0= 'controller' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}' )
+            // InternalAsam.g:750:2: ( (otherlv_0= 'controller' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}' ) )
+            // InternalAsam.g:751:2: (otherlv_0= 'controller' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}' )
             {
-            // InternalAsam.g:751:2: (otherlv_0= 'controller' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}' )
-            // InternalAsam.g:752:3: otherlv_0= 'controller' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}'
+            // InternalAsam.g:751:2: (otherlv_0= 'controller' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}' )
+            // InternalAsam.g:752:3: otherlv_0= 'controller' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'mappingTo' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_baseUrl_5_0= RULE_STRING ) )? ( (lv_actions_6_0= ruleControllerAction ) )* otherlv_7= '}'
             {
             otherlv_0=(Token)match(input,30,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getControllerAccess().getControllerKeyword_0());
             		
-            // InternalAsam.g:756:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalAsam.g:757:4: (lv_name_1_0= RULE_ID )
+            // InternalAsam.g:756:3: ( (lv_nom_1_0= RULE_ID ) )
+            // InternalAsam.g:757:4: (lv_nom_1_0= RULE_ID )
             {
-            // InternalAsam.g:757:4: (lv_name_1_0= RULE_ID )
-            // InternalAsam.g:758:5: lv_name_1_0= RULE_ID
+            // InternalAsam.g:757:4: (lv_nom_1_0= RULE_ID )
+            // InternalAsam.g:758:5: lv_nom_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_24); 
+            lv_nom_1_0=(Token)match(input,RULE_ID,FOLLOW_24); 
 
-            					newLeafNode(lv_name_1_0, grammarAccess.getControllerAccess().getNameIDTerminalRuleCall_1_0());
+            					newLeafNode(lv_nom_1_0, grammarAccess.getControllerAccess().getNomIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -1812,8 +1812,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_1_0,
+            						"nom",
+            						lv_nom_1_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -2000,12 +2000,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRepository"
-    // InternalAsam.g:847:1: ruleRepository returns [EObject current=null] : (otherlv_0= 'repository' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}' ) ;
+    // InternalAsam.g:847:1: ruleRepository returns [EObject current=null] : (otherlv_0= 'repository' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}' ) ;
     public final EObject ruleRepository() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
+        Token lv_nom_1_0=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
         Token otherlv_4=null;
@@ -2017,25 +2017,25 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:853:2: ( (otherlv_0= 'repository' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}' ) )
-            // InternalAsam.g:854:2: (otherlv_0= 'repository' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}' )
+            // InternalAsam.g:853:2: ( (otherlv_0= 'repository' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}' ) )
+            // InternalAsam.g:854:2: (otherlv_0= 'repository' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}' )
             {
-            // InternalAsam.g:854:2: (otherlv_0= 'repository' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}' )
-            // InternalAsam.g:855:3: otherlv_0= 'repository' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}'
+            // InternalAsam.g:854:2: (otherlv_0= 'repository' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}' )
+            // InternalAsam.g:855:3: otherlv_0= 'repository' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) otherlv_4= '{' ( (lv_methods_5_0= ruleRepositoryMethod ) )* otherlv_6= '}'
             {
             otherlv_0=(Token)match(input,32,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getRepositoryAccess().getRepositoryKeyword_0());
             		
-            // InternalAsam.g:859:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalAsam.g:860:4: (lv_name_1_0= RULE_ID )
+            // InternalAsam.g:859:3: ( (lv_nom_1_0= RULE_ID ) )
+            // InternalAsam.g:860:4: (lv_nom_1_0= RULE_ID )
             {
-            // InternalAsam.g:860:4: (lv_name_1_0= RULE_ID )
-            // InternalAsam.g:861:5: lv_name_1_0= RULE_ID
+            // InternalAsam.g:860:4: (lv_nom_1_0= RULE_ID )
+            // InternalAsam.g:861:5: lv_nom_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_27); 
+            lv_nom_1_0=(Token)match(input,RULE_ID,FOLLOW_27); 
 
-            					newLeafNode(lv_name_1_0, grammarAccess.getRepositoryAccess().getNameIDTerminalRuleCall_1_0());
+            					newLeafNode(lv_nom_1_0, grammarAccess.getRepositoryAccess().getNomIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -2043,8 +2043,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_1_0,
+            						"nom",
+            						lv_nom_1_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -2753,12 +2753,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleServiceAction"
-    // InternalAsam.g:1160:1: ruleServiceAction returns [EObject current=null] : (otherlv_0= 'operation' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}' ) ;
+    // InternalAsam.g:1160:1: ruleServiceAction returns [EObject current=null] : (otherlv_0= 'operation' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}' ) ;
     public final EObject ruleServiceAction() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
+        Token lv_nom_1_0=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
@@ -2779,25 +2779,25 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:1166:2: ( (otherlv_0= 'operation' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}' ) )
-            // InternalAsam.g:1167:2: (otherlv_0= 'operation' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}' )
+            // InternalAsam.g:1166:2: ( (otherlv_0= 'operation' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}' ) )
+            // InternalAsam.g:1167:2: (otherlv_0= 'operation' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}' )
             {
-            // InternalAsam.g:1167:2: (otherlv_0= 'operation' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}' )
-            // InternalAsam.g:1168:3: otherlv_0= 'operation' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}'
+            // InternalAsam.g:1167:2: (otherlv_0= 'operation' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}' )
+            // InternalAsam.g:1168:3: otherlv_0= 'operation' ( (lv_nom_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'returns' ( (lv_returnType_4_0= ruleRType ) ) (otherlv_5= 'raises' ( (lv_exceptionType_6_0= ruleType ) ) )? (otherlv_7= 'implementation' ( (lv_implementation_8_0= RULE_STRING ) ) )? otherlv_9= 'params' otherlv_10= '(' ( (lv_parameters_11_0= ruleActionParameter ) )* otherlv_12= ')' otherlv_13= '}'
             {
             otherlv_0=(Token)match(input,39,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getServiceActionAccess().getOperationKeyword_0());
             		
-            // InternalAsam.g:1172:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalAsam.g:1173:4: (lv_name_1_0= RULE_ID )
+            // InternalAsam.g:1172:3: ( (lv_nom_1_0= RULE_ID ) )
+            // InternalAsam.g:1173:4: (lv_nom_1_0= RULE_ID )
             {
-            // InternalAsam.g:1173:4: (lv_name_1_0= RULE_ID )
-            // InternalAsam.g:1174:5: lv_name_1_0= RULE_ID
+            // InternalAsam.g:1173:4: (lv_nom_1_0= RULE_ID )
+            // InternalAsam.g:1174:5: lv_nom_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_6); 
+            lv_nom_1_0=(Token)match(input,RULE_ID,FOLLOW_6); 
 
-            					newLeafNode(lv_name_1_0, grammarAccess.getServiceActionAccess().getNameIDTerminalRuleCall_1_0());
+            					newLeafNode(lv_nom_1_0, grammarAccess.getServiceActionAccess().getNomIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -2805,8 +2805,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_1_0,
+            						"nom",
+            						lv_nom_1_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -3077,12 +3077,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleControllerAction"
-    // InternalAsam.g:1312:1: ruleControllerAction returns [EObject current=null] : ( ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}' ) ;
+    // InternalAsam.g:1312:1: ruleControllerAction returns [EObject current=null] : ( ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_nom_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}' ) ;
     public final EObject ruleControllerAction() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
-        Token lv_name_2_0=null;
+        Token lv_nom_2_0=null;
         Token otherlv_3=null;
         Token otherlv_4=null;
         Token lv_serviceAction_5_0=null;
@@ -3098,11 +3098,11 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:1318:2: ( ( ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}' ) )
-            // InternalAsam.g:1319:2: ( ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}' )
+            // InternalAsam.g:1318:2: ( ( ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_nom_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}' ) )
+            // InternalAsam.g:1319:2: ( ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_nom_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}' )
             {
-            // InternalAsam.g:1319:2: ( ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}' )
-            // InternalAsam.g:1320:3: ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}'
+            // InternalAsam.g:1319:2: ( ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_nom_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}' )
+            // InternalAsam.g:1320:3: ( (lv_method_0_0= ruleHttpMethods ) ) otherlv_1= 'action' ( (lv_nom_2_0= RULE_ID ) ) otherlv_3= '{' otherlv_4= 'linkedTo' ( (lv_serviceAction_5_0= RULE_ID ) ) (otherlv_6= 'mappedAt' ( (lv_url_7_0= RULE_STRING ) ) )? ( (lv_parameters_8_0= ruleActionParameter ) )* otherlv_9= '}'
             {
             // InternalAsam.g:1320:3: ( (lv_method_0_0= ruleHttpMethods ) )
             // InternalAsam.g:1321:4: (lv_method_0_0= ruleHttpMethods )
@@ -3139,15 +3139,15 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getControllerActionAccess().getActionKeyword_1());
             		
-            // InternalAsam.g:1343:3: ( (lv_name_2_0= RULE_ID ) )
-            // InternalAsam.g:1344:4: (lv_name_2_0= RULE_ID )
+            // InternalAsam.g:1343:3: ( (lv_nom_2_0= RULE_ID ) )
+            // InternalAsam.g:1344:4: (lv_nom_2_0= RULE_ID )
             {
-            // InternalAsam.g:1344:4: (lv_name_2_0= RULE_ID )
-            // InternalAsam.g:1345:5: lv_name_2_0= RULE_ID
+            // InternalAsam.g:1344:4: (lv_nom_2_0= RULE_ID )
+            // InternalAsam.g:1345:5: lv_nom_2_0= RULE_ID
             {
-            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_6); 
+            lv_nom_2_0=(Token)match(input,RULE_ID,FOLLOW_6); 
 
-            					newLeafNode(lv_name_2_0, grammarAccess.getControllerActionAccess().getNameIDTerminalRuleCall_2_0());
+            					newLeafNode(lv_nom_2_0, grammarAccess.getControllerActionAccess().getNomIDTerminalRuleCall_2_0());
             				
 
             					if (current==null) {
@@ -3155,8 +3155,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_2_0,
+            						"nom",
+            						lv_nom_2_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -3358,11 +3358,11 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleActionParameter"
-    // InternalAsam.g:1445:1: ruleActionParameter returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? ) ;
+    // InternalAsam.g:1445:1: ruleActionParameter returns [EObject current=null] : ( ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? ) ;
     public final EObject ruleActionParameter() throws RecognitionException {
         EObject current = null;
 
-        Token lv_name_0_0=null;
+        Token lv_nom_0_0=null;
         Token otherlv_1=null;
         Token otherlv_3=null;
         Token lv_defaultValue_4_0=null;
@@ -3373,21 +3373,21 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:1451:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? ) )
-            // InternalAsam.g:1452:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? )
+            // InternalAsam.g:1451:2: ( ( ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? ) )
+            // InternalAsam.g:1452:2: ( ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? )
             {
-            // InternalAsam.g:1452:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? )
-            // InternalAsam.g:1453:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )?
+            // InternalAsam.g:1452:2: ( ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? )
+            // InternalAsam.g:1453:3: ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )?
             {
-            // InternalAsam.g:1453:3: ( (lv_name_0_0= RULE_ID ) )
-            // InternalAsam.g:1454:4: (lv_name_0_0= RULE_ID )
+            // InternalAsam.g:1453:3: ( (lv_nom_0_0= RULE_ID ) )
+            // InternalAsam.g:1454:4: (lv_nom_0_0= RULE_ID )
             {
-            // InternalAsam.g:1454:4: (lv_name_0_0= RULE_ID )
-            // InternalAsam.g:1455:5: lv_name_0_0= RULE_ID
+            // InternalAsam.g:1454:4: (lv_nom_0_0= RULE_ID )
+            // InternalAsam.g:1455:5: lv_nom_0_0= RULE_ID
             {
-            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_43); 
+            lv_nom_0_0=(Token)match(input,RULE_ID,FOLLOW_43); 
 
-            					newLeafNode(lv_name_0_0, grammarAccess.getActionParameterAccess().getNameIDTerminalRuleCall_0_0());
+            					newLeafNode(lv_nom_0_0, grammarAccess.getActionParameterAccess().getNomIDTerminalRuleCall_0_0());
             				
 
             					if (current==null) {
@@ -3395,8 +3395,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_0_0,
+            						"nom",
+            						lv_nom_0_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 
@@ -3546,11 +3546,11 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProperty"
-    // InternalAsam.g:1529:1: ruleProperty returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? ) ;
+    // InternalAsam.g:1529:1: ruleProperty returns [EObject current=null] : ( ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? ) ;
     public final EObject ruleProperty() throws RecognitionException {
         EObject current = null;
 
-        Token lv_name_0_0=null;
+        Token lv_nom_0_0=null;
         Token otherlv_1=null;
         Token otherlv_3=null;
         Token lv_defaultValue_4_0=null;
@@ -3561,21 +3561,21 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAsam.g:1535:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? ) )
-            // InternalAsam.g:1536:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? )
+            // InternalAsam.g:1535:2: ( ( ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? ) )
+            // InternalAsam.g:1536:2: ( ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? )
             {
-            // InternalAsam.g:1536:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? )
-            // InternalAsam.g:1537:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )?
+            // InternalAsam.g:1536:2: ( ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )? )
+            // InternalAsam.g:1537:3: ( (lv_nom_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_type_2_0= ruleType ) ) (otherlv_3= 'default' ( (lv_defaultValue_4_0= RULE_STRING ) ) )?
             {
-            // InternalAsam.g:1537:3: ( (lv_name_0_0= RULE_ID ) )
-            // InternalAsam.g:1538:4: (lv_name_0_0= RULE_ID )
+            // InternalAsam.g:1537:3: ( (lv_nom_0_0= RULE_ID ) )
+            // InternalAsam.g:1538:4: (lv_nom_0_0= RULE_ID )
             {
-            // InternalAsam.g:1538:4: (lv_name_0_0= RULE_ID )
-            // InternalAsam.g:1539:5: lv_name_0_0= RULE_ID
+            // InternalAsam.g:1538:4: (lv_nom_0_0= RULE_ID )
+            // InternalAsam.g:1539:5: lv_nom_0_0= RULE_ID
             {
-            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_43); 
+            lv_nom_0_0=(Token)match(input,RULE_ID,FOLLOW_43); 
 
-            					newLeafNode(lv_name_0_0, grammarAccess.getPropertyAccess().getNameIDTerminalRuleCall_0_0());
+            					newLeafNode(lv_nom_0_0, grammarAccess.getPropertyAccess().getNomIDTerminalRuleCall_0_0());
             				
 
             					if (current==null) {
@@ -3583,8 +3583,8 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             					}
             					setWithLastConsumed(
             						current,
-            						"name",
-            						lv_name_0_0,
+            						"nom",
+            						lv_nom_0_0,
             						"org.eclipse.xtext.common.Terminals.ID");
             				
 

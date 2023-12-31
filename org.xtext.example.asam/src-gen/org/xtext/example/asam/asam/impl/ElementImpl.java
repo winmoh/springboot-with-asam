@@ -21,7 +21,7 @@ import org.xtext.example.asam.asam.Element;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.impl.ElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ElementImpl#getNom <em>Nom</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +29,24 @@ import org.xtext.example.asam.asam.Element;
 public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String NOM_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String nom = NOM_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,9 +75,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
    * @generated
    */
   @Override
-  public String getName()
+  public String getNom()
   {
-    return name;
+    return nom;
   }
 
   /**
@@ -86,12 +86,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setNom(String newNom)
   {
-    String oldName = name;
-    name = newName;
+    String oldNom = nom;
+    nom = newNom;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ELEMENT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ELEMENT__NOM, oldNom, nom));
   }
 
   /**
@@ -104,8 +104,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
   {
     switch (featureID)
     {
-      case AsamPackage.ELEMENT__NAME:
-        return getName();
+      case AsamPackage.ELEMENT__NOM:
+        return getNom();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +120,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
   {
     switch (featureID)
     {
-      case AsamPackage.ELEMENT__NAME:
-        setName((String)newValue);
+      case AsamPackage.ELEMENT__NOM:
+        setNom((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +137,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
   {
     switch (featureID)
     {
-      case AsamPackage.ELEMENT__NAME:
-        setName(NAME_EDEFAULT);
+      case AsamPackage.ELEMENT__NOM:
+        setNom(NOM_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
   {
     switch (featureID)
     {
-      case AsamPackage.ELEMENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AsamPackage.ELEMENT__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
     }
     return super.eIsSet(featureID);
   }
@@ -171,8 +171,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (nom: ");
+    result.append(nom);
     result.append(')');
     return result.toString();
   }

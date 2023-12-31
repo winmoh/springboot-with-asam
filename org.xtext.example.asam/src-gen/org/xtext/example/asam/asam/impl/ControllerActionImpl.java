@@ -33,7 +33,7 @@ import org.xtext.example.asam.asam.HttpMethods;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerActionImpl#getMethod <em>Method</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.ControllerActionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ControllerActionImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerActionImpl#getServiceAction <em>Service Action</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerActionImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerActionImpl#getParameters <em>Parameters</em>}</li>
@@ -64,24 +64,24 @@ public class ControllerActionImpl extends MinimalEObjectImpl.Container implement
   protected HttpMethods method = METHOD_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String NOM_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String nom = NOM_EDEFAULT;
 
   /**
    * The default value of the '{@link #getServiceAction() <em>Service Action</em>}' attribute.
@@ -185,9 +185,9 @@ public class ControllerActionImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public String getName()
+  public String getNom()
   {
-    return name;
+    return nom;
   }
 
   /**
@@ -196,12 +196,12 @@ public class ControllerActionImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setNom(String newNom)
   {
-    String oldName = name;
-    name = newName;
+    String oldNom = nom;
+    nom = newNom;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.CONTROLLER_ACTION__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.CONTROLLER_ACTION__NOM, oldNom, nom));
   }
 
   /**
@@ -297,8 +297,8 @@ public class ControllerActionImpl extends MinimalEObjectImpl.Container implement
     {
       case AsamPackage.CONTROLLER_ACTION__METHOD:
         return getMethod();
-      case AsamPackage.CONTROLLER_ACTION__NAME:
-        return getName();
+      case AsamPackage.CONTROLLER_ACTION__NOM:
+        return getNom();
       case AsamPackage.CONTROLLER_ACTION__SERVICE_ACTION:
         return getServiceAction();
       case AsamPackage.CONTROLLER_ACTION__URL:
@@ -323,8 +323,8 @@ public class ControllerActionImpl extends MinimalEObjectImpl.Container implement
       case AsamPackage.CONTROLLER_ACTION__METHOD:
         setMethod((HttpMethods)newValue);
         return;
-      case AsamPackage.CONTROLLER_ACTION__NAME:
-        setName((String)newValue);
+      case AsamPackage.CONTROLLER_ACTION__NOM:
+        setNom((String)newValue);
         return;
       case AsamPackage.CONTROLLER_ACTION__SERVICE_ACTION:
         setServiceAction((String)newValue);
@@ -353,8 +353,8 @@ public class ControllerActionImpl extends MinimalEObjectImpl.Container implement
       case AsamPackage.CONTROLLER_ACTION__METHOD:
         setMethod(METHOD_EDEFAULT);
         return;
-      case AsamPackage.CONTROLLER_ACTION__NAME:
-        setName(NAME_EDEFAULT);
+      case AsamPackage.CONTROLLER_ACTION__NOM:
+        setNom(NOM_EDEFAULT);
         return;
       case AsamPackage.CONTROLLER_ACTION__SERVICE_ACTION:
         setServiceAction(SERVICE_ACTION_EDEFAULT);
@@ -381,8 +381,8 @@ public class ControllerActionImpl extends MinimalEObjectImpl.Container implement
     {
       case AsamPackage.CONTROLLER_ACTION__METHOD:
         return method != METHOD_EDEFAULT;
-      case AsamPackage.CONTROLLER_ACTION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AsamPackage.CONTROLLER_ACTION__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.CONTROLLER_ACTION__SERVICE_ACTION:
         return SERVICE_ACTION_EDEFAULT == null ? serviceAction != null : !SERVICE_ACTION_EDEFAULT.equals(serviceAction);
       case AsamPackage.CONTROLLER_ACTION__URL:
@@ -406,8 +406,8 @@ public class ControllerActionImpl extends MinimalEObjectImpl.Container implement
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (method: ");
     result.append(method);
-    result.append(", name: ");
-    result.append(name);
+    result.append(", nom: ");
+    result.append(nom);
     result.append(", serviceAction: ");
     result.append(serviceAction);
     result.append(", url: ");

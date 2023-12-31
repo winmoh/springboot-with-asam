@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.Sboot#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.Sboot#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Sboot#getConfiguration <em>Configuration</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Sboot#getElements <em>Elements</em>}</li>
  * </ul>
@@ -28,26 +28,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface Sboot extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.asam.asam.AsamPackage#getSboot_Name()
+   * @return the value of the '<em>Nom</em>' attribute.
+   * @see #setNom(String)
+   * @see org.xtext.example.asam.asam.AsamPackage#getSboot_Nom()
    * @model
    * @generated
    */
-  String getName();
+  String getNom();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.Sboot#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Sboot#getNom <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Nom</em>' attribute.
+   * @see #getNom()
    * @generated
    */
-  void setName(String value);
+  void setNom(String value);
 
   /**
    * Returns the value of the '<em><b>Configuration</b></em>' containment reference.
