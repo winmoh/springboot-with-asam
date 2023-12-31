@@ -3,6 +3,12 @@
  */
 package org.xtext.example.asam.validation;
 
+import java.util.HashSet;
+
+import org.eclipse.xtext.validation.Check;
+import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.AsamPackage;
+
 
 /**
  * This class contains custom validation rules. 
@@ -21,5 +27,28 @@ public class AsamValidator extends AbstractAsamValidator {
 //					INVALID_NAME);
 //		}
 //	}
+
+	@Check
+	 public void  checkNoCycleInEntityHierarchy(Entity entity) {
+		if(entity.getExtends()==null) {
+			
+			
+		}
+		HashSet<Entity> vistedEntities=new HashSet<Entity>();
+		Entity current =entity.getExtends();
+		while(current!=null) {
+			if(vistedEntities.contains(current)) {
+				error ( " cycle in hierarchy of entity" +current.getName() , AsamPackage.eINSTANCE.getEntity_Extends());
+			}
+			vistedEntities.add(current);
+			current=current.getExtends();
+		}
+		
+		
+		
+		
+	}
+	
+	
 	
 }
