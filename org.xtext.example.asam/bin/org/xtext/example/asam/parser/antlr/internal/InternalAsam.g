@@ -200,6 +200,91 @@ ruleElement returns [EObject current=null]
 			$current = $this_Repository_4.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getElementAccess().getRelationshipParserRuleCall_5());
+		}
+		this_Relationship_5=ruleRelationship
+		{
+			$current = $this_Relationship_5.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleRelationship
+entryRuleRelationship returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelationshipRule()); }
+	iv_ruleRelationship=ruleRelationship
+	{ $current=$iv_ruleRelationship.current; }
+	EOF;
+
+// Rule Relationship
+ruleRelationship returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='relation'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRelationshipAccess().getRelationKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0());
+				}
+				lv_type_1_0=ruledbRelations
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRelationshipRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_1_0,
+						"org.xtext.example.asam.Asam.dbRelations");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2='between'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRelationshipAccess().getBetweenKeyword_2());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelationshipRule());
+					}
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getRelationshipAccess().getSourceEntityCrossReference_3_0());
+				}
+			)
+		)
+		otherlv_4='and'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getRelationshipAccess().getAndKeyword_4());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelationshipRule());
+					}
+				}
+				otherlv_5=RULE_ID
+				{
+					newLeafNode(otherlv_5, grammarAccess.getRelationshipAccess().getTargetEntityCrossReference_5_0());
+				}
+			)
+		)
 	)
 ;
 
@@ -1966,6 +2051,41 @@ ruleRDBMS returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getRDBMSAccess().getORACLEEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_4, grammarAccess.getRDBMSAccess().getORACLEEnumLiteralDeclaration_4());
+			}
+		)
+	)
+;
+
+// Rule dbRelations
+ruledbRelations returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='ManyToMany'
+			{
+				$current = grammarAccess.getDbRelationsAccess().getM2MEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getDbRelationsAccess().getM2MEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1='ManyToOne'
+			{
+				$current = grammarAccess.getDbRelationsAccess().getM2OEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getDbRelationsAccess().getM2OEnumLiteralDeclaration_1());
+			}
+		)
+		    |
+		(
+			enumLiteral_2='OneToMany'
+			{
+				$current = grammarAccess.getDbRelationsAccess().getO2MEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getDbRelationsAccess().getO2MEnumLiteralDeclaration_2());
 			}
 		)
 	)

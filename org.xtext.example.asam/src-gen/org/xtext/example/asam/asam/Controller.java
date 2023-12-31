@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.Controller#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Controller#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Controller#getBaseUrl <em>Base Url</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Controller#getActions <em>Actions</em>}</li>
@@ -25,6 +26,28 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Controller extends Element
 {
+  /**
+   * Returns the value of the '<em><b>Nom</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nom</em>' attribute.
+   * @see #setNom(String)
+   * @see org.xtext.example.asam.asam.AsamPackage#getController_Nom()
+   * @model
+   * @generated
+   */
+  String getNom();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Controller#getNom <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nom</em>' attribute.
+   * @see #getNom()
+   * @generated
+   */
+  void setNom(String value);
+
   /**
    * Returns the value of the '<em><b>Entity</b></em>' reference.
    * <!-- begin-user-doc -->

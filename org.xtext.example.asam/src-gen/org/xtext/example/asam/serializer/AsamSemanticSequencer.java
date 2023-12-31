@@ -28,6 +28,7 @@ import org.xtext.example.asam.asam.FindByMethod;
 import org.xtext.example.asam.asam.ListType;
 import org.xtext.example.asam.asam.Property;
 import org.xtext.example.asam.asam.RType;
+import org.xtext.example.asam.asam.Relationship;
 import org.xtext.example.asam.asam.Repository;
 import org.xtext.example.asam.asam.Sboot;
 import org.xtext.example.asam.asam.ServerInfo;
@@ -89,6 +90,9 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case AsamPackage.RTYPE:
 				sequence_RType(context, (RType) semanticObject); 
+				return; 
+			case AsamPackage.RELATIONSHIP:
+				sequence_Relationship(context, (Relationship) semanticObject); 
 				return; 
 			case AsamPackage.REPOSITORY:
 				sequence_Repository(context, (Repository) semanticObject); 
@@ -356,6 +360,33 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRTypeAccess().getVypesVTypesEnumRuleCall_0_0(), semanticObject.getVypes());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Element returns Relationship
+	 *     Relationship returns Relationship
+	 *
+	 * Constraint:
+	 *     (type=dbRelations source=[Entity|ID] target=[Entity|ID])
+	 * </pre>
+	 */
+	protected void sequence_Relationship(ISerializationContext context, Relationship semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.RELATIONSHIP__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.RELATIONSHIP__TYPE));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.RELATIONSHIP__SOURCE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.RELATIONSHIP__SOURCE));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.RELATIONSHIP__TARGET) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.RELATIONSHIP__TARGET));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getRelationshipAccess().getSourceEntityIDTerminalRuleCall_3_0_1(), semanticObject.eGet(AsamPackage.Literals.RELATIONSHIP__SOURCE, false));
+		feeder.accept(grammarAccess.getRelationshipAccess().getTargetEntityIDTerminalRuleCall_5_0_1(), semanticObject.eGet(AsamPackage.Literals.RELATIONSHIP__TARGET, false));
 		feeder.finish();
 	}
 	

@@ -86,6 +86,11 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
         return createElementAdapter();
       }
       @Override
+      public Adapter caseRelationship(Relationship object)
+      {
+        return createRelationshipAdapter();
+      }
+      @Override
       public Adapter caseConfiguration(Configuration object)
       {
         return createConfigurationAdapter();
@@ -233,6 +238,21 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createElementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.Relationship <em>Relationship</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.asam.asam.Relationship
+   * @generated
+   */
+  public Adapter createRelationshipAdapter()
   {
     return null;
   }

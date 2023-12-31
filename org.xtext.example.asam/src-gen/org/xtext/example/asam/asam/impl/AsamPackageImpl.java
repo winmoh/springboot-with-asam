@@ -27,6 +27,7 @@ import org.xtext.example.asam.asam.HttpMethods;
 import org.xtext.example.asam.asam.ListType;
 import org.xtext.example.asam.asam.Property;
 import org.xtext.example.asam.asam.RType;
+import org.xtext.example.asam.asam.Relationship;
 import org.xtext.example.asam.asam.Repository;
 import org.xtext.example.asam.asam.RepositoryMethod;
 import org.xtext.example.asam.asam.Sboot;
@@ -36,6 +37,7 @@ import org.xtext.example.asam.asam.ServiceAction;
 import org.xtext.example.asam.asam.SetType;
 import org.xtext.example.asam.asam.Type;
 import org.xtext.example.asam.asam.VTypes;
+import org.xtext.example.asam.asam.dbRelations;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,6 +60,13 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   private EClass elementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass relationshipEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -221,6 +230,13 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   private EEnum rdbmsEEnum = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum dbRelationsEEnum = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -343,9 +359,42 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getElement_Nom()
+  public EClass getRelationship()
   {
-    return (EAttribute)elementEClass.getEStructuralFeatures().get(0);
+    return relationshipEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRelationship_Type()
+  {
+    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRelationship_Source()
+  {
+    return (EReference)relationshipEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRelationship_Target()
+  {
+    return (EReference)relationshipEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -497,9 +546,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getEntity_Nom()
+  {
+    return (EAttribute)entityEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getEntity_Extends()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(0);
+    return (EReference)entityEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -510,7 +570,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EReference getEntity_Properties()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(1);
+    return (EReference)entityEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -530,9 +590,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getDTO_Nom()
+  {
+    return (EAttribute)dtoEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getDTO_Properties()
   {
-    return (EReference)dtoEClass.getEStructuralFeatures().get(0);
+    return (EReference)dtoEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -552,9 +623,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getService_Nom()
+  {
+    return (EAttribute)serviceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getService_Entity()
   {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(0);
+    return (EReference)serviceEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -565,7 +647,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EReference getService_Actions()
   {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(1);
+    return (EReference)serviceEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -585,9 +667,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getController_Nom()
+  {
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getController_Entity()
   {
-    return (EReference)controllerEClass.getEStructuralFeatures().get(0);
+    return (EReference)controllerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -598,7 +691,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EAttribute getController_BaseUrl()
   {
-    return (EAttribute)controllerEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -609,7 +702,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EReference getController_Actions()
   {
-    return (EReference)controllerEClass.getEStructuralFeatures().get(2);
+    return (EReference)controllerEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -629,9 +722,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getRepository_Nom()
+  {
+    return (EAttribute)repositoryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getRepository_Entity()
   {
-    return (EReference)repositoryEClass.getEStructuralFeatures().get(0);
+    return (EReference)repositoryEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -642,7 +746,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EReference getRepository_Methods()
   {
-    return (EReference)repositoryEClass.getEStructuralFeatures().get(1);
+    return (EReference)repositoryEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1080,6 +1184,17 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EEnum getdbRelations()
+  {
+    return dbRelationsEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public AsamFactory getAsamFactory()
   {
     return (AsamFactory)getEFactoryInstance();
@@ -1111,7 +1226,11 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     createEReference(sbootEClass, SBOOT__ELEMENTS);
 
     elementEClass = createEClass(ELEMENT);
-    createEAttribute(elementEClass, ELEMENT__NOM);
+
+    relationshipEClass = createEClass(RELATIONSHIP);
+    createEAttribute(relationshipEClass, RELATIONSHIP__TYPE);
+    createEReference(relationshipEClass, RELATIONSHIP__SOURCE);
+    createEReference(relationshipEClass, RELATIONSHIP__TARGET);
 
     configurationEClass = createEClass(CONFIGURATION);
     createEReference(configurationEClass, CONFIGURATION__SERVER);
@@ -1129,22 +1248,27 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     createEAttribute(databaseInfoEClass, DATABASE_INFO__PASSWORD);
 
     entityEClass = createEClass(ENTITY);
+    createEAttribute(entityEClass, ENTITY__NOM);
     createEReference(entityEClass, ENTITY__EXTENDS);
     createEReference(entityEClass, ENTITY__PROPERTIES);
 
     dtoEClass = createEClass(DTO);
+    createEAttribute(dtoEClass, DTO__NOM);
     createEReference(dtoEClass, DTO__PROPERTIES);
 
     serviceEClass = createEClass(SERVICE);
+    createEAttribute(serviceEClass, SERVICE__NOM);
     createEReference(serviceEClass, SERVICE__ENTITY);
     createEReference(serviceEClass, SERVICE__ACTIONS);
 
     controllerEClass = createEClass(CONTROLLER);
+    createEAttribute(controllerEClass, CONTROLLER__NOM);
     createEReference(controllerEClass, CONTROLLER__ENTITY);
     createEAttribute(controllerEClass, CONTROLLER__BASE_URL);
     createEReference(controllerEClass, CONTROLLER__ACTIONS);
 
     repositoryEClass = createEClass(REPOSITORY);
+    createEAttribute(repositoryEClass, REPOSITORY__NOM);
     createEReference(repositoryEClass, REPOSITORY__ENTITY);
     createEReference(repositoryEClass, REPOSITORY__METHODS);
 
@@ -1200,6 +1324,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     vTypesEEnum = createEEnum(VTYPES);
     httpMethodsEEnum = createEEnum(HTTP_METHODS);
     rdbmsEEnum = createEEnum(RDBMS);
+    dbRelationsEEnum = createEEnum(DB_RELATIONS);
   }
 
   /**
@@ -1231,6 +1356,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    relationshipEClass.getESuperTypes().add(this.getElement());
     entityEClass.getESuperTypes().add(this.getElement());
     dtoEClass.getESuperTypes().add(this.getElement());
     serviceEClass.getESuperTypes().add(this.getElement());
@@ -1250,7 +1376,11 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     initEReference(getSboot_Elements(), this.getElement(), null, "elements", null, 0, -1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getElement_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(relationshipEClass, Relationship.class, "Relationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRelationship_Type(), this.getdbRelations(), "type", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelationship_Source(), this.getEntity(), null, "source", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelationship_Target(), this.getEntity(), null, "target", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConfiguration_Server(), this.getServerInfo(), null, "server", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1268,22 +1398,27 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     initEAttribute(getDatabaseInfo_Password(), ecorePackage.getEString(), "password", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEntity_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Extends(), this.getEntity(), null, "extends", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Properties(), this.getProperty(), null, "properties", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dtoEClass, org.xtext.example.asam.asam.DTO.class, "DTO", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDTO_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, org.xtext.example.asam.asam.DTO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDTO_Properties(), this.getProperty(), null, "properties", null, 0, -1, org.xtext.example.asam.asam.DTO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getService_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getService_Entity(), this.getController(), null, "entity", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getService_Actions(), this.getServiceAction(), null, "actions", null, 0, -1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(controllerEClass, Controller.class, "Controller", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getController_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getController_Entity(), this.getEntity(), null, "entity", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getController_BaseUrl(), ecorePackage.getEString(), "baseUrl", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getController_Actions(), this.getControllerAction(), null, "actions", null, 0, -1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(repositoryEClass, Repository.class, "Repository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRepository_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRepository_Entity(), this.getEntity(), null, "entity", null, 0, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRepository_Methods(), this.getRepositoryMethod(), null, "methods", null, 0, -1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1358,6 +1493,11 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     addEEnumLiteral(rdbmsEEnum, org.xtext.example.asam.asam.RDBMS.MARIADB);
     addEEnumLiteral(rdbmsEEnum, org.xtext.example.asam.asam.RDBMS.H2);
     addEEnumLiteral(rdbmsEEnum, org.xtext.example.asam.asam.RDBMS.ORACLE);
+
+    initEEnum(dbRelationsEEnum, dbRelations.class, "dbRelations");
+    addEEnumLiteral(dbRelationsEEnum, dbRelations.M2M);
+    addEEnumLiteral(dbRelationsEEnum, dbRelations.M2O);
+    addEEnumLiteral(dbRelationsEEnum, dbRelations.O2M);
 
     // Create resource
     createResource(eNS_URI);

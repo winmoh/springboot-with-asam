@@ -76,12 +76,13 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cControllerParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cDTOParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cRepositoryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cRelationshipParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//Element:
-		//    Entity | Service | Controller | DTO | Repository;
+		//    Entity | Service | Controller | DTO | Repository | Relationship ;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Entity | Service | Controller | DTO | Repository
+		//Entity | Service | Controller | DTO | Repository | Relationship
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Entity
@@ -98,6 +99,64 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//Repository
 		public RuleCall getRepositoryParserRuleCall_4() { return cRepositoryParserRuleCall_4; }
+		
+		//Relationship
+		public RuleCall getRelationshipParserRuleCall_5() { return cRelationshipParserRuleCall_5; }
+	}
+	public class RelationshipElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Relationship");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRelationKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeDbRelationsEnumRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final Keyword cBetweenKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cSourceAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cSourceEntityCrossReference_3_0 = (CrossReference)cSourceAssignment_3.eContents().get(0);
+		private final RuleCall cSourceEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cSourceEntityCrossReference_3_0.eContents().get(1);
+		private final Keyword cAndKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cTargetAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cTargetEntityCrossReference_5_0 = (CrossReference)cTargetAssignment_5.eContents().get(0);
+		private final RuleCall cTargetEntityIDTerminalRuleCall_5_0_1 = (RuleCall)cTargetEntityCrossReference_5_0.eContents().get(1);
+		
+		//Relationship:
+		//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity]
+		public Group getGroup() { return cGroup; }
+		
+		//'relation'
+		public Keyword getRelationKeyword_0() { return cRelationKeyword_0; }
+		
+		//type=dbRelations
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		
+		//dbRelations
+		public RuleCall getTypeDbRelationsEnumRuleCall_1_0() { return cTypeDbRelationsEnumRuleCall_1_0; }
+		
+		//'between'
+		public Keyword getBetweenKeyword_2() { return cBetweenKeyword_2; }
+		
+		//source=[Entity]
+		public Assignment getSourceAssignment_3() { return cSourceAssignment_3; }
+		
+		//[Entity]
+		public CrossReference getSourceEntityCrossReference_3_0() { return cSourceEntityCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getSourceEntityIDTerminalRuleCall_3_0_1() { return cSourceEntityIDTerminalRuleCall_3_0_1; }
+		
+		//'and'
+		public Keyword getAndKeyword_4() { return cAndKeyword_4; }
+		
+		//target=[Entity]
+		public Assignment getTargetAssignment_5() { return cTargetAssignment_5; }
+		
+		//[Entity]
+		public CrossReference getTargetEntityCrossReference_5_0() { return cTargetEntityCrossReference_5_0; }
+		
+		//ID
+		public RuleCall getTargetEntityIDTerminalRuleCall_5_0_1() { return cTargetEntityIDTerminalRuleCall_5_0_1; }
 	}
 	public class ConfigurationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Configuration");
@@ -1280,9 +1339,44 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//"Oracle"
 		public Keyword getORACLEOracleKeyword_4_0() { return cORACLEOracleKeyword_4_0; }
 	}
+	public class DbRelationsElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.dbRelations");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cM2MEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cM2MManyToManyKeyword_0_0 = (Keyword)cM2MEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cM2OEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cM2OManyToOneKeyword_1_0 = (Keyword)cM2OEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cO2MEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cO2MOneToManyKeyword_2_0 = (Keyword)cO2MEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";
+		public EnumRule getRule() { return rule; }
+		
+		//M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany"
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//M2M="ManyToMany"
+		public EnumLiteralDeclaration getM2MEnumLiteralDeclaration_0() { return cM2MEnumLiteralDeclaration_0; }
+		
+		//"ManyToMany"
+		public Keyword getM2MManyToManyKeyword_0_0() { return cM2MManyToManyKeyword_0_0; }
+		
+		//M2O="ManyToOne"
+		public EnumLiteralDeclaration getM2OEnumLiteralDeclaration_1() { return cM2OEnumLiteralDeclaration_1; }
+		
+		//"ManyToOne"
+		public Keyword getM2OManyToOneKeyword_1_0() { return cM2OManyToOneKeyword_1_0; }
+		
+		//O2M="OneToMany"
+		public EnumLiteralDeclaration getO2MEnumLiteralDeclaration_2() { return cO2MEnumLiteralDeclaration_2; }
+		
+		//"OneToMany"
+		public Keyword getO2MOneToManyKeyword_2_0() { return cO2MOneToManyKeyword_2_0; }
+	}
 	
 	private final SbootElements pSboot;
 	private final ElementElements pElement;
+	private final RelationshipElements pRelationship;
 	private final ConfigurationElements pConfiguration;
 	private final ServerInfoElements pServerInfo;
 	private final DatabaseInfoElements pDatabaseInfo;
@@ -1307,6 +1401,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final VTypesElements eVTypes;
 	private final HttpMethodsElements eHttpMethods;
 	private final RDBMSElements eRDBMS;
+	private final DbRelationsElements eDbRelations;
 	
 	private final Grammar grammar;
 	
@@ -1319,6 +1414,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.gaTerminals = gaTerminals;
 		this.pSboot = new SbootElements();
 		this.pElement = new ElementElements();
+		this.pRelationship = new RelationshipElements();
 		this.pConfiguration = new ConfigurationElements();
 		this.pServerInfo = new ServerInfoElements();
 		this.pDatabaseInfo = new DatabaseInfoElements();
@@ -1343,6 +1439,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.eVTypes = new VTypesElements();
 		this.eHttpMethods = new HttpMethodsElements();
 		this.eRDBMS = new RDBMSElements();
+		this.eDbRelations = new DbRelationsElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1385,13 +1482,23 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Element:
-	//    Entity | Service | Controller | DTO | Repository;
+	//    Entity | Service | Controller | DTO | Repository | Relationship ;
 	public ElementElements getElementAccess() {
 		return pElement;
 	}
 	
 	public ParserRule getElementRule() {
 		return getElementAccess().getRule();
+	}
+	
+	//Relationship:
+	//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
+	public RelationshipElements getRelationshipAccess() {
+		return pRelationship;
+	}
+	
+	public ParserRule getRelationshipRule() {
+		return getRelationshipAccess().getRule();
 	}
 	
 	//Configuration:
@@ -1654,6 +1761,15 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	public EnumRule getRDBMSRule() {
 		return getRDBMSAccess().getRule();
+	}
+	
+	//enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";
+	public DbRelationsElements getDbRelationsAccess() {
+		return eDbRelations;
+	}
+	
+	public EnumRule getDbRelationsRule() {
+		return getDbRelationsAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

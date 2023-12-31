@@ -30,6 +30,7 @@ import org.xtext.example.asam.asam.Property;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getProperties <em>Properties</em>}</li>
  * </ul>
@@ -38,6 +39,26 @@ import org.xtext.example.asam.asam.Property;
  */
 public class EntityImpl extends ElementImpl implements Entity
 {
+  /**
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected static final String NOM_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected String nom = NOM_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getExtends() <em>Extends</em>}' reference.
    * <!-- begin-user-doc -->
@@ -77,6 +98,31 @@ public class EntityImpl extends ElementImpl implements Entity
   protected EClass eStaticClass()
   {
     return AsamPackage.Literals.ENTITY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getNom()
+  {
+    return nom;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNom(String newNom)
+  {
+    String oldNom = nom;
+    nom = newNom;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__NOM, oldNom, nom));
   }
 
   /**
@@ -165,6 +211,8 @@ public class EntityImpl extends ElementImpl implements Entity
   {
     switch (featureID)
     {
+      case AsamPackage.ENTITY__NOM:
+        return getNom();
       case AsamPackage.ENTITY__EXTENDS:
         if (resolve) return getExtends();
         return basicGetExtends();
@@ -185,6 +233,9 @@ public class EntityImpl extends ElementImpl implements Entity
   {
     switch (featureID)
     {
+      case AsamPackage.ENTITY__NOM:
+        setNom((String)newValue);
+        return;
       case AsamPackage.ENTITY__EXTENDS:
         setExtends((Entity)newValue);
         return;
@@ -206,6 +257,9 @@ public class EntityImpl extends ElementImpl implements Entity
   {
     switch (featureID)
     {
+      case AsamPackage.ENTITY__NOM:
+        setNom(NOM_EDEFAULT);
+        return;
       case AsamPackage.ENTITY__EXTENDS:
         setExtends((Entity)null);
         return;
@@ -226,12 +280,31 @@ public class EntityImpl extends ElementImpl implements Entity
   {
     switch (featureID)
     {
+      case AsamPackage.ENTITY__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.ENTITY__EXTENDS:
         return extends_ != null;
       case AsamPackage.ENTITY__PROPERTIES:
         return properties != null && !properties.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (nom: ");
+    result.append(nom);
+    result.append(')');
+    return result.toString();
   }
 
 } //EntityImpl

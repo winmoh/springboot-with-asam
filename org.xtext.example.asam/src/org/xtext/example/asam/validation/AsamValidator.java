@@ -11,6 +11,8 @@ import org.xtext.example.asam.asam.Property;
 import org.xtext.example.asam.asam.Service;
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.Controller;
+import org.xtext.example.asam.asam.Relationship;
+
 
 
 /**
@@ -62,7 +64,7 @@ public class AsamValidator extends AbstractAsamValidator {
 			
 			if(!Character.isLowerCase(prop.getNom().charAt(0))) {
 				 warning("Entity name  should start with a lower case", 
-			                AsamPackage.Literals.ELEMENT__NOM);
+			                AsamPackage.eINSTANCE.getActionParameter_Nom());
 			}
 		}
 		
@@ -71,7 +73,7 @@ public class AsamValidator extends AbstractAsamValidator {
 			
 			if(Character.isLowerCase(contr.getNom().charAt(0))) {
 				 warning("Controller name  should start with a capital", 
-			                AsamPackage.Literals.ELEMENT__NOM);
+			                AsamPackage.eINSTANCE.getActionParameter_Nom());
 			}
 		}
 		@Check
@@ -79,14 +81,33 @@ public class AsamValidator extends AbstractAsamValidator {
 			
 			if(Character.isLowerCase(serv.getNom().charAt(0))) {
 				 warning("Entity name  should start with a capital", 
-			                AsamPackage.Literals.ELEMENT__NOM);
+			                AsamPackage.eINSTANCE.getActionParameter_Nom());
 			}
+		}
+		@Check
+		public void entityMustContainAtLeastOneAttribute(Entity ent) {
+			if(ent.getProperties().size()==0) {
+				warning("Entity must have at least one attribute",AsamPackage.eINSTANCE.getActionParameter_Nom());
+				
+			}
+			
+		}
+		@Check
+		public void realtionshipValidation(Relationship relation) {
+			if(relation.getSource()==null || relation.getTarget()==null) {
+				warning("Realtionship require a source and a target",AsamPackage.eINSTANCE.getActionParameter_Nom());
+				
+			}
+			if(relation.getTarget()==relation.getSource()) {
+				warning("Realtionship source and target must be different",AsamPackage.eINSTANCE.getActionParameter_Nom());
+
+			}
+			
 		}
 		
 		
 		
-		
-	}
+}
 	
 	
 	

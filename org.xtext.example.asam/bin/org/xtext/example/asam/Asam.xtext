@@ -8,7 +8,11 @@ Sboot:
     elements+=Element*;
 
 Element:
-    Entity | Service | Controller | DTO | Repository;
+    Entity | Service | Controller | DTO | Repository | Relationship ;
+    
+
+Relationship:
+	'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
 
 Configuration:
     'config' '{'
@@ -106,3 +110,5 @@ enum VTypes: FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN
 enum HttpMethods: GET="Get" | DELETE="Delete" | POST="Post" | PUT="Put" | PATCH="Patch";
 
 enum RDBMS: MYSQL="Mysql" | POSTGRES="Postgres" | MARIADB="Mariadb" | H2="h2" | ORACLE="Oracle";
+
+enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";

@@ -68,6 +68,7 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
     {
       case AsamPackage.SBOOT: return createSboot();
       case AsamPackage.ELEMENT: return createElement();
+      case AsamPackage.RELATIONSHIP: return createRelationship();
       case AsamPackage.CONFIGURATION: return createConfiguration();
       case AsamPackage.SERVER_INFO: return createServerInfo();
       case AsamPackage.DATABASE_INFO: return createDatabaseInfo();
@@ -109,6 +110,8 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
         return createHttpMethodsFromString(eDataType, initialValue);
       case AsamPackage.RDBMS:
         return createRDBMSFromString(eDataType, initialValue);
+      case AsamPackage.DB_RELATIONS:
+        return createdbRelationsFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -130,6 +133,8 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
         return convertHttpMethodsToString(eDataType, instanceValue);
       case AsamPackage.RDBMS:
         return convertRDBMSToString(eDataType, instanceValue);
+      case AsamPackage.DB_RELATIONS:
+        return convertdbRelationsToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -157,6 +162,18 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
   {
     ElementImpl element = new ElementImpl();
     return element;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Relationship createRelationship()
+  {
+    RelationshipImpl relationship = new RelationshipImpl();
+    return relationship;
   }
 
   /**
@@ -461,6 +478,28 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
    * @generated
    */
   public String convertRDBMSToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public dbRelations createdbRelationsFromString(EDataType eDataType, String initialValue)
+  {
+    dbRelations result = dbRelations.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertdbRelationsToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

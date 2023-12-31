@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.Repository#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Repository#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Repository#getMethods <em>Methods</em>}</li>
  * </ul>
@@ -24,6 +25,28 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Repository extends Element
 {
+  /**
+   * Returns the value of the '<em><b>Nom</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nom</em>' attribute.
+   * @see #setNom(String)
+   * @see org.xtext.example.asam.asam.AsamPackage#getRepository_Nom()
+   * @model
+   * @generated
+   */
+  String getNom();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Repository#getNom <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nom</em>' attribute.
+   * @see #getNom()
+   * @generated
+   */
+  void setNom(String value);
+
   /**
    * Returns the value of the '<em><b>Entity</b></em>' reference.
    * <!-- begin-user-doc -->

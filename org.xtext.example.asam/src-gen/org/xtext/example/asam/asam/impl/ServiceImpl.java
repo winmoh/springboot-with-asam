@@ -31,6 +31,7 @@ import org.xtext.example.asam.asam.ServiceAction;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ServiceImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ServiceImpl#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ServiceImpl#getActions <em>Actions</em>}</li>
  * </ul>
@@ -39,6 +40,26 @@ import org.xtext.example.asam.asam.ServiceAction;
  */
 public class ServiceImpl extends ElementImpl implements Service
 {
+  /**
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected static final String NOM_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected String nom = NOM_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
    * <!-- begin-user-doc -->
@@ -78,6 +99,31 @@ public class ServiceImpl extends ElementImpl implements Service
   protected EClass eStaticClass()
   {
     return AsamPackage.Literals.SERVICE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getNom()
+  {
+    return nom;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNom(String newNom)
+  {
+    String oldNom = nom;
+    nom = newNom;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.SERVICE__NOM, oldNom, nom));
   }
 
   /**
@@ -166,6 +212,8 @@ public class ServiceImpl extends ElementImpl implements Service
   {
     switch (featureID)
     {
+      case AsamPackage.SERVICE__NOM:
+        return getNom();
       case AsamPackage.SERVICE__ENTITY:
         if (resolve) return getEntity();
         return basicGetEntity();
@@ -186,6 +234,9 @@ public class ServiceImpl extends ElementImpl implements Service
   {
     switch (featureID)
     {
+      case AsamPackage.SERVICE__NOM:
+        setNom((String)newValue);
+        return;
       case AsamPackage.SERVICE__ENTITY:
         setEntity((Controller)newValue);
         return;
@@ -207,6 +258,9 @@ public class ServiceImpl extends ElementImpl implements Service
   {
     switch (featureID)
     {
+      case AsamPackage.SERVICE__NOM:
+        setNom(NOM_EDEFAULT);
+        return;
       case AsamPackage.SERVICE__ENTITY:
         setEntity((Controller)null);
         return;
@@ -227,12 +281,31 @@ public class ServiceImpl extends ElementImpl implements Service
   {
     switch (featureID)
     {
+      case AsamPackage.SERVICE__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.SERVICE__ENTITY:
         return entity != null;
       case AsamPackage.SERVICE__ACTIONS:
         return actions != null && !actions.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (nom: ");
+    result.append(nom);
+    result.append(')');
+    return result.toString();
   }
 
 } //ServiceImpl

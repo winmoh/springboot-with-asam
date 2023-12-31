@@ -42,6 +42,15 @@ public interface AsamFactory extends EFactory
   Element createElement();
 
   /**
+   * Returns a new object of class '<em>Relationship</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relationship</em>'.
+   * @generated
+   */
+  Relationship createRelationship();
+
+  /**
    * Returns a new object of class '<em>Configuration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

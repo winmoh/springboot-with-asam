@@ -31,6 +31,7 @@ import org.xtext.example.asam.asam.Entity;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getBaseUrl <em>Base Url</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getActions <em>Actions</em>}</li>
@@ -40,6 +41,26 @@ import org.xtext.example.asam.asam.Entity;
  */
 public class ControllerImpl extends ElementImpl implements Controller
 {
+  /**
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected static final String NOM_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected String nom = NOM_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
    * <!-- begin-user-doc -->
@@ -99,6 +120,31 @@ public class ControllerImpl extends ElementImpl implements Controller
   protected EClass eStaticClass()
   {
     return AsamPackage.Literals.CONTROLLER;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getNom()
+  {
+    return nom;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNom(String newNom)
+  {
+    String oldNom = nom;
+    nom = newNom;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.CONTROLLER__NOM, oldNom, nom));
   }
 
   /**
@@ -212,6 +258,8 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
+      case AsamPackage.CONTROLLER__NOM:
+        return getNom();
       case AsamPackage.CONTROLLER__ENTITY:
         if (resolve) return getEntity();
         return basicGetEntity();
@@ -234,6 +282,9 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
+      case AsamPackage.CONTROLLER__NOM:
+        setNom((String)newValue);
+        return;
       case AsamPackage.CONTROLLER__ENTITY:
         setEntity((Entity)newValue);
         return;
@@ -258,6 +309,9 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
+      case AsamPackage.CONTROLLER__NOM:
+        setNom(NOM_EDEFAULT);
+        return;
       case AsamPackage.CONTROLLER__ENTITY:
         setEntity((Entity)null);
         return;
@@ -281,6 +335,8 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
+      case AsamPackage.CONTROLLER__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.CONTROLLER__ENTITY:
         return entity != null;
       case AsamPackage.CONTROLLER__BASE_URL:
@@ -302,7 +358,9 @@ public class ControllerImpl extends ElementImpl implements Controller
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (baseUrl: ");
+    result.append(" (nom: ");
+    result.append(nom);
+    result.append(", baseUrl: ");
     result.append(baseUrl);
     result.append(')');
     return result.toString();
