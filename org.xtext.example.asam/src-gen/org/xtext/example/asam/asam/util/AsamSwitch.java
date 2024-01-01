@@ -87,11 +87,11 @@ public class AsamSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case AsamPackage.RELATIONSHIP:
+      case AsamPackage.ENTITY_RELATIONSHIP:
       {
-        Relationship relationship = (Relationship)theEObject;
-        T result = caseRelationship(relationship);
-        if (result == null) result = caseElement(relationship);
+        EntityRelationship entityRelationship = (EntityRelationship)theEObject;
+        T result = caseEntityRelationship(entityRelationship);
+        if (result == null) result = caseElement(entityRelationship);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -283,17 +283,17 @@ public class AsamSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Relationship</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Entity Relationship</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Relationship</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Entity Relationship</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRelationship(Relationship object)
+  public T caseEntityRelationship(EntityRelationship object)
   {
     return null;
   }

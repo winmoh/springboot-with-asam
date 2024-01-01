@@ -4,14 +4,17 @@
 package org.xtext.example.asam.validation;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.xtext.validation.Check;
 import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.EntityRelationship;
 import org.xtext.example.asam.asam.Property;
 import org.xtext.example.asam.asam.Service;
+import org.xtext.example.asam.asam.ServiceAction;
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.Controller;
-import org.xtext.example.asam.asam.Relationship;
+import org.xtext.example.asam.asam.DatabaseInfo;
 
 
 
@@ -55,7 +58,7 @@ public class AsamValidator extends AbstractAsamValidator {
 			
 			if(Character.isLowerCase(entity.getNom().charAt(0))) {
 				 warning("Entity name  should start with a capital", 
-			                AsamPackage.Literals.ELEMENT__NOM);
+			                AsamPackage.eINSTANCE.getActionParameter_Nom());
 			}
 		}
 		
@@ -93,7 +96,7 @@ public class AsamValidator extends AbstractAsamValidator {
 			
 		}
 		@Check
-		public void realtionshipValidation(Relationship relation) {
+		public void realtionshipValidation(EntityRelationship relation) {
 			if(relation.getSource()==null || relation.getTarget()==null) {
 				warning("Realtionship require a source and a target",AsamPackage.eINSTANCE.getActionParameter_Nom());
 				
@@ -104,6 +107,38 @@ public class AsamValidator extends AbstractAsamValidator {
 			}
 			
 		}
+		@Check
+		public void checkValidDatabasePort(DatabaseInfo database) {
+		    if (database.getPort() < 1 || database.getPort() > 65535 ) {
+		        error("Invalid database port, must be in the range 1-65535", AsamPackage.eINSTANCE.getDatabaseInfo_Port());
+		    }
+		}
+		@Check
+		public void checkUniquePropertyNames(Entity entity) {
+		    Set<String> propertyNames = new HashSet<>();
+		    for (Property property : entity.getProperties()) {
+		        if (!propertyNames.add(property.getNom())) {
+		            error("Duplicate property name within the entity", AsamPackage.eINSTANCE.getProperty_Nom());
+		        }
+		    }
+		}
+		
+		@Check
+		public void checkUniqueServiceActionNames(Service service) {
+		    Set<String> actionNames = new HashSet<>();
+		    for (ServiceAction action : service.getActions()) {
+		        if (!actionNames.add(action.getNom())) {
+		            error("Duplicate service action name within the service", AsamPackage.eINSTANCE.getServiceAction_Nom());
+		        }
+		    }
+		}
+
+		
+
+
+
+		
+		
 		
 		
 		

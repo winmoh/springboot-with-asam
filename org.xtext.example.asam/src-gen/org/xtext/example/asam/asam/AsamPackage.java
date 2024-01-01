@@ -124,14 +124,14 @@ public interface AsamPackage extends EPackage
   int ELEMENT_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.RelationshipImpl <em>Relationship</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.EntityRelationshipImpl <em>Entity Relationship</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.asam.asam.impl.RelationshipImpl
-   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRelationship()
+   * @see org.xtext.example.asam.asam.impl.EntityRelationshipImpl
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getEntityRelationship()
    * @generated
    */
-  int RELATIONSHIP = 2;
+  int ENTITY_RELATIONSHIP = 2;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -140,7 +140,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__TYPE = ELEMENT_FEATURE_COUNT + 0;
+  int ENTITY_RELATIONSHIP__TYPE = ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -149,7 +149,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__SOURCE = ELEMENT_FEATURE_COUNT + 1;
+  int ENTITY_RELATIONSHIP__SOURCE = ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -158,16 +158,16 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__TARGET = ELEMENT_FEATURE_COUNT + 2;
+  int ENTITY_RELATIONSHIP__TARGET = ELEMENT_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>Relationship</em>' class.
+   * The number of structural features of the '<em>Entity Relationship</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATIONSHIP_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+  int ENTITY_RELATIONSHIP_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.ConfigurationImpl <em>Configuration</em>}' class.
@@ -1121,47 +1121,47 @@ public interface AsamPackage extends EPackage
   EClass getElement();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.asam.asam.Relationship <em>Relationship</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.asam.asam.EntityRelationship <em>Entity Relationship</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Relationship</em>'.
-   * @see org.xtext.example.asam.asam.Relationship
+   * @return the meta object for class '<em>Entity Relationship</em>'.
+   * @see org.xtext.example.asam.asam.EntityRelationship
    * @generated
    */
-  EClass getRelationship();
+  EClass getEntityRelationship();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Relationship#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.EntityRelationship#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Type</em>'.
-   * @see org.xtext.example.asam.asam.Relationship#getType()
-   * @see #getRelationship()
+   * @see org.xtext.example.asam.asam.EntityRelationship#getType()
+   * @see #getEntityRelationship()
    * @generated
    */
-  EAttribute getRelationship_Type();
+  EAttribute getEntityRelationship_Type();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.Relationship#getSource <em>Source</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.EntityRelationship#getSource <em>Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Source</em>'.
-   * @see org.xtext.example.asam.asam.Relationship#getSource()
-   * @see #getRelationship()
+   * @see org.xtext.example.asam.asam.EntityRelationship#getSource()
+   * @see #getEntityRelationship()
    * @generated
    */
-  EReference getRelationship_Source();
+  EReference getEntityRelationship_Source();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.Relationship#getTarget <em>Target</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.EntityRelationship#getTarget <em>Target</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Target</em>'.
-   * @see org.xtext.example.asam.asam.Relationship#getTarget()
-   * @see #getRelationship()
+   * @see org.xtext.example.asam.asam.EntityRelationship#getTarget()
+   * @see #getEntityRelationship()
    * @generated
    */
-  EReference getRelationship_Target();
+  EReference getEntityRelationship_Target();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.asam.asam.Configuration <em>Configuration</em>}'.
@@ -1999,14 +1999,14 @@ public interface AsamPackage extends EPackage
     EClass ELEMENT = eINSTANCE.getElement();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.RelationshipImpl <em>Relationship</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.EntityRelationshipImpl <em>Entity Relationship</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.asam.asam.impl.RelationshipImpl
-     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRelationship()
+     * @see org.xtext.example.asam.asam.impl.EntityRelationshipImpl
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getEntityRelationship()
      * @generated
      */
-    EClass RELATIONSHIP = eINSTANCE.getRelationship();
+    EClass ENTITY_RELATIONSHIP = eINSTANCE.getEntityRelationship();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -2014,7 +2014,7 @@ public interface AsamPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute RELATIONSHIP__TYPE = eINSTANCE.getRelationship_Type();
+    EAttribute ENTITY_RELATIONSHIP__TYPE = eINSTANCE.getEntityRelationship_Type();
 
     /**
      * The meta object literal for the '<em><b>Source</b></em>' reference feature.
@@ -2022,7 +2022,7 @@ public interface AsamPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RELATIONSHIP__SOURCE = eINSTANCE.getRelationship_Source();
+    EReference ENTITY_RELATIONSHIP__SOURCE = eINSTANCE.getEntityRelationship_Source();
 
     /**
      * The meta object literal for the '<em><b>Target</b></em>' reference feature.
@@ -2030,7 +2030,7 @@ public interface AsamPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RELATIONSHIP__TARGET = eINSTANCE.getRelationship_Target();
+    EReference ENTITY_RELATIONSHIP__TARGET = eINSTANCE.getEntityRelationship_Target();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.ConfigurationImpl <em>Configuration</em>}' class.

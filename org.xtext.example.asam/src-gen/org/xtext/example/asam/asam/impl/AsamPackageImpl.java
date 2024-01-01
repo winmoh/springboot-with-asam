@@ -22,12 +22,12 @@ import org.xtext.example.asam.asam.DatabaseInfo;
 import org.xtext.example.asam.asam.DeleteByMethod;
 import org.xtext.example.asam.asam.Element;
 import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.EntityRelationship;
 import org.xtext.example.asam.asam.FindByMethod;
 import org.xtext.example.asam.asam.HttpMethods;
 import org.xtext.example.asam.asam.ListType;
 import org.xtext.example.asam.asam.Property;
 import org.xtext.example.asam.asam.RType;
-import org.xtext.example.asam.asam.Relationship;
 import org.xtext.example.asam.asam.Repository;
 import org.xtext.example.asam.asam.RepositoryMethod;
 import org.xtext.example.asam.asam.Sboot;
@@ -66,7 +66,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass relationshipEClass = null;
+  private EClass entityRelationshipEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -359,9 +359,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EClass getRelationship()
+  public EClass getEntityRelationship()
   {
-    return relationshipEClass;
+    return entityRelationshipEClass;
   }
 
   /**
@@ -370,9 +370,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getRelationship_Type()
+  public EAttribute getEntityRelationship_Type()
   {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)entityRelationshipEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -381,9 +381,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EReference getRelationship_Source()
+  public EReference getEntityRelationship_Source()
   {
-    return (EReference)relationshipEClass.getEStructuralFeatures().get(1);
+    return (EReference)entityRelationshipEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -392,9 +392,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EReference getRelationship_Target()
+  public EReference getEntityRelationship_Target()
   {
-    return (EReference)relationshipEClass.getEStructuralFeatures().get(2);
+    return (EReference)entityRelationshipEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1227,10 +1227,10 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     elementEClass = createEClass(ELEMENT);
 
-    relationshipEClass = createEClass(RELATIONSHIP);
-    createEAttribute(relationshipEClass, RELATIONSHIP__TYPE);
-    createEReference(relationshipEClass, RELATIONSHIP__SOURCE);
-    createEReference(relationshipEClass, RELATIONSHIP__TARGET);
+    entityRelationshipEClass = createEClass(ENTITY_RELATIONSHIP);
+    createEAttribute(entityRelationshipEClass, ENTITY_RELATIONSHIP__TYPE);
+    createEReference(entityRelationshipEClass, ENTITY_RELATIONSHIP__SOURCE);
+    createEReference(entityRelationshipEClass, ENTITY_RELATIONSHIP__TARGET);
 
     configurationEClass = createEClass(CONFIGURATION);
     createEReference(configurationEClass, CONFIGURATION__SERVER);
@@ -1356,7 +1356,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    relationshipEClass.getESuperTypes().add(this.getElement());
+    entityRelationshipEClass.getESuperTypes().add(this.getElement());
     entityEClass.getESuperTypes().add(this.getElement());
     dtoEClass.getESuperTypes().add(this.getElement());
     serviceEClass.getESuperTypes().add(this.getElement());
@@ -1377,10 +1377,10 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(relationshipEClass, Relationship.class, "Relationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRelationship_Type(), this.getdbRelations(), "type", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelationship_Source(), this.getEntity(), null, "source", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelationship_Target(), this.getEntity(), null, "target", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(entityRelationshipEClass, EntityRelationship.class, "EntityRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEntityRelationship_Type(), this.getdbRelations(), "type", null, 0, 1, EntityRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEntityRelationship_Source(), this.getEntity(), null, "source", null, 0, 1, EntityRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEntityRelationship_Target(), this.getEntity(), null, "target", null, 0, 1, EntityRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConfiguration_Server(), this.getServerInfo(), null, "server", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

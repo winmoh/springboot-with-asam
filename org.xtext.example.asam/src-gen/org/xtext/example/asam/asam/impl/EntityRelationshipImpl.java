@@ -12,25 +12,25 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.Entity;
-import org.xtext.example.asam.asam.Relationship;
+import org.xtext.example.asam.asam.EntityRelationship;
 import org.xtext.example.asam.asam.dbRelations;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Relationship</b></em>'.
+ * An implementation of the model object '<em><b>Entity Relationship</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.impl.RelationshipImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.RelationshipImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.RelationshipImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.EntityRelationshipImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.EntityRelationshipImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.EntityRelationshipImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RelationshipImpl extends ElementImpl implements Relationship
+public class EntityRelationshipImpl extends ElementImpl implements EntityRelationship
 {
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -77,7 +77,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RelationshipImpl()
+  protected EntityRelationshipImpl()
   {
     super();
   }
@@ -90,7 +90,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship
   @Override
   protected EClass eStaticClass()
   {
-    return AsamPackage.Literals.RELATIONSHIP;
+    return AsamPackage.Literals.ENTITY_RELATIONSHIP;
   }
 
   /**
@@ -115,7 +115,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship
     dbRelations oldType = type;
     type = newType == null ? TYPE_EDEFAULT : newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.RELATIONSHIP__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY_RELATIONSHIP__TYPE, oldType, type));
   }
 
   /**
@@ -133,7 +133,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship
       if (source != oldSource)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AsamPackage.RELATIONSHIP__SOURCE, oldSource, source));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AsamPackage.ENTITY_RELATIONSHIP__SOURCE, oldSource, source));
       }
     }
     return source;
@@ -160,7 +160,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship
     Entity oldSource = source;
     source = newSource;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.RELATIONSHIP__SOURCE, oldSource, source));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY_RELATIONSHIP__SOURCE, oldSource, source));
   }
 
   /**
@@ -178,7 +178,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship
       if (target != oldTarget)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AsamPackage.RELATIONSHIP__TARGET, oldTarget, target));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AsamPackage.ENTITY_RELATIONSHIP__TARGET, oldTarget, target));
       }
     }
     return target;
@@ -205,7 +205,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship
     Entity oldTarget = target;
     target = newTarget;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.RELATIONSHIP__TARGET, oldTarget, target));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY_RELATIONSHIP__TARGET, oldTarget, target));
   }
 
   /**
@@ -218,12 +218,12 @@ public class RelationshipImpl extends ElementImpl implements Relationship
   {
     switch (featureID)
     {
-      case AsamPackage.RELATIONSHIP__TYPE:
+      case AsamPackage.ENTITY_RELATIONSHIP__TYPE:
         return getType();
-      case AsamPackage.RELATIONSHIP__SOURCE:
+      case AsamPackage.ENTITY_RELATIONSHIP__SOURCE:
         if (resolve) return getSource();
         return basicGetSource();
-      case AsamPackage.RELATIONSHIP__TARGET:
+      case AsamPackage.ENTITY_RELATIONSHIP__TARGET:
         if (resolve) return getTarget();
         return basicGetTarget();
     }
@@ -240,13 +240,13 @@ public class RelationshipImpl extends ElementImpl implements Relationship
   {
     switch (featureID)
     {
-      case AsamPackage.RELATIONSHIP__TYPE:
+      case AsamPackage.ENTITY_RELATIONSHIP__TYPE:
         setType((dbRelations)newValue);
         return;
-      case AsamPackage.RELATIONSHIP__SOURCE:
+      case AsamPackage.ENTITY_RELATIONSHIP__SOURCE:
         setSource((Entity)newValue);
         return;
-      case AsamPackage.RELATIONSHIP__TARGET:
+      case AsamPackage.ENTITY_RELATIONSHIP__TARGET:
         setTarget((Entity)newValue);
         return;
     }
@@ -263,13 +263,13 @@ public class RelationshipImpl extends ElementImpl implements Relationship
   {
     switch (featureID)
     {
-      case AsamPackage.RELATIONSHIP__TYPE:
+      case AsamPackage.ENTITY_RELATIONSHIP__TYPE:
         setType(TYPE_EDEFAULT);
         return;
-      case AsamPackage.RELATIONSHIP__SOURCE:
+      case AsamPackage.ENTITY_RELATIONSHIP__SOURCE:
         setSource((Entity)null);
         return;
-      case AsamPackage.RELATIONSHIP__TARGET:
+      case AsamPackage.ENTITY_RELATIONSHIP__TARGET:
         setTarget((Entity)null);
         return;
     }
@@ -286,11 +286,11 @@ public class RelationshipImpl extends ElementImpl implements Relationship
   {
     switch (featureID)
     {
-      case AsamPackage.RELATIONSHIP__TYPE:
+      case AsamPackage.ENTITY_RELATIONSHIP__TYPE:
         return type != TYPE_EDEFAULT;
-      case AsamPackage.RELATIONSHIP__SOURCE:
+      case AsamPackage.ENTITY_RELATIONSHIP__SOURCE:
         return source != null;
-      case AsamPackage.RELATIONSHIP__TARGET:
+      case AsamPackage.ENTITY_RELATIONSHIP__TARGET:
         return target != null;
     }
     return super.eIsSet(featureID);
@@ -313,4 +313,4 @@ public class RelationshipImpl extends ElementImpl implements Relationship
     return result.toString();
   }
 
-} //RelationshipImpl
+} //EntityRelationshipImpl

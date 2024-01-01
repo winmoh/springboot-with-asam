@@ -376,7 +376,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleElement"
-    // InternalAsam.g:151:1: ruleElement returns [EObject current=null] : (this_Entity_0= ruleEntity | this_Service_1= ruleService | this_Controller_2= ruleController | this_DTO_3= ruleDTO | this_Repository_4= ruleRepository | this_Relationship_5= ruleRelationship ) ;
+    // InternalAsam.g:151:1: ruleElement returns [EObject current=null] : (this_Entity_0= ruleEntity | this_Service_1= ruleService | this_Controller_2= ruleController | this_DTO_3= ruleDTO | this_Repository_4= ruleRepository | this_EntityRelationship_5= ruleEntityRelationship ) ;
     public final EObject ruleElement() throws RecognitionException {
         EObject current = null;
 
@@ -390,17 +390,17 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
         EObject this_Repository_4 = null;
 
-        EObject this_Relationship_5 = null;
+        EObject this_EntityRelationship_5 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalAsam.g:157:2: ( (this_Entity_0= ruleEntity | this_Service_1= ruleService | this_Controller_2= ruleController | this_DTO_3= ruleDTO | this_Repository_4= ruleRepository | this_Relationship_5= ruleRelationship ) )
-            // InternalAsam.g:158:2: (this_Entity_0= ruleEntity | this_Service_1= ruleService | this_Controller_2= ruleController | this_DTO_3= ruleDTO | this_Repository_4= ruleRepository | this_Relationship_5= ruleRelationship )
+            // InternalAsam.g:157:2: ( (this_Entity_0= ruleEntity | this_Service_1= ruleService | this_Controller_2= ruleController | this_DTO_3= ruleDTO | this_Repository_4= ruleRepository | this_EntityRelationship_5= ruleEntityRelationship ) )
+            // InternalAsam.g:158:2: (this_Entity_0= ruleEntity | this_Service_1= ruleService | this_Controller_2= ruleController | this_DTO_3= ruleDTO | this_Repository_4= ruleRepository | this_EntityRelationship_5= ruleEntityRelationship )
             {
-            // InternalAsam.g:158:2: (this_Entity_0= ruleEntity | this_Service_1= ruleService | this_Controller_2= ruleController | this_DTO_3= ruleDTO | this_Repository_4= ruleRepository | this_Relationship_5= ruleRelationship )
+            // InternalAsam.g:158:2: (this_Entity_0= ruleEntity | this_Service_1= ruleService | this_Controller_2= ruleController | this_DTO_3= ruleDTO | this_Repository_4= ruleRepository | this_EntityRelationship_5= ruleEntityRelationship )
             int alt3=6;
             switch ( input.LA(1) ) {
             case 28:
@@ -532,18 +532,18 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalAsam.g:204:3: this_Relationship_5= ruleRelationship
+                    // InternalAsam.g:204:3: this_EntityRelationship_5= ruleEntityRelationship
                     {
 
-                    			newCompositeNode(grammarAccess.getElementAccess().getRelationshipParserRuleCall_5());
+                    			newCompositeNode(grammarAccess.getElementAccess().getEntityRelationshipParserRuleCall_5());
                     		
                     pushFollow(FOLLOW_2);
-                    this_Relationship_5=ruleRelationship();
+                    this_EntityRelationship_5=ruleEntityRelationship();
 
                     state._fsp--;
 
 
-                    			current = this_Relationship_5;
+                    			current = this_EntityRelationship_5;
                     			afterParserOrEnumRuleCall();
                     		
 
@@ -571,25 +571,25 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleElement"
 
 
-    // $ANTLR start "entryRuleRelationship"
-    // InternalAsam.g:216:1: entryRuleRelationship returns [EObject current=null] : iv_ruleRelationship= ruleRelationship EOF ;
-    public final EObject entryRuleRelationship() throws RecognitionException {
+    // $ANTLR start "entryRuleEntityRelationship"
+    // InternalAsam.g:216:1: entryRuleEntityRelationship returns [EObject current=null] : iv_ruleEntityRelationship= ruleEntityRelationship EOF ;
+    public final EObject entryRuleEntityRelationship() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleRelationship = null;
+        EObject iv_ruleEntityRelationship = null;
 
 
         try {
-            // InternalAsam.g:216:53: (iv_ruleRelationship= ruleRelationship EOF )
-            // InternalAsam.g:217:2: iv_ruleRelationship= ruleRelationship EOF
+            // InternalAsam.g:216:59: (iv_ruleEntityRelationship= ruleEntityRelationship EOF )
+            // InternalAsam.g:217:2: iv_ruleEntityRelationship= ruleEntityRelationship EOF
             {
-             newCompositeNode(grammarAccess.getRelationshipRule()); 
+             newCompositeNode(grammarAccess.getEntityRelationshipRule()); 
             pushFollow(FOLLOW_1);
-            iv_ruleRelationship=ruleRelationship();
+            iv_ruleEntityRelationship=ruleEntityRelationship();
 
             state._fsp--;
 
-             current =iv_ruleRelationship; 
+             current =iv_ruleEntityRelationship; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -604,12 +604,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleRelationship"
+    // $ANTLR end "entryRuleEntityRelationship"
 
 
-    // $ANTLR start "ruleRelationship"
-    // InternalAsam.g:223:1: ruleRelationship returns [EObject current=null] : (otherlv_0= 'relation' ( (lv_type_1_0= ruledbRelations ) ) otherlv_2= 'between' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'and' ( (otherlv_5= RULE_ID ) ) ) ;
-    public final EObject ruleRelationship() throws RecognitionException {
+    // $ANTLR start "ruleEntityRelationship"
+    // InternalAsam.g:223:1: ruleEntityRelationship returns [EObject current=null] : (otherlv_0= 'relation' ( (lv_type_1_0= ruledbRelations ) ) otherlv_2= 'between' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'and' ( (otherlv_5= RULE_ID ) ) ) ;
+    public final EObject ruleEntityRelationship() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -632,7 +632,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             {
             otherlv_0=(Token)match(input,13,FOLLOW_6); 
 
-            			newLeafNode(otherlv_0, grammarAccess.getRelationshipAccess().getRelationKeyword_0());
+            			newLeafNode(otherlv_0, grammarAccess.getEntityRelationshipAccess().getRelationKeyword_0());
             		
             // InternalAsam.g:235:3: ( (lv_type_1_0= ruledbRelations ) )
             // InternalAsam.g:236:4: (lv_type_1_0= ruledbRelations )
@@ -641,7 +641,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             // InternalAsam.g:237:5: lv_type_1_0= ruledbRelations
             {
 
-            					newCompositeNode(grammarAccess.getRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0());
+            					newCompositeNode(grammarAccess.getEntityRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0());
             				
             pushFollow(FOLLOW_7);
             lv_type_1_0=ruledbRelations();
@@ -650,7 +650,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
 
             					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getRelationshipRule());
+            						current = createModelElementForParent(grammarAccess.getEntityRelationshipRule());
             					}
             					set(
             						current,
@@ -667,7 +667,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
             otherlv_2=(Token)match(input,14,FOLLOW_3); 
 
-            			newLeafNode(otherlv_2, grammarAccess.getRelationshipAccess().getBetweenKeyword_2());
+            			newLeafNode(otherlv_2, grammarAccess.getEntityRelationshipAccess().getBetweenKeyword_2());
             		
             // InternalAsam.g:258:3: ( (otherlv_3= RULE_ID ) )
             // InternalAsam.g:259:4: (otherlv_3= RULE_ID )
@@ -677,12 +677,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             {
 
             					if (current==null) {
-            						current = createModelElement(grammarAccess.getRelationshipRule());
+            						current = createModelElement(grammarAccess.getEntityRelationshipRule());
             					}
             				
             otherlv_3=(Token)match(input,RULE_ID,FOLLOW_8); 
 
-            					newLeafNode(otherlv_3, grammarAccess.getRelationshipAccess().getSourceEntityCrossReference_3_0());
+            					newLeafNode(otherlv_3, grammarAccess.getEntityRelationshipAccess().getSourceEntityCrossReference_3_0());
             				
 
             }
@@ -692,7 +692,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
 
             otherlv_4=(Token)match(input,15,FOLLOW_3); 
 
-            			newLeafNode(otherlv_4, grammarAccess.getRelationshipAccess().getAndKeyword_4());
+            			newLeafNode(otherlv_4, grammarAccess.getEntityRelationshipAccess().getAndKeyword_4());
             		
             // InternalAsam.g:275:3: ( (otherlv_5= RULE_ID ) )
             // InternalAsam.g:276:4: (otherlv_5= RULE_ID )
@@ -702,12 +702,12 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
             {
 
             					if (current==null) {
-            						current = createModelElement(grammarAccess.getRelationshipRule());
+            						current = createModelElement(grammarAccess.getEntityRelationshipRule());
             					}
             				
             otherlv_5=(Token)match(input,RULE_ID,FOLLOW_2); 
 
-            					newLeafNode(otherlv_5, grammarAccess.getRelationshipAccess().getTargetEntityCrossReference_5_0());
+            					newLeafNode(otherlv_5, grammarAccess.getEntityRelationshipAccess().getTargetEntityCrossReference_5_0());
             				
 
             }
@@ -734,7 +734,7 @@ public class InternalAsamParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleRelationship"
+    // $ANTLR end "ruleEntityRelationship"
 
 
     // $ANTLR start "entryRuleConfiguration"

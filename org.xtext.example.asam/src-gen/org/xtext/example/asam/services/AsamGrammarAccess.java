@@ -76,13 +76,13 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cControllerParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cDTOParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cRepositoryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cRelationshipParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cEntityRelationshipParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//Element:
-		//    Entity | Service | Controller | DTO | Repository | Relationship ;
+		//    Entity | Service | Controller | DTO | Repository | EntityRelationship ;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Entity | Service | Controller | DTO | Repository | Relationship
+		//Entity | Service | Controller | DTO | Repository | EntityRelationship
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Entity
@@ -100,11 +100,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//Repository
 		public RuleCall getRepositoryParserRuleCall_4() { return cRepositoryParserRuleCall_4; }
 		
-		//Relationship
-		public RuleCall getRelationshipParserRuleCall_5() { return cRelationshipParserRuleCall_5; }
+		//EntityRelationship
+		public RuleCall getEntityRelationshipParserRuleCall_5() { return cEntityRelationshipParserRuleCall_5; }
 	}
-	public class RelationshipElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Relationship");
+	public class EntityRelationshipElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.EntityRelationship");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRelationKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -118,8 +118,9 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final CrossReference cTargetEntityCrossReference_5_0 = (CrossReference)cTargetAssignment_5.eContents().get(0);
 		private final RuleCall cTargetEntityIDTerminalRuleCall_5_0_1 = (RuleCall)cTargetEntityCrossReference_5_0.eContents().get(1);
 		
-		//Relationship:
-		//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
+		//EntityRelationship:
+		//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity]
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity]
@@ -1376,7 +1377,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	private final SbootElements pSboot;
 	private final ElementElements pElement;
-	private final RelationshipElements pRelationship;
+	private final EntityRelationshipElements pEntityRelationship;
 	private final ConfigurationElements pConfiguration;
 	private final ServerInfoElements pServerInfo;
 	private final DatabaseInfoElements pDatabaseInfo;
@@ -1414,7 +1415,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.gaTerminals = gaTerminals;
 		this.pSboot = new SbootElements();
 		this.pElement = new ElementElements();
-		this.pRelationship = new RelationshipElements();
+		this.pEntityRelationship = new EntityRelationshipElements();
 		this.pConfiguration = new ConfigurationElements();
 		this.pServerInfo = new ServerInfoElements();
 		this.pDatabaseInfo = new DatabaseInfoElements();
@@ -1482,7 +1483,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Element:
-	//    Entity | Service | Controller | DTO | Repository | Relationship ;
+	//    Entity | Service | Controller | DTO | Repository | EntityRelationship ;
 	public ElementElements getElementAccess() {
 		return pElement;
 	}
@@ -1491,14 +1492,15 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getElementAccess().getRule();
 	}
 	
-	//Relationship:
-	//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
-	public RelationshipElements getRelationshipAccess() {
-		return pRelationship;
+	//EntityRelationship:
+	//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity]
+	//;
+	public EntityRelationshipElements getEntityRelationshipAccess() {
+		return pEntityRelationship;
 	}
 	
-	public ParserRule getRelationshipRule() {
-		return getRelationshipAccess().getRule();
+	public ParserRule getEntityRelationshipRule() {
+		return getEntityRelationshipAccess().getRule();
 	}
 	
 	//Configuration:

@@ -202,25 +202,25 @@ ruleElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getElementAccess().getRelationshipParserRuleCall_5());
+			newCompositeNode(grammarAccess.getElementAccess().getEntityRelationshipParserRuleCall_5());
 		}
-		this_Relationship_5=ruleRelationship
+		this_EntityRelationship_5=ruleEntityRelationship
 		{
-			$current = $this_Relationship_5.current;
+			$current = $this_EntityRelationship_5.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
 ;
 
-// Entry rule entryRuleRelationship
-entryRuleRelationship returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRelationshipRule()); }
-	iv_ruleRelationship=ruleRelationship
-	{ $current=$iv_ruleRelationship.current; }
+// Entry rule entryRuleEntityRelationship
+entryRuleEntityRelationship returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getEntityRelationshipRule()); }
+	iv_ruleEntityRelationship=ruleEntityRelationship
+	{ $current=$iv_ruleEntityRelationship.current; }
 	EOF;
 
-// Rule Relationship
-ruleRelationship returns [EObject current=null]
+// Rule EntityRelationship
+ruleEntityRelationship returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -230,17 +230,17 @@ ruleRelationship returns [EObject current=null]
 	(
 		otherlv_0='relation'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getRelationshipAccess().getRelationKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getEntityRelationshipAccess().getRelationKeyword_0());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0());
+					newCompositeNode(grammarAccess.getEntityRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0());
 				}
 				lv_type_1_0=ruledbRelations
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRelationshipRule());
+						$current = createModelElementForParent(grammarAccess.getEntityRelationshipRule());
 					}
 					set(
 						$current,
@@ -253,35 +253,35 @@ ruleRelationship returns [EObject current=null]
 		)
 		otherlv_2='between'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getRelationshipAccess().getBetweenKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getEntityRelationshipAccess().getBetweenKeyword_2());
 		}
 		(
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRelationshipRule());
+						$current = createModelElement(grammarAccess.getEntityRelationshipRule());
 					}
 				}
 				otherlv_3=RULE_ID
 				{
-					newLeafNode(otherlv_3, grammarAccess.getRelationshipAccess().getSourceEntityCrossReference_3_0());
+					newLeafNode(otherlv_3, grammarAccess.getEntityRelationshipAccess().getSourceEntityCrossReference_3_0());
 				}
 			)
 		)
 		otherlv_4='and'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getRelationshipAccess().getAndKeyword_4());
+			newLeafNode(otherlv_4, grammarAccess.getEntityRelationshipAccess().getAndKeyword_4());
 		}
 		(
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRelationshipRule());
+						$current = createModelElement(grammarAccess.getEntityRelationshipRule());
 					}
 				}
 				otherlv_5=RULE_ID
 				{
-					newLeafNode(otherlv_5, grammarAccess.getRelationshipAccess().getTargetEntityCrossReference_5_0());
+					newLeafNode(otherlv_5, grammarAccess.getEntityRelationshipAccess().getTargetEntityCrossReference_5_0());
 				}
 			)
 		)

@@ -6,23 +6,23 @@ package org.xtext.example.asam.asam;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Relationship</b></em>'.
+ * A representation of the model object '<em><b>Entity Relationship</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.Relationship#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.Relationship#getSource <em>Source</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.Relationship#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.EntityRelationship#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.EntityRelationship#getSource <em>Source</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.EntityRelationship#getTarget <em>Target</em>}</li>
  * </ul>
  *
- * @see org.xtext.example.asam.asam.AsamPackage#getRelationship()
+ * @see org.xtext.example.asam.asam.AsamPackage#getEntityRelationship()
  * @model
  * @generated
  */
-public interface Relationship extends Element
+public interface EntityRelationship extends Element
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
@@ -32,14 +32,14 @@ public interface Relationship extends Element
    * @return the value of the '<em>Type</em>' attribute.
    * @see org.xtext.example.asam.asam.dbRelations
    * @see #setType(dbRelations)
-   * @see org.xtext.example.asam.asam.AsamPackage#getRelationship_Type()
+   * @see org.xtext.example.asam.asam.AsamPackage#getEntityRelationship_Type()
    * @model
    * @generated
    */
   dbRelations getType();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.Relationship#getType <em>Type</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.asam.asam.EntityRelationship#getType <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' attribute.
@@ -55,14 +55,14 @@ public interface Relationship extends Element
    * <!-- end-user-doc -->
    * @return the value of the '<em>Source</em>' reference.
    * @see #setSource(Entity)
-   * @see org.xtext.example.asam.asam.AsamPackage#getRelationship_Source()
+   * @see org.xtext.example.asam.asam.AsamPackage#getEntityRelationship_Source()
    * @model
    * @generated
    */
   Entity getSource();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.Relationship#getSource <em>Source</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.asam.asam.EntityRelationship#getSource <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Source</em>' reference.
@@ -77,14 +77,14 @@ public interface Relationship extends Element
    * <!-- end-user-doc -->
    * @return the value of the '<em>Target</em>' reference.
    * @see #setTarget(Entity)
-   * @see org.xtext.example.asam.asam.AsamPackage#getRelationship_Target()
+   * @see org.xtext.example.asam.asam.AsamPackage#getEntityRelationship_Target()
    * @model
    * @generated
    */
   Entity getTarget();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.Relationship#getTarget <em>Target</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.asam.asam.EntityRelationship#getTarget <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Target</em>' reference.
@@ -93,4 +93,4 @@ public interface Relationship extends Element
    */
   void setTarget(Entity value);
 
-} // Relationship
+} // EntityRelationship

@@ -288,20 +288,20 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleElement"
 
 
-    // $ANTLR start "entryRuleRelationship"
-    // InternalAsam.g:103:1: entryRuleRelationship : ruleRelationship EOF ;
-    public final void entryRuleRelationship() throws RecognitionException {
+    // $ANTLR start "entryRuleEntityRelationship"
+    // InternalAsam.g:103:1: entryRuleEntityRelationship : ruleEntityRelationship EOF ;
+    public final void entryRuleEntityRelationship() throws RecognitionException {
         try {
-            // InternalAsam.g:104:1: ( ruleRelationship EOF )
-            // InternalAsam.g:105:1: ruleRelationship EOF
+            // InternalAsam.g:104:1: ( ruleEntityRelationship EOF )
+            // InternalAsam.g:105:1: ruleEntityRelationship EOF
             {
-             before(grammarAccess.getRelationshipRule()); 
+             before(grammarAccess.getEntityRelationshipRule()); 
             pushFollow(FOLLOW_1);
-            ruleRelationship();
+            ruleEntityRelationship();
 
             state._fsp--;
 
-             after(grammarAccess.getRelationshipRule()); 
+             after(grammarAccess.getEntityRelationshipRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -315,35 +315,35 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleRelationship"
+    // $ANTLR end "entryRuleEntityRelationship"
 
 
-    // $ANTLR start "ruleRelationship"
-    // InternalAsam.g:112:1: ruleRelationship : ( ( rule__Relationship__Group__0 ) ) ;
-    public final void ruleRelationship() throws RecognitionException {
+    // $ANTLR start "ruleEntityRelationship"
+    // InternalAsam.g:112:1: ruleEntityRelationship : ( ( rule__EntityRelationship__Group__0 ) ) ;
+    public final void ruleEntityRelationship() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:116:2: ( ( ( rule__Relationship__Group__0 ) ) )
-            // InternalAsam.g:117:2: ( ( rule__Relationship__Group__0 ) )
+            // InternalAsam.g:116:2: ( ( ( rule__EntityRelationship__Group__0 ) ) )
+            // InternalAsam.g:117:2: ( ( rule__EntityRelationship__Group__0 ) )
             {
-            // InternalAsam.g:117:2: ( ( rule__Relationship__Group__0 ) )
-            // InternalAsam.g:118:3: ( rule__Relationship__Group__0 )
+            // InternalAsam.g:117:2: ( ( rule__EntityRelationship__Group__0 ) )
+            // InternalAsam.g:118:3: ( rule__EntityRelationship__Group__0 )
             {
-             before(grammarAccess.getRelationshipAccess().getGroup()); 
-            // InternalAsam.g:119:3: ( rule__Relationship__Group__0 )
-            // InternalAsam.g:119:4: rule__Relationship__Group__0
+             before(grammarAccess.getEntityRelationshipAccess().getGroup()); 
+            // InternalAsam.g:119:3: ( rule__EntityRelationship__Group__0 )
+            // InternalAsam.g:119:4: rule__EntityRelationship__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__Relationship__Group__0();
+            rule__EntityRelationship__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getRelationshipAccess().getGroup()); 
+             after(grammarAccess.getEntityRelationshipAccess().getGroup()); 
 
             }
 
@@ -362,7 +362,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleRelationship"
+    // $ANTLR end "ruleEntityRelationship"
 
 
     // $ANTLR start "entryRuleConfiguration"
@@ -2094,13 +2094,13 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Alternatives"
-    // InternalAsam.g:691:1: rule__Element__Alternatives : ( ( ruleEntity ) | ( ruleService ) | ( ruleController ) | ( ruleDTO ) | ( ruleRepository ) | ( ruleRelationship ) );
+    // InternalAsam.g:691:1: rule__Element__Alternatives : ( ( ruleEntity ) | ( ruleService ) | ( ruleController ) | ( ruleDTO ) | ( ruleRepository ) | ( ruleEntityRelationship ) );
     public final void rule__Element__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:695:1: ( ( ruleEntity ) | ( ruleService ) | ( ruleController ) | ( ruleDTO ) | ( ruleRepository ) | ( ruleRelationship ) )
+            // InternalAsam.g:695:1: ( ( ruleEntity ) | ( ruleService ) | ( ruleController ) | ( ruleDTO ) | ( ruleRepository ) | ( ruleEntityRelationship ) )
             int alt1=6;
             switch ( input.LA(1) ) {
             case 48:
@@ -2237,18 +2237,18 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 6 :
-                    // InternalAsam.g:726:2: ( ruleRelationship )
+                    // InternalAsam.g:726:2: ( ruleEntityRelationship )
                     {
-                    // InternalAsam.g:726:2: ( ruleRelationship )
-                    // InternalAsam.g:727:3: ruleRelationship
+                    // InternalAsam.g:726:2: ( ruleEntityRelationship )
+                    // InternalAsam.g:727:3: ruleEntityRelationship
                     {
-                     before(grammarAccess.getElementAccess().getRelationshipParserRuleCall_5()); 
+                     before(grammarAccess.getElementAccess().getEntityRelationshipParserRuleCall_5()); 
                     pushFollow(FOLLOW_2);
-                    ruleRelationship();
+                    ruleEntityRelationship();
 
                     state._fsp--;
 
-                     after(grammarAccess.getElementAccess().getRelationshipParserRuleCall_5()); 
+                     after(grammarAccess.getElementAccess().getEntityRelationshipParserRuleCall_5()); 
 
                     }
 
@@ -3627,23 +3627,23 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Sboot__Group__3__Impl"
 
 
-    // $ANTLR start "rule__Relationship__Group__0"
-    // InternalAsam.g:1081:1: rule__Relationship__Group__0 : rule__Relationship__Group__0__Impl rule__Relationship__Group__1 ;
-    public final void rule__Relationship__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__0"
+    // InternalAsam.g:1081:1: rule__EntityRelationship__Group__0 : rule__EntityRelationship__Group__0__Impl rule__EntityRelationship__Group__1 ;
+    public final void rule__EntityRelationship__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1085:1: ( rule__Relationship__Group__0__Impl rule__Relationship__Group__1 )
-            // InternalAsam.g:1086:2: rule__Relationship__Group__0__Impl rule__Relationship__Group__1
+            // InternalAsam.g:1085:1: ( rule__EntityRelationship__Group__0__Impl rule__EntityRelationship__Group__1 )
+            // InternalAsam.g:1086:2: rule__EntityRelationship__Group__0__Impl rule__EntityRelationship__Group__1
             {
             pushFollow(FOLLOW_6);
-            rule__Relationship__Group__0__Impl();
+            rule__EntityRelationship__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Relationship__Group__1();
+            rule__EntityRelationship__Group__1();
 
             state._fsp--;
 
@@ -3662,12 +3662,12 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__0"
+    // $ANTLR end "rule__EntityRelationship__Group__0"
 
 
-    // $ANTLR start "rule__Relationship__Group__0__Impl"
-    // InternalAsam.g:1093:1: rule__Relationship__Group__0__Impl : ( 'relation' ) ;
-    public final void rule__Relationship__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__0__Impl"
+    // InternalAsam.g:1093:1: rule__EntityRelationship__Group__0__Impl : ( 'relation' ) ;
+    public final void rule__EntityRelationship__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -3678,9 +3678,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:1098:1: ( 'relation' )
             // InternalAsam.g:1099:2: 'relation'
             {
-             before(grammarAccess.getRelationshipAccess().getRelationKeyword_0()); 
+             before(grammarAccess.getEntityRelationshipAccess().getRelationKeyword_0()); 
             match(input,33,FOLLOW_2); 
-             after(grammarAccess.getRelationshipAccess().getRelationKeyword_0()); 
+             after(grammarAccess.getEntityRelationshipAccess().getRelationKeyword_0()); 
 
             }
 
@@ -3699,26 +3699,26 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__0__Impl"
+    // $ANTLR end "rule__EntityRelationship__Group__0__Impl"
 
 
-    // $ANTLR start "rule__Relationship__Group__1"
-    // InternalAsam.g:1108:1: rule__Relationship__Group__1 : rule__Relationship__Group__1__Impl rule__Relationship__Group__2 ;
-    public final void rule__Relationship__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__1"
+    // InternalAsam.g:1108:1: rule__EntityRelationship__Group__1 : rule__EntityRelationship__Group__1__Impl rule__EntityRelationship__Group__2 ;
+    public final void rule__EntityRelationship__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1112:1: ( rule__Relationship__Group__1__Impl rule__Relationship__Group__2 )
-            // InternalAsam.g:1113:2: rule__Relationship__Group__1__Impl rule__Relationship__Group__2
+            // InternalAsam.g:1112:1: ( rule__EntityRelationship__Group__1__Impl rule__EntityRelationship__Group__2 )
+            // InternalAsam.g:1113:2: rule__EntityRelationship__Group__1__Impl rule__EntityRelationship__Group__2
             {
             pushFollow(FOLLOW_7);
-            rule__Relationship__Group__1__Impl();
+            rule__EntityRelationship__Group__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Relationship__Group__2();
+            rule__EntityRelationship__Group__2();
 
             state._fsp--;
 
@@ -3737,35 +3737,35 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__1"
+    // $ANTLR end "rule__EntityRelationship__Group__1"
 
 
-    // $ANTLR start "rule__Relationship__Group__1__Impl"
-    // InternalAsam.g:1120:1: rule__Relationship__Group__1__Impl : ( ( rule__Relationship__TypeAssignment_1 ) ) ;
-    public final void rule__Relationship__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__1__Impl"
+    // InternalAsam.g:1120:1: rule__EntityRelationship__Group__1__Impl : ( ( rule__EntityRelationship__TypeAssignment_1 ) ) ;
+    public final void rule__EntityRelationship__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1124:1: ( ( ( rule__Relationship__TypeAssignment_1 ) ) )
-            // InternalAsam.g:1125:1: ( ( rule__Relationship__TypeAssignment_1 ) )
+            // InternalAsam.g:1124:1: ( ( ( rule__EntityRelationship__TypeAssignment_1 ) ) )
+            // InternalAsam.g:1125:1: ( ( rule__EntityRelationship__TypeAssignment_1 ) )
             {
-            // InternalAsam.g:1125:1: ( ( rule__Relationship__TypeAssignment_1 ) )
-            // InternalAsam.g:1126:2: ( rule__Relationship__TypeAssignment_1 )
+            // InternalAsam.g:1125:1: ( ( rule__EntityRelationship__TypeAssignment_1 ) )
+            // InternalAsam.g:1126:2: ( rule__EntityRelationship__TypeAssignment_1 )
             {
-             before(grammarAccess.getRelationshipAccess().getTypeAssignment_1()); 
-            // InternalAsam.g:1127:2: ( rule__Relationship__TypeAssignment_1 )
-            // InternalAsam.g:1127:3: rule__Relationship__TypeAssignment_1
+             before(grammarAccess.getEntityRelationshipAccess().getTypeAssignment_1()); 
+            // InternalAsam.g:1127:2: ( rule__EntityRelationship__TypeAssignment_1 )
+            // InternalAsam.g:1127:3: rule__EntityRelationship__TypeAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Relationship__TypeAssignment_1();
+            rule__EntityRelationship__TypeAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getRelationshipAccess().getTypeAssignment_1()); 
+             after(grammarAccess.getEntityRelationshipAccess().getTypeAssignment_1()); 
 
             }
 
@@ -3784,26 +3784,26 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__1__Impl"
+    // $ANTLR end "rule__EntityRelationship__Group__1__Impl"
 
 
-    // $ANTLR start "rule__Relationship__Group__2"
-    // InternalAsam.g:1135:1: rule__Relationship__Group__2 : rule__Relationship__Group__2__Impl rule__Relationship__Group__3 ;
-    public final void rule__Relationship__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__2"
+    // InternalAsam.g:1135:1: rule__EntityRelationship__Group__2 : rule__EntityRelationship__Group__2__Impl rule__EntityRelationship__Group__3 ;
+    public final void rule__EntityRelationship__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1139:1: ( rule__Relationship__Group__2__Impl rule__Relationship__Group__3 )
-            // InternalAsam.g:1140:2: rule__Relationship__Group__2__Impl rule__Relationship__Group__3
+            // InternalAsam.g:1139:1: ( rule__EntityRelationship__Group__2__Impl rule__EntityRelationship__Group__3 )
+            // InternalAsam.g:1140:2: rule__EntityRelationship__Group__2__Impl rule__EntityRelationship__Group__3
             {
             pushFollow(FOLLOW_3);
-            rule__Relationship__Group__2__Impl();
+            rule__EntityRelationship__Group__2__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Relationship__Group__3();
+            rule__EntityRelationship__Group__3();
 
             state._fsp--;
 
@@ -3822,12 +3822,12 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__2"
+    // $ANTLR end "rule__EntityRelationship__Group__2"
 
 
-    // $ANTLR start "rule__Relationship__Group__2__Impl"
-    // InternalAsam.g:1147:1: rule__Relationship__Group__2__Impl : ( 'between' ) ;
-    public final void rule__Relationship__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__2__Impl"
+    // InternalAsam.g:1147:1: rule__EntityRelationship__Group__2__Impl : ( 'between' ) ;
+    public final void rule__EntityRelationship__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -3838,9 +3838,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:1152:1: ( 'between' )
             // InternalAsam.g:1153:2: 'between'
             {
-             before(grammarAccess.getRelationshipAccess().getBetweenKeyword_2()); 
+             before(grammarAccess.getEntityRelationshipAccess().getBetweenKeyword_2()); 
             match(input,34,FOLLOW_2); 
-             after(grammarAccess.getRelationshipAccess().getBetweenKeyword_2()); 
+             after(grammarAccess.getEntityRelationshipAccess().getBetweenKeyword_2()); 
 
             }
 
@@ -3859,26 +3859,26 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__2__Impl"
+    // $ANTLR end "rule__EntityRelationship__Group__2__Impl"
 
 
-    // $ANTLR start "rule__Relationship__Group__3"
-    // InternalAsam.g:1162:1: rule__Relationship__Group__3 : rule__Relationship__Group__3__Impl rule__Relationship__Group__4 ;
-    public final void rule__Relationship__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__3"
+    // InternalAsam.g:1162:1: rule__EntityRelationship__Group__3 : rule__EntityRelationship__Group__3__Impl rule__EntityRelationship__Group__4 ;
+    public final void rule__EntityRelationship__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1166:1: ( rule__Relationship__Group__3__Impl rule__Relationship__Group__4 )
-            // InternalAsam.g:1167:2: rule__Relationship__Group__3__Impl rule__Relationship__Group__4
+            // InternalAsam.g:1166:1: ( rule__EntityRelationship__Group__3__Impl rule__EntityRelationship__Group__4 )
+            // InternalAsam.g:1167:2: rule__EntityRelationship__Group__3__Impl rule__EntityRelationship__Group__4
             {
             pushFollow(FOLLOW_8);
-            rule__Relationship__Group__3__Impl();
+            rule__EntityRelationship__Group__3__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Relationship__Group__4();
+            rule__EntityRelationship__Group__4();
 
             state._fsp--;
 
@@ -3897,35 +3897,35 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__3"
+    // $ANTLR end "rule__EntityRelationship__Group__3"
 
 
-    // $ANTLR start "rule__Relationship__Group__3__Impl"
-    // InternalAsam.g:1174:1: rule__Relationship__Group__3__Impl : ( ( rule__Relationship__SourceAssignment_3 ) ) ;
-    public final void rule__Relationship__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__3__Impl"
+    // InternalAsam.g:1174:1: rule__EntityRelationship__Group__3__Impl : ( ( rule__EntityRelationship__SourceAssignment_3 ) ) ;
+    public final void rule__EntityRelationship__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1178:1: ( ( ( rule__Relationship__SourceAssignment_3 ) ) )
-            // InternalAsam.g:1179:1: ( ( rule__Relationship__SourceAssignment_3 ) )
+            // InternalAsam.g:1178:1: ( ( ( rule__EntityRelationship__SourceAssignment_3 ) ) )
+            // InternalAsam.g:1179:1: ( ( rule__EntityRelationship__SourceAssignment_3 ) )
             {
-            // InternalAsam.g:1179:1: ( ( rule__Relationship__SourceAssignment_3 ) )
-            // InternalAsam.g:1180:2: ( rule__Relationship__SourceAssignment_3 )
+            // InternalAsam.g:1179:1: ( ( rule__EntityRelationship__SourceAssignment_3 ) )
+            // InternalAsam.g:1180:2: ( rule__EntityRelationship__SourceAssignment_3 )
             {
-             before(grammarAccess.getRelationshipAccess().getSourceAssignment_3()); 
-            // InternalAsam.g:1181:2: ( rule__Relationship__SourceAssignment_3 )
-            // InternalAsam.g:1181:3: rule__Relationship__SourceAssignment_3
+             before(grammarAccess.getEntityRelationshipAccess().getSourceAssignment_3()); 
+            // InternalAsam.g:1181:2: ( rule__EntityRelationship__SourceAssignment_3 )
+            // InternalAsam.g:1181:3: rule__EntityRelationship__SourceAssignment_3
             {
             pushFollow(FOLLOW_2);
-            rule__Relationship__SourceAssignment_3();
+            rule__EntityRelationship__SourceAssignment_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getRelationshipAccess().getSourceAssignment_3()); 
+             after(grammarAccess.getEntityRelationshipAccess().getSourceAssignment_3()); 
 
             }
 
@@ -3944,26 +3944,26 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__3__Impl"
+    // $ANTLR end "rule__EntityRelationship__Group__3__Impl"
 
 
-    // $ANTLR start "rule__Relationship__Group__4"
-    // InternalAsam.g:1189:1: rule__Relationship__Group__4 : rule__Relationship__Group__4__Impl rule__Relationship__Group__5 ;
-    public final void rule__Relationship__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__4"
+    // InternalAsam.g:1189:1: rule__EntityRelationship__Group__4 : rule__EntityRelationship__Group__4__Impl rule__EntityRelationship__Group__5 ;
+    public final void rule__EntityRelationship__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1193:1: ( rule__Relationship__Group__4__Impl rule__Relationship__Group__5 )
-            // InternalAsam.g:1194:2: rule__Relationship__Group__4__Impl rule__Relationship__Group__5
+            // InternalAsam.g:1193:1: ( rule__EntityRelationship__Group__4__Impl rule__EntityRelationship__Group__5 )
+            // InternalAsam.g:1194:2: rule__EntityRelationship__Group__4__Impl rule__EntityRelationship__Group__5
             {
             pushFollow(FOLLOW_3);
-            rule__Relationship__Group__4__Impl();
+            rule__EntityRelationship__Group__4__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Relationship__Group__5();
+            rule__EntityRelationship__Group__5();
 
             state._fsp--;
 
@@ -3982,12 +3982,12 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__4"
+    // $ANTLR end "rule__EntityRelationship__Group__4"
 
 
-    // $ANTLR start "rule__Relationship__Group__4__Impl"
-    // InternalAsam.g:1201:1: rule__Relationship__Group__4__Impl : ( 'and' ) ;
-    public final void rule__Relationship__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__4__Impl"
+    // InternalAsam.g:1201:1: rule__EntityRelationship__Group__4__Impl : ( 'and' ) ;
+    public final void rule__EntityRelationship__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -3998,9 +3998,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:1206:1: ( 'and' )
             // InternalAsam.g:1207:2: 'and'
             {
-             before(grammarAccess.getRelationshipAccess().getAndKeyword_4()); 
+             before(grammarAccess.getEntityRelationshipAccess().getAndKeyword_4()); 
             match(input,35,FOLLOW_2); 
-             after(grammarAccess.getRelationshipAccess().getAndKeyword_4()); 
+             after(grammarAccess.getEntityRelationshipAccess().getAndKeyword_4()); 
 
             }
 
@@ -4019,21 +4019,21 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__4__Impl"
+    // $ANTLR end "rule__EntityRelationship__Group__4__Impl"
 
 
-    // $ANTLR start "rule__Relationship__Group__5"
-    // InternalAsam.g:1216:1: rule__Relationship__Group__5 : rule__Relationship__Group__5__Impl ;
-    public final void rule__Relationship__Group__5() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__5"
+    // InternalAsam.g:1216:1: rule__EntityRelationship__Group__5 : rule__EntityRelationship__Group__5__Impl ;
+    public final void rule__EntityRelationship__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1220:1: ( rule__Relationship__Group__5__Impl )
-            // InternalAsam.g:1221:2: rule__Relationship__Group__5__Impl
+            // InternalAsam.g:1220:1: ( rule__EntityRelationship__Group__5__Impl )
+            // InternalAsam.g:1221:2: rule__EntityRelationship__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Relationship__Group__5__Impl();
+            rule__EntityRelationship__Group__5__Impl();
 
             state._fsp--;
 
@@ -4052,35 +4052,35 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__5"
+    // $ANTLR end "rule__EntityRelationship__Group__5"
 
 
-    // $ANTLR start "rule__Relationship__Group__5__Impl"
-    // InternalAsam.g:1227:1: rule__Relationship__Group__5__Impl : ( ( rule__Relationship__TargetAssignment_5 ) ) ;
-    public final void rule__Relationship__Group__5__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__Group__5__Impl"
+    // InternalAsam.g:1227:1: rule__EntityRelationship__Group__5__Impl : ( ( rule__EntityRelationship__TargetAssignment_5 ) ) ;
+    public final void rule__EntityRelationship__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAsam.g:1231:1: ( ( ( rule__Relationship__TargetAssignment_5 ) ) )
-            // InternalAsam.g:1232:1: ( ( rule__Relationship__TargetAssignment_5 ) )
+            // InternalAsam.g:1231:1: ( ( ( rule__EntityRelationship__TargetAssignment_5 ) ) )
+            // InternalAsam.g:1232:1: ( ( rule__EntityRelationship__TargetAssignment_5 ) )
             {
-            // InternalAsam.g:1232:1: ( ( rule__Relationship__TargetAssignment_5 ) )
-            // InternalAsam.g:1233:2: ( rule__Relationship__TargetAssignment_5 )
+            // InternalAsam.g:1232:1: ( ( rule__EntityRelationship__TargetAssignment_5 ) )
+            // InternalAsam.g:1233:2: ( rule__EntityRelationship__TargetAssignment_5 )
             {
-             before(grammarAccess.getRelationshipAccess().getTargetAssignment_5()); 
-            // InternalAsam.g:1234:2: ( rule__Relationship__TargetAssignment_5 )
-            // InternalAsam.g:1234:3: rule__Relationship__TargetAssignment_5
+             before(grammarAccess.getEntityRelationshipAccess().getTargetAssignment_5()); 
+            // InternalAsam.g:1234:2: ( rule__EntityRelationship__TargetAssignment_5 )
+            // InternalAsam.g:1234:3: rule__EntityRelationship__TargetAssignment_5
             {
             pushFollow(FOLLOW_2);
-            rule__Relationship__TargetAssignment_5();
+            rule__EntityRelationship__TargetAssignment_5();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getRelationshipAccess().getTargetAssignment_5()); 
+             after(grammarAccess.getEntityRelationshipAccess().getTargetAssignment_5()); 
 
             }
 
@@ -4099,7 +4099,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__Group__5__Impl"
+    // $ANTLR end "rule__EntityRelationship__Group__5__Impl"
 
 
     // $ANTLR start "rule__Configuration__Group__0"
@@ -13968,9 +13968,9 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Sboot__ElementsAssignment_3"
 
 
-    // $ANTLR start "rule__Relationship__TypeAssignment_1"
-    // InternalAsam.g:4555:1: rule__Relationship__TypeAssignment_1 : ( ruledbRelations ) ;
-    public final void rule__Relationship__TypeAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__TypeAssignment_1"
+    // InternalAsam.g:4555:1: rule__EntityRelationship__TypeAssignment_1 : ( ruledbRelations ) ;
+    public final void rule__EntityRelationship__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -13981,13 +13981,13 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4560:2: ( ruledbRelations )
             // InternalAsam.g:4561:3: ruledbRelations
             {
-             before(grammarAccess.getRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0()); 
+             before(grammarAccess.getEntityRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruledbRelations();
 
             state._fsp--;
 
-             after(grammarAccess.getRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0()); 
+             after(grammarAccess.getEntityRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0()); 
 
             }
 
@@ -14006,12 +14006,12 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__TypeAssignment_1"
+    // $ANTLR end "rule__EntityRelationship__TypeAssignment_1"
 
 
-    // $ANTLR start "rule__Relationship__SourceAssignment_3"
-    // InternalAsam.g:4570:1: rule__Relationship__SourceAssignment_3 : ( ( RULE_ID ) ) ;
-    public final void rule__Relationship__SourceAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__SourceAssignment_3"
+    // InternalAsam.g:4570:1: rule__EntityRelationship__SourceAssignment_3 : ( ( RULE_ID ) ) ;
+    public final void rule__EntityRelationship__SourceAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -14022,17 +14022,17 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4575:2: ( ( RULE_ID ) )
             // InternalAsam.g:4576:3: ( RULE_ID )
             {
-             before(grammarAccess.getRelationshipAccess().getSourceEntityCrossReference_3_0()); 
+             before(grammarAccess.getEntityRelationshipAccess().getSourceEntityCrossReference_3_0()); 
             // InternalAsam.g:4577:3: ( RULE_ID )
             // InternalAsam.g:4578:4: RULE_ID
             {
-             before(grammarAccess.getRelationshipAccess().getSourceEntityIDTerminalRuleCall_3_0_1()); 
+             before(grammarAccess.getEntityRelationshipAccess().getSourceEntityIDTerminalRuleCall_3_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getRelationshipAccess().getSourceEntityIDTerminalRuleCall_3_0_1()); 
+             after(grammarAccess.getEntityRelationshipAccess().getSourceEntityIDTerminalRuleCall_3_0_1()); 
 
             }
 
-             after(grammarAccess.getRelationshipAccess().getSourceEntityCrossReference_3_0()); 
+             after(grammarAccess.getEntityRelationshipAccess().getSourceEntityCrossReference_3_0()); 
 
             }
 
@@ -14051,12 +14051,12 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__SourceAssignment_3"
+    // $ANTLR end "rule__EntityRelationship__SourceAssignment_3"
 
 
-    // $ANTLR start "rule__Relationship__TargetAssignment_5"
-    // InternalAsam.g:4589:1: rule__Relationship__TargetAssignment_5 : ( ( RULE_ID ) ) ;
-    public final void rule__Relationship__TargetAssignment_5() throws RecognitionException {
+    // $ANTLR start "rule__EntityRelationship__TargetAssignment_5"
+    // InternalAsam.g:4589:1: rule__EntityRelationship__TargetAssignment_5 : ( ( RULE_ID ) ) ;
+    public final void rule__EntityRelationship__TargetAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -14067,17 +14067,17 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
             // InternalAsam.g:4594:2: ( ( RULE_ID ) )
             // InternalAsam.g:4595:3: ( RULE_ID )
             {
-             before(grammarAccess.getRelationshipAccess().getTargetEntityCrossReference_5_0()); 
+             before(grammarAccess.getEntityRelationshipAccess().getTargetEntityCrossReference_5_0()); 
             // InternalAsam.g:4596:3: ( RULE_ID )
             // InternalAsam.g:4597:4: RULE_ID
             {
-             before(grammarAccess.getRelationshipAccess().getTargetEntityIDTerminalRuleCall_5_0_1()); 
+             before(grammarAccess.getEntityRelationshipAccess().getTargetEntityIDTerminalRuleCall_5_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getRelationshipAccess().getTargetEntityIDTerminalRuleCall_5_0_1()); 
+             after(grammarAccess.getEntityRelationshipAccess().getTargetEntityIDTerminalRuleCall_5_0_1()); 
 
             }
 
-             after(grammarAccess.getRelationshipAccess().getTargetEntityCrossReference_5_0()); 
+             after(grammarAccess.getEntityRelationshipAccess().getTargetEntityCrossReference_5_0()); 
 
             }
 
@@ -14096,7 +14096,7 @@ public class InternalAsamParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Relationship__TargetAssignment_5"
+    // $ANTLR end "rule__EntityRelationship__TargetAssignment_5"
 
 
     // $ANTLR start "rule__Configuration__ServerAssignment_2"

@@ -8,11 +8,17 @@ Sboot:
     elements+=Element*;
 
 Element:
-    Entity | Service | Controller | DTO | Repository | Relationship ;
+    Entity | Service | Controller | DTO | Repository | EntityRelationship ;
+
+
+EntityRelationship:
+	'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity]
+	
+;
+
     
 
-Relationship:
-	'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
+
 
 Configuration:
     'config' '{'

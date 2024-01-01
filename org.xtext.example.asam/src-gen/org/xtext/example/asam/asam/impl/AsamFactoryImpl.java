@@ -68,7 +68,7 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
     {
       case AsamPackage.SBOOT: return createSboot();
       case AsamPackage.ELEMENT: return createElement();
-      case AsamPackage.RELATIONSHIP: return createRelationship();
+      case AsamPackage.ENTITY_RELATIONSHIP: return createEntityRelationship();
       case AsamPackage.CONFIGURATION: return createConfiguration();
       case AsamPackage.SERVER_INFO: return createServerInfo();
       case AsamPackage.DATABASE_INFO: return createDatabaseInfo();
@@ -170,10 +170,10 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
    * @generated
    */
   @Override
-  public Relationship createRelationship()
+  public EntityRelationship createEntityRelationship()
   {
-    RelationshipImpl relationship = new RelationshipImpl();
-    return relationship;
+    EntityRelationshipImpl entityRelationship = new EntityRelationshipImpl();
+    return entityRelationship;
   }
 
   /**

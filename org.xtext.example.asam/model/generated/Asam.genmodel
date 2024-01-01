@@ -40,10 +40,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//Sboot/elements"/>
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//Element"/>
-    <genClasses ecoreClass="Asam.ecore#//Relationship">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//Relationship/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Asam.ecore#//Relationship/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Asam.ecore#//Relationship/target"/>
+    <genClasses ecoreClass="Asam.ecore#//EntityRelationship">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Asam.ecore#//EntityRelationship/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Asam.ecore#//EntityRelationship/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Asam.ecore#//EntityRelationship/target"/>
     </genClasses>
     <genClasses ecoreClass="Asam.ecore#//Configuration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Asam.ecore#//Configuration/server"/>

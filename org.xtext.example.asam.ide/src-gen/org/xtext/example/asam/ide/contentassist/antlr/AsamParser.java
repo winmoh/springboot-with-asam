@@ -40,7 +40,7 @@ public class AsamParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRDBMSAccess().getAlternatives(), "rule__RDBMS__Alternatives");
 			builder.put(grammarAccess.getDbRelationsAccess().getAlternatives(), "rule__DbRelations__Alternatives");
 			builder.put(grammarAccess.getSbootAccess().getGroup(), "rule__Sboot__Group__0");
-			builder.put(grammarAccess.getRelationshipAccess().getGroup(), "rule__Relationship__Group__0");
+			builder.put(grammarAccess.getEntityRelationshipAccess().getGroup(), "rule__EntityRelationship__Group__0");
 			builder.put(grammarAccess.getConfigurationAccess().getGroup(), "rule__Configuration__Group__0");
 			builder.put(grammarAccess.getServerInfoAccess().getGroup(), "rule__ServerInfo__Group__0");
 			builder.put(grammarAccess.getServerInfoAccess().getGroup_2(), "rule__ServerInfo__Group_2__0");
@@ -69,9 +69,9 @@ public class AsamParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSbootAccess().getNomAssignment_1(), "rule__Sboot__NomAssignment_1");
 			builder.put(grammarAccess.getSbootAccess().getConfigurationAssignment_2(), "rule__Sboot__ConfigurationAssignment_2");
 			builder.put(grammarAccess.getSbootAccess().getElementsAssignment_3(), "rule__Sboot__ElementsAssignment_3");
-			builder.put(grammarAccess.getRelationshipAccess().getTypeAssignment_1(), "rule__Relationship__TypeAssignment_1");
-			builder.put(grammarAccess.getRelationshipAccess().getSourceAssignment_3(), "rule__Relationship__SourceAssignment_3");
-			builder.put(grammarAccess.getRelationshipAccess().getTargetAssignment_5(), "rule__Relationship__TargetAssignment_5");
+			builder.put(grammarAccess.getEntityRelationshipAccess().getTypeAssignment_1(), "rule__EntityRelationship__TypeAssignment_1");
+			builder.put(grammarAccess.getEntityRelationshipAccess().getSourceAssignment_3(), "rule__EntityRelationship__SourceAssignment_3");
+			builder.put(grammarAccess.getEntityRelationshipAccess().getTargetAssignment_5(), "rule__EntityRelationship__TargetAssignment_5");
 			builder.put(grammarAccess.getConfigurationAccess().getServerAssignment_2(), "rule__Configuration__ServerAssignment_2");
 			builder.put(grammarAccess.getConfigurationAccess().getDatabaseAssignment_3(), "rule__Configuration__DatabaseAssignment_3");
 			builder.put(grammarAccess.getServerInfoAccess().getPortAssignment_2_1(), "rule__ServerInfo__PortAssignment_2_1");
