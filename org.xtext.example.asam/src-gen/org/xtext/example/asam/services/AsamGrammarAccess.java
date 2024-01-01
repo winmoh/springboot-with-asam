@@ -119,8 +119,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cTargetEntityIDTerminalRuleCall_5_0_1 = (RuleCall)cTargetEntityCrossReference_5_0.eContents().get(1);
 		
 		//EntityRelationship:
-		//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity]
-		//;
+		//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity]
@@ -170,6 +169,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cDatabaseDatabaseInfoParserRuleCall_3_0 = (RuleCall)cDatabaseAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
+		////java.lang.IllegalArgumentException: The sources EClass 'Entity' does not expose the feature 'ActionParameter.nom'
 		//Configuration:
 		//    'config' '{'
 		//        server=ServerInfo?
@@ -1493,8 +1493,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//EntityRelationship:
-	//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity]
-	//;
+	//    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
 	public EntityRelationshipElements getEntityRelationshipAccess() {
 		return pEntityRelationship;
 	}
@@ -1503,6 +1502,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getEntityRelationshipAccess().getRule();
 	}
 	
+	////java.lang.IllegalArgumentException: The sources EClass 'Entity' does not expose the feature 'ActionParameter.nom'
 	//Configuration:
 	//    'config' '{'
 	//        server=ServerInfo?

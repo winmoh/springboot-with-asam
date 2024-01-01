@@ -46,7 +46,7 @@ public class AsamValidator extends AbstractAsamValidator {
 		Entity current =entity.getExtends();
 		while(current!=null) {
 			if(vistedEntities.contains(current)) {
-				error ( " cycle in hierarchy of entity" +current.getNom() , AsamPackage.eINSTANCE.getEntity_Extends());
+				error ( " cycle in hierarchy of entity" +current.getNom(),null );
 			}
 			vistedEntities.add(current);
 			current=current.getExtends();
@@ -57,8 +57,7 @@ public class AsamValidator extends AbstractAsamValidator {
 		public void checkEntityNameStartsWithCapital(Entity entity) {
 			
 			if(Character.isLowerCase(entity.getNom().charAt(0))) {
-				 warning("Entity name  should start with a capital", 
-			                AsamPackage.eINSTANCE.getActionParameter_Nom());
+				 warning("Entity name  should start with a capital",null);
 			}
 		}
 		
@@ -66,8 +65,7 @@ public class AsamValidator extends AbstractAsamValidator {
 		public void checkAttributeNameStartsWithLowercase(Property prop) {
 			
 			if(!Character.isLowerCase(prop.getNom().charAt(0))) {
-				 warning("Entity name  should start with a lower case", 
-			                AsamPackage.eINSTANCE.getActionParameter_Nom());
+				 warning("Entity name  should start with a lower case",null);
 			}
 		}
 		
@@ -75,22 +73,22 @@ public class AsamValidator extends AbstractAsamValidator {
 		public void checkControllerNameStartsWithCapital(Controller contr) {
 			
 			if(Character.isLowerCase(contr.getNom().charAt(0))) {
-				 warning("Controller name  should start with a capital", 
-			                AsamPackage.eINSTANCE.getActionParameter_Nom());
+				 warning("Controller name  should start with a capital",null
+			             );
 			}
 		}
 		@Check
 		public void checkEntityNameStartsWithCapital(Service serv) {
 			
 			if(Character.isLowerCase(serv.getNom().charAt(0))) {
-				 warning("Entity name  should start with a capital", 
-			                AsamPackage.eINSTANCE.getActionParameter_Nom());
+				 warning("Entity name  should start with a capital",null
+			                );
 			}
 		}
 		@Check
 		public void entityMustContainAtLeastOneAttribute(Entity ent) {
 			if(ent.getProperties().size()==0) {
-				warning("Entity must have at least one attribute",AsamPackage.eINSTANCE.getActionParameter_Nom());
+				warning("Entity must have at least one attribute",null);
 				
 			}
 			
@@ -98,11 +96,11 @@ public class AsamValidator extends AbstractAsamValidator {
 		@Check
 		public void realtionshipValidation(EntityRelationship relation) {
 			if(relation.getSource()==null || relation.getTarget()==null) {
-				warning("Realtionship require a source and a target",AsamPackage.eINSTANCE.getActionParameter_Nom());
+				warning("Realtionship require a source and a target",null);
 				
 			}
 			if(relation.getTarget()==relation.getSource()) {
-				warning("Realtionship source and target must be different",AsamPackage.eINSTANCE.getActionParameter_Nom());
+				error("Realtionship source and target must be different",null);
 
 			}
 			
@@ -110,7 +108,7 @@ public class AsamValidator extends AbstractAsamValidator {
 		@Check
 		public void checkValidDatabasePort(DatabaseInfo database) {
 		    if (database.getPort() < 1 || database.getPort() > 65535 ) {
-		        error("Invalid database port, must be in the range 1-65535", AsamPackage.eINSTANCE.getDatabaseInfo_Port());
+		        error("Invalid database port, must be in the range 1-65535",null);
 		    }
 		}
 		@Check
@@ -118,7 +116,7 @@ public class AsamValidator extends AbstractAsamValidator {
 		    Set<String> propertyNames = new HashSet<>();
 		    for (Property property : entity.getProperties()) {
 		        if (!propertyNames.add(property.getNom())) {
-		            error("Duplicate property name within the entity", AsamPackage.eINSTANCE.getProperty_Nom());
+		            error("Duplicate property name within the entity",null);
 		        }
 		    }
 		}
@@ -128,7 +126,7 @@ public class AsamValidator extends AbstractAsamValidator {
 		    Set<String> actionNames = new HashSet<>();
 		    for (ServiceAction action : service.getActions()) {
 		        if (!actionNames.add(action.getNom())) {
-		            error("Duplicate service action name within the service", AsamPackage.eINSTANCE.getServiceAction_Nom());
+		            error("Duplicate service action name within the service",null);
 		        }
 		    }
 		}
