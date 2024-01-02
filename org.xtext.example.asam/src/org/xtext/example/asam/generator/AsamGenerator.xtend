@@ -14,6 +14,7 @@ import org.xtext.example.asam.asam.VTypes
 import org.xtext.example.asam.asam.ListType
 import org.xtext.example.asam.asam.SetType
 import org.xtext.example.asam.asam.RType
+import java.util.ArrayList
 
 /*import org.xtext.example.asam.asam.Type
 import org.xtext.example.asam.asam.VTypes
@@ -44,7 +45,13 @@ class AsamGenerator extends AbstractGenerator {
                 generateEntityClass(element as Entity, fsa,input);
             }
         ]
+        generateMainClass(fsa,input)
+        
     }
+    
+    
+    
+    
     def String extractVtypesValue(String typeString) {
 	    // Get the string representation of TypeImpl
 	    
@@ -53,59 +60,104 @@ class AsamGenerator extends AbstractGenerator {
 		val vtypesPart = parts.last	
 	    // Extract the content between the parentheses
 	    return vtypesPart.substring(0, vtypesPart.length() - 1)
-}
-    
-    def String getSimpleTypeName(Type type) {
-     if (type instanceof ListType) {
-        return "List<" + getSimpleTypeName(type.type) + ">"
-    } else if (type instanceof SetType) {
-        return "Set<" + getSimpleTypeName(type.type) + ">"
-    } else if (type instanceof RType) {
-        return type.vypes.toString
-    } else {
-        return extractVtypesValue(type.toString())
-    }
- }
-	def generateEntityClass(Entity entity, IFileSystemAccess2 fsa,Resource input) {
-    	
+	}
+	
+	
+	
+	
+	
+	
+	//generating the static class
+	def generateMainClass(IFileSystemAccess2 fsa,Resource input){
+		val projectNameHolder = new ArrayList<String>()
     	input.allContents.forEach[element|
     		if(element instanceof Sboot){
-    			val projectName=element.nom;
-    		}
+ 			projectNameHolder.add(element.nom);    		}
     	]
+    	val projectName=projectNameHolder.get(0)
+			val content2= '''
+    package com.springboot.«projectName»;
+
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+    @SpringBootApplication
+    public class «projectName.toFirstUpper»Application {
+
+        public static void main(String[] args) {
+            SpringApplication.run(«projectName.toFirstUpper»Application.class, args);
+        }
+    }
+'''
+	
+	val fpath="src/main/java/com/springboot/"+projectName+"/"+projectName.toFirstUpper+".java"
+	fsa.generateFile(fpath,content2)
+		
+	}
+
+
+
+
+
+    
+    def String getSimpleTypeName(Type type) {
+	     if (type instanceof ListType) {
+	        return "List<" + getSimpleTypeName(type.type) + ">"
+	    } else if (type instanceof SetType) {
+	        return "Set<" + getSimpleTypeName(type.type) + ">"
+	    } else if (type instanceof RType) {
+	        return type.vypes.toString
+	    } else {
+	        return extractVtypesValue(type.toString())
+	    }
+ }
+ 
+ 
+ 
+ 
+	def generateEntityClass(Entity entity, IFileSystemAccess2 fsa,Resource input) {
+    	val projectNameHolder = new ArrayList<String>()
+    	input.allContents.forEach[element|
+    		if(element instanceof Sboot){
+ 			projectNameHolder.add(element.nom);    		}
+    	]
+    	val projectName=projectNameHolder.get(0)
         val className = entity.nom;
         val properties = entity.properties;
         val extendsClause=entity.extends;
 
         val content = '''
-            package com.springboot.entities;
-            import javax.persistence.Entity;
-            import javax.persistence.Table;
-            import lombok.Builder;
-            
-			@Entity
-			@Table("«className»")
-			@Builder
-			public class «className» «IF extendsClause !== null»extends «extendsClause» «ENDIF»{
-                «FOR property : properties»
-                    private  «getSimpleTypeName(property.type)» «property.nom»;
-                «ENDFOR»
+    package com.springboot.«projectName».entities;
 
-                «FOR property : properties»
-                    public «getSimpleTypeName(property.type)» get«property.nom.toFirstUpper»() {
-                        return «property.nom»;
-                    }
+    import jakarta.persistence.Entity;
+    import jakarta.persistence.Table;
+    import lombok.Builder;
 
-                    public void set«property.nom.toFirstUpper»(«getSimpleTypeName(property.type)» «property.nom») {
-                        this.«property.nom» = «property.nom»;
-                    }
-                «ENDFOR»
+    @Entity
+    @Table(name = "«className»")
+    @Builder
+    public class «className» «IF extendsClause !== null»extends «extendsClause» «ENDIF»{
+        «FOR property : properties»
+            private «getSimpleTypeName(property.type)» «property.nom»;
+        «ENDFOR»
+
+        «FOR property : properties»
+            public «getSimpleTypeName(property.type)» get«property.nom.toFirstUpper»() {
+                return «property.nom»;
             }
-        ''';
 
-        val folderPath = "src-gen/entities";
+            public void set«property.nom.toFirstUpper»(«getSimpleTypeName(property.type)» «property.nom») {
+                this.«property.nom» = «property.nom»;
+            }
+        «ENDFOR»
+    }
+''';
+	
+
+        val folderPath = "src/main/java/com/springboot/"+projectName+"/entities";
         val filePath = folderPath + "/" + className + ".java";
         
         fsa.generateFile(filePath, content);
+        
     }
 }

@@ -3,6 +3,7 @@
  */
 package org.xtext.example.asam.generator;
 
+import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -44,6 +45,7 @@ public class AsamGenerator extends AbstractGenerator {
       }
     };
     IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    this.generateMainClass(fsa, input);
   }
 
   public String extractVtypesValue(final String typeString) {
@@ -52,6 +54,55 @@ public class AsamGenerator extends AbstractGenerator {
     int _length = vtypesPart.length();
     int _minus = (_length - 1);
     return vtypesPart.substring(0, _minus);
+  }
+
+  public void generateMainClass(final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import org.springframework.boot.SpringApplication;");
+    _builder.newLine();
+    _builder.append("import org.springframework.boot.autoconfigure.SpringBootApplication;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@SpringBootApplication");
+    _builder.newLine();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(projectName);
+    _builder.append(_firstUpper);
+    _builder.append("Application {");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public static void main(String[] args) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("SpringApplication.run(");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(projectName);
+    _builder.append(_firstUpper_1, "        ");
+    _builder.append("Application.class, args);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String content2 = _builder.toString();
+    String _firstUpper_2 = StringExtensions.toFirstUpper(projectName);
+    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/") + _firstUpper_2);
+    final String fpath = (_plus + ".java");
+    fsa.generateFile(fpath, content2);
   }
 
   public String getSimpleTypeName(final Type type) {
@@ -75,33 +126,33 @@ public class AsamGenerator extends AbstractGenerator {
   }
 
   public void generateEntityClass(final Entity entity, final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
     final Procedure1<EObject> _function = (EObject element) -> {
       if ((element instanceof Sboot)) {
-        final String projectName = ((Sboot)element).getNom();
+        projectNameHolder.add(((Sboot)element).getNom());
       }
     };
     IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
     final String className = entity.getNom();
     final EList<Property> properties = entity.getProperties();
     final Entity extendsClause = entity.getExtends();
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("            ");
-    _builder.append("package com.springboot.entities;");
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".entities;");
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("            ");
-    _builder.append("import javax.persistence.Entity;");
+    _builder.append("import jakarta.persistence.Entity;");
     _builder.newLine();
-    _builder.append("            ");
-    _builder.append("import javax.persistence.Table;");
+    _builder.append("import jakarta.persistence.Table;");
     _builder.newLine();
-    _builder.append("            ");
     _builder.append("import lombok.Builder;");
     _builder.newLine();
-    _builder.append("            ");
     _builder.newLine();
     _builder.append("@Entity");
     _builder.newLine();
-    _builder.append("@Table(\"");
+    _builder.append("@Table(name = \"");
     _builder.append(className);
     _builder.append("\")");
     _builder.newLineIfNotEmpty();
@@ -121,13 +172,13 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.newLineIfNotEmpty();
     {
       for(final Property property : properties) {
-        _builder.append("                ");
-        _builder.append("private  ");
+        _builder.append("    ");
+        _builder.append("private ");
         String _simpleTypeName = this.getSimpleTypeName(property.getType());
-        _builder.append(_simpleTypeName, "                ");
+        _builder.append(_simpleTypeName, "    ");
         _builder.append(" ");
         String _nom = property.getNom();
-        _builder.append(_nom, "                ");
+        _builder.append(_nom, "    ");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
@@ -135,58 +186,57 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.newLine();
     {
       for(final Property property_1 : properties) {
-        _builder.append("                ");
+        _builder.append("    ");
         _builder.append("public ");
         String _simpleTypeName_1 = this.getSimpleTypeName(property_1.getType());
-        _builder.append(_simpleTypeName_1, "                ");
+        _builder.append(_simpleTypeName_1, "    ");
         _builder.append(" get");
         String _firstUpper = StringExtensions.toFirstUpper(property_1.getNom());
-        _builder.append(_firstUpper, "                ");
+        _builder.append(_firstUpper, "    ");
         _builder.append("() {");
         _builder.newLineIfNotEmpty();
-        _builder.append("                ");
+        _builder.append("    ");
         _builder.append("    ");
         _builder.append("return ");
         String _nom_1 = property_1.getNom();
-        _builder.append(_nom_1, "                    ");
+        _builder.append(_nom_1, "        ");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
-        _builder.append("                ");
+        _builder.append("    ");
         _builder.append("}");
         _builder.newLine();
         _builder.newLine();
-        _builder.append("                ");
+        _builder.append("    ");
         _builder.append("public void set");
         String _firstUpper_1 = StringExtensions.toFirstUpper(property_1.getNom());
-        _builder.append(_firstUpper_1, "                ");
+        _builder.append(_firstUpper_1, "    ");
         _builder.append("(");
         String _simpleTypeName_2 = this.getSimpleTypeName(property_1.getType());
-        _builder.append(_simpleTypeName_2, "                ");
+        _builder.append(_simpleTypeName_2, "    ");
         _builder.append(" ");
         String _nom_2 = property_1.getNom();
-        _builder.append(_nom_2, "                ");
+        _builder.append(_nom_2, "    ");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
-        _builder.append("                ");
+        _builder.append("    ");
         _builder.append("    ");
         _builder.append("this.");
         String _nom_3 = property_1.getNom();
-        _builder.append(_nom_3, "                    ");
+        _builder.append(_nom_3, "        ");
         _builder.append(" = ");
         String _nom_4 = property_1.getNom();
-        _builder.append(_nom_4, "                    ");
+        _builder.append(_nom_4, "        ");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
-        _builder.append("                ");
+        _builder.append("    ");
         _builder.append("}");
         _builder.newLine();
       }
     }
-    _builder.append("            ");
     _builder.append("}");
     _builder.newLine();
     final String content = _builder.toString();
-    final String folderPath = "src-gen/entities";
+    final String folderPath = (("src/main/java/com/springboot/" + projectName) + "/entities");
     final String filePath = (((folderPath + "/") + className) + ".java");
     fsa.generateFile(filePath, content);
   }
