@@ -33,8 +33,6 @@ import org.xtext.example.asam.asam.Type;
 public class AsamGenerator extends AbstractGenerator {
   @Override
   public void beforeGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    final String outputFolder = "src-gen/entities";
-    fsa.generateFile("entities/.gitkeep", "");
   }
 
   @Override

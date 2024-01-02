@@ -35,8 +35,8 @@ class AsamGenerator extends AbstractGenerator {
 //				.join(', '))
 //	}
 	override void beforeGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
-        val outputFolder = "src-gen/entities"; // Change this to your desired output folder
-        fsa.generateFile("entities/.gitkeep", "");
+        //val outputFolder = "src-gen/entities"; // Change this to your desired output folder
+        //fsa.generateFile("entities/.gitkeep", "");
     }
 
     override void doGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -62,7 +62,7 @@ class AsamGenerator extends AbstractGenerator {
 	    return vtypesPart.substring(0, vtypesPart.length() - 1)
 	}
 	
-	
+	//generating ressources folder  
 	
 	
 	
