@@ -10,11 +10,15 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.asam.asam.Entity
 import org.xtext.example.asam.asam.Sboot
 import org.xtext.example.asam.asam.Type
-import org.xtext.example.asam.asam.VTypes
 import org.xtext.example.asam.asam.ListType
 import org.xtext.example.asam.asam.SetType
 import org.xtext.example.asam.asam.RType
 import java.util.ArrayList
+import java.io.IOException
+import java.nio.file.Paths
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
+import org.xtext.example.asam.asam.Configuration
 
 /*import org.xtext.example.asam.asam.Type
 import org.xtext.example.asam.asam.VTypes
@@ -27,18 +31,19 @@ import org.xtext.example.asam.asam.ListType*/
  */
 class AsamGenerator extends AbstractGenerator {
 
-	//override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
-//	}
+	
 	override void beforeGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
         //val outputFolder = "src-gen/entities"; // Change this to your desired output folder
         //fsa.generateFile("entities/.gitkeep", "");
+        //override void beforeGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
+       
+    
     }
-
+    
+    
+    
+     
+	//main fucntion for code generation
     override void doGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
         input.allContents.forEach[ element |
             if (element instanceof Entity) {
@@ -46,8 +51,64 @@ class AsamGenerator extends AbstractGenerator {
             }
         ]
         generateMainClass(fsa,input)
-        
+        generateMavenFiles(fsa,input)
+        generateTestFolder(fsa,input)
+        val configuration = input.contents.filter(Configuration).head
+        if (configuration !== null) {
+            generatePropertiesFile1(configuration, fsa)
+        }
     }
+    
+    def getHibernateDialect(String dbmsType) {
+	    switch (dbmsType) {
+	        case "MYSQL": return "org.hibernate.dialect.MySQL5Dialect"
+	        case "POSTGRES": return "org.hibernate.dialect.PostgreSQLDialect"
+	        case "MARIADB": return "org.hibernate.dialect.MariaDBDialect"
+	        case "H2": return "org.hibernate.dialect.H2Dialect"
+	        case "ORACLE": return "org.hibernate.dialect.Oracle12cDialect"
+	        // Add more cases for other supported databases
+	        default: return "org.hibernate.dialect.MySQL5Dialect"
+    }
+}
+    
+    def void generatePropertiesFile1(Configuration config,IFileSystemAccess2 fsa){
+    	val propertiesContent = '''
+            # Server Configuration
+            server.port = «(config.server== null || config.server.port==0) ? 8080:config.server.port»
+            server.cpath = «config.server?.path ?: "/api"»
+
+            # Database Configuration
+            spring.datasource.url = jdbc:«config.database?.type?: "mysql"»://localhost:«(config.database==null || config.database.port==0 )? 3306:config.database.port»/«config.database?.nom ?: "dbname"»
+            spring.datasource.username = «config.database?.username ?: "root"»
+            spring.datasource.password = «config.database?.password ?: "password"»
+
+            # Hibernate Configuration
+            spring.jpa.hibernate.ddl-auto = update
+            spring.jpa.show-sql = true
+            spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.«getHibernateDialect(config.database?.type.toString)»
+
+            # Additional Hibernate Properties
+            # Add any additional Hibernate properties as needed
+        '''
+    	
+    }
+    
+    
+    def void generateMavenFiles(IFileSystemAccess2 fsa, Resource input) {
+        // Generate POM.xml
+        val pomContent = '''
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.5/apache-maven-3.9.5-bin.zip
+wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar
+        '''
+        val pomFilePath = "mvn/wrapper/maven-wrapper.properties"
+        fsa.generateFile(pomFilePath, pomContent)
+
+       
+       
+    }
+    
+    
+    
     
     
     
@@ -62,8 +123,36 @@ class AsamGenerator extends AbstractGenerator {
 	    return vtypesPart.substring(0, vtypesPart.length() - 1)
 	}
 	
-	//generating ressources folder  
+	//generating test folder
+	 
 	
+	def generateTestFolder(IFileSystemAccess2 fsa,Resource input){
+		val projectNameHolder = new ArrayList<String>()
+    	input.allContents.forEach[element|
+    		if(element instanceof Sboot){
+ 			projectNameHolder.add(element.nom);    		}
+    	]
+    	val projectName=projectNameHolder.get(0)
+			val content2= '''
+    package com.springboot.«projectName»;
+
+    import org.junit.jupiter.api.Test;
+    import org.springframework.boot.test.context.SpringBootTest;
+
+    @SpringBootTest
+    class «projectName.toFirstUpper»ApplicationTests {
+    
+    	@Test
+    	void contextLoads() {
+    	}
+    
+    }
+'''
+	
+	val fpath="src/test/java/com/springboot/"+projectName+"/"+projectName.toFirstUpper+"ApplicationTests.java"
+	fsa.generateFile(fpath,content2)
+		
+	}
 	
 	
 	
@@ -90,7 +179,7 @@ class AsamGenerator extends AbstractGenerator {
     }
 '''
 	
-	val fpath="src/main/java/com/springboot/"+projectName+"/"+projectName.toFirstUpper+".java"
+	val fpath="src/main/java/com/springboot/"+projectName+"/"+projectName.toFirstUpper+"Application.java"
 	fsa.generateFile(fpath,content2)
 		
 	}
@@ -111,7 +200,8 @@ class AsamGenerator extends AbstractGenerator {
 	        return extractVtypesValue(type.toString())
 	    }
  }
- 
+ 		
+ 		
  
  
  

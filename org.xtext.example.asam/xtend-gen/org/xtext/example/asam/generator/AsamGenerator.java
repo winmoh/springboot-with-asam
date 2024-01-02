@@ -3,6 +3,8 @@
  */
 package org.xtext.example.asam.generator;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -16,11 +18,15 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.example.asam.asam.Configuration;
+import org.xtext.example.asam.asam.DatabaseInfo;
 import org.xtext.example.asam.asam.Entity;
 import org.xtext.example.asam.asam.ListType;
 import org.xtext.example.asam.asam.Property;
+import org.xtext.example.asam.asam.RDBMS;
 import org.xtext.example.asam.asam.RType;
 import org.xtext.example.asam.asam.Sboot;
+import org.xtext.example.asam.asam.ServerInfo;
 import org.xtext.example.asam.asam.SetType;
 import org.xtext.example.asam.asam.Type;
 
@@ -44,6 +50,161 @@ public class AsamGenerator extends AbstractGenerator {
     };
     IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
     this.generateMainClass(fsa, input);
+    this.generateMavenFiles(fsa, input);
+    this.generateTestFolder(fsa, input);
+    final Configuration configuration = IterableExtensions.<Configuration>head(Iterables.<Configuration>filter(input.getContents(), Configuration.class));
+    if ((configuration != null)) {
+      this.generatePropertiesFile1(configuration, fsa);
+    }
+  }
+
+  public String getHibernateDialect(final String dbmsType) {
+    if (dbmsType != null) {
+      switch (dbmsType) {
+        case "MYSQL":
+          return "org.hibernate.dialect.MySQL5Dialect";
+        case "POSTGRES":
+          return "org.hibernate.dialect.PostgreSQLDialect";
+        case "MARIADB":
+          return "org.hibernate.dialect.MariaDBDialect";
+        case "H2":
+          return "org.hibernate.dialect.H2Dialect";
+        case "ORACLE":
+          return "org.hibernate.dialect.Oracle12cDialect";
+        default:
+          return "org.hibernate.dialect.MySQL5Dialect";
+      }
+    } else {
+      return "org.hibernate.dialect.MySQL5Dialect";
+    }
+  }
+
+  public void generatePropertiesFile1(final Configuration config, final IFileSystemAccess2 fsa) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("# Server Configuration");
+    _builder.newLine();
+    _builder.append("server.port = ");
+    int _xifexpression = (int) 0;
+    if ((Objects.equal(config.getServer(), null) || (config.getServer().getPort() == 0))) {
+      _xifexpression = 8080;
+    } else {
+      _xifexpression = config.getServer().getPort();
+    }
+    _builder.append(_xifexpression);
+    _builder.newLineIfNotEmpty();
+    _builder.append("server.cpath = ");
+    String _elvis = null;
+    ServerInfo _server = config.getServer();
+    String _path = null;
+    if (_server!=null) {
+      _path=_server.getPath();
+    }
+    if (_path != null) {
+      _elvis = _path;
+    } else {
+      _elvis = "/api";
+    }
+    _builder.append(_elvis);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Database Configuration");
+    _builder.newLine();
+    _builder.append("spring.datasource.url = jdbc:");
+    Object _elvis_1 = null;
+    DatabaseInfo _database = config.getDatabase();
+    RDBMS _type = null;
+    if (_database!=null) {
+      _type=_database.getType();
+    }
+    if (_type != null) {
+      _elvis_1 = _type;
+    } else {
+      _elvis_1 = "mysql";
+    }
+    _builder.append(((Object)_elvis_1));
+    _builder.append("://localhost:");
+    int _xifexpression_1 = (int) 0;
+    if ((Objects.equal(config.getDatabase(), null) || (config.getDatabase().getPort() == 0))) {
+      _xifexpression_1 = 3306;
+    } else {
+      _xifexpression_1 = config.getDatabase().getPort();
+    }
+    _builder.append(_xifexpression_1);
+    _builder.append("/");
+    String _elvis_2 = null;
+    DatabaseInfo _database_1 = config.getDatabase();
+    String _nom = null;
+    if (_database_1!=null) {
+      _nom=_database_1.getNom();
+    }
+    if (_nom != null) {
+      _elvis_2 = _nom;
+    } else {
+      _elvis_2 = "dbname";
+    }
+    _builder.append(_elvis_2);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.username = ");
+    String _elvis_3 = null;
+    DatabaseInfo _database_2 = config.getDatabase();
+    String _username = null;
+    if (_database_2!=null) {
+      _username=_database_2.getUsername();
+    }
+    if (_username != null) {
+      _elvis_3 = _username;
+    } else {
+      _elvis_3 = "root";
+    }
+    _builder.append(_elvis_3);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.password = ");
+    String _elvis_4 = null;
+    DatabaseInfo _database_3 = config.getDatabase();
+    String _password = null;
+    if (_database_3!=null) {
+      _password=_database_3.getPassword();
+    }
+    if (_password != null) {
+      _elvis_4 = _password;
+    } else {
+      _elvis_4 = "password";
+    }
+    _builder.append(_elvis_4);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Hibernate Configuration");
+    _builder.newLine();
+    _builder.append("spring.jpa.hibernate.ddl-auto = update");
+    _builder.newLine();
+    _builder.append("spring.jpa.show-sql = true");
+    _builder.newLine();
+    _builder.append("spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.");
+    DatabaseInfo _database_4 = config.getDatabase();
+    RDBMS _type_1 = null;
+    if (_database_4!=null) {
+      _type_1=_database_4.getType();
+    }
+    String _hibernateDialect = this.getHibernateDialect(_type_1.toString());
+    _builder.append(_hibernateDialect);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Additional Hibernate Properties");
+    _builder.newLine();
+    _builder.append("# Add any additional Hibernate properties as needed");
+    _builder.newLine();
+    final String propertiesContent = _builder.toString();
+  }
+
+  public void generateMavenFiles(final IFileSystemAccess2 fsa, final Resource input) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.5/apache-maven-3.9.5-bin.zip");
+    _builder.newLine();
+    _builder.append("wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar");
+    _builder.newLine();
+    final String pomContent = _builder.toString();
+    final String pomFilePath = "mvn/wrapper/maven-wrapper.properties";
+    fsa.generateFile(pomFilePath, pomContent);
   }
 
   public String extractVtypesValue(final String typeString) {
@@ -52,6 +213,53 @@ public class AsamGenerator extends AbstractGenerator {
     int _length = vtypesPart.length();
     int _minus = (_length - 1);
     return vtypesPart.substring(0, _minus);
+  }
+
+  public void generateTestFolder(final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import org.junit.jupiter.api.Test;");
+    _builder.newLine();
+    _builder.append("import org.springframework.boot.test.context.SpringBootTest;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@SpringBootTest");
+    _builder.newLine();
+    _builder.append("class ");
+    String _firstUpper = StringExtensions.toFirstUpper(projectName);
+    _builder.append(_firstUpper);
+    _builder.append("ApplicationTests {");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("@Test");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("void contextLoads() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String content2 = _builder.toString();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(projectName);
+    String _plus = ((("src/test/java/com/springboot/" + projectName) + "/") + _firstUpper_1);
+    final String fpath = (_plus + "ApplicationTests.java");
+    fsa.generateFile(fpath, content2);
   }
 
   public void generateMainClass(final IFileSystemAccess2 fsa, final Resource input) {
@@ -99,7 +307,7 @@ public class AsamGenerator extends AbstractGenerator {
     final String content2 = _builder.toString();
     String _firstUpper_2 = StringExtensions.toFirstUpper(projectName);
     String _plus = ((("src/main/java/com/springboot/" + projectName) + "/") + _firstUpper_2);
-    final String fpath = (_plus + ".java");
+    final String fpath = (_plus + "Application.java");
     fsa.generateFile(fpath, content2);
   }
 
