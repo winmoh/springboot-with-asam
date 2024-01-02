@@ -3,10 +3,25 @@
  */
 package org.xtext.example.asam.generator;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.ListType;
+import org.xtext.example.asam.asam.Property;
+import org.xtext.example.asam.asam.RType;
+import org.xtext.example.asam.asam.Sboot;
+import org.xtext.example.asam.asam.SetType;
+import org.xtext.example.asam.asam.Type;
 
 /**
  * Generates code from your model files on save.
@@ -16,6 +31,163 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 @SuppressWarnings("all")
 public class AsamGenerator extends AbstractGenerator {
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+  public void beforeGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    final String outputFolder = "src-gen/entities";
+    fsa.generateFile("entities/.gitkeep", "");
+  }
+
+  @Override
+  public void doGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Entity)) {
+        this.generateEntityClass(((Entity) element), fsa, input);
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+  }
+
+  public String extractVtypesValue(final String typeString) {
+    final String[] parts = typeString.split("\\s+");
+    final String vtypesPart = IterableExtensions.<String>last(((Iterable<String>)Conversions.doWrapArray(parts)));
+    int _length = vtypesPart.length();
+    int _minus = (_length - 1);
+    return vtypesPart.substring(0, _minus);
+  }
+
+  public String getSimpleTypeName(final Type type) {
+    if ((type instanceof ListType)) {
+      String _simpleTypeName = this.getSimpleTypeName(((ListType)type).getType());
+      String _plus = ("List<" + _simpleTypeName);
+      return (_plus + ">");
+    } else {
+      if ((type instanceof SetType)) {
+        String _simpleTypeName_1 = this.getSimpleTypeName(((SetType)type).getType());
+        String _plus_1 = ("Set<" + _simpleTypeName_1);
+        return (_plus_1 + ">");
+      } else {
+        if ((type instanceof RType)) {
+          return ((RType)type).getVypes().toString();
+        } else {
+          return this.extractVtypesValue(type.toString());
+        }
+      }
+    }
+  }
+
+  public void generateEntityClass(final Entity entity, final IFileSystemAccess2 fsa, final Resource input) {
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        final String projectName = ((Sboot)element).getNom();
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String className = entity.getNom();
+    final EList<Property> properties = entity.getProperties();
+    final Entity extendsClause = entity.getExtends();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("            ");
+    _builder.append("package com.springboot.entities;");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("import javax.persistence.Entity;");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("import javax.persistence.Table;");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("import lombok.Builder;");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.newLine();
+    _builder.append("@Entity");
+    _builder.newLine();
+    _builder.append("@Table(\"");
+    _builder.append(className);
+    _builder.append("\")");
+    _builder.newLineIfNotEmpty();
+    _builder.append("@Builder");
+    _builder.newLine();
+    _builder.append("public class ");
+    _builder.append(className);
+    _builder.append(" ");
+    {
+      if ((extendsClause != null)) {
+        _builder.append("extends ");
+        _builder.append(extendsClause);
+        _builder.append(" ");
+      }
+    }
+    _builder.append("{");
+    _builder.newLineIfNotEmpty();
+    {
+      for(final Property property : properties) {
+        _builder.append("                ");
+        _builder.append("private  ");
+        String _simpleTypeName = this.getSimpleTypeName(property.getType());
+        _builder.append(_simpleTypeName, "                ");
+        _builder.append(" ");
+        String _nom = property.getNom();
+        _builder.append(_nom, "                ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    {
+      for(final Property property_1 : properties) {
+        _builder.append("                ");
+        _builder.append("public ");
+        String _simpleTypeName_1 = this.getSimpleTypeName(property_1.getType());
+        _builder.append(_simpleTypeName_1, "                ");
+        _builder.append(" get");
+        String _firstUpper = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper, "                ");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("                ");
+        _builder.append("    ");
+        _builder.append("return ");
+        String _nom_1 = property_1.getNom();
+        _builder.append(_nom_1, "                    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("                ");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.newLine();
+        _builder.append("                ");
+        _builder.append("public void set");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper_1, "                ");
+        _builder.append("(");
+        String _simpleTypeName_2 = this.getSimpleTypeName(property_1.getType());
+        _builder.append(_simpleTypeName_2, "                ");
+        _builder.append(" ");
+        String _nom_2 = property_1.getNom();
+        _builder.append(_nom_2, "                ");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("                ");
+        _builder.append("    ");
+        _builder.append("this.");
+        String _nom_3 = property_1.getNom();
+        _builder.append(_nom_3, "                    ");
+        _builder.append(" = ");
+        String _nom_4 = property_1.getNom();
+        _builder.append(_nom_4, "                    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("                ");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("            ");
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    final String folderPath = "src-gen/entities";
+    final String filePath = (((folderPath + "/") + className) + ".java");
+    fsa.generateFile(filePath, content);
   }
 }

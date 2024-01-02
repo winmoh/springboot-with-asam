@@ -1192,7 +1192,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
 		private final Keyword cSTRINGStringKeyword_6_0 = (Keyword)cSTRINGEnumLiteralDeclaration_6.eContents().get(0);
 		
-		//enum VTypes: FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN="boolean" | BYTE="byte" | STRING="String";
+		//enum VTypes  : FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN="boolean" | BYTE="byte" | STRING="String";
 		public EnumRule getRule() { return rule; }
 		
 		//FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN="boolean" | BYTE="byte" | STRING="String"
@@ -1738,7 +1738,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return tPATH;
 	}
 	
-	//enum VTypes: FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN="boolean" | BYTE="byte" | STRING="String";
+	//enum VTypes  : FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN="boolean" | BYTE="byte" | STRING="String";
 	public VTypesElements getVTypesAccess() {
 		return eVTypes;
 	}
