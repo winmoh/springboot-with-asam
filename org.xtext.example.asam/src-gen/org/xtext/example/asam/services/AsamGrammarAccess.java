@@ -173,13 +173,13 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//Configuration:
 		//    'config' '{'
 		//        server=ServerInfo?
-		//        database=DatabaseInfo?
+		//        database=DatabaseInfo
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'config' '{'
 		//    server=ServerInfo?
-		//    database=DatabaseInfo?
+		//    database=DatabaseInfo
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -195,7 +195,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//ServerInfo
 		public RuleCall getServerServerInfoParserRuleCall_2_0() { return cServerServerInfoParserRuleCall_2_0; }
 		
-		//database=DatabaseInfo?
+		//database=DatabaseInfo
 		public Assignment getDatabaseAssignment_3() { return cDatabaseAssignment_3; }
 		
 		//DatabaseInfo
@@ -221,13 +221,13 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//ServerInfo:
 		//    'server' '{'
-		//        ('port' port=INT)?
+		//        ('port' port=INT)
 		//        ('cpath' path=PATH)?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'server' '{'
-		//    ('port' port=INT)?
+		//    ('port' port=INT)
 		//    ('cpath' path=PATH)?
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -238,7 +238,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//('port' port=INT)?
+		//('port' port=INT)
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'port'
@@ -363,32 +363,39 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Entity");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cEntityKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cIdKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cInheritsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cExtendsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cExtendsEntityCrossReference_2_1_0 = (CrossReference)cExtendsAssignment_2_1.eContents().get(0);
-		private final RuleCall cExtendsEntityIDTerminalRuleCall_2_1_0_1 = (RuleCall)cExtendsEntityCrossReference_2_1_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPropertiesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPropertiesPropertyParserRuleCall_4_0 = (RuleCall)cPropertiesAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeVTypesEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		private final Keyword cEntityKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cNomAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cNomIDTerminalRuleCall_4_0 = (RuleCall)cNomAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cInheritsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cExtendsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final CrossReference cExtendsEntityCrossReference_5_1_0 = (CrossReference)cExtendsAssignment_5_1.eContents().get(0);
+		private final RuleCall cExtendsEntityIDTerminalRuleCall_5_1_0_1 = (RuleCall)cExtendsEntityCrossReference_5_1_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cPropertiesAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cPropertiesPropertyParserRuleCall_7_0 = (RuleCall)cPropertiesAssignment_7.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Entity:
+		//    'Id' nom=ID type=VTypes
 		//    'entity' nom=ID ('inherits' extends=[Entity])? '{'
 		//        properties+=Property*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//'Id' nom=ID type=VTypes
 		//'entity' nom=ID ('inherits' extends=[Entity])? '{'
 		//    properties+=Property*
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
-		//'entity'
-		public Keyword getEntityKeyword_0() { return cEntityKeyword_0; }
+		//'Id'
+		public Keyword getIdKeyword_0() { return cIdKeyword_0; }
 		
 		//nom=ID
 		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
@@ -396,32 +403,47 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//ID
 		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
 		
-		//('inherits' extends=[Entity])?
-		public Group getGroup_2() { return cGroup_2; }
+		//type=VTypes
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
 		
-		//'inherits'
-		public Keyword getInheritsKeyword_2_0() { return cInheritsKeyword_2_0; }
+		//VTypes
+		public RuleCall getTypeVTypesEnumRuleCall_2_0() { return cTypeVTypesEnumRuleCall_2_0; }
 		
-		//extends=[Entity]
-		public Assignment getExtendsAssignment_2_1() { return cExtendsAssignment_2_1; }
+		//'entity'
+		public Keyword getEntityKeyword_3() { return cEntityKeyword_3; }
 		
-		//[Entity]
-		public CrossReference getExtendsEntityCrossReference_2_1_0() { return cExtendsEntityCrossReference_2_1_0; }
+		//nom=ID
+		public Assignment getNomAssignment_4() { return cNomAssignment_4; }
 		
 		//ID
-		public RuleCall getExtendsEntityIDTerminalRuleCall_2_1_0_1() { return cExtendsEntityIDTerminalRuleCall_2_1_0_1; }
+		public RuleCall getNomIDTerminalRuleCall_4_0() { return cNomIDTerminalRuleCall_4_0; }
+		
+		//('inherits' extends=[Entity])?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//'inherits'
+		public Keyword getInheritsKeyword_5_0() { return cInheritsKeyword_5_0; }
+		
+		//extends=[Entity]
+		public Assignment getExtendsAssignment_5_1() { return cExtendsAssignment_5_1; }
+		
+		//[Entity]
+		public CrossReference getExtendsEntityCrossReference_5_1_0() { return cExtendsEntityCrossReference_5_1_0; }
+		
+		//ID
+		public RuleCall getExtendsEntityIDTerminalRuleCall_5_1_0_1() { return cExtendsEntityIDTerminalRuleCall_5_1_0_1; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 		
 		//properties+=Property*
-		public Assignment getPropertiesAssignment_4() { return cPropertiesAssignment_4; }
+		public Assignment getPropertiesAssignment_7() { return cPropertiesAssignment_7; }
 		
 		//Property
-		public RuleCall getPropertiesPropertyParserRuleCall_4_0() { return cPropertiesPropertyParserRuleCall_4_0; }
+		public RuleCall getPropertiesPropertyParserRuleCall_7_0() { return cPropertiesPropertyParserRuleCall_7_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 	public class DTOElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.DTO");
@@ -1506,7 +1528,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	//Configuration:
 	//    'config' '{'
 	//        server=ServerInfo?
-	//        database=DatabaseInfo?
+	//        database=DatabaseInfo
 	//    '}';
 	public ConfigurationElements getConfigurationAccess() {
 		return pConfiguration;
@@ -1518,7 +1540,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	//ServerInfo:
 	//    'server' '{'
-	//        ('port' port=INT)?
+	//        ('port' port=INT)
 	//        ('cpath' path=PATH)?
 	//    '}';
 	public ServerInfoElements getServerInfoAccess() {
@@ -1546,6 +1568,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Entity:
+	//    'Id' nom=ID type=VTypes
 	//    'entity' nom=ID ('inherits' extends=[Entity])? '{'
 	//        properties+=Property*
 	//    '}';
@@ -1733,7 +1756,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getSetTypeAccess().getRule();
 	}
 	
-	//terminal PATH: '/[a-zA-Z0-9_\\/-]+/';
+	//terminal PATH: ('/' ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '_')*)*;
 	public TerminalRule getPATHRule() {
 		return tPATH;
 	}

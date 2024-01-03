@@ -327,13 +327,22 @@ public interface AsamPackage extends EPackage
   int ENTITY__NOM = ELEMENT_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__TYPE = ELEMENT_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Extends</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENTITY__EXTENDS = ELEMENT_FEATURE_COUNT + 1;
+  int ENTITY__EXTENDS = ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -342,7 +351,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__PROPERTIES = ELEMENT_FEATURE_COUNT + 2;
+  int ENTITY__PROPERTIES = ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -351,7 +360,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+  int ENTITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.DTOImpl <em>DTO</em>}' class.
@@ -1314,6 +1323,17 @@ public interface AsamPackage extends EPackage
   EAttribute getEntity_Nom();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Entity#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.xtext.example.asam.asam.Entity#getType()
+   * @see #getEntity()
+   * @generated
+   */
+  EAttribute getEntity_Type();
+
+  /**
    * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.Entity#getExtends <em>Extends</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2151,6 +2171,14 @@ public interface AsamPackage extends EPackage
      * @generated
      */
     EAttribute ENTITY__NOM = eINSTANCE.getEntity_Nom();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENTITY__TYPE = eINSTANCE.getEntity_Type();
 
     /**
      * The meta object literal for the '<em><b>Extends</b></em>' reference feature.

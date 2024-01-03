@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.Entity;
 import org.xtext.example.asam.asam.Property;
+import org.xtext.example.asam.asam.VTypes;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +32,7 @@ import org.xtext.example.asam.asam.Property;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getNom <em>Nom</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getProperties <em>Properties</em>}</li>
  * </ul>
@@ -58,6 +60,26 @@ public class EntityImpl extends ElementImpl implements Entity
    * @ordered
    */
   protected String nom = NOM_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected static final VTypes TYPE_EDEFAULT = VTypes.FLOAT;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected VTypes type = TYPE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getExtends() <em>Extends</em>}' reference.
@@ -123,6 +145,31 @@ public class EntityImpl extends ElementImpl implements Entity
     nom = newNom;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__NOM, oldNom, nom));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public VTypes getType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setType(VTypes newType)
+  {
+    VTypes oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__TYPE, oldType, type));
   }
 
   /**
@@ -213,6 +260,8 @@ public class EntityImpl extends ElementImpl implements Entity
     {
       case AsamPackage.ENTITY__NOM:
         return getNom();
+      case AsamPackage.ENTITY__TYPE:
+        return getType();
       case AsamPackage.ENTITY__EXTENDS:
         if (resolve) return getExtends();
         return basicGetExtends();
@@ -235,6 +284,9 @@ public class EntityImpl extends ElementImpl implements Entity
     {
       case AsamPackage.ENTITY__NOM:
         setNom((String)newValue);
+        return;
+      case AsamPackage.ENTITY__TYPE:
+        setType((VTypes)newValue);
         return;
       case AsamPackage.ENTITY__EXTENDS:
         setExtends((Entity)newValue);
@@ -260,6 +312,9 @@ public class EntityImpl extends ElementImpl implements Entity
       case AsamPackage.ENTITY__NOM:
         setNom(NOM_EDEFAULT);
         return;
+      case AsamPackage.ENTITY__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
       case AsamPackage.ENTITY__EXTENDS:
         setExtends((Entity)null);
         return;
@@ -282,6 +337,8 @@ public class EntityImpl extends ElementImpl implements Entity
     {
       case AsamPackage.ENTITY__NOM:
         return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
+      case AsamPackage.ENTITY__TYPE:
+        return type != TYPE_EDEFAULT;
       case AsamPackage.ENTITY__EXTENDS:
         return extends_ != null;
       case AsamPackage.ENTITY__PROPERTIES:
@@ -303,6 +360,8 @@ public class EntityImpl extends ElementImpl implements Entity
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (nom: ");
     result.append(nom);
+    result.append(", type: ");
+    result.append(type);
     result.append(')');
     return result.toString();
   }

@@ -14,12 +14,8 @@ import org.xtext.example.asam.asam.ListType
 import org.xtext.example.asam.asam.SetType
 import org.xtext.example.asam.asam.RType
 import java.util.ArrayList
-import java.io.IOException
-import java.nio.file.Paths
-import java.nio.file.Files
-import java.nio.file.StandardCopyOption
 import org.xtext.example.asam.asam.Configuration
-import org.xtext.example.asam.asam.RDBMS
+import org.xtext.example.asam.asam.DTO
 
 /*import org.xtext.example.asam.asam.Type
 import org.xtext.example.asam.asam.VTypes
@@ -48,7 +44,17 @@ class AsamGenerator extends AbstractGenerator {
     override void doGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
         input.allContents.forEach[ element |
             if (element instanceof Entity) {
+            	val idField = if (element.nom !== null) {
+			        'private ' + getSimpleTypeName(entity.Id.type) + ' ' + entity.id.nom + ';'
+			    	} else {
+			        'private int id;'
+			    }
                 generateEntityClass(element as Entity, fsa,input);
+            }
+        ]
+        input.allContents.forEach[ element |
+            if (element instanceof DTO) {
+                generateDtoClass(element as DTO, fsa,input);
             }
         ]
 		val projectNameHolder = new ArrayList<Configuration>()
@@ -92,7 +98,10 @@ class AsamGenerator extends AbstractGenerator {
         
         
         
+        
     }
+    
+    //hibernate dielect for .properties
     
     def getHibernateDialect(String dbmsType) {
 	    switch (dbmsType) {
@@ -106,7 +115,7 @@ class AsamGenerator extends AbstractGenerator {
     }
 }
 	
-	
+	//pomxml generation
 	def generatePomXml(Configuration config, IFileSystemAccess2 fsa,String prjName) {
         val pomContent = '''
             <?xml version="1.0" encoding="UTF-8"?>
@@ -172,7 +181,8 @@ class AsamGenerator extends AbstractGenerator {
 
         fsa.generateFile("pom.xml", pomContent)
     }
-
+	
+	//generating Database Dependencies
     def generateDatabaseDependencies(String dbmsType) {
         switch (dbmsType) {
             case "Mysql":
@@ -227,6 +237,9 @@ class AsamGenerator extends AbstractGenerator {
         }
     }
     
+    
+    
+    
     def void generatePropertiesH2(Configuration config,IFileSystemAccess2 fsa){
     	val propertiesContent = '''
             # Server Configuration
@@ -249,6 +262,10 @@ class AsamGenerator extends AbstractGenerator {
     	val pomFilePath = "src/main/resources/application.properties"
         fsa.generateFile(pomFilePath, propertiesContent)
     }
+    
+    
+    
+    
     def void generatePropertiesOracle(Configuration config,IFileSystemAccess2 fsa){
     	val propertiesContent = '''
             # Server Configuration
@@ -405,6 +422,52 @@ wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-w
 	        return extractVtypesValue(type.toString())
 	    }
  }
+ 
+ 
+ 
+ 
+ def generateDtoClass(DTO Dto, IFileSystemAccess2 fsa,Resource input) {
+    	val projectNameHolder = new ArrayList<String>()
+    	input.allContents.forEach[element|
+    		if(element instanceof Sboot){
+ 			projectNameHolder.add(element.nom);    		}
+    	]
+    	val projectName=projectNameHolder.get(0)
+        val className = Dto.nom;
+        val properties = Dto.properties;
+        
+
+        val content = '''
+    package com.springboot.«projectName».DTO;
+    import lombok.*;
+    import java.util.*;
+
+    
+    @Builder
+    public class «className» {
+        «FOR property : properties»
+            private «getSimpleTypeName(property.type)» «property.nom»;
+        «ENDFOR»
+
+        «FOR property : properties»
+            public «getSimpleTypeName(property.type)» get«property.nom.toFirstUpper»() {
+                return «property.nom»;
+            }
+
+            public void set«property.nom.toFirstUpper»(«getSimpleTypeName(property.type)» «property.nom») {
+                this.«property.nom» = «property.nom»;
+            }
+        «ENDFOR»
+    }
+''';
+	
+
+        val folderPath = "src/main/java/com/springboot/"+projectName+"/DTO";
+        val filePath = folderPath + "/" + className + ".java";
+        
+        fsa.generateFile(filePath, content);
+        
+    }
  		
  		
  
@@ -420,14 +483,15 @@ wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-w
         val className = entity.nom;
         val properties = entity.properties;
         val extendsClause=entity.extends;
+        
 
         val content = '''
     package com.springboot.«projectName».entities;
 
     import jakarta.persistence.Entity;
     import jakarta.persistence.Table;
-    import lombok.Builder;
-
+     import lombok.*;
+        import java.util.*;
     @Entity
     @Table(name = "«className»")
     @Builder

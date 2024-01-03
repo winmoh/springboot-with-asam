@@ -557,9 +557,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getEntity_Type()
+  {
+    return (EAttribute)entityEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getEntity_Extends()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(1);
+    return (EReference)entityEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -570,7 +581,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EReference getEntity_Properties()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(2);
+    return (EReference)entityEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1249,6 +1260,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     entityEClass = createEClass(ENTITY);
     createEAttribute(entityEClass, ENTITY__NOM);
+    createEAttribute(entityEClass, ENTITY__TYPE);
     createEReference(entityEClass, ENTITY__EXTENDS);
     createEReference(entityEClass, ENTITY__PROPERTIES);
 
@@ -1399,6 +1411,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEntity_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEntity_Type(), this.getVTypes(), "type", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Extends(), this.getEntity(), null, "extends", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Properties(), this.getProperty(), null, "properties", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

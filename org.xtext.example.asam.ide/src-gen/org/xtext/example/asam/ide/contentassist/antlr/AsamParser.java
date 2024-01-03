@@ -47,7 +47,7 @@ public class AsamParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getServerInfoAccess().getGroup_3(), "rule__ServerInfo__Group_3__0");
 			builder.put(grammarAccess.getDatabaseInfoAccess().getGroup(), "rule__DatabaseInfo__Group__0");
 			builder.put(grammarAccess.getEntityAccess().getGroup(), "rule__Entity__Group__0");
-			builder.put(grammarAccess.getEntityAccess().getGroup_2(), "rule__Entity__Group_2__0");
+			builder.put(grammarAccess.getEntityAccess().getGroup_5(), "rule__Entity__Group_5__0");
 			builder.put(grammarAccess.getDTOAccess().getGroup(), "rule__DTO__Group__0");
 			builder.put(grammarAccess.getServiceAccess().getGroup(), "rule__Service__Group__0");
 			builder.put(grammarAccess.getControllerAccess().getGroup(), "rule__Controller__Group__0");
@@ -82,8 +82,10 @@ public class AsamParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDatabaseInfoAccess().getUsernameAssignment_9(), "rule__DatabaseInfo__UsernameAssignment_9");
 			builder.put(grammarAccess.getDatabaseInfoAccess().getPasswordAssignment_11(), "rule__DatabaseInfo__PasswordAssignment_11");
 			builder.put(grammarAccess.getEntityAccess().getNomAssignment_1(), "rule__Entity__NomAssignment_1");
-			builder.put(grammarAccess.getEntityAccess().getExtendsAssignment_2_1(), "rule__Entity__ExtendsAssignment_2_1");
-			builder.put(grammarAccess.getEntityAccess().getPropertiesAssignment_4(), "rule__Entity__PropertiesAssignment_4");
+			builder.put(grammarAccess.getEntityAccess().getTypeAssignment_2(), "rule__Entity__TypeAssignment_2");
+			builder.put(grammarAccess.getEntityAccess().getNomAssignment_4(), "rule__Entity__NomAssignment_4");
+			builder.put(grammarAccess.getEntityAccess().getExtendsAssignment_5_1(), "rule__Entity__ExtendsAssignment_5_1");
+			builder.put(grammarAccess.getEntityAccess().getPropertiesAssignment_7(), "rule__Entity__PropertiesAssignment_7");
 			builder.put(grammarAccess.getDTOAccess().getNomAssignment_1(), "rule__DTO__NomAssignment_1");
 			builder.put(grammarAccess.getDTOAccess().getPropertiesAssignment_3(), "rule__DTO__PropertiesAssignment_3");
 			builder.put(grammarAccess.getServiceAccess().getNomAssignment_1(), "rule__Service__NomAssignment_1");

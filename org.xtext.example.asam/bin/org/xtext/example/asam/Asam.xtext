@@ -36,9 +36,14 @@ DatabaseInfo:
     '}';
 
 Entity:
+	identifier=Identifier
     'entity' nom=ID ('inherits' extends=[Entity])? '{'
         properties+=Property*
     '}';
+
+Identifier:
+	'Id' nom=ID type=VTypes
+;
 
 DTO:
     'dto' nom=ID '{'
@@ -103,7 +108,7 @@ RType:
 ListType: 'List<' type=Type '>';
 SetType: 'Set<' type=Type '>';
 
-terminal PATH: '/[a-zA-Z0-9_\\/-]+/';
+terminal PATH: ('/' ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '_')*)*;
 
 enum VTypes  : FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN="boolean" | BYTE="byte" | STRING="String";
 

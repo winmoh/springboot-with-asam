@@ -18,6 +18,7 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.asam.asam.Configuration;
+import org.xtext.example.asam.asam.DTO;
 import org.xtext.example.asam.asam.DatabaseInfo;
 import org.xtext.example.asam.asam.Entity;
 import org.xtext.example.asam.asam.ListType;
@@ -42,67 +43,13 @@ public class AsamGenerator extends AbstractGenerator {
 
   @Override
   public void doGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    final Procedure1<EObject> _function = (EObject element) -> {
-      if ((element instanceof Entity)) {
-        this.generateEntityClass(((Entity) element), fsa, input);
-      }
-    };
-    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
-    final ArrayList<Configuration> projectNameHolder = new ArrayList<Configuration>();
-    final Procedure1<EObject> _function_1 = (EObject element) -> {
-      if ((element instanceof Sboot)) {
-        projectNameHolder.add(((Sboot)element).getConfiguration());
-      }
-    };
-    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_1);
-    final Configuration config = projectNameHolder.get(0);
-    final ArrayList<String> projectNameH = new ArrayList<String>();
-    final Procedure1<EObject> _function_2 = (EObject element) -> {
-      if ((element instanceof Sboot)) {
-        projectNameH.add(((Sboot)element).getNom());
-      }
-    };
-    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_2);
-    final String projectName = projectNameH.get(0);
-    this.generateMainClass(fsa, input, config);
-    this.generateMavenFiles(fsa, input);
-    this.generateTestFolder(fsa, input);
-    boolean _notEquals = (!Objects.equal(config, null));
-    if (_notEquals) {
-      this.generatePropertiesFile1(config, fsa);
-      String _elvis = null;
-      DatabaseInfo _database = config.getDatabase();
-      RDBMS _type = null;
-      if (_database!=null) {
-        _type=_database.getType();
-      }
-      String _string = null;
-      if (_type!=null) {
-        _string=_type.toString();
-      }
-      if (_string != null) {
-        _elvis = _string;
-      } else {
-        _elvis = "mysql";
-      }
-      final String dbmsType = _elvis;
-      RDBMS _type_1 = config.getDatabase().getType();
-      boolean _matched = false;
-      if (Objects.equal(_type_1, "h2")) {
-        _matched=true;
-        this.generatePropertiesH2(config, fsa);
-      }
-      if (!_matched) {
-        if (Objects.equal(_type_1, "oracle")) {
-          _matched=true;
-          this.generatePropertiesOracle(config, fsa);
-        }
-      }
-      if (!_matched) {
-        this.generatePropertiesFile1(config, fsa);
-      }
-    }
-    this.generatePomXml(config, fsa, projectName);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field entity is undefined"
+      + "\nThe method or field entity is undefined"
+      + "\nId cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\nid cannot be resolved"
+      + "\nnom cannot be resolved");
   }
 
   public String getHibernateDialect(final String dbmsType) {
@@ -895,6 +842,105 @@ public class AsamGenerator extends AbstractGenerator {
     }
   }
 
+  public void generateDtoClass(final DTO Dto, final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = Dto.getNom();
+    final EList<Property> properties = Dto.getProperties();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".DTO;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import lombok.*;");
+    _builder.newLine();
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Builder");
+    _builder.newLine();
+    _builder.append("public class ");
+    _builder.append(className);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    {
+      for(final Property property : properties) {
+        _builder.append("    ");
+        _builder.append("private ");
+        String _simpleTypeName = this.getSimpleTypeName(property.getType());
+        _builder.append(_simpleTypeName, "    ");
+        _builder.append(" ");
+        String _nom = property.getNom();
+        _builder.append(_nom, "    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    {
+      for(final Property property_1 : properties) {
+        _builder.append("    ");
+        _builder.append("public ");
+        String _simpleTypeName_1 = this.getSimpleTypeName(property_1.getType());
+        _builder.append(_simpleTypeName_1, "    ");
+        _builder.append(" get");
+        String _firstUpper = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper, "    ");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("    ");
+        _builder.append("return ");
+        String _nom_1 = property_1.getNom();
+        _builder.append(_nom_1, "        ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.newLine();
+        _builder.append("    ");
+        _builder.append("public void set");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper_1, "    ");
+        _builder.append("(");
+        String _simpleTypeName_2 = this.getSimpleTypeName(property_1.getType());
+        _builder.append(_simpleTypeName_2, "    ");
+        _builder.append(" ");
+        String _nom_2 = property_1.getNom();
+        _builder.append(_nom_2, "    ");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("    ");
+        _builder.append("this.");
+        String _nom_3 = property_1.getNom();
+        _builder.append(_nom_3, "        ");
+        _builder.append(" = ");
+        String _nom_4 = property_1.getNom();
+        _builder.append(_nom_4, "        ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    final String folderPath = (("src/main/java/com/springboot/" + projectName) + "/DTO");
+    final String filePath = (((folderPath + "/") + className) + ".java");
+    fsa.generateFile(filePath, content);
+  }
+
   public void generateEntityClass(final Entity entity, final IFileSystemAccess2 fsa, final Resource input) {
     final ArrayList<String> projectNameHolder = new ArrayList<String>();
     final Procedure1<EObject> _function = (EObject element) -> {
@@ -917,8 +963,11 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("import jakarta.persistence.Table;");
     _builder.newLine();
-    _builder.append("import lombok.Builder;");
+    _builder.append(" ");
+    _builder.append("import lombok.*;");
     _builder.newLine();
+    _builder.append("    ");
+    _builder.append("import java.util.*;");
     _builder.newLine();
     _builder.append("@Entity");
     _builder.newLine();

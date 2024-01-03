@@ -349,7 +349,7 @@ ruleConfiguration returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)
 		otherlv_4='}'
 		{
 			newLeafNode(otherlv_4, grammarAccess.getConfigurationAccess().getRightCurlyBracketKeyword_4());
@@ -404,7 +404,7 @@ ruleServerInfo returns [EObject current=null]
 					}
 				)
 			)
-		)?
+		)
 		(
 			otherlv_4='cpath'
 			{
@@ -594,9 +594,9 @@ ruleEntity returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='entity'
+		otherlv_0='Id'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getEntityAccess().getEntityKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getEntityAccess().getIdKeyword_0());
 		}
 		(
 			(
@@ -617,9 +617,50 @@ ruleEntity returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_2='inherits'
+			(
+				{
+					newCompositeNode(grammarAccess.getEntityAccess().getTypeVTypesEnumRuleCall_2_0());
+				}
+				lv_type_2_0=ruleVTypes
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getEntityRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_2_0,
+						"org.xtext.example.asam.Asam.VTypes");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='entity'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getEntityAccess().getEntityKeyword_3());
+		}
+		(
+			(
+				lv_nom_4_0=RULE_ID
+				{
+					newLeafNode(lv_nom_4_0, grammarAccess.getEntityAccess().getNomIDTerminalRuleCall_4_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getEntityRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"nom",
+						lv_nom_4_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			otherlv_5='inherits'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getEntityAccess().getInheritsKeyword_2_0());
+				newLeafNode(otherlv_5, grammarAccess.getEntityAccess().getInheritsKeyword_5_0());
 			}
 			(
 				(
@@ -628,23 +669,23 @@ ruleEntity returns [EObject current=null]
 							$current = createModelElement(grammarAccess.getEntityRule());
 						}
 					}
-					otherlv_3=RULE_ID
+					otherlv_6=RULE_ID
 					{
-						newLeafNode(otherlv_3, grammarAccess.getEntityAccess().getExtendsEntityCrossReference_2_1_0());
+						newLeafNode(otherlv_6, grammarAccess.getEntityAccess().getExtendsEntityCrossReference_5_1_0());
 					}
 				)
 			)
 		)?
-		otherlv_4='{'
+		otherlv_7='{'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getEntityAccess().getLeftCurlyBracketKeyword_3());
+			newLeafNode(otherlv_7, grammarAccess.getEntityAccess().getLeftCurlyBracketKeyword_6());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getEntityAccess().getPropertiesPropertyParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getEntityAccess().getPropertiesPropertyParserRuleCall_7_0());
 				}
-				lv_properties_5_0=ruleProperty
+				lv_properties_8_0=ruleProperty
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getEntityRule());
@@ -652,15 +693,15 @@ ruleEntity returns [EObject current=null]
 					add(
 						$current,
 						"properties",
-						lv_properties_5_0,
+						lv_properties_8_0,
 						"org.xtext.example.asam.Asam.Property");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_6='}'
+		otherlv_9='}'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getEntityAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_9, grammarAccess.getEntityAccess().getRightCurlyBracketKeyword_8());
 		}
 	)
 ;
@@ -2091,7 +2132,7 @@ ruledbRelations returns [Enumerator current=null]
 	)
 ;
 
-RULE_PATH : '/[a-zA-Z0-9_\\/-]+/';
+RULE_PATH : ('/' ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*)*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

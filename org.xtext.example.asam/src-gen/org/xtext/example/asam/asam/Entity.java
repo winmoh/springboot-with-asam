@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.Entity#getNom <em>Nom</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.Entity#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Entity#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Entity#getProperties <em>Properties</em>}</li>
  * </ul>
@@ -46,6 +47,31 @@ public interface Entity extends Element
    * @generated
    */
   void setNom(String value);
+
+  /**
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.asam.asam.VTypes}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' attribute.
+   * @see org.xtext.example.asam.asam.VTypes
+   * @see #setType(VTypes)
+   * @see org.xtext.example.asam.asam.AsamPackage#getEntity_Type()
+   * @model
+   * @generated
+   */
+  VTypes getType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Entity#getType <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' attribute.
+   * @see org.xtext.example.asam.asam.VTypes
+   * @see #getType()
+   * @generated
+   */
+  void setType(VTypes value);
 
   /**
    * Returns the value of the '<em><b>Extends</b></em>' reference.

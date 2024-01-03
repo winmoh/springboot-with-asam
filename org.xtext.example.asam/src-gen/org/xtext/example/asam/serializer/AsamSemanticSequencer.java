@@ -140,7 +140,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Configuration returns Configuration
 	 *
 	 * Constraint:
-	 *     ((server=ServerInfo database=DatabaseInfo) | database=DatabaseInfo)?
+	 *     (server=ServerInfo? database=DatabaseInfo)
 	 * </pre>
 	 */
 	protected void sequence_Configuration(ISerializationContext context, Configuration semanticObject) {
@@ -303,7 +303,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Entity returns Entity
 	 *
 	 * Constraint:
-	 *     (nom=ID extends=[Entity|ID]? properties+=Property*)
+	 *     (nom=ID type=VTypes nom=ID extends=[Entity|ID]? properties+=Property*)
 	 * </pre>
 	 */
 	protected void sequence_Entity(ISerializationContext context, Entity semanticObject) {
@@ -426,7 +426,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ServerInfo returns ServerInfo
 	 *
 	 * Constraint:
-	 *     ((port=INT path=PATH) | path=PATH)?
+	 *     (port=INT path=PATH?)
 	 * </pre>
 	 */
 	protected void sequence_ServerInfo(ISerializationContext context, ServerInfo semanticObject) {
