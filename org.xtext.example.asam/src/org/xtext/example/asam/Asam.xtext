@@ -14,16 +14,15 @@ Element:
 EntityRelationship:
 	'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
 //java.lang.IllegalArgumentException: The sources EClass 'Entity' does not expose the feature 'ActionParameter.nom'
-
 Configuration:
     'config' '{'
         server=ServerInfo?
-        database=DatabaseInfo?
+        database=DatabaseInfo
     '}';
 
 ServerInfo:
     'server' '{'
-        ('port' port=INT)?
+        ('port' port=INT)
         ('cpath' path=PATH)?
     '}';
 

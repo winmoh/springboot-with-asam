@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="outputFolder"/>
+		<item key="selection" value="generateEntityClass"/>
 		<list key="findhistory">
+			<item value="generateEntityClass"/>
 			<item value="outputFolder"/>
 			<item value="outpu"/>
 			<item value="Actio"/>

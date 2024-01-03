@@ -4,7 +4,6 @@
 package org.xtext.example.asam.generator;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -49,14 +48,30 @@ public class AsamGenerator extends AbstractGenerator {
       }
     };
     IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
-    this.generateMainClass(fsa, input);
+    final ArrayList<Configuration> projectNameHolder = new ArrayList<Configuration>();
+    final Procedure1<EObject> _function_1 = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getConfiguration());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_1);
+    final Configuration config = projectNameHolder.get(0);
+    final ArrayList<String> projectNameH = new ArrayList<String>();
+    final Procedure1<EObject> _function_2 = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameH.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_2);
+    final String projectName = projectNameH.get(0);
+    this.generateMainClass(fsa, input, config);
     this.generateMavenFiles(fsa, input);
     this.generateTestFolder(fsa, input);
-    final Configuration configuration = IterableExtensions.<Configuration>head(Iterables.<Configuration>filter(input.getContents(), Configuration.class));
-    if ((configuration != null)) {
-      this.generatePropertiesFile1(configuration, fsa);
+    boolean _notEquals = (!Objects.equal(config, null));
+    if (_notEquals) {
+      this.generatePropertiesFile1(config, fsa);
       String _elvis = null;
-      DatabaseInfo _database = configuration.getDatabase();
+      DatabaseInfo _database = config.getDatabase();
       RDBMS _type = null;
       if (_database!=null) {
         _type=_database.getType();
@@ -71,42 +86,338 @@ public class AsamGenerator extends AbstractGenerator {
         _elvis = "mysql";
       }
       final String dbmsType = _elvis;
-      if (dbmsType != null) {
-        switch (dbmsType) {
-          case "h2":
-            this.generatePropertiesH2(configuration, fsa);
-            break;
-          case "oracle":
-            this.generatePropertiesOracle(configuration, fsa);
-            break;
-          default:
-            this.generatePropertiesFile1(configuration, fsa);
-            break;
+      RDBMS _type_1 = config.getDatabase().getType();
+      boolean _matched = false;
+      if (Objects.equal(_type_1, "h2")) {
+        _matched=true;
+        this.generatePropertiesH2(config, fsa);
+      }
+      if (!_matched) {
+        if (Objects.equal(_type_1, "oracle")) {
+          _matched=true;
+          this.generatePropertiesOracle(config, fsa);
         }
-      } else {
-        this.generatePropertiesFile1(configuration, fsa);
+      }
+      if (!_matched) {
+        this.generatePropertiesFile1(config, fsa);
       }
     }
+    this.generatePomXml(config, fsa, projectName);
   }
 
   public String getHibernateDialect(final String dbmsType) {
     if (dbmsType != null) {
       switch (dbmsType) {
-        case "MYSQL":
+        case "Mysql":
           return "org.hibernate.dialect.MySQL5Dialect";
-        case "POSTGRES":
+        case "Postgres":
           return "org.hibernate.dialect.PostgreSQLDialect";
-        case "MARIADB":
+        case "Mariadb":
           return "org.hibernate.dialect.MariaDBDialect";
-        case "H2":
+        case "h2":
           return "org.hibernate.dialect.H2Dialect";
-        case "ORACLE":
+        case "Oracle":
           return "org.hibernate.dialect.Oracle12cDialect";
         default:
           return "org.hibernate.dialect.MySQL5Dialect";
       }
     } else {
       return "org.hibernate.dialect.MySQL5Dialect";
+    }
+  }
+
+  public void generatePomXml(final Configuration config, final IFileSystemAccess2 fsa, final String prjName) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+    _builder.newLine();
+    _builder.append("<project xmlns=\"http://maven.apache.org/POM/4.0.0\"");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<modelVersion>4.0.0</modelVersion>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<parent>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<artifactId>spring-boot-starter-parent</artifactId>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<version>2.5.0</version> <!-- Use the latest version -->");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<relativePath/> <!-- lookup parent from repository -->");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("</parent>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<groupId>com.springboot</groupId>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<artifactId>");
+    _builder.append(prjName, "    ");
+    _builder.append("</artifactId>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("<version>0.0.1-SNAPSHOT</version>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<name>");
+    _builder.append(prjName, "    ");
+    _builder.append("</name>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("<description>Demo project for Spring Boot</description>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<properties>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<java.version>17</java.version>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("</properties>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<dependencies>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<!-- Spring Boot Starter Dependencies -->");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<dependency>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>spring-boot-starter-data-jpa</artifactId>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</dependency>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<dependency>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>spring-boot-starter-web</artifactId>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</dependency>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<dependency>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.projectlombok</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>lombok</artifactId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<optional>true</optional>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</dependency>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<dependency>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>spring-boot-starter-test</artifactId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<scope>test</scope>");
+    _builder.newLine();
+    _builder.append("         ");
+    _builder.append("</dependency>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.newLine();
+    _builder.append("        ");
+    DatabaseInfo _database = config.getDatabase();
+    RDBMS _type = null;
+    if (_database!=null) {
+      _type=_database.getType();
+    }
+    String _generateDatabaseDependencies = this.generateDatabaseDependencies(_type.toString());
+    _builder.append(_generateDatabaseDependencies, "        ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("</dependencies>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<build>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<plugins>");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("<plugin>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>spring-boot-maven-plugin</artifactId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<configuration>");
+    _builder.newLine();
+    _builder.append("              ");
+    _builder.append("<excludes>");
+    _builder.newLine();
+    _builder.append("                ");
+    _builder.append("<exclude>");
+    _builder.newLine();
+    _builder.append("                  ");
+    _builder.append("<groupId>org.projectlombok</groupId>");
+    _builder.newLine();
+    _builder.append("                  ");
+    _builder.append("<artifactId>lombok</artifactId>");
+    _builder.newLine();
+    _builder.append("                ");
+    _builder.append("</exclude>");
+    _builder.newLine();
+    _builder.append("              ");
+    _builder.append("</excludes>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("</configuration>");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("</plugin>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</plugins>");
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("</build>");
+    _builder.newLine();
+    _builder.append("</project>");
+    _builder.newLine();
+    final String pomContent = _builder.toString();
+    fsa.generateFile("pom.xml", pomContent);
+  }
+
+  public String generateDatabaseDependencies(final String dbmsType) {
+    if (dbmsType != null) {
+      switch (dbmsType) {
+        case "Mysql":
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("<!-- MySQL Database Driver -->");
+          _builder.newLine();
+          _builder.append("<dependency>");
+          _builder.newLine();
+          _builder.append("      ");
+          _builder.append("<groupId>com.mysql</groupId>");
+          _builder.newLine();
+          _builder.append("      ");
+          _builder.append("<artifactId>mysql-connector-j</artifactId>");
+          _builder.newLine();
+          _builder.append("      ");
+          _builder.append("<scope>runtime</scope>");
+          _builder.newLine();
+          _builder.append("    ");
+          _builder.append("</dependency>");
+          _builder.newLine();
+          return _builder.toString();
+        case "Postgres":
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("<!-- PostgreSQL Database Driver -->");
+          _builder_1.newLine();
+          _builder_1.append("<dependency>");
+          _builder_1.newLine();
+          _builder_1.append("      ");
+          _builder_1.append("<groupId>org.postgresql</groupId>");
+          _builder_1.newLine();
+          _builder_1.append("      ");
+          _builder_1.append("<artifactId>postgresql</artifactId>");
+          _builder_1.newLine();
+          _builder_1.append("      ");
+          _builder_1.append("<scope>runtime</scope>");
+          _builder_1.newLine();
+          _builder_1.append("</dependency>");
+          _builder_1.newLine();
+          return _builder_1.toString();
+        case "Mariadb":
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("<!-- PostgreSQL Database Driver -->");
+          _builder_2.newLine();
+          _builder_2.append("<dependency>");
+          _builder_2.newLine();
+          _builder_2.append("      ");
+          _builder_2.append("<groupId>org.mariadb.jdbc</groupId>");
+          _builder_2.newLine();
+          _builder_2.append("      ");
+          _builder_2.append("<artifactId>mariadb-java-client</artifactId>");
+          _builder_2.newLine();
+          _builder_2.append("      ");
+          _builder_2.append("<scope>runtime</scope>");
+          _builder_2.newLine();
+          _builder_2.append("    ");
+          _builder_2.append("</dependency>");
+          _builder_2.newLine();
+          return _builder_2.toString();
+        case "Oracle":
+          StringConcatenation _builder_3 = new StringConcatenation();
+          _builder_3.append("                    ");
+          _builder_3.append("<!-- PostgreSQL Database Driver -->");
+          _builder_3.newLine();
+          _builder_3.append("<dependency>");
+          _builder_3.newLine();
+          _builder_3.append("  ");
+          _builder_3.append("<groupId>com.oracle.database.jdbc</groupId>");
+          _builder_3.newLine();
+          _builder_3.append("  ");
+          _builder_3.append("<artifactId>ojdbc11</artifactId>");
+          _builder_3.newLine();
+          _builder_3.append("  ");
+          _builder_3.append("<scope>runtime</scope>");
+          _builder_3.newLine();
+          _builder_3.append("</dependency>");
+          _builder_3.newLine();
+          return _builder_3.toString();
+        case "h2":
+          StringConcatenation _builder_4 = new StringConcatenation();
+          _builder_4.append("<!-- PostgreSQL Database Driver -->");
+          _builder_4.newLine();
+          _builder_4.append(" ");
+          _builder_4.append("<dependency>");
+          _builder_4.newLine();
+          _builder_4.append("      ");
+          _builder_4.append("<groupId>com.h2database</groupId>");
+          _builder_4.newLine();
+          _builder_4.append("      ");
+          _builder_4.append("<artifactId>h2</artifactId>");
+          _builder_4.newLine();
+          _builder_4.append("      ");
+          _builder_4.append("<scope>runtime</scope>");
+          _builder_4.newLine();
+          _builder_4.append(" ");
+          _builder_4.append("</dependency>");
+          _builder_4.newLine();
+          return _builder_4.toString();
+        default:
+          return "";
+      }
+    } else {
+      return "";
     }
   }
 
@@ -512,7 +823,7 @@ public class AsamGenerator extends AbstractGenerator {
     fsa.generateFile(fpath, content2);
   }
 
-  public void generateMainClass(final IFileSystemAccess2 fsa, final Resource input) {
+  public void generateMainClass(final IFileSystemAccess2 fsa, final Resource input, final Configuration configuration) {
     final ArrayList<String> projectNameHolder = new ArrayList<String>();
     final Procedure1<EObject> _function = (EObject element) -> {
       if ((element instanceof Sboot)) {
@@ -524,6 +835,9 @@ public class AsamGenerator extends AbstractGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package com.springboot.");
     _builder.append(projectName);
+    _builder.append(".");
+    RDBMS _type = configuration.getDatabase().getType();
+    _builder.append(_type);
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.newLine();

@@ -105,13 +105,13 @@ public class AsamValidator extends AbstractAsamValidator {
 			}
 			
 		}
-		@Check
+		/*@Check
 		public void checkValidDatabasePort(DatabaseInfo database) {
 		    if (database.getPort() < 1 || database.getPort() > 65535 ) {
 		        error("Invalid database port, must be in the range 1-65535",null);
 		    }
 		}
-		@Check
+		@Check*/
 		public void checkUniquePropertyNames(Entity entity) {
 		    Set<String> propertyNames = new HashSet<>();
 		    for (Property property : entity.getProperties()) {

@@ -19,6 +19,7 @@ import java.nio.file.Paths
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import org.xtext.example.asam.asam.Configuration
+import org.xtext.example.asam.asam.RDBMS
 
 /*import org.xtext.example.asam.asam.Type
 import org.xtext.example.asam.asam.VTypes
@@ -50,25 +51,44 @@ class AsamGenerator extends AbstractGenerator {
                 generateEntityClass(element as Entity, fsa,input);
             }
         ]
-        generateMainClass(fsa,input)
+		val projectNameHolder = new ArrayList<Configuration>()
+    	input.allContents.forEach[element|
+    		if(element instanceof Sboot){
+ 			projectNameHolder.add(element.configuration);    		}
+    	]
+    	val config=projectNameHolder.get(0)      
+    	
+    	 val projectNameH = new ArrayList<String>()
+    	input.allContents.forEach[element|
+    		if(element instanceof Sboot){
+ 			projectNameH.add(element.nom);    		}
+    	]
+    	val projectName=projectNameH.get(0)
+        
+        generateMainClass(fsa,input,config)
         generateMavenFiles(fsa,input)
         generateTestFolder(fsa,input)
-        val configuration = input.contents.filter(Configuration).head
-        if (configuration !== null) {
-            generatePropertiesFile1(configuration, fsa)
-            val dbmsType = configuration.database?.type?.toString ?: "mysql"
+        //val configuration = input.contents.filter(Configuration).head
+       if (config!=null) {
+        	
+            generatePropertiesFile1(config, fsa)
+            val dbmsType = config.database?.type?.toString ?: "mysql"
             
-            switch(dbmsType){
+            switch(config.database.type){
             	case "h2":
-                	generatePropertiesH2(configuration, fsa)
+                	generatePropertiesH2(config, fsa)
 	            
 	           	case "oracle":
-	                generatePropertiesOracle(configuration, fsa)
+	                generatePropertiesOracle(config, fsa)
 	            	
 	            default:
-	            	generatePropertiesFile1(configuration,fsa)
+	            	generatePropertiesFile1(config,fsa)
             
         }}
+        generatePomXml(config,fsa,projectName)
+        
+        
+        
         
         
         
@@ -76,15 +96,136 @@ class AsamGenerator extends AbstractGenerator {
     
     def getHibernateDialect(String dbmsType) {
 	    switch (dbmsType) {
-	        case "MYSQL": return "org.hibernate.dialect.MySQL5Dialect"
-	        case "POSTGRES": return "org.hibernate.dialect.PostgreSQLDialect"
-	        case "MARIADB": return "org.hibernate.dialect.MariaDBDialect"
-	        case "H2": return "org.hibernate.dialect.H2Dialect"
-	        case "ORACLE": return "org.hibernate.dialect.Oracle12cDialect"
+	        case "Mysql": return "org.hibernate.dialect.MySQL5Dialect"
+	        case "Postgres": return "org.hibernate.dialect.PostgreSQLDialect"
+	        case "Mariadb": return "org.hibernate.dialect.MariaDBDialect"
+	        case "h2": return "org.hibernate.dialect.H2Dialect"
+	        case "Oracle": return "org.hibernate.dialect.Oracle12cDialect"
 	        // Add more cases for other supported databases
 	        default: return "org.hibernate.dialect.MySQL5Dialect"
     }
 }
+	
+	
+	def generatePomXml(Configuration config, IFileSystemAccess2 fsa,String prjName) {
+        val pomContent = '''
+            <?xml version="1.0" encoding="UTF-8"?>
+            <project xmlns="http://maven.apache.org/POM/4.0.0"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+                <modelVersion>4.0.0</modelVersion>
+                <parent>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-parent</artifactId>
+                    <version>2.5.0</version> <!-- Use the latest version -->
+                    <relativePath/> <!-- lookup parent from repository -->
+                </parent>
+                <groupId>com.springboot</groupId>
+                <artifactId>«prjName»</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <name>«prjName»</name>
+                <description>Demo project for Spring Boot</description>
+                <properties>
+                    <java.version>17</java.version>
+                </properties>
+                <dependencies>
+                    <!-- Spring Boot Starter Dependencies -->
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-data-jpa</artifactId>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-web</artifactId>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <optional>true</optional>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-test</artifactId>
+                        <scope>test</scope>
+                     </dependency>
+                    
+                    «generateDatabaseDependencies(config.database?.type.toString)»
+                </dependencies>
+                <build>
+                    <plugins>
+                      <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                          <excludes>
+                            <exclude>
+                              <groupId>org.projectlombok</groupId>
+                              <artifactId>lombok</artifactId>
+                            </exclude>
+                          </excludes>
+                        </configuration>
+                      </plugin>
+                    </plugins>
+                  </build>
+            </project>
+        '''
+
+        fsa.generateFile("pom.xml", pomContent)
+    }
+
+    def generateDatabaseDependencies(String dbmsType) {
+        switch (dbmsType) {
+            case "Mysql":
+                return '''
+                    <!-- MySQL Database Driver -->
+                    <dependency>
+                          <groupId>com.mysql</groupId>
+                          <artifactId>mysql-connector-j</artifactId>
+                          <scope>runtime</scope>
+                        </dependency>
+                '''
+            case "Postgres":
+                return '''
+                    <!-- PostgreSQL Database Driver -->
+                    <dependency>
+                          <groupId>org.postgresql</groupId>
+                          <artifactId>postgresql</artifactId>
+                          <scope>runtime</scope>
+                    </dependency>
+                '''
+                
+            case "Mariadb":
+                return '''
+                    <!-- PostgreSQL Database Driver -->
+                    <dependency>
+                          <groupId>org.mariadb.jdbc</groupId>
+                          <artifactId>mariadb-java-client</artifactId>
+                          <scope>runtime</scope>
+                        </dependency>
+                '''
+            
+            case "Oracle":
+                return '''
+                    <!-- PostgreSQL Database Driver -->
+				    <dependency>
+				      <groupId>com.oracle.database.jdbc</groupId>
+				      <artifactId>ojdbc11</artifactId>
+				      <scope>runtime</scope>
+				    </dependency>
+                '''
+              case "h2":
+                return '''
+                    <!-- PostgreSQL Database Driver -->
+                     <dependency>
+                          <groupId>com.h2database</groupId>
+                          <artifactId>h2</artifactId>
+                          <scope>runtime</scope>
+                     </dependency>
+                '''
+            default:
+                return ''
+        }
+    }
     
     def void generatePropertiesH2(Configuration config,IFileSystemAccess2 fsa){
     	val propertiesContent = '''
@@ -221,7 +362,7 @@ wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-w
 	
 	
 	//generating the static class
-	def generateMainClass(IFileSystemAccess2 fsa,Resource input){
+	def generateMainClass(IFileSystemAccess2 fsa,Resource input,Configuration configuration){
 		val projectNameHolder = new ArrayList<String>()
     	input.allContents.forEach[element|
     		if(element instanceof Sboot){
@@ -229,7 +370,7 @@ wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-w
     	]
     	val projectName=projectNameHolder.get(0)
 			val content2= '''
-    package com.springboot.«projectName»;
+    package com.springboot.«projectName».«configuration.database.type»;
 
     import org.springframework.boot.SpringApplication;
     import org.springframework.boot.autoconfigure.SpringBootApplication;
