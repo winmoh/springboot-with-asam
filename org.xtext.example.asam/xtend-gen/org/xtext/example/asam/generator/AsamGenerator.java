@@ -55,6 +55,37 @@ public class AsamGenerator extends AbstractGenerator {
     final Configuration configuration = IterableExtensions.<Configuration>head(Iterables.<Configuration>filter(input.getContents(), Configuration.class));
     if ((configuration != null)) {
       this.generatePropertiesFile1(configuration, fsa);
+      String _elvis = null;
+      DatabaseInfo _database = configuration.getDatabase();
+      RDBMS _type = null;
+      if (_database!=null) {
+        _type=_database.getType();
+      }
+      String _string = null;
+      if (_type!=null) {
+        _string=_type.toString();
+      }
+      if (_string != null) {
+        _elvis = _string;
+      } else {
+        _elvis = "mysql";
+      }
+      final String dbmsType = _elvis;
+      if (dbmsType != null) {
+        switch (dbmsType) {
+          case "h2":
+            this.generatePropertiesH2(configuration, fsa);
+            break;
+          case "oracle":
+            this.generatePropertiesOracle(configuration, fsa);
+            break;
+          default:
+            this.generatePropertiesFile1(configuration, fsa);
+            break;
+        }
+      } else {
+        this.generatePropertiesFile1(configuration, fsa);
+      }
     }
   }
 
@@ -77,6 +108,223 @@ public class AsamGenerator extends AbstractGenerator {
     } else {
       return "org.hibernate.dialect.MySQL5Dialect";
     }
+  }
+
+  public void generatePropertiesH2(final Configuration config, final IFileSystemAccess2 fsa) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("# Server Configuration");
+    _builder.newLine();
+    _builder.append("server.port = ");
+    int _xifexpression = (int) 0;
+    if ((Objects.equal(config.getServer(), null) || (config.getServer().getPort() == 0))) {
+      _xifexpression = 8080;
+    } else {
+      _xifexpression = config.getServer().getPort();
+    }
+    _builder.append(_xifexpression);
+    _builder.newLineIfNotEmpty();
+    _builder.append("server.cpath = ");
+    String _elvis = null;
+    ServerInfo _server = config.getServer();
+    String _path = null;
+    if (_server!=null) {
+      _path=_server.getPath();
+    }
+    if (_path != null) {
+      _elvis = _path;
+    } else {
+      _elvis = "/api";
+    }
+    _builder.append(_elvis);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Database Configuration");
+    _builder.newLine();
+    _builder.append("spring.datasource.url = jdbc:");
+    Object _elvis_1 = null;
+    DatabaseInfo _database = config.getDatabase();
+    RDBMS _type = null;
+    if (_database!=null) {
+      _type=_database.getType();
+    }
+    if (_type != null) {
+      _elvis_1 = _type;
+    } else {
+      _elvis_1 = "h2";
+    }
+    _builder.append(((Object)_elvis_1));
+    _builder.append(":mem:");
+    String _elvis_2 = null;
+    DatabaseInfo _database_1 = config.getDatabase();
+    String _nom = null;
+    if (_database_1!=null) {
+      _nom=_database_1.getNom();
+    }
+    if (_nom != null) {
+      _elvis_2 = _nom;
+    } else {
+      _elvis_2 = "dbname";
+    }
+    _builder.append(_elvis_2);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.username = ");
+    String _elvis_3 = null;
+    DatabaseInfo _database_2 = config.getDatabase();
+    String _username = null;
+    if (_database_2!=null) {
+      _username=_database_2.getUsername();
+    }
+    if (_username != null) {
+      _elvis_3 = _username;
+    } else {
+      _elvis_3 = "root";
+    }
+    _builder.append(_elvis_3);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.password = ");
+    String _elvis_4 = null;
+    DatabaseInfo _database_3 = config.getDatabase();
+    String _password = null;
+    if (_database_3!=null) {
+      _password=_database_3.getPassword();
+    }
+    if (_password != null) {
+      _elvis_4 = _password;
+    } else {
+      _elvis_4 = "password";
+    }
+    _builder.append(_elvis_4);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Hibernate Configuration");
+    _builder.newLine();
+    _builder.append("spring.jpa.hibernate.ddl-auto = update");
+    _builder.newLine();
+    _builder.append("spring.jpa.show-sql = true");
+    _builder.newLine();
+    _builder.append("spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.");
+    DatabaseInfo _database_4 = config.getDatabase();
+    RDBMS _type_1 = null;
+    if (_database_4!=null) {
+      _type_1=_database_4.getType();
+    }
+    String _hibernateDialect = this.getHibernateDialect(_type_1.toString());
+    _builder.append(_hibernateDialect);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Additional Hibernate Properties");
+    _builder.newLine();
+    _builder.append("# Add any additional Hibernate properties as needed");
+    _builder.newLine();
+    final String propertiesContent = _builder.toString();
+    final String pomFilePath = "src/main/resources/application.properties";
+    fsa.generateFile(pomFilePath, propertiesContent);
+  }
+
+  public void generatePropertiesOracle(final Configuration config, final IFileSystemAccess2 fsa) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("# Server Configuration");
+    _builder.newLine();
+    _builder.append("server.port = ");
+    int _xifexpression = (int) 0;
+    if ((Objects.equal(config.getServer(), null) || (config.getServer().getPort() == 0))) {
+      _xifexpression = 8080;
+    } else {
+      _xifexpression = config.getServer().getPort();
+    }
+    _builder.append(_xifexpression);
+    _builder.newLineIfNotEmpty();
+    _builder.append("server.cpath = ");
+    String _elvis = null;
+    ServerInfo _server = config.getServer();
+    String _path = null;
+    if (_server!=null) {
+      _path=_server.getPath();
+    }
+    if (_path != null) {
+      _elvis = _path;
+    } else {
+      _elvis = "/api";
+    }
+    _builder.append(_elvis);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Database Configuration");
+    _builder.newLine();
+    _builder.append("spring.datasource.url = jdbc:oracle:thin:@localhost:");
+    int _xifexpression_1 = (int) 0;
+    if ((Objects.equal(config.getDatabase(), null) || (config.getDatabase().getPort() == 0))) {
+      _xifexpression_1 = 1521;
+    } else {
+      _xifexpression_1 = config.getDatabase().getPort();
+    }
+    _builder.append(_xifexpression_1);
+    _builder.append("/");
+    String _elvis_1 = null;
+    DatabaseInfo _database = config.getDatabase();
+    String _nom = null;
+    if (_database!=null) {
+      _nom=_database.getNom();
+    }
+    if (_nom != null) {
+      _elvis_1 = _nom;
+    } else {
+      _elvis_1 = "dbname";
+    }
+    _builder.append(_elvis_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.username = ");
+    String _elvis_2 = null;
+    DatabaseInfo _database_1 = config.getDatabase();
+    String _username = null;
+    if (_database_1!=null) {
+      _username=_database_1.getUsername();
+    }
+    if (_username != null) {
+      _elvis_2 = _username;
+    } else {
+      _elvis_2 = "root";
+    }
+    _builder.append(_elvis_2);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.password = ");
+    String _elvis_3 = null;
+    DatabaseInfo _database_2 = config.getDatabase();
+    String _password = null;
+    if (_database_2!=null) {
+      _password=_database_2.getPassword();
+    }
+    if (_password != null) {
+      _elvis_3 = _password;
+    } else {
+      _elvis_3 = "password";
+    }
+    _builder.append(_elvis_3);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Hibernate Configuration");
+    _builder.newLine();
+    _builder.append("spring.jpa.hibernate.ddl-auto = update");
+    _builder.newLine();
+    _builder.append("spring.jpa.show-sql = true");
+    _builder.newLine();
+    _builder.append("spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.");
+    DatabaseInfo _database_3 = config.getDatabase();
+    RDBMS _type = null;
+    if (_database_3!=null) {
+      _type=_database_3.getType();
+    }
+    String _hibernateDialect = this.getHibernateDialect(_type.toString());
+    _builder.append(_hibernateDialect);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Additional Hibernate Properties");
+    _builder.newLine();
+    _builder.append("# Add any additional Hibernate properties as needed");
+    _builder.newLine();
+    final String propertiesContent = _builder.toString();
+    final String pomFilePath = "src/main/resources/application.properties";
+    fsa.generateFile(pomFilePath, propertiesContent);
   }
 
   public void generatePropertiesFile1(final Configuration config, final IFileSystemAccess2 fsa) {
@@ -194,6 +442,8 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("# Add any additional Hibernate properties as needed");
     _builder.newLine();
     final String propertiesContent = _builder.toString();
+    final String pomFilePath = "src/main/resources/application.properties";
+    fsa.generateFile(pomFilePath, propertiesContent);
   }
 
   public void generateMavenFiles(final IFileSystemAccess2 fsa, final Resource input) {

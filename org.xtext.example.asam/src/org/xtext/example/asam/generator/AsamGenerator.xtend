@@ -56,7 +56,22 @@ class AsamGenerator extends AbstractGenerator {
         val configuration = input.contents.filter(Configuration).head
         if (configuration !== null) {
             generatePropertiesFile1(configuration, fsa)
-        }
+            val dbmsType = configuration.database?.type?.toString ?: "mysql"
+            
+            switch(dbmsType){
+            	case "h2":
+                	generatePropertiesH2(configuration, fsa)
+	            
+	           	case "oracle":
+	                generatePropertiesOracle(configuration, fsa)
+	            	
+	            default:
+	            	generatePropertiesFile1(configuration,fsa)
+            
+        }}
+        
+        
+        
     }
     
     def getHibernateDialect(String dbmsType) {
@@ -70,6 +85,52 @@ class AsamGenerator extends AbstractGenerator {
 	        default: return "org.hibernate.dialect.MySQL5Dialect"
     }
 }
+    
+    def void generatePropertiesH2(Configuration config,IFileSystemAccess2 fsa){
+    	val propertiesContent = '''
+            # Server Configuration
+            server.port = «(config.server== null || config.server.port==0) ? 8080:config.server.port»
+            server.cpath = «config.server?.path ?: "/api"»
+
+            # Database Configuration
+            spring.datasource.url = jdbc:«config.database?.type?: "h2"»:mem:«config.database?.nom ?: "dbname"»
+            spring.datasource.username = «config.database?.username ?: "root"»
+            spring.datasource.password = «config.database?.password ?: "password"»
+
+            # Hibernate Configuration
+            spring.jpa.hibernate.ddl-auto = update
+            spring.jpa.show-sql = true
+            spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.«getHibernateDialect(config.database?.type.toString)»
+
+            # Additional Hibernate Properties
+            # Add any additional Hibernate properties as needed
+        '''
+    	val pomFilePath = "src/main/resources/application.properties"
+        fsa.generateFile(pomFilePath, propertiesContent)
+    }
+    def void generatePropertiesOracle(Configuration config,IFileSystemAccess2 fsa){
+    	val propertiesContent = '''
+            # Server Configuration
+            server.port = «(config.server== null || config.server.port==0) ? 8080:config.server.port»
+            server.cpath = «config.server?.path ?: "/api"»
+
+            # Database Configuration
+            spring.datasource.url = jdbc:oracle:thin:@localhost:«(config.database==null || config.database.port==0 )? 1521:config.database.port»/«config.database?.nom ?: "dbname"»
+            spring.datasource.username = «config.database?.username ?: "root"»
+            spring.datasource.password = «config.database?.password ?: "password"»
+
+            # Hibernate Configuration
+            spring.jpa.hibernate.ddl-auto = update
+            spring.jpa.show-sql = true
+            spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.«getHibernateDialect(config.database?.type.toString)»
+
+            # Additional Hibernate Properties
+            # Add any additional Hibernate properties as needed
+        '''
+    	val pomFilePath = "src/main/resources/application.properties"
+        fsa.generateFile(pomFilePath, propertiesContent)
+    }
+    
     
     def void generatePropertiesFile1(Configuration config,IFileSystemAccess2 fsa){
     	val propertiesContent = '''
@@ -90,6 +151,9 @@ class AsamGenerator extends AbstractGenerator {
             # Additional Hibernate Properties
             # Add any additional Hibernate properties as needed
         '''
+         val pomFilePath = "src/main/resources/application.properties"
+        fsa.generateFile(pomFilePath, propertiesContent)
+        
     	
     }
     
