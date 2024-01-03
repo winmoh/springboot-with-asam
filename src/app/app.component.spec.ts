@@ -1,15 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+
 
 describe('AppComponent', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent, WelcomePageComponent], // Declare WelcomePageComponent
-    });
-  });
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [RouterTestingModule],
+    declarations: [AppComponent]
+  }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
