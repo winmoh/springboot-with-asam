@@ -32,9 +32,9 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 ##### <li> MetaModel Definition:
 >ASAM DSL allows the definition of Spring Boot RESTful APIs through a concise and expressive syntax. The DSL encompasses various aspects of API development, including project configuration, entity modeling, data transfer objects (DTOs), controllers, repositories, and custom actions.
 
-#### <li>Project Definition:
-Define a Spring Boot project using the 'project' keyword, specifying the project name ('nom') and optional configuration settings.
-##### <li>Entity Modeling:
+>#### <li>Project Definition:
+>Define a Spring Boot project using the 'project' keyword, specifying the project name ('nom') and optional configuration settings.
+>##### <li>Entity Modeling:
 
 Entities are defined using the 'entity' keyword, specifying the entity name ('nom'), identifier details, properties, repository, and controller.
 ##### <li>Data Transfer Objects (DTOs):
