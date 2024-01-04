@@ -87,6 +87,15 @@ public interface AsamFactory extends EFactory
   Entity createEntity();
 
   /**
+   * Returns a new object of class '<em>Identifier</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Identifier</em>'.
+   * @generated
+   */
+  Identifier createIdentifier();
+
+  /**
    * Returns a new object of class '<em>DTO</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -114,6 +123,33 @@ public interface AsamFactory extends EFactory
   Controller createController();
 
   /**
+   * Returns a new object of class '<em>Service Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Service Action</em>'.
+   * @generated
+   */
+  ServiceAction createServiceAction();
+
+  /**
+   * Returns a new object of class '<em>Custom Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Custom Action</em>'.
+   * @generated
+   */
+  CustomAction createCustomAction();
+
+  /**
+   * Returns a new object of class '<em>Action Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Action Parameter</em>'.
+   * @generated
+   */
+  ActionParameter createActionParameter();
+
+  /**
    * Returns a new object of class '<em>Repository</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -121,15 +157,6 @@ public interface AsamFactory extends EFactory
    * @generated
    */
   Repository createRepository();
-
-  /**
-   * Returns a new object of class '<em>Repository Method</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Repository Method</em>'.
-   * @generated
-   */
-  RepositoryMethod createRepositoryMethod();
 
   /**
    * Returns a new object of class '<em>Find By Method</em>'.
@@ -157,33 +184,6 @@ public interface AsamFactory extends EFactory
    * @generated
    */
   CustomQueryMethod createCustomQueryMethod();
-
-  /**
-   * Returns a new object of class '<em>Service Action</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Service Action</em>'.
-   * @generated
-   */
-  ServiceAction createServiceAction();
-
-  /**
-   * Returns a new object of class '<em>Controller Action</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Controller Action</em>'.
-   * @generated
-   */
-  ControllerAction createControllerAction();
-
-  /**
-   * Returns a new object of class '<em>Action Parameter</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Action Parameter</em>'.
-   * @generated
-   */
-  ActionParameter createActionParameter();
 
   /**
    * Returns a new object of class '<em>Property</em>'.

@@ -111,6 +111,11 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
         return createEntityAdapter();
       }
       @Override
+      public Adapter caseIdentifier(Identifier object)
+      {
+        return createIdentifierAdapter();
+      }
+      @Override
       public Adapter caseDTO(DTO object)
       {
         return createDTOAdapter();
@@ -126,14 +131,24 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
         return createControllerAdapter();
       }
       @Override
+      public Adapter caseServiceAction(ServiceAction object)
+      {
+        return createServiceActionAdapter();
+      }
+      @Override
+      public Adapter caseCustomAction(CustomAction object)
+      {
+        return createCustomActionAdapter();
+      }
+      @Override
+      public Adapter caseActionParameter(ActionParameter object)
+      {
+        return createActionParameterAdapter();
+      }
+      @Override
       public Adapter caseRepository(Repository object)
       {
         return createRepositoryAdapter();
-      }
-      @Override
-      public Adapter caseRepositoryMethod(RepositoryMethod object)
-      {
-        return createRepositoryMethodAdapter();
       }
       @Override
       public Adapter caseFindByMethod(FindByMethod object)
@@ -149,21 +164,6 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
       public Adapter caseCustomQueryMethod(CustomQueryMethod object)
       {
         return createCustomQueryMethodAdapter();
-      }
-      @Override
-      public Adapter caseServiceAction(ServiceAction object)
-      {
-        return createServiceActionAdapter();
-      }
-      @Override
-      public Adapter caseControllerAction(ControllerAction object)
-      {
-        return createControllerActionAdapter();
-      }
-      @Override
-      public Adapter caseActionParameter(ActionParameter object)
-      {
-        return createActionParameterAdapter();
       }
       @Override
       public Adapter caseProperty(Property object)
@@ -318,6 +318,21 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.Identifier <em>Identifier</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.asam.asam.Identifier
+   * @generated
+   */
+  public Adapter createIdentifierAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.DTO <em>DTO</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -363,6 +378,51 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.ServiceAction <em>Service Action</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.asam.asam.ServiceAction
+   * @generated
+   */
+  public Adapter createServiceActionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.CustomAction <em>Custom Action</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.asam.asam.CustomAction
+   * @generated
+   */
+  public Adapter createCustomActionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.ActionParameter <em>Action Parameter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.asam.asam.ActionParameter
+   * @generated
+   */
+  public Adapter createActionParameterAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.Repository <em>Repository</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -373,21 +433,6 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRepositoryAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.RepositoryMethod <em>Repository Method</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.asam.asam.RepositoryMethod
-   * @generated
-   */
-  public Adapter createRepositoryMethodAdapter()
   {
     return null;
   }
@@ -433,51 +478,6 @@ public class AsamAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCustomQueryMethodAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.ServiceAction <em>Service Action</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.asam.asam.ServiceAction
-   * @generated
-   */
-  public Adapter createServiceActionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.ControllerAction <em>Controller Action</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.asam.asam.ControllerAction
-   * @generated
-   */
-  public Adapter createControllerActionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.asam.asam.ActionParameter <em>Action Parameter</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.asam.asam.ActionParameter
-   * @generated
-   */
-  public Adapter createActionParameterAdapter()
   {
     return null;
   }

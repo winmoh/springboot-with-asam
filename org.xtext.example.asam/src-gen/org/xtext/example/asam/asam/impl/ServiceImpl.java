@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.asam.asam.AsamPackage;
-import org.xtext.example.asam.asam.Controller;
+import org.xtext.example.asam.asam.Entity;
 import org.xtext.example.asam.asam.Service;
 import org.xtext.example.asam.asam.ServiceAction;
 
@@ -68,7 +68,7 @@ public class ServiceImpl extends ElementImpl implements Service
    * @generated
    * @ordered
    */
-  protected Controller entity;
+  protected Entity entity;
 
   /**
    * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
@@ -132,12 +132,12 @@ public class ServiceImpl extends ElementImpl implements Service
    * @generated
    */
   @Override
-  public Controller getEntity()
+  public Entity getEntity()
   {
     if (entity != null && entity.eIsProxy())
     {
       InternalEObject oldEntity = (InternalEObject)entity;
-      entity = (Controller)eResolveProxy(oldEntity);
+      entity = (Entity)eResolveProxy(oldEntity);
       if (entity != oldEntity)
       {
         if (eNotificationRequired())
@@ -152,7 +152,7 @@ public class ServiceImpl extends ElementImpl implements Service
    * <!-- end-user-doc -->
    * @generated
    */
-  public Controller basicGetEntity()
+  public Entity basicGetEntity()
   {
     return entity;
   }
@@ -163,9 +163,9 @@ public class ServiceImpl extends ElementImpl implements Service
    * @generated
    */
   @Override
-  public void setEntity(Controller newEntity)
+  public void setEntity(Entity newEntity)
   {
-    Controller oldEntity = entity;
+    Entity oldEntity = entity;
     entity = newEntity;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.SERVICE__ENTITY, oldEntity, entity));
@@ -238,7 +238,7 @@ public class ServiceImpl extends ElementImpl implements Service
         setNom((String)newValue);
         return;
       case AsamPackage.SERVICE__ENTITY:
-        setEntity((Controller)newValue);
+        setEntity((Entity)newValue);
         return;
       case AsamPackage.SERVICE__ACTIONS:
         getActions().clear();
@@ -262,7 +262,7 @@ public class ServiceImpl extends ElementImpl implements Service
         setNom(NOM_EDEFAULT);
         return;
       case AsamPackage.SERVICE__ENTITY:
-        setEntity((Controller)null);
+        setEntity((Entity)null);
         return;
       case AsamPackage.SERVICE__ACTIONS:
         getActions().clear();

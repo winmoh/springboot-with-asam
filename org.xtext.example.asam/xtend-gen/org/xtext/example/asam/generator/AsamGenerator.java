@@ -18,13 +18,19 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.asam.asam.Configuration;
+import org.xtext.example.asam.asam.CustomQueryMethod;
 import org.xtext.example.asam.asam.DTO;
 import org.xtext.example.asam.asam.DatabaseInfo;
+import org.xtext.example.asam.asam.DeleteByMethod;
 import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.FindByMethod;
+import org.xtext.example.asam.asam.Identifier;
 import org.xtext.example.asam.asam.ListType;
+import org.xtext.example.asam.asam.ParamTrasfert;
 import org.xtext.example.asam.asam.Property;
 import org.xtext.example.asam.asam.RDBMS;
 import org.xtext.example.asam.asam.RType;
+import org.xtext.example.asam.asam.Repository;
 import org.xtext.example.asam.asam.Sboot;
 import org.xtext.example.asam.asam.ServerInfo;
 import org.xtext.example.asam.asam.SetType;
@@ -43,13 +49,584 @@ public class AsamGenerator extends AbstractGenerator {
 
   @Override
   public void doGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field entity is undefined"
-      + "\nThe method or field entity is undefined"
-      + "\nId cannot be resolved"
-      + "\ntype cannot be resolved"
-      + "\nid cannot be resolved"
-      + "\nnom cannot be resolved");
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Entity)) {
+        String _xifexpression = null;
+        Identifier _ident = ((Entity)element).getIdent();
+        boolean _tripleNotEquals = (_ident != null);
+        if (_tripleNotEquals) {
+          _xifexpression = this.extractVtypesValue2(((Entity)element).getIdent().getType().toString());
+        } else {
+          _xifexpression = "int ";
+        }
+        final String idType = _xifexpression;
+        String _xifexpression_1 = null;
+        Identifier _ident_1 = ((Entity)element).getIdent();
+        boolean _tripleNotEquals_1 = (_ident_1 != null);
+        if (_tripleNotEquals_1) {
+          _xifexpression_1 = ((Entity)element).getIdent().getNom().toString();
+        } else {
+          _xifexpression_1 = "Id";
+        }
+        final String idNom = _xifexpression_1;
+        this.generateEntityClass(((Entity) element), fsa, input, idType, idNom);
+        Repository _repo = ((Entity)element).getRepo();
+        boolean _tripleNotEquals_2 = (_repo != null);
+        if (_tripleNotEquals_2) {
+          this.generateRepository(((Entity)element), fsa, input, idType);
+        }
+        this.generateService(((Entity)element), fsa, input);
+        this.generateController(((Entity)element), fsa, input);
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final Procedure1<EObject> _function_1 = (EObject element) -> {
+      if ((element instanceof DTO)) {
+        this.generateDtoClass(((DTO) element), fsa, input);
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_1);
+    final ArrayList<Configuration> projectNameHolder = new ArrayList<Configuration>();
+    final Procedure1<EObject> _function_2 = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getConfiguration());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_2);
+    final Configuration config = projectNameHolder.get(0);
+    final ArrayList<String> projectNameH = new ArrayList<String>();
+    final Procedure1<EObject> _function_3 = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameH.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_3);
+    final String projectName = projectNameH.get(0);
+    this.generateMainClass(fsa, input, config);
+    this.generateMavenFiles(fsa, input);
+    this.generateTestFolder(fsa, input);
+    boolean _notEquals = (!Objects.equal(config, null));
+    if (_notEquals) {
+      this.generatePropertiesFile1(config, fsa);
+      String _elvis = null;
+      DatabaseInfo _database = config.getDatabase();
+      RDBMS _type = null;
+      if (_database!=null) {
+        _type=_database.getType();
+      }
+      String _string = null;
+      if (_type!=null) {
+        _string=_type.toString();
+      }
+      if (_string != null) {
+        _elvis = _string;
+      } else {
+        _elvis = "mysql";
+      }
+      final String dbmsType = _elvis;
+      RDBMS _type_1 = config.getDatabase().getType();
+      boolean _matched = false;
+      if (Objects.equal(_type_1, "h2")) {
+        _matched=true;
+        this.generatePropertiesH2(config, fsa);
+      }
+      if (!_matched) {
+        if (Objects.equal(_type_1, "oracle")) {
+          _matched=true;
+          this.generatePropertiesOracle(config, fsa);
+        }
+      }
+      if (!_matched) {
+        this.generatePropertiesFile1(config, fsa);
+      }
+    }
+    this.generatePomXml(config, fsa, projectName);
+  }
+
+  public void generateController(final Entity entity, final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = entity.getNom();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".controllers;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import org.springframework.stereotype.Service;");
+    _builder.newLine();
+    _builder.append("import com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".entities.");
+    _builder.append(className);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".services.");
+    String _firstUpper = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper);
+    _builder.append("Service;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import org.springframework.beans.factory.annotation.Autowired;");
+    _builder.newLine();
+    _builder.append("import org.springframework.web.bind.annotation.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@RestController");
+    _builder.newLine();
+    _builder.append("public class ");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_1);
+    _builder.append("Controller {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t\t");
+    _builder.append("@Autowired");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private final ");
+    String _firstUpper_2 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_2, "    ");
+    _builder.append("Service ");
+    String _firstLower = StringExtensions.toFirstLower(className);
+    _builder.append(_firstLower, "    ");
+    _builder.append("Service;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("   ");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    {
+      ParamTrasfert _dparam = entity.getControl().getDparam();
+      boolean _tripleNotEquals = (_dparam != null);
+      if (_tripleNotEquals) {
+        String _generateDeleteMethodController = this.generateDeleteMethodController(entity);
+        _builder.append(_generateDeleteMethodController, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    {
+      ParamTrasfert _fparam = entity.getControl().getFparam();
+      boolean _tripleNotEquals_1 = (_fparam != null);
+      if (_tripleNotEquals_1) {
+        String _generateFindMethodController = this.generateFindMethodController(entity);
+        _builder.append(_generateFindMethodController, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    {
+      ParamTrasfert _cparam = entity.getControl().getCparam();
+      boolean _tripleNotEquals_2 = (_cparam != null);
+      if (_tripleNotEquals_2) {
+        String _generateSaveMethodController = this.generateSaveMethodController(entity);
+        _builder.append(_generateSaveMethodController, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@GetMapping(\"/api/");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_3, "    ");
+    _builder.append("/deleteAll\"");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("public ReponseEntity<String> deleteAll");
+    String _firstUpper_4 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_4, "    ");
+    _builder.append("s(){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append("return ");
+    String _firstLower_1 = StringExtensions.toFirstLower(className);
+    _builder.append(_firstLower_1, "    \t");
+    _builder.append("Service.deleteAll");
+    String _firstUpper_5 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_5, "    \t");
+    _builder.append("s();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@GetMapping(\"/api/");
+    String _firstUpper_6 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_6, "    ");
+    _builder.append("/findAll\"");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("public List<");
+    _builder.append(className, "    ");
+    _builder.append("> findAll");
+    String _firstUpper_7 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_7, "    ");
+    _builder.append("s(){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append("return ");
+    String _firstLower_2 = StringExtensions.toFirstLower(className);
+    _builder.append(_firstLower_2, "    \t");
+    _builder.append("Service.findAll");
+    String _firstUpper_8 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_8, "    \t");
+    _builder.append("s();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    String _firstUpper_9 = StringExtensions.toFirstUpper(className);
+    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/controllers/") + _firstUpper_9);
+    String _plus_1 = (_plus + "Controller.java");
+    fsa.generateFile(_plus_1, content);
+  }
+
+  public void generateService(final Entity entity, final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = entity.getNom();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".services;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import org.springframework.stereotype.Service;");
+    _builder.newLine();
+    _builder.append("import com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".entities.");
+    _builder.append(className);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("           \t");
+    _builder.append("import com.springboot.");
+    _builder.append(projectName, "           \t");
+    _builder.append(".services.");
+    _builder.append(className, "           \t");
+    _builder.append("Repository;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import org.springframework.beans.factory.annotation.Autowired;");
+    _builder.newLine();
+    _builder.append("import org.springframework.web.bind.annotation.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Service");
+    _builder.newLine();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper);
+    _builder.append("Controller {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t\t");
+    _builder.append("@Autowired");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private final ");
+    _builder.append(className, "    ");
+    _builder.append("Repository ");
+    _builder.append(className, "    ");
+    _builder.append("Repo;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("   ");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    {
+      ParamTrasfert _dparam = entity.getControl().getDparam();
+      boolean _tripleNotEquals = (_dparam != null);
+      if (_tripleNotEquals) {
+        String _generateDeleteMethod = this.generateDeleteMethod(entity);
+        _builder.append(_generateDeleteMethod, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    {
+      ParamTrasfert _fparam = entity.getControl().getFparam();
+      boolean _tripleNotEquals_1 = (_fparam != null);
+      if (_tripleNotEquals_1) {
+        String _generateFindMethod = this.generateFindMethod(entity);
+        _builder.append(_generateFindMethod, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    {
+      ParamTrasfert _cparam = entity.getControl().getCparam();
+      boolean _tripleNotEquals_2 = (_cparam != null);
+      if (_tripleNotEquals_2) {
+        String _generateSaveMethod = this.generateSaveMethod(entity);
+        _builder.append(_generateSaveMethod, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public ReponseEntity<String> deleteAll");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_1, "    ");
+    _builder.append("s(){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append(className, "    \t");
+    _builder.append("Repo.deleteAll");
+    String _firstUpper_2 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_2, "    \t");
+    _builder.append("s();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append("return new ReponseEntity<String>(\"all entities dleted from database\",null,HttpStatus.OK);");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public List<");
+    _builder.append(className, "    ");
+    _builder.append("> findAll");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_3, "    ");
+    _builder.append("s(){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append("return ");
+    _builder.append(className, "    \t");
+    _builder.append("Repo.findAll();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    String _firstUpper_4 = StringExtensions.toFirstUpper(className);
+    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/controllers/") + _firstUpper_4);
+    String _plus_1 = (_plus + "Controller.java");
+    fsa.generateFile(_plus_1, content);
+  }
+
+  public String generateFindMethod(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("public ");
+      String _nom = entity.getNom();
+      _builder.append(_nom);
+      _builder.append(" find");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("( ");
+      String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
+      _builder.append(_extractVtypesValue2);
+      _builder.append(" id)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("return ");
+      String _nom_1 = entity.getNom();
+      _builder.append(_nom_1, "\t");
+      _builder.append("Repo.findById(id);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String findContent = _builder.toString();
+      _xblockexpression = findContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateSaveMethod(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("public void  save");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("( ");
+      String _nom = entity.getNom();
+      _builder.append(_nom);
+      _builder.append(" element)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t ");
+      String _nom_1 = entity.getNom();
+      _builder.append(_nom_1, "\t ");
+      _builder.append("Repo.save(element);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String saveContent = _builder.toString();
+      _xblockexpression = saveContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateDeleteMethod(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("public void  delete");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("(");
+      String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
+      _builder.append(_extractVtypesValue2);
+      _builder.append(" id )");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t ");
+      String _nom = entity.getNom();
+      _builder.append(_nom, "\t ");
+      _builder.append("Repo.deleteById(id);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String deleteContent = _builder.toString();
+      _xblockexpression = deleteContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateFindMethodController(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("@GetMapping(\"/api/");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("\"/findById)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("public ");
+      String _nom = entity.getNom();
+      _builder.append(_nom);
+      _builder.append(" find");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1);
+      _builder.append("(@RequestParam ");
+      String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
+      _builder.append(_extractVtypesValue2);
+      _builder.append(" id)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("return ");
+      String _nom_1 = entity.getNom();
+      _builder.append(_nom_1, "\t");
+      _builder.append("Service.save");
+      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_2, "\t");
+      _builder.append("(ent);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String findContent = _builder.toString();
+      _xblockexpression = findContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateSaveMethodController(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("@PostMapping(\"/api/");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("\"/save");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1);
+      _builder.append("\")");
+      _builder.newLineIfNotEmpty();
+      _builder.append("public void  save");
+      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_2);
+      _builder.append("( @RequestBody ");
+      String _nom = entity.getNom();
+      _builder.append(_nom);
+      _builder.append(" element)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t ");
+      String _nom_1 = entity.getNom();
+      _builder.append(_nom_1, "\t ");
+      _builder.append("Service.save(element);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String saveContent = _builder.toString();
+      _xblockexpression = saveContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateDeleteMethodController(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("@DeleteMaping(\"/api/");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("\"/delete");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1);
+      _builder.append("ById\")");
+      _builder.newLineIfNotEmpty();
+      _builder.append("public void  delete");
+      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_2);
+      _builder.append("(");
+      String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
+      _builder.append(_extractVtypesValue2);
+      _builder.append(" id )");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t ");
+      String _firstUpper_3 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_3, "\t ");
+      _builder.append("Repository.deleteById(id);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String deleteContent = _builder.toString();
+      _xblockexpression = deleteContent;
+    }
+    return _xblockexpression;
   }
 
   public String getHibernateDialect(final String dbmsType) {
@@ -723,6 +1300,12 @@ public class AsamGenerator extends AbstractGenerator {
     return vtypesPart.substring(0, _minus);
   }
 
+  public String extractVtypesValue2(final String typeString) {
+    final String[] parts = typeString.split("\\s+");
+    final String vtypesPart = IterableExtensions.<String>last(((Iterable<String>)Conversions.doWrapArray(parts)));
+    return vtypesPart.substring(0, vtypesPart.length());
+  }
+
   public void generateTestFolder(final IFileSystemAccess2 fsa, final Resource input) {
     final ArrayList<String> projectNameHolder = new ArrayList<String>();
     final Procedure1<EObject> _function = (EObject element) -> {
@@ -941,7 +1524,111 @@ public class AsamGenerator extends AbstractGenerator {
     fsa.generateFile(filePath, content);
   }
 
-  public void generateEntityClass(final Entity entity, final IFileSystemAccess2 fsa, final Resource input) {
+  public void generateRepository(final Entity entity, final IFileSystemAccess2 fsa, final Resource input, final String idType) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = entity.getNom();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".repository;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import lombok.*;");
+    _builder.newLine();
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.append("import org.springframework.data.jpa.repository.JpaRepository;");
+    _builder.newLine();
+    _builder.append("import org.springframework.stereotype.Repository;");
+    _builder.newLine();
+    _builder.append("import com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".entities.");
+    _builder.append(className);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("@Repository");
+    _builder.newLine();
+    _builder.append("public interface ");
+    _builder.append(className);
+    _builder.append("Repository extends JpaRepository<");
+    _builder.append(className);
+    _builder.append(",");
+    _builder.append(idType);
+    _builder.append("{");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<FindByMethod> _findBy = entity.getRepo().getFindBy();
+      for(final FindByMethod method : _findBy) {
+        _builder.append("\t");
+        _builder.append("List<");
+        String _nom = entity.getNom();
+        _builder.append(_nom, "\t");
+        _builder.append("> findBy");
+        String _firstUpper = StringExtensions.toFirstUpper(method.getProperty());
+        _builder.append(_firstUpper, "\t");
+        _builder.append("(");
+        String _extractVtypesValue2 = this.extractVtypesValue2(method.getPtype().toString());
+        _builder.append(_extractVtypesValue2, "\t");
+        _builder.append(" ");
+        String _property = method.getProperty();
+        _builder.append(_property, "\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<DeleteByMethod> _deleteBy = entity.getRepo().getDeleteBy();
+      for(final DeleteByMethod method_1 : _deleteBy) {
+        _builder.append("\t");
+        _builder.append("void deleteBy");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(method_1.getProperty());
+        _builder.append(_firstUpper_1, "\t");
+        _builder.append("(");
+        String _extractVtypesValue2_1 = this.extractVtypesValue2(method_1.getPtype().toString());
+        _builder.append(_extractVtypesValue2_1, "\t");
+        _builder.append(" ");
+        String _property_1 = method_1.getProperty();
+        _builder.append(_property_1, "\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<CustomQueryMethod> _customQueryMethod = entity.getRepo().getCustomQueryMethod();
+      for(final CustomQueryMethod method_2 : _customQueryMethod) {
+        _builder.append("\t");
+        String _query = method_2.getQuery();
+        _builder.append(_query, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    final String folderPath = (("src/main/java/com/springboot/" + projectName) + "/repositories");
+    final String filePath = (((folderPath + "/") + className) + ".java");
+    fsa.generateFile(filePath, content);
+  }
+
+  public void generateEntityClass(final Entity entity, final IFileSystemAccess2 fsa, final Resource input, final String idType, final String idNom) {
     final ArrayList<String> projectNameHolder = new ArrayList<String>();
     final Procedure1<EObject> _function = (EObject element) -> {
       if ((element instanceof Sboot)) {
@@ -989,6 +1676,18 @@ public class AsamGenerator extends AbstractGenerator {
     }
     _builder.append("{");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("@Id");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private ");
+    _builder.append(idType, "\t");
+    _builder.append(" ");
+    _builder.append(idNom, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     {
       for(final Property property : properties) {
         _builder.append("    ");
@@ -1002,6 +1701,22 @@ public class AsamGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("     ");
+    _builder.append("public ");
+    _builder.append(idType, "     ");
+    _builder.append(" get");
+    String _firstUpper = StringExtensions.toFirstUpper(idNom);
+    _builder.append(_firstUpper, "     ");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("         ");
+    _builder.append("return ");
+    _builder.append(idNom, "         ");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("     ");
+    _builder.append("}");
+    _builder.newLine();
     _builder.newLine();
     {
       for(final Property property_1 : properties) {
@@ -1010,8 +1725,8 @@ public class AsamGenerator extends AbstractGenerator {
         String _simpleTypeName_1 = this.getSimpleTypeName(property_1.getType());
         _builder.append(_simpleTypeName_1, "    ");
         _builder.append(" get");
-        String _firstUpper = StringExtensions.toFirstUpper(property_1.getNom());
-        _builder.append(_firstUpper, "    ");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper_1, "    ");
         _builder.append("() {");
         _builder.newLineIfNotEmpty();
         _builder.append("    ");
@@ -1027,8 +1742,8 @@ public class AsamGenerator extends AbstractGenerator {
         _builder.newLine();
         _builder.append("    ");
         _builder.append("public void set");
-        String _firstUpper_1 = StringExtensions.toFirstUpper(property_1.getNom());
-        _builder.append(_firstUpper_1, "    ");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper_2, "    ");
         _builder.append("(");
         String _simpleTypeName_2 = this.getSimpleTypeName(property_1.getType());
         _builder.append(_simpleTypeName_2, "    ");

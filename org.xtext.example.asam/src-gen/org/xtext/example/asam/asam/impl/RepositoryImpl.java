@@ -5,7 +5,6 @@ package org.xtext.example.asam.asam.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -13,15 +12,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.asam.asam.AsamPackage;
-import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.CustomQueryMethod;
+import org.xtext.example.asam.asam.DeleteByMethod;
+import org.xtext.example.asam.asam.FindByMethod;
 import org.xtext.example.asam.asam.Repository;
-import org.xtext.example.asam.asam.RepositoryMethod;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,9 +29,9 @@ import org.xtext.example.asam.asam.RepositoryMethod;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.impl.RepositoryImpl#getNom <em>Nom</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.RepositoryImpl#getEntity <em>Entity</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.RepositoryImpl#getMethods <em>Methods</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.RepositoryImpl#getFindBy <em>Find By</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.RepositoryImpl#getDeleteBy <em>Delete By</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.RepositoryImpl#getCustomQueryMethod <em>Custom Query Method</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,44 +39,34 @@ import org.xtext.example.asam.asam.RepositoryMethod;
 public class RepositoryImpl extends ElementImpl implements Repository
 {
   /**
-   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * The cached value of the '{@link #getFindBy() <em>Find By</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNom()
+   * @see #getFindBy()
    * @generated
    * @ordered
    */
-  protected static final String NOM_EDEFAULT = null;
+  protected EList<FindByMethod> findBy;
 
   /**
-   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * The cached value of the '{@link #getDeleteBy() <em>Delete By</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNom()
+   * @see #getDeleteBy()
    * @generated
    * @ordered
    */
-  protected String nom = NOM_EDEFAULT;
+  protected EList<DeleteByMethod> deleteBy;
 
   /**
-   * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
+   * The cached value of the '{@link #getCustomQueryMethod() <em>Custom Query Method</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEntity()
+   * @see #getCustomQueryMethod()
    * @generated
    * @ordered
    */
-  protected Entity entity;
-
-  /**
-   * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMethods()
-   * @generated
-   * @ordered
-   */
-  protected EList<RepositoryMethod> methods;
+  protected EList<CustomQueryMethod> customQueryMethod;
 
   /**
    * <!-- begin-user-doc -->
@@ -107,54 +95,13 @@ public class RepositoryImpl extends ElementImpl implements Repository
    * @generated
    */
   @Override
-  public String getNom()
+  public EList<FindByMethod> getFindBy()
   {
-    return nom;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setNom(String newNom)
-  {
-    String oldNom = nom;
-    nom = newNom;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.REPOSITORY__NOM, oldNom, nom));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Entity getEntity()
-  {
-    if (entity != null && entity.eIsProxy())
+    if (findBy == null)
     {
-      InternalEObject oldEntity = (InternalEObject)entity;
-      entity = (Entity)eResolveProxy(oldEntity);
-      if (entity != oldEntity)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AsamPackage.REPOSITORY__ENTITY, oldEntity, entity));
-      }
+      findBy = new EObjectContainmentEList<FindByMethod>(FindByMethod.class, this, AsamPackage.REPOSITORY__FIND_BY);
     }
-    return entity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Entity basicGetEntity()
-  {
-    return entity;
+    return findBy;
   }
 
   /**
@@ -163,27 +110,28 @@ public class RepositoryImpl extends ElementImpl implements Repository
    * @generated
    */
   @Override
-  public void setEntity(Entity newEntity)
+  public EList<DeleteByMethod> getDeleteBy()
   {
-    Entity oldEntity = entity;
-    entity = newEntity;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.REPOSITORY__ENTITY, oldEntity, entity));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<RepositoryMethod> getMethods()
-  {
-    if (methods == null)
+    if (deleteBy == null)
     {
-      methods = new EObjectContainmentEList<RepositoryMethod>(RepositoryMethod.class, this, AsamPackage.REPOSITORY__METHODS);
+      deleteBy = new EObjectContainmentEList<DeleteByMethod>(DeleteByMethod.class, this, AsamPackage.REPOSITORY__DELETE_BY);
     }
-    return methods;
+    return deleteBy;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<CustomQueryMethod> getCustomQueryMethod()
+  {
+    if (customQueryMethod == null)
+    {
+      customQueryMethod = new EObjectContainmentEList<CustomQueryMethod>(CustomQueryMethod.class, this, AsamPackage.REPOSITORY__CUSTOM_QUERY_METHOD);
+    }
+    return customQueryMethod;
   }
 
   /**
@@ -196,8 +144,12 @@ public class RepositoryImpl extends ElementImpl implements Repository
   {
     switch (featureID)
     {
-      case AsamPackage.REPOSITORY__METHODS:
-        return ((InternalEList<?>)getMethods()).basicRemove(otherEnd, msgs);
+      case AsamPackage.REPOSITORY__FIND_BY:
+        return ((InternalEList<?>)getFindBy()).basicRemove(otherEnd, msgs);
+      case AsamPackage.REPOSITORY__DELETE_BY:
+        return ((InternalEList<?>)getDeleteBy()).basicRemove(otherEnd, msgs);
+      case AsamPackage.REPOSITORY__CUSTOM_QUERY_METHOD:
+        return ((InternalEList<?>)getCustomQueryMethod()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -212,13 +164,12 @@ public class RepositoryImpl extends ElementImpl implements Repository
   {
     switch (featureID)
     {
-      case AsamPackage.REPOSITORY__NOM:
-        return getNom();
-      case AsamPackage.REPOSITORY__ENTITY:
-        if (resolve) return getEntity();
-        return basicGetEntity();
-      case AsamPackage.REPOSITORY__METHODS:
-        return getMethods();
+      case AsamPackage.REPOSITORY__FIND_BY:
+        return getFindBy();
+      case AsamPackage.REPOSITORY__DELETE_BY:
+        return getDeleteBy();
+      case AsamPackage.REPOSITORY__CUSTOM_QUERY_METHOD:
+        return getCustomQueryMethod();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -234,15 +185,17 @@ public class RepositoryImpl extends ElementImpl implements Repository
   {
     switch (featureID)
     {
-      case AsamPackage.REPOSITORY__NOM:
-        setNom((String)newValue);
+      case AsamPackage.REPOSITORY__FIND_BY:
+        getFindBy().clear();
+        getFindBy().addAll((Collection<? extends FindByMethod>)newValue);
         return;
-      case AsamPackage.REPOSITORY__ENTITY:
-        setEntity((Entity)newValue);
+      case AsamPackage.REPOSITORY__DELETE_BY:
+        getDeleteBy().clear();
+        getDeleteBy().addAll((Collection<? extends DeleteByMethod>)newValue);
         return;
-      case AsamPackage.REPOSITORY__METHODS:
-        getMethods().clear();
-        getMethods().addAll((Collection<? extends RepositoryMethod>)newValue);
+      case AsamPackage.REPOSITORY__CUSTOM_QUERY_METHOD:
+        getCustomQueryMethod().clear();
+        getCustomQueryMethod().addAll((Collection<? extends CustomQueryMethod>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -258,14 +211,14 @@ public class RepositoryImpl extends ElementImpl implements Repository
   {
     switch (featureID)
     {
-      case AsamPackage.REPOSITORY__NOM:
-        setNom(NOM_EDEFAULT);
+      case AsamPackage.REPOSITORY__FIND_BY:
+        getFindBy().clear();
         return;
-      case AsamPackage.REPOSITORY__ENTITY:
-        setEntity((Entity)null);
+      case AsamPackage.REPOSITORY__DELETE_BY:
+        getDeleteBy().clear();
         return;
-      case AsamPackage.REPOSITORY__METHODS:
-        getMethods().clear();
+      case AsamPackage.REPOSITORY__CUSTOM_QUERY_METHOD:
+        getCustomQueryMethod().clear();
         return;
     }
     super.eUnset(featureID);
@@ -281,31 +234,14 @@ public class RepositoryImpl extends ElementImpl implements Repository
   {
     switch (featureID)
     {
-      case AsamPackage.REPOSITORY__NOM:
-        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
-      case AsamPackage.REPOSITORY__ENTITY:
-        return entity != null;
-      case AsamPackage.REPOSITORY__METHODS:
-        return methods != null && !methods.isEmpty();
+      case AsamPackage.REPOSITORY__FIND_BY:
+        return findBy != null && !findBy.isEmpty();
+      case AsamPackage.REPOSITORY__DELETE_BY:
+        return deleteBy != null && !deleteBy.isEmpty();
+      case AsamPackage.REPOSITORY__CUSTOM_QUERY_METHOD:
+        return customQueryMethod != null && !customQueryMethod.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (nom: ");
-    result.append(nom);
-    result.append(')');
-    return result.toString();
   }
 
 } //RepositoryImpl

@@ -3,6 +3,7 @@
  */
 package org.xtext.example.asam.asam;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,14 +15,14 @@ package org.xtext.example.asam.asam;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.DeleteByMethod#getProperty <em>Property</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.DeleteByMethod#getProp <em>Prop</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.DeleteByMethod#getPtype <em>Ptype</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.asam.asam.AsamPackage#getDeleteByMethod()
  * @model
  * @generated
  */
-public interface DeleteByMethod extends RepositoryMethod
+public interface DeleteByMethod extends EObject
 {
   /**
    * Returns the value of the '<em><b>Property</b></em>' attribute.
@@ -46,25 +47,28 @@ public interface DeleteByMethod extends RepositoryMethod
   void setProperty(String value);
 
   /**
-   * Returns the value of the '<em><b>Prop</b></em>' attribute.
+   * Returns the value of the '<em><b>Ptype</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.asam.asam.VTypes}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Prop</em>' attribute.
-   * @see #setProp(String)
-   * @see org.xtext.example.asam.asam.AsamPackage#getDeleteByMethod_Prop()
+   * @return the value of the '<em>Ptype</em>' attribute.
+   * @see org.xtext.example.asam.asam.VTypes
+   * @see #setPtype(VTypes)
+   * @see org.xtext.example.asam.asam.AsamPackage#getDeleteByMethod_Ptype()
    * @model
    * @generated
    */
-  String getProp();
+  VTypes getPtype();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.DeleteByMethod#getProp <em>Prop</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.asam.asam.DeleteByMethod#getPtype <em>Ptype</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Prop</em>' attribute.
-   * @see #getProp()
+   * @param value the new value of the '<em>Ptype</em>' attribute.
+   * @see org.xtext.example.asam.asam.VTypes
+   * @see #getPtype()
    * @generated
    */
-  void setProp(String value);
+  void setPtype(VTypes value);
 
 } // DeleteByMethod

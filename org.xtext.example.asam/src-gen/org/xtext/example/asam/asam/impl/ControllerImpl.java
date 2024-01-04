@@ -14,14 +14,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.Controller;
-import org.xtext.example.asam.asam.ControllerAction;
+import org.xtext.example.asam.asam.CustomAction;
 import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.ParamTrasfert;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,36 +33,18 @@ import org.xtext.example.asam.asam.Entity;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getBaseUrl <em>Base Url</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getCactions <em>Cactions</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getCparam <em>Cparam</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getFparam <em>Fparam</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getDparam <em>Dparam</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ControllerImpl extends ElementImpl implements Controller
+public class ControllerImpl extends MinimalEObjectImpl.Container implements Controller
 {
-  /**
-   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNom()
-   * @generated
-   * @ordered
-   */
-  protected static final String NOM_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNom()
-   * @generated
-   * @ordered
-   */
-  protected String nom = NOM_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
    * <!-- begin-user-doc -->
@@ -92,14 +76,74 @@ public class ControllerImpl extends ElementImpl implements Controller
   protected String baseUrl = BASE_URL_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
+   * The cached value of the '{@link #getCactions() <em>Cactions</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getActions()
+   * @see #getCactions()
    * @generated
    * @ordered
    */
-  protected EList<ControllerAction> actions;
+  protected EList<CustomAction> cactions;
+
+  /**
+   * The default value of the '{@link #getCparam() <em>Cparam</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCparam()
+   * @generated
+   * @ordered
+   */
+  protected static final ParamTrasfert CPARAM_EDEFAULT = ParamTrasfert.REQUEST_BODY;
+
+  /**
+   * The cached value of the '{@link #getCparam() <em>Cparam</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCparam()
+   * @generated
+   * @ordered
+   */
+  protected ParamTrasfert cparam = CPARAM_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getFparam() <em>Fparam</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFparam()
+   * @generated
+   * @ordered
+   */
+  protected static final ParamTrasfert FPARAM_EDEFAULT = ParamTrasfert.REQUEST_BODY;
+
+  /**
+   * The cached value of the '{@link #getFparam() <em>Fparam</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFparam()
+   * @generated
+   * @ordered
+   */
+  protected ParamTrasfert fparam = FPARAM_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getDparam() <em>Dparam</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDparam()
+   * @generated
+   * @ordered
+   */
+  protected static final ParamTrasfert DPARAM_EDEFAULT = ParamTrasfert.REQUEST_BODY;
+
+  /**
+   * The cached value of the '{@link #getDparam() <em>Dparam</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDparam()
+   * @generated
+   * @ordered
+   */
+  protected ParamTrasfert dparam = DPARAM_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -120,31 +164,6 @@ public class ControllerImpl extends ElementImpl implements Controller
   protected EClass eStaticClass()
   {
     return AsamPackage.Literals.CONTROLLER;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getNom()
-  {
-    return nom;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setNom(String newNom)
-  {
-    String oldNom = nom;
-    nom = newNom;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.CONTROLLER__NOM, oldNom, nom));
   }
 
   /**
@@ -223,13 +242,88 @@ public class ControllerImpl extends ElementImpl implements Controller
    * @generated
    */
   @Override
-  public EList<ControllerAction> getActions()
+  public EList<CustomAction> getCactions()
   {
-    if (actions == null)
+    if (cactions == null)
     {
-      actions = new EObjectContainmentEList<ControllerAction>(ControllerAction.class, this, AsamPackage.CONTROLLER__ACTIONS);
+      cactions = new EObjectContainmentEList<CustomAction>(CustomAction.class, this, AsamPackage.CONTROLLER__CACTIONS);
     }
-    return actions;
+    return cactions;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ParamTrasfert getCparam()
+  {
+    return cparam;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setCparam(ParamTrasfert newCparam)
+  {
+    ParamTrasfert oldCparam = cparam;
+    cparam = newCparam == null ? CPARAM_EDEFAULT : newCparam;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.CONTROLLER__CPARAM, oldCparam, cparam));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ParamTrasfert getFparam()
+  {
+    return fparam;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setFparam(ParamTrasfert newFparam)
+  {
+    ParamTrasfert oldFparam = fparam;
+    fparam = newFparam == null ? FPARAM_EDEFAULT : newFparam;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.CONTROLLER__FPARAM, oldFparam, fparam));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ParamTrasfert getDparam()
+  {
+    return dparam;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setDparam(ParamTrasfert newDparam)
+  {
+    ParamTrasfert oldDparam = dparam;
+    dparam = newDparam == null ? DPARAM_EDEFAULT : newDparam;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.CONTROLLER__DPARAM, oldDparam, dparam));
   }
 
   /**
@@ -242,8 +336,8 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__ACTIONS:
-        return ((InternalEList<?>)getActions()).basicRemove(otherEnd, msgs);
+      case AsamPackage.CONTROLLER__CACTIONS:
+        return ((InternalEList<?>)getCactions()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -258,15 +352,19 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__NOM:
-        return getNom();
       case AsamPackage.CONTROLLER__ENTITY:
         if (resolve) return getEntity();
         return basicGetEntity();
       case AsamPackage.CONTROLLER__BASE_URL:
         return getBaseUrl();
-      case AsamPackage.CONTROLLER__ACTIONS:
-        return getActions();
+      case AsamPackage.CONTROLLER__CACTIONS:
+        return getCactions();
+      case AsamPackage.CONTROLLER__CPARAM:
+        return getCparam();
+      case AsamPackage.CONTROLLER__FPARAM:
+        return getFparam();
+      case AsamPackage.CONTROLLER__DPARAM:
+        return getDparam();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -282,18 +380,24 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__NOM:
-        setNom((String)newValue);
-        return;
       case AsamPackage.CONTROLLER__ENTITY:
         setEntity((Entity)newValue);
         return;
       case AsamPackage.CONTROLLER__BASE_URL:
         setBaseUrl((String)newValue);
         return;
-      case AsamPackage.CONTROLLER__ACTIONS:
-        getActions().clear();
-        getActions().addAll((Collection<? extends ControllerAction>)newValue);
+      case AsamPackage.CONTROLLER__CACTIONS:
+        getCactions().clear();
+        getCactions().addAll((Collection<? extends CustomAction>)newValue);
+        return;
+      case AsamPackage.CONTROLLER__CPARAM:
+        setCparam((ParamTrasfert)newValue);
+        return;
+      case AsamPackage.CONTROLLER__FPARAM:
+        setFparam((ParamTrasfert)newValue);
+        return;
+      case AsamPackage.CONTROLLER__DPARAM:
+        setDparam((ParamTrasfert)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -309,17 +413,23 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__NOM:
-        setNom(NOM_EDEFAULT);
-        return;
       case AsamPackage.CONTROLLER__ENTITY:
         setEntity((Entity)null);
         return;
       case AsamPackage.CONTROLLER__BASE_URL:
         setBaseUrl(BASE_URL_EDEFAULT);
         return;
-      case AsamPackage.CONTROLLER__ACTIONS:
-        getActions().clear();
+      case AsamPackage.CONTROLLER__CACTIONS:
+        getCactions().clear();
+        return;
+      case AsamPackage.CONTROLLER__CPARAM:
+        setCparam(CPARAM_EDEFAULT);
+        return;
+      case AsamPackage.CONTROLLER__FPARAM:
+        setFparam(FPARAM_EDEFAULT);
+        return;
+      case AsamPackage.CONTROLLER__DPARAM:
+        setDparam(DPARAM_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -335,14 +445,18 @@ public class ControllerImpl extends ElementImpl implements Controller
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__NOM:
-        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.CONTROLLER__ENTITY:
         return entity != null;
       case AsamPackage.CONTROLLER__BASE_URL:
         return BASE_URL_EDEFAULT == null ? baseUrl != null : !BASE_URL_EDEFAULT.equals(baseUrl);
-      case AsamPackage.CONTROLLER__ACTIONS:
-        return actions != null && !actions.isEmpty();
+      case AsamPackage.CONTROLLER__CACTIONS:
+        return cactions != null && !cactions.isEmpty();
+      case AsamPackage.CONTROLLER__CPARAM:
+        return cparam != CPARAM_EDEFAULT;
+      case AsamPackage.CONTROLLER__FPARAM:
+        return fparam != FPARAM_EDEFAULT;
+      case AsamPackage.CONTROLLER__DPARAM:
+        return dparam != DPARAM_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -358,10 +472,14 @@ public class ControllerImpl extends ElementImpl implements Controller
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (nom: ");
-    result.append(nom);
-    result.append(", baseUrl: ");
+    result.append(" (baseUrl: ");
     result.append(baseUrl);
+    result.append(", cparam: ");
+    result.append(cparam);
+    result.append(", fparam: ");
+    result.append(fparam);
+    result.append(", dparam: ");
+    result.append(dparam);
     result.append(')');
     return result.toString();
   }

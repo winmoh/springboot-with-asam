@@ -33,10 +33,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entity" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//VTypes"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extends" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ident" eType="#//Identifier"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//Property" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repo" eType="#//Repository"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="control" eType="#//Controller"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Identifier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//VTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DTO" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -45,34 +54,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Controller"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ServiceAction" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Controller" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Controller">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
-        eType="#//ControllerAction" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Repository" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
-        eType="#//RepositoryMethod" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RepositoryMethod"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FindByMethod" eSuperTypes="#//RepositoryMethod">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DeleteByMethod" eSuperTypes="#//RepositoryMethod">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CustomQueryMethod" eSuperTypes="#//RepositoryMethod">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cactions" upperBound="-1"
+        eType="#//CustomAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cparam" eType="#//ParamTrasfert"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fparam" eType="#//ParamTrasfert"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dparam" eType="#//ParamTrasfert"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceAction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -84,10 +77,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//ActionParameter" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ControllerAction">
+  <eClassifiers xsi:type="ecore:EClass" name="CustomAction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="#//HttpMethods"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceAction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//ActionParameter" containment="true"/>
@@ -96,6 +88,25 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Repository" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="findBy" upperBound="-1"
+        eType="#//FindByMethod" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deleteBy" upperBound="-1"
+        eType="#//DeleteByMethod" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customQueryMethod" upperBound="-1"
+        eType="#//CustomQueryMethod" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FindByMethod">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ptype" eType="#//VTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeleteByMethod">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ptype" eType="#//VTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomQueryMethod">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -138,5 +149,10 @@
     <eLiterals name="M2M" literal="ManyToMany"/>
     <eLiterals name="M2O" value="1" literal="ManyToOne"/>
     <eLiterals name="O2M" value="2" literal="OneToMany"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ParamTrasfert">
+    <eLiterals name="RequestBody" literal="RequestBody"/>
+    <eLiterals name="RequestParam" value="1" literal="RequestParam"/>
+    <eLiterals name="PathVariable" value="2" literal="PathVariable"/>
   </eClassifiers>
 </ecore:EPackage>

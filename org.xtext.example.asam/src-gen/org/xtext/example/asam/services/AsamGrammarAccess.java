@@ -73,16 +73,15 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cEntityParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cServiceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cControllerParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cDTOParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cRepositoryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cEntityRelationshipParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cDTOParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cRepositoryParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cEntityRelationshipParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//Element:
-		//    Entity | Service | Controller | DTO | Repository | EntityRelationship ;
+		//    Entity | Service  | DTO | Repository | EntityRelationship ;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Entity | Service | Controller | DTO | Repository | EntityRelationship
+		//Entity | Service  | DTO | Repository | EntityRelationship
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Entity
@@ -91,17 +90,14 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//Service
 		public RuleCall getServiceParserRuleCall_1() { return cServiceParserRuleCall_1; }
 		
-		//Controller
-		public RuleCall getControllerParserRuleCall_2() { return cControllerParserRuleCall_2; }
-		
 		//DTO
-		public RuleCall getDTOParserRuleCall_3() { return cDTOParserRuleCall_3; }
+		public RuleCall getDTOParserRuleCall_2() { return cDTOParserRuleCall_2; }
 		
 		//Repository
-		public RuleCall getRepositoryParserRuleCall_4() { return cRepositoryParserRuleCall_4; }
+		public RuleCall getRepositoryParserRuleCall_3() { return cRepositoryParserRuleCall_3; }
 		
 		//EntityRelationship
-		public RuleCall getEntityRelationshipParserRuleCall_5() { return cEntityRelationshipParserRuleCall_5; }
+		public RuleCall getEntityRelationshipParserRuleCall_4() { return cEntityRelationshipParserRuleCall_4; }
 	}
 	public class EntityRelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.EntityRelationship");
@@ -363,35 +359,111 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Entity");
 		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cEntityKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cInheritsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cExtendsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cExtendsEntityCrossReference_2_1_0 = (CrossReference)cExtendsAssignment_2_1.eContents().get(0);
+		private final RuleCall cExtendsEntityIDTerminalRuleCall_2_1_0_1 = (RuleCall)cExtendsEntityCrossReference_2_1_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cIdentAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cIdentIdentifierParserRuleCall_4_0 = (RuleCall)cIdentAssignment_4.eContents().get(0);
+		private final Assignment cPropertiesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cPropertiesPropertyParserRuleCall_5_0 = (RuleCall)cPropertiesAssignment_5.eContents().get(0);
+		private final Assignment cRepoAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cRepoRepositoryParserRuleCall_6_0 = (RuleCall)cRepoAssignment_6.eContents().get(0);
+		private final Assignment cControlAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cControlControllerParserRuleCall_7_0 = (RuleCall)cControlAssignment_7.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		
+		//Entity:
+		//    'entity' nom=ID ('inherits' extends=[Entity])? '{'
+		//        ident=Identifier
+		//        properties+=Property*
+		//        repo=Repository?
+		//        control=Controller
+		//    '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'entity' nom=ID ('inherits' extends=[Entity])? '{'
+		//    ident=Identifier
+		//    properties+=Property*
+		//    repo=Repository?
+		//    control=Controller
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'entity'
+		public Keyword getEntityKeyword_0() { return cEntityKeyword_0; }
+		
+		//nom=ID
+		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
+		
+		//ID
+		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
+		
+		//('inherits' extends=[Entity])?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'inherits'
+		public Keyword getInheritsKeyword_2_0() { return cInheritsKeyword_2_0; }
+		
+		//extends=[Entity]
+		public Assignment getExtendsAssignment_2_1() { return cExtendsAssignment_2_1; }
+		
+		//[Entity]
+		public CrossReference getExtendsEntityCrossReference_2_1_0() { return cExtendsEntityCrossReference_2_1_0; }
+		
+		//ID
+		public RuleCall getExtendsEntityIDTerminalRuleCall_2_1_0_1() { return cExtendsEntityIDTerminalRuleCall_2_1_0_1; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		
+		//ident=Identifier
+		public Assignment getIdentAssignment_4() { return cIdentAssignment_4; }
+		
+		//Identifier
+		public RuleCall getIdentIdentifierParserRuleCall_4_0() { return cIdentIdentifierParserRuleCall_4_0; }
+		
+		//properties+=Property*
+		public Assignment getPropertiesAssignment_5() { return cPropertiesAssignment_5; }
+		
+		//Property
+		public RuleCall getPropertiesPropertyParserRuleCall_5_0() { return cPropertiesPropertyParserRuleCall_5_0; }
+		
+		//repo=Repository?
+		public Assignment getRepoAssignment_6() { return cRepoAssignment_6; }
+		
+		//Repository
+		public RuleCall getRepoRepositoryParserRuleCall_6_0() { return cRepoRepositoryParserRuleCall_6_0; }
+		
+		//control=Controller
+		public Assignment getControlAssignment_7() { return cControlAssignment_7; }
+		
+		//Controller
+		public RuleCall getControlControllerParserRuleCall_7_0() { return cControlControllerParserRuleCall_7_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+	}
+	public class IdentifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Identifier");
+		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cIdKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeVTypesEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
-		private final Keyword cEntityKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cNomAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cNomIDTerminalRuleCall_4_0 = (RuleCall)cNomAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cInheritsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cExtendsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final CrossReference cExtendsEntityCrossReference_5_1_0 = (CrossReference)cExtendsAssignment_5_1.eContents().get(0);
-		private final RuleCall cExtendsEntityIDTerminalRuleCall_5_1_0_1 = (RuleCall)cExtendsEntityCrossReference_5_1_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cPropertiesAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cPropertiesPropertyParserRuleCall_7_0 = (RuleCall)cPropertiesAssignment_7.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
-		//Entity:
+		//Identifier:
 		//    'Id' nom=ID type=VTypes
-		//    'entity' nom=ID ('inherits' extends=[Entity])? '{'
-		//        properties+=Property*
-		//    '}';
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Id' nom=ID type=VTypes
-		//'entity' nom=ID ('inherits' extends=[Entity])? '{'
-		//    properties+=Property*
-		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Id'
@@ -408,42 +480,6 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//VTypes
 		public RuleCall getTypeVTypesEnumRuleCall_2_0() { return cTypeVTypesEnumRuleCall_2_0; }
-		
-		//'entity'
-		public Keyword getEntityKeyword_3() { return cEntityKeyword_3; }
-		
-		//nom=ID
-		public Assignment getNomAssignment_4() { return cNomAssignment_4; }
-		
-		//ID
-		public RuleCall getNomIDTerminalRuleCall_4_0() { return cNomIDTerminalRuleCall_4_0; }
-		
-		//('inherits' extends=[Entity])?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//'inherits'
-		public Keyword getInheritsKeyword_5_0() { return cInheritsKeyword_5_0; }
-		
-		//extends=[Entity]
-		public Assignment getExtendsAssignment_5_1() { return cExtendsAssignment_5_1; }
-		
-		//[Entity]
-		public CrossReference getExtendsEntityCrossReference_5_1_0() { return cExtendsEntityCrossReference_5_1_0; }
-		
-		//ID
-		public RuleCall getExtendsEntityIDTerminalRuleCall_5_1_0_1() { return cExtendsEntityIDTerminalRuleCall_5_1_0_1; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
-		
-		//properties+=Property*
-		public Assignment getPropertiesAssignment_7() { return cPropertiesAssignment_7; }
-		
-		//Property
-		public RuleCall getPropertiesPropertyParserRuleCall_7_0() { return cPropertiesPropertyParserRuleCall_7_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 	public class DTOElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.DTO");
@@ -496,20 +532,20 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
 		private final Keyword cPertainingToKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cEntityControllerCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
-		private final RuleCall cEntityControllerIDTerminalRuleCall_3_0_1 = (RuleCall)cEntityControllerCrossReference_3_0.eContents().get(1);
+		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
+		private final RuleCall cEntityEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cEntityEntityCrossReference_3_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cActionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cActionsServiceActionParserRuleCall_5_0 = (RuleCall)cActionsAssignment_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Service:
-		//    'service' nom=ID 'pertainingTo' entity=[Controller] '{'
+		//    'service' nom=ID 'pertainingTo' entity=[Entity] '{'
 		//        actions+=ServiceAction*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'service' nom=ID 'pertainingTo' entity=[Controller] '{'
+		//'service' nom=ID 'pertainingTo' entity=[Entity] '{'
 		//    actions+=ServiceAction*
 		//'}'
 		public Group getGroup() { return cGroup; }
@@ -526,14 +562,14 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'pertainingTo'
 		public Keyword getPertainingToKeyword_2() { return cPertainingToKeyword_2; }
 		
-		//entity=[Controller]
+		//entity=[Entity]
 		public Assignment getEntityAssignment_3() { return cEntityAssignment_3; }
 		
-		//[Controller]
-		public CrossReference getEntityControllerCrossReference_3_0() { return cEntityControllerCrossReference_3_0; }
+		//[Entity]
+		public CrossReference getEntityEntityCrossReference_3_0() { return cEntityEntityCrossReference_3_0; }
 		
 		//ID
-		public RuleCall getEntityControllerIDTerminalRuleCall_3_0_1() { return cEntityControllerIDTerminalRuleCall_3_0_1; }
+		public RuleCall getEntityEntityIDTerminalRuleCall_3_0_1() { return cEntityEntityIDTerminalRuleCall_3_0_1; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
@@ -551,261 +587,128 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Controller");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cControllerKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
-		private final Keyword cMappingToKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
-		private final RuleCall cEntityEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cEntityEntityCrossReference_3_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cBaseUrlAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBaseUrlSTRINGTerminalRuleCall_5_0 = (RuleCall)cBaseUrlAssignment_5.eContents().get(0);
-		private final Assignment cActionsAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cActionsControllerActionParserRuleCall_6_0 = (RuleCall)cActionsAssignment_6.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cMappingToKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cEntityAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cEntityEntityCrossReference_2_0 = (CrossReference)cEntityAssignment_2.eContents().get(0);
+		private final RuleCall cEntityEntityIDTerminalRuleCall_2_0_1 = (RuleCall)cEntityEntityCrossReference_2_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cBaseUrlAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cBaseUrlPATHTerminalRuleCall_4_0 = (RuleCall)cBaseUrlAssignment_4.eContents().get(0);
+		private final Assignment cCactionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cCactionsCustomActionParserRuleCall_5_0 = (RuleCall)cCactionsAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cCreateKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cEntityKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
+		private final Assignment cCparamAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
+		private final RuleCall cCparamParamTrasfertEnumRuleCall_6_2_0 = (RuleCall)cCparamAssignment_6_2.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cFindKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Keyword cEntityKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Assignment cFparamAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
+		private final RuleCall cFparamParamTrasfertEnumRuleCall_7_2_0 = (RuleCall)cFparamAssignment_7_2.eContents().get(0);
+		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
+		private final Keyword cDeleteKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Keyword cEntityKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
+		private final Assignment cDparamAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
+		private final RuleCall cDparamParamTrasfertEnumRuleCall_8_2_0 = (RuleCall)cDparamAssignment_8_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//Controller:
-		//    'controller' nom=ID 'mappingTo' entity=[Entity] '{'
-		//        baseUrl=STRING?
-		//        actions+=ControllerAction*
-		//    '}';
+		//    'controller' 'mappingTo' entity=[Entity] '{'
+		//        baseUrl=PATH?
+		//        cactions+=CustomAction*
+		//        ('create' 'entity:' cparam=ParamTrasfert )?
+		//        ('find' 'entity:' fparam=ParamTrasfert)?
+		//        ('delete' 'entity:' dparam=ParamTrasfert)?
+		//     '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'controller' nom=ID 'mappingTo' entity=[Entity] '{'
-		//    baseUrl=STRING?
-		//    actions+=ControllerAction*
-		//'}'
+		//'controller' 'mappingTo' entity=[Entity] '{'
+		//    baseUrl=PATH?
+		//    cactions+=CustomAction*
+		//    ('create' 'entity:' cparam=ParamTrasfert )?
+		//    ('find' 'entity:' fparam=ParamTrasfert)?
+		//    ('delete' 'entity:' dparam=ParamTrasfert)?
+		// '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'controller'
 		public Keyword getControllerKeyword_0() { return cControllerKeyword_0; }
 		
-		//nom=ID
-		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
-		
-		//ID
-		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
-		
 		//'mappingTo'
-		public Keyword getMappingToKeyword_2() { return cMappingToKeyword_2; }
+		public Keyword getMappingToKeyword_1() { return cMappingToKeyword_1; }
 		
 		//entity=[Entity]
-		public Assignment getEntityAssignment_3() { return cEntityAssignment_3; }
+		public Assignment getEntityAssignment_2() { return cEntityAssignment_2; }
 		
 		//[Entity]
-		public CrossReference getEntityEntityCrossReference_3_0() { return cEntityEntityCrossReference_3_0; }
+		public CrossReference getEntityEntityCrossReference_2_0() { return cEntityEntityCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getEntityEntityIDTerminalRuleCall_3_0_1() { return cEntityEntityIDTerminalRuleCall_3_0_1; }
+		public RuleCall getEntityEntityIDTerminalRuleCall_2_0_1() { return cEntityEntityIDTerminalRuleCall_2_0_1; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
-		//baseUrl=STRING?
-		public Assignment getBaseUrlAssignment_5() { return cBaseUrlAssignment_5; }
+		//baseUrl=PATH?
+		public Assignment getBaseUrlAssignment_4() { return cBaseUrlAssignment_4; }
 		
-		//STRING
-		public RuleCall getBaseUrlSTRINGTerminalRuleCall_5_0() { return cBaseUrlSTRINGTerminalRuleCall_5_0; }
+		//PATH
+		public RuleCall getBaseUrlPATHTerminalRuleCall_4_0() { return cBaseUrlPATHTerminalRuleCall_4_0; }
 		
-		//actions+=ControllerAction*
-		public Assignment getActionsAssignment_6() { return cActionsAssignment_6; }
+		//cactions+=CustomAction*
+		public Assignment getCactionsAssignment_5() { return cCactionsAssignment_5; }
 		
-		//ControllerAction
-		public RuleCall getActionsControllerActionParserRuleCall_6_0() { return cActionsControllerActionParserRuleCall_6_0; }
+		//CustomAction
+		public RuleCall getCactionsCustomActionParserRuleCall_5_0() { return cCactionsCustomActionParserRuleCall_5_0; }
 		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
-	}
-	public class RepositoryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Repository");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRepositoryKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNomAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNomIDTerminalRuleCall_1_0 = (RuleCall)cNomAssignment_1.eContents().get(0);
-		private final Keyword cForKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
-		private final RuleCall cEntityEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cEntityEntityCrossReference_3_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cMethodsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cMethodsRepositoryMethodParserRuleCall_5_0 = (RuleCall)cMethodsAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		//('create' 'entity:' cparam=ParamTrasfert )?
+		public Group getGroup_6() { return cGroup_6; }
 		
-		//Repository:
-		//    'repository' nom=ID 'for' entity=[Entity] '{'
-		//        methods+=RepositoryMethod*
-		//    '}';
-		@Override public ParserRule getRule() { return rule; }
+		//'create'
+		public Keyword getCreateKeyword_6_0() { return cCreateKeyword_6_0; }
 		
-		//'repository' nom=ID 'for' entity=[Entity] '{'
-		//    methods+=RepositoryMethod*
-		//'}'
-		public Group getGroup() { return cGroup; }
+		//'entity:'
+		public Keyword getEntityKeyword_6_1() { return cEntityKeyword_6_1; }
 		
-		//'repository'
-		public Keyword getRepositoryKeyword_0() { return cRepositoryKeyword_0; }
+		//cparam=ParamTrasfert
+		public Assignment getCparamAssignment_6_2() { return cCparamAssignment_6_2; }
 		
-		//nom=ID
-		public Assignment getNomAssignment_1() { return cNomAssignment_1; }
+		//ParamTrasfert
+		public RuleCall getCparamParamTrasfertEnumRuleCall_6_2_0() { return cCparamParamTrasfertEnumRuleCall_6_2_0; }
 		
-		//ID
-		public RuleCall getNomIDTerminalRuleCall_1_0() { return cNomIDTerminalRuleCall_1_0; }
-		
-		//'for'
-		public Keyword getForKeyword_2() { return cForKeyword_2; }
-		
-		//entity=[Entity]
-		public Assignment getEntityAssignment_3() { return cEntityAssignment_3; }
-		
-		//[Entity]
-		public CrossReference getEntityEntityCrossReference_3_0() { return cEntityEntityCrossReference_3_0; }
-		
-		//ID
-		public RuleCall getEntityEntityIDTerminalRuleCall_3_0_1() { return cEntityEntityIDTerminalRuleCall_3_0_1; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
-		
-		//methods+=RepositoryMethod*
-		public Assignment getMethodsAssignment_5() { return cMethodsAssignment_5; }
-		
-		//RepositoryMethod
-		public RuleCall getMethodsRepositoryMethodParserRuleCall_5_0() { return cMethodsRepositoryMethodParserRuleCall_5_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
-	}
-	public class RepositoryMethodElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.RepositoryMethod");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cFindByMethodParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cDeleteByMethodParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cCustomQueryMethodParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		
-		//RepositoryMethod:
-		//    FindByMethod | DeleteByMethod | CustomQueryMethod;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//FindByMethod | DeleteByMethod | CustomQueryMethod
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//FindByMethod
-		public RuleCall getFindByMethodParserRuleCall_0() { return cFindByMethodParserRuleCall_0; }
-		
-		//DeleteByMethod
-		public RuleCall getDeleteByMethodParserRuleCall_1() { return cDeleteByMethodParserRuleCall_1; }
-		
-		//CustomQueryMethod
-		public RuleCall getCustomQueryMethodParserRuleCall_2() { return cCustomQueryMethodParserRuleCall_2; }
-	}
-	public class FindByMethodElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.FindByMethod");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cFindKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cByKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPropertyIDTerminalRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
-		private final Keyword cAndKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPropAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPropIDTerminalRuleCall_4_0 = (RuleCall)cPropAssignment_4.eContents().get(0);
-		
-		//FindByMethod:
-		//    'find' 'by' property=ID 'And' prop=ID;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'find' 'by' property=ID 'And' prop=ID
-		public Group getGroup() { return cGroup; }
+		//('find' 'entity:' fparam=ParamTrasfert)?
+		public Group getGroup_7() { return cGroup_7; }
 		
 		//'find'
-		public Keyword getFindKeyword_0() { return cFindKeyword_0; }
+		public Keyword getFindKeyword_7_0() { return cFindKeyword_7_0; }
 		
-		//'by'
-		public Keyword getByKeyword_1() { return cByKeyword_1; }
+		//'entity:'
+		public Keyword getEntityKeyword_7_1() { return cEntityKeyword_7_1; }
 		
-		//property=ID
-		public Assignment getPropertyAssignment_2() { return cPropertyAssignment_2; }
+		//fparam=ParamTrasfert
+		public Assignment getFparamAssignment_7_2() { return cFparamAssignment_7_2; }
 		
-		//ID
-		public RuleCall getPropertyIDTerminalRuleCall_2_0() { return cPropertyIDTerminalRuleCall_2_0; }
+		//ParamTrasfert
+		public RuleCall getFparamParamTrasfertEnumRuleCall_7_2_0() { return cFparamParamTrasfertEnumRuleCall_7_2_0; }
 		
-		//'And'
-		public Keyword getAndKeyword_3() { return cAndKeyword_3; }
-		
-		//prop=ID
-		public Assignment getPropAssignment_4() { return cPropAssignment_4; }
-		
-		//ID
-		public RuleCall getPropIDTerminalRuleCall_4_0() { return cPropIDTerminalRuleCall_4_0; }
-	}
-	public class DeleteByMethodElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.DeleteByMethod");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cDeleteKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cByKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPropertyIDTerminalRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
-		private final Keyword cAndKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPropAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPropIDTerminalRuleCall_4_0 = (RuleCall)cPropAssignment_4.eContents().get(0);
-		
-		//DeleteByMethod:
-		//    'delete' 'by' property=ID 'And' prop=ID;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'delete' 'by' property=ID 'And' prop=ID
-		public Group getGroup() { return cGroup; }
+		//('delete' 'entity:' dparam=ParamTrasfert)?
+		public Group getGroup_8() { return cGroup_8; }
 		
 		//'delete'
-		public Keyword getDeleteKeyword_0() { return cDeleteKeyword_0; }
+		public Keyword getDeleteKeyword_8_0() { return cDeleteKeyword_8_0; }
 		
-		//'by'
-		public Keyword getByKeyword_1() { return cByKeyword_1; }
+		//'entity:'
+		public Keyword getEntityKeyword_8_1() { return cEntityKeyword_8_1; }
 		
-		//property=ID
-		public Assignment getPropertyAssignment_2() { return cPropertyAssignment_2; }
+		//dparam=ParamTrasfert
+		public Assignment getDparamAssignment_8_2() { return cDparamAssignment_8_2; }
 		
-		//ID
-		public RuleCall getPropertyIDTerminalRuleCall_2_0() { return cPropertyIDTerminalRuleCall_2_0; }
-		
-		//'And'
-		public Keyword getAndKeyword_3() { return cAndKeyword_3; }
-		
-		//prop=ID
-		public Assignment getPropAssignment_4() { return cPropAssignment_4; }
-		
-		//ID
-		public RuleCall getPropIDTerminalRuleCall_4_0() { return cPropIDTerminalRuleCall_4_0; }
-	}
-	public class CustomQueryMethodElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.CustomQueryMethod");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cCustomQueryKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cQueryAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cQuerySTRINGTerminalRuleCall_2_0 = (RuleCall)cQueryAssignment_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		
-		//CustomQueryMethod:
-		//    'customQuery' '{' query=STRING '}';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'customQuery' '{' query=STRING '}'
-		public Group getGroup() { return cGroup; }
-		
-		//'customQuery'
-		public Keyword getCustomQueryKeyword_0() { return cCustomQueryKeyword_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
-		//query=STRING
-		public Assignment getQueryAssignment_2() { return cQueryAssignment_2; }
-		
-		//STRING
-		public RuleCall getQuerySTRINGTerminalRuleCall_2_0() { return cQuerySTRINGTerminalRuleCall_2_0; }
+		//ParamTrasfert
+		public RuleCall getDparamParamTrasfertEnumRuleCall_8_2_0() { return cDparamParamTrasfertEnumRuleCall_8_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
 	}
 	public class ServiceActionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.ServiceAction");
@@ -912,8 +815,8 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 	}
-	public class ControllerActionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.ControllerAction");
+	public class CustomActionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.CustomAction");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cMethodAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cMethodHttpMethodsEnumRuleCall_0_0 = (RuleCall)cMethodAssignment_0.eContents().get(0);
@@ -921,27 +824,22 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cNomAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNomIDTerminalRuleCall_2_0 = (RuleCall)cNomAssignment_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cLinkedToKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cServiceActionAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cServiceActionIDTerminalRuleCall_5_0 = (RuleCall)cServiceActionAssignment_5.eContents().get(0);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cMappedAtKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cUrlAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cUrlSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cUrlAssignment_6_1.eContents().get(0);
-		private final Assignment cParametersAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cParametersActionParameterParserRuleCall_7_0 = (RuleCall)cParametersAssignment_7.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cMappedAtKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cUrlAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cUrlSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cUrlAssignment_4_1.eContents().get(0);
+		private final Assignment cParametersAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cParametersActionParameterParserRuleCall_5_0 = (RuleCall)cParametersAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
-		//ControllerAction:
+		//CustomAction:
 		//    method=HttpMethods 'action' nom=ID '{'
-		//        'linkedTo' serviceAction=ID
 		//        ('mappedAt' url=STRING)?
 		//        parameters+=ActionParameter*
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//method=HttpMethods 'action' nom=ID '{'
-		//    'linkedTo' serviceAction=ID
 		//    ('mappedAt' url=STRING)?
 		//    parameters+=ActionParameter*
 		//'}'
@@ -965,35 +863,26 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
-		//'linkedTo'
-		public Keyword getLinkedToKeyword_4() { return cLinkedToKeyword_4; }
-		
-		//serviceAction=ID
-		public Assignment getServiceActionAssignment_5() { return cServiceActionAssignment_5; }
-		
-		//ID
-		public RuleCall getServiceActionIDTerminalRuleCall_5_0() { return cServiceActionIDTerminalRuleCall_5_0; }
-		
 		//('mappedAt' url=STRING)?
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_4() { return cGroup_4; }
 		
 		//'mappedAt'
-		public Keyword getMappedAtKeyword_6_0() { return cMappedAtKeyword_6_0; }
+		public Keyword getMappedAtKeyword_4_0() { return cMappedAtKeyword_4_0; }
 		
 		//url=STRING
-		public Assignment getUrlAssignment_6_1() { return cUrlAssignment_6_1; }
+		public Assignment getUrlAssignment_4_1() { return cUrlAssignment_4_1; }
 		
 		//STRING
-		public RuleCall getUrlSTRINGTerminalRuleCall_6_1_0() { return cUrlSTRINGTerminalRuleCall_6_1_0; }
+		public RuleCall getUrlSTRINGTerminalRuleCall_4_1_0() { return cUrlSTRINGTerminalRuleCall_4_1_0; }
 		
 		//parameters+=ActionParameter*
-		public Assignment getParametersAssignment_7() { return cParametersAssignment_7; }
+		public Assignment getParametersAssignment_5() { return cParametersAssignment_5; }
 		
 		//ActionParameter
-		public RuleCall getParametersActionParameterParserRuleCall_7_0() { return cParametersActionParameterParserRuleCall_7_0; }
+		public RuleCall getParametersActionParameterParserRuleCall_5_0() { return cParametersActionParameterParserRuleCall_5_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 	public class ActionParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.ActionParameter");
@@ -1041,6 +930,172 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//STRING
 		public RuleCall getDefaultValueSTRINGTerminalRuleCall_3_1_0() { return cDefaultValueSTRINGTerminalRuleCall_3_1_0; }
+	}
+	public class RepositoryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Repository");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRepositoryKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cFindByAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cFindByFindByMethodParserRuleCall_2_0 = (RuleCall)cFindByAssignment_2.eContents().get(0);
+		private final Assignment cDeleteByAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cDeleteByDeleteByMethodParserRuleCall_3_0 = (RuleCall)cDeleteByAssignment_3.eContents().get(0);
+		private final Assignment cCustomQueryMethodAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cCustomQueryMethodCustomQueryMethodParserRuleCall_4_0 = (RuleCall)cCustomQueryMethodAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//Repository:
+		//    'repository'  '{'
+		//        findBy+=FindByMethod*
+		//        deleteBy+=DeleteByMethod*
+		//        customQueryMethod+=CustomQueryMethod*
+		//    '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'repository'  '{'
+		//    findBy+=FindByMethod*
+		//    deleteBy+=DeleteByMethod*
+		//    customQueryMethod+=CustomQueryMethod*
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'repository'
+		public Keyword getRepositoryKeyword_0() { return cRepositoryKeyword_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
+		//findBy+=FindByMethod*
+		public Assignment getFindByAssignment_2() { return cFindByAssignment_2; }
+		
+		//FindByMethod
+		public RuleCall getFindByFindByMethodParserRuleCall_2_0() { return cFindByFindByMethodParserRuleCall_2_0; }
+		
+		//deleteBy+=DeleteByMethod*
+		public Assignment getDeleteByAssignment_3() { return cDeleteByAssignment_3; }
+		
+		//DeleteByMethod
+		public RuleCall getDeleteByDeleteByMethodParserRuleCall_3_0() { return cDeleteByDeleteByMethodParserRuleCall_3_0; }
+		
+		//customQueryMethod+=CustomQueryMethod*
+		public Assignment getCustomQueryMethodAssignment_4() { return cCustomQueryMethodAssignment_4; }
+		
+		//CustomQueryMethod
+		public RuleCall getCustomQueryMethodCustomQueryMethodParserRuleCall_4_0() { return cCustomQueryMethodCustomQueryMethodParserRuleCall_4_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+	public class FindByMethodElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.FindByMethod");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cFindKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cByKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPropertyIDTerminalRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
+		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPtypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPtypeVTypesEnumRuleCall_4_0 = (RuleCall)cPtypeAssignment_4.eContents().get(0);
+		
+		//FindByMethod:
+		//    'find' 'by' property=ID':' ptype=VTypes;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'find' 'by' property=ID':' ptype=VTypes
+		public Group getGroup() { return cGroup; }
+		
+		//'find'
+		public Keyword getFindKeyword_0() { return cFindKeyword_0; }
+		
+		//'by'
+		public Keyword getByKeyword_1() { return cByKeyword_1; }
+		
+		//property=ID
+		public Assignment getPropertyAssignment_2() { return cPropertyAssignment_2; }
+		
+		//ID
+		public RuleCall getPropertyIDTerminalRuleCall_2_0() { return cPropertyIDTerminalRuleCall_2_0; }
+		
+		//':'
+		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+		
+		//ptype=VTypes
+		public Assignment getPtypeAssignment_4() { return cPtypeAssignment_4; }
+		
+		//VTypes
+		public RuleCall getPtypeVTypesEnumRuleCall_4_0() { return cPtypeVTypesEnumRuleCall_4_0; }
+	}
+	public class DeleteByMethodElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.DeleteByMethod");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDeleteKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cByKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPropertyIDTerminalRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
+		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPtypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPtypeVTypesEnumRuleCall_4_0 = (RuleCall)cPtypeAssignment_4.eContents().get(0);
+		
+		// //('And' prop=ID)?;
+		//DeleteByMethod:
+		//    'delete' 'by' property=ID':' ptype=VTypes;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'delete' 'by' property=ID':' ptype=VTypes
+		public Group getGroup() { return cGroup; }
+		
+		//'delete'
+		public Keyword getDeleteKeyword_0() { return cDeleteKeyword_0; }
+		
+		//'by'
+		public Keyword getByKeyword_1() { return cByKeyword_1; }
+		
+		//property=ID
+		public Assignment getPropertyAssignment_2() { return cPropertyAssignment_2; }
+		
+		//ID
+		public RuleCall getPropertyIDTerminalRuleCall_2_0() { return cPropertyIDTerminalRuleCall_2_0; }
+		
+		//':'
+		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+		
+		//ptype=VTypes
+		public Assignment getPtypeAssignment_4() { return cPtypeAssignment_4; }
+		
+		//VTypes
+		public RuleCall getPtypeVTypesEnumRuleCall_4_0() { return cPtypeVTypesEnumRuleCall_4_0; }
+	}
+	public class CustomQueryMethodElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.CustomQueryMethod");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCustomQueryKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cQueryAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cQuerySTRINGTerminalRuleCall_2_0 = (RuleCall)cQueryAssignment_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		// //('And' prop=ID)?;
+		//CustomQueryMethod:
+		//    'customQuery' '{' query=STRING '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'customQuery' '{' query=STRING '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'customQuery'
+		public Keyword getCustomQueryKeyword_0() { return cCustomQueryKeyword_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
+		//query=STRING
+		public Assignment getQueryAssignment_2() { return cQueryAssignment_2; }
+		
+		//STRING
+		public RuleCall getQuerySTRINGTerminalRuleCall_2_0() { return cQuerySTRINGTerminalRuleCall_2_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class PropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Property");
@@ -1396,6 +1451,40 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//"OneToMany"
 		public Keyword getO2MOneToManyKeyword_2_0() { return cO2MOneToManyKeyword_2_0; }
 	}
+	public class ParamTrasfertElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.ParamTrasfert");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cRequestBodyEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cRequestBodyRequestBodyKeyword_0_0 = (Keyword)cRequestBodyEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cRequestParamEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cRequestParamRequestParamKeyword_1_0 = (Keyword)cRequestParamEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cPathVariableEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cPathVariablePathVariableKeyword_2_0 = (Keyword)cPathVariableEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" |PathVariable="PathVariable";
+		public EnumRule getRule() { return rule; }
+		
+		//RequestBody="RequestBody" | RequestParam="RequestParam" |PathVariable="PathVariable"
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//RequestBody="RequestBody"
+		public EnumLiteralDeclaration getRequestBodyEnumLiteralDeclaration_0() { return cRequestBodyEnumLiteralDeclaration_0; }
+		
+		//"RequestBody"
+		public Keyword getRequestBodyRequestBodyKeyword_0_0() { return cRequestBodyRequestBodyKeyword_0_0; }
+		
+		//RequestParam="RequestParam"
+		public EnumLiteralDeclaration getRequestParamEnumLiteralDeclaration_1() { return cRequestParamEnumLiteralDeclaration_1; }
+		
+		//"RequestParam"
+		public Keyword getRequestParamRequestParamKeyword_1_0() { return cRequestParamRequestParamKeyword_1_0; }
+		
+		//PathVariable="PathVariable"
+		public EnumLiteralDeclaration getPathVariableEnumLiteralDeclaration_2() { return cPathVariableEnumLiteralDeclaration_2; }
+		
+		//"PathVariable"
+		public Keyword getPathVariablePathVariableKeyword_2_0() { return cPathVariablePathVariableKeyword_2_0; }
+	}
 	
 	private final SbootElements pSboot;
 	private final ElementElements pElement;
@@ -1404,17 +1493,17 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final ServerInfoElements pServerInfo;
 	private final DatabaseInfoElements pDatabaseInfo;
 	private final EntityElements pEntity;
+	private final IdentifierElements pIdentifier;
 	private final DTOElements pDTO;
 	private final ServiceElements pService;
 	private final ControllerElements pController;
+	private final ServiceActionElements pServiceAction;
+	private final CustomActionElements pCustomAction;
+	private final ActionParameterElements pActionParameter;
 	private final RepositoryElements pRepository;
-	private final RepositoryMethodElements pRepositoryMethod;
 	private final FindByMethodElements pFindByMethod;
 	private final DeleteByMethodElements pDeleteByMethod;
 	private final CustomQueryMethodElements pCustomQueryMethod;
-	private final ServiceActionElements pServiceAction;
-	private final ControllerActionElements pControllerAction;
-	private final ActionParameterElements pActionParameter;
 	private final PropertyElements pProperty;
 	private final TypeElements pType;
 	private final RTypeElements pRType;
@@ -1425,6 +1514,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final HttpMethodsElements eHttpMethods;
 	private final RDBMSElements eRDBMS;
 	private final DbRelationsElements eDbRelations;
+	private final ParamTrasfertElements eParamTrasfert;
 	
 	private final Grammar grammar;
 	
@@ -1442,17 +1532,17 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pServerInfo = new ServerInfoElements();
 		this.pDatabaseInfo = new DatabaseInfoElements();
 		this.pEntity = new EntityElements();
+		this.pIdentifier = new IdentifierElements();
 		this.pDTO = new DTOElements();
 		this.pService = new ServiceElements();
 		this.pController = new ControllerElements();
+		this.pServiceAction = new ServiceActionElements();
+		this.pCustomAction = new CustomActionElements();
+		this.pActionParameter = new ActionParameterElements();
 		this.pRepository = new RepositoryElements();
-		this.pRepositoryMethod = new RepositoryMethodElements();
 		this.pFindByMethod = new FindByMethodElements();
 		this.pDeleteByMethod = new DeleteByMethodElements();
 		this.pCustomQueryMethod = new CustomQueryMethodElements();
-		this.pServiceAction = new ServiceActionElements();
-		this.pControllerAction = new ControllerActionElements();
-		this.pActionParameter = new ActionParameterElements();
 		this.pProperty = new PropertyElements();
 		this.pType = new TypeElements();
 		this.pRType = new RTypeElements();
@@ -1463,6 +1553,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.eHttpMethods = new HttpMethodsElements();
 		this.eRDBMS = new RDBMSElements();
 		this.eDbRelations = new DbRelationsElements();
+		this.eParamTrasfert = new ParamTrasfertElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1505,7 +1596,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Element:
-	//    Entity | Service | Controller | DTO | Repository | EntityRelationship ;
+	//    Entity | Service  | DTO | Repository | EntityRelationship ;
 	public ElementElements getElementAccess() {
 		return pElement;
 	}
@@ -1568,9 +1659,11 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Entity:
-	//    'Id' nom=ID type=VTypes
 	//    'entity' nom=ID ('inherits' extends=[Entity])? '{'
+	//        ident=Identifier
 	//        properties+=Property*
+	//        repo=Repository?
+	//        control=Controller
 	//    '}';
 	public EntityElements getEntityAccess() {
 		return pEntity;
@@ -1578,6 +1671,17 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	public ParserRule getEntityRule() {
 		return getEntityAccess().getRule();
+	}
+	
+	//Identifier:
+	//    'Id' nom=ID type=VTypes
+	//;
+	public IdentifierElements getIdentifierAccess() {
+		return pIdentifier;
+	}
+	
+	public ParserRule getIdentifierRule() {
+		return getIdentifierAccess().getRule();
 	}
 	
 	//DTO:
@@ -1593,7 +1697,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Service:
-	//    'service' nom=ID 'pertainingTo' entity=[Controller] '{'
+	//    'service' nom=ID 'pertainingTo' entity=[Entity] '{'
 	//        actions+=ServiceAction*
 	//    '}';
 	public ServiceElements getServiceAccess() {
@@ -1605,68 +1709,19 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Controller:
-	//    'controller' nom=ID 'mappingTo' entity=[Entity] '{'
-	//        baseUrl=STRING?
-	//        actions+=ControllerAction*
-	//    '}';
+	//    'controller' 'mappingTo' entity=[Entity] '{'
+	//        baseUrl=PATH?
+	//        cactions+=CustomAction*
+	//        ('create' 'entity:' cparam=ParamTrasfert )?
+	//        ('find' 'entity:' fparam=ParamTrasfert)?
+	//        ('delete' 'entity:' dparam=ParamTrasfert)?
+	//     '}';
 	public ControllerElements getControllerAccess() {
 		return pController;
 	}
 	
 	public ParserRule getControllerRule() {
 		return getControllerAccess().getRule();
-	}
-	
-	//Repository:
-	//    'repository' nom=ID 'for' entity=[Entity] '{'
-	//        methods+=RepositoryMethod*
-	//    '}';
-	public RepositoryElements getRepositoryAccess() {
-		return pRepository;
-	}
-	
-	public ParserRule getRepositoryRule() {
-		return getRepositoryAccess().getRule();
-	}
-	
-	//RepositoryMethod:
-	//    FindByMethod | DeleteByMethod | CustomQueryMethod;
-	public RepositoryMethodElements getRepositoryMethodAccess() {
-		return pRepositoryMethod;
-	}
-	
-	public ParserRule getRepositoryMethodRule() {
-		return getRepositoryMethodAccess().getRule();
-	}
-	
-	//FindByMethod:
-	//    'find' 'by' property=ID 'And' prop=ID;
-	public FindByMethodElements getFindByMethodAccess() {
-		return pFindByMethod;
-	}
-	
-	public ParserRule getFindByMethodRule() {
-		return getFindByMethodAccess().getRule();
-	}
-	
-	//DeleteByMethod:
-	//    'delete' 'by' property=ID 'And' prop=ID;
-	public DeleteByMethodElements getDeleteByMethodAccess() {
-		return pDeleteByMethod;
-	}
-	
-	public ParserRule getDeleteByMethodRule() {
-		return getDeleteByMethodAccess().getRule();
-	}
-	
-	//CustomQueryMethod:
-	//    'customQuery' '{' query=STRING '}';
-	public CustomQueryMethodElements getCustomQueryMethodAccess() {
-		return pCustomQueryMethod;
-	}
-	
-	public ParserRule getCustomQueryMethodRule() {
-		return getCustomQueryMethodAccess().getRule();
 	}
 	
 	//ServiceAction:
@@ -1684,18 +1739,17 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getServiceActionAccess().getRule();
 	}
 	
-	//ControllerAction:
+	//CustomAction:
 	//    method=HttpMethods 'action' nom=ID '{'
-	//        'linkedTo' serviceAction=ID
 	//        ('mappedAt' url=STRING)?
 	//        parameters+=ActionParameter*
 	//    '}';
-	public ControllerActionElements getControllerActionAccess() {
-		return pControllerAction;
+	public CustomActionElements getCustomActionAccess() {
+		return pCustomAction;
 	}
 	
-	public ParserRule getControllerActionRule() {
-		return getControllerActionAccess().getRule();
+	public ParserRule getCustomActionRule() {
+		return getCustomActionAccess().getRule();
 	}
 	
 	//ActionParameter:
@@ -1706,6 +1760,52 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	public ParserRule getActionParameterRule() {
 		return getActionParameterAccess().getRule();
+	}
+	
+	//Repository:
+	//    'repository'  '{'
+	//        findBy+=FindByMethod*
+	//        deleteBy+=DeleteByMethod*
+	//        customQueryMethod+=CustomQueryMethod*
+	//    '}';
+	public RepositoryElements getRepositoryAccess() {
+		return pRepository;
+	}
+	
+	public ParserRule getRepositoryRule() {
+		return getRepositoryAccess().getRule();
+	}
+	
+	//FindByMethod:
+	//    'find' 'by' property=ID':' ptype=VTypes;
+	public FindByMethodElements getFindByMethodAccess() {
+		return pFindByMethod;
+	}
+	
+	public ParserRule getFindByMethodRule() {
+		return getFindByMethodAccess().getRule();
+	}
+	
+	// //('And' prop=ID)?;
+	//DeleteByMethod:
+	//    'delete' 'by' property=ID':' ptype=VTypes;
+	public DeleteByMethodElements getDeleteByMethodAccess() {
+		return pDeleteByMethod;
+	}
+	
+	public ParserRule getDeleteByMethodRule() {
+		return getDeleteByMethodAccess().getRule();
+	}
+	
+	// //('And' prop=ID)?;
+	//CustomQueryMethod:
+	//    'customQuery' '{' query=STRING '}';
+	public CustomQueryMethodElements getCustomQueryMethodAccess() {
+		return pCustomQueryMethod;
+	}
+	
+	public ParserRule getCustomQueryMethodRule() {
+		return getCustomQueryMethodAccess().getRule();
 	}
 	
 	//Property:
@@ -1795,6 +1895,15 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	public EnumRule getDbRelationsRule() {
 		return getDbRelationsAccess().getRule();
+	}
+	
+	//enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" |PathVariable="PathVariable";
+	public ParamTrasfertElements getParamTrasfertAccess() {
+		return eParamTrasfert;
+	}
+	
+	public EnumRule getParamTrasfertRule() {
+		return getParamTrasfertAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

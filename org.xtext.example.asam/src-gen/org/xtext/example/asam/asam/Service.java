@@ -52,12 +52,12 @@ public interface Service extends Element
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Entity</em>' reference.
-   * @see #setEntity(Controller)
+   * @see #setEntity(Entity)
    * @see org.xtext.example.asam.asam.AsamPackage#getService_Entity()
    * @model
    * @generated
    */
-  Controller getEntity();
+  Entity getEntity();
 
   /**
    * Sets the value of the '{@link org.xtext.example.asam.asam.Service#getEntity <em>Entity</em>}' reference.
@@ -67,7 +67,7 @@ public interface Service extends Element
    * @see #getEntity()
    * @generated
    */
-  void setEntity(Controller value);
+  void setEntity(Entity value);
 
   /**
    * Returns the value of the '<em><b>Actions</b></em>' containment reference list.

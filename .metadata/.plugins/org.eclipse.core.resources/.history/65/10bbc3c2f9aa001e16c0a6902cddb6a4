@@ -1,0 +1,130 @@
+grammar org.xtext.example.asam.Asam with org.eclipse.xtext.common.Terminals
+
+generate asam "http://www.xtext.org/example/asam/Asam"
+
+Sboot:
+    'project' nom=ID
+    configuration=Configuration?
+    elements+=Element*;
+
+Element:
+    Entity | Service  | DTO | Repository | EntityRelationship ;
+
+
+EntityRelationship:
+	'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
+//java.lang.IllegalArgumentException: The sources EClass 'Entity' does not expose the feature 'ActionParameter.nom'
+Configuration:
+    'config' '{'
+        server=ServerInfo?
+        database=DatabaseInfo
+    '}';
+
+ServerInfo:
+    'server' '{'
+        ('port' port=INT)
+        ('cpath' path=PATH)?
+    '}';
+
+DatabaseInfo:
+    'database' '{'
+        'dbms' type=RDBMS
+        'dname' nom=ID
+        'dport' port=INT
+        'username' username=ID
+        'password' password=ID
+    '}';
+
+Entity:
+	
+    'entity' nom=ID ('inherits' extends=[Entity])? '{'
+    	ident=Identifier
+        properties+=Property*
+        repo=Repository?
+        controller=Controller
+    '}';
+
+Identifier:
+	'Id' nom=ID type=VTypes
+;
+
+DTO:
+    'dto' nom=ID '{'
+        properties+=Property*
+    '}';
+
+Service:
+    'service' nom=ID 'pertainingTo' entity=[Entity] '{'
+        actions+=ServiceAction*
+    '}';
+
+Controller:
+    'controller' 'mappingTo' entity=[Entity] '{'
+        baseUrl=PATH?
+        cactions+=CustomAction*
+        ('create' 'entity:' cparam=ParamTrasfert )?
+        ('find' 'entity:' fparam=ParamTrasfert)?
+        ('delete' 'entity:' dparam=ParamTrasfert)?
+     '}';
+
+ServiceAction:
+    'operation' nom=ID '{'
+        'returns' returnType=RType
+        ('raises' exceptionType=Type)?
+        ('implementation' implementation=STRING)?
+        'params' '(' (parameters+=ActionParameter)* ')'
+    '}';
+
+CustomAction:
+    method=HttpMethods 'action' nom=ID '{'
+        ('mappedAt' url=STRING)?
+        parameters+=ActionParameter*
+        
+    '}';
+
+
+ActionParameter:
+    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
+
+Repository:
+    'repository'  '{'
+        findBy+=FindByMethod*
+        deleteBy+=DeleteByMethod*
+        customQueryMethod+=CustomQueryMethod*
+    '}';
+
+
+
+FindByMethod:
+    'find' 'by' property=ID':' ptype=VTypes; //('And' prop=ID)?;
+
+DeleteByMethod:
+    'delete' 'by' property=ID':' ptype=VTypes; //('And' prop=ID)?;
+
+CustomQueryMethod:
+    'customQuery' '{' query=STRING '}';
+
+
+
+Property:
+    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
+
+Type:
+    Vtypes=VTypes | ListType | SetType;
+
+RType:
+    Vypes=VTypes | ListType | ID;
+
+ListType: 'List<' type=Type '>';
+SetType: 'Set<' type=Type '>';
+
+terminal PATH: ('/' ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '_')*)*;
+
+enum VTypes  : FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN="boolean" | BYTE="byte" | STRING="String";
+
+enum HttpMethods: GET="Get" | DELETE="Delete" | POST="Post" | PUT="Put" | PATCH="Patch";
+
+enum RDBMS: MYSQL="Mysql" | POSTGRES="Postgres" | MARIADB="Mariadb" | H2="h2" | ORACLE="Oracle";
+
+enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";
+enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" |PathVariable="PathVariable";

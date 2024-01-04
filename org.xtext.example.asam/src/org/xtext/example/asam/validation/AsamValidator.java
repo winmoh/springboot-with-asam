@@ -69,14 +69,14 @@ public class AsamValidator extends AbstractAsamValidator {
 			}
 		}
 		
-		@Check
+		/*@Check
 		public void checkControllerNameStartsWithCapital(Controller contr) {
 			
 			if(Character.isLowerCase(contr.getNom().charAt(0))) {
 				 warning("Controller name  should start with a capital",null
 			             );
 			}
-		}
+		}*/
 		@Check
 		public void checkEntityNameStartsWithCapital(Service serv) {
 			

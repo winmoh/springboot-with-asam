@@ -19,9 +19,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.asam.asam.AsamPackage;
+import org.xtext.example.asam.asam.Controller;
 import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.Identifier;
 import org.xtext.example.asam.asam.Property;
-import org.xtext.example.asam.asam.VTypes;
+import org.xtext.example.asam.asam.Repository;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,9 +34,11 @@ import org.xtext.example.asam.asam.VTypes;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getNom <em>Nom</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getExtends <em>Extends</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getIdent <em>Ident</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getRepo <em>Repo</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.EntityImpl#getControl <em>Control</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,26 +66,6 @@ public class EntityImpl extends ElementImpl implements Entity
   protected String nom = NOM_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected static final VTypes TYPE_EDEFAULT = VTypes.FLOAT;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected VTypes type = TYPE_EDEFAULT;
-
-  /**
    * The cached value of the '{@link #getExtends() <em>Extends</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -92,6 +76,16 @@ public class EntityImpl extends ElementImpl implements Entity
   protected Entity extends_;
 
   /**
+   * The cached value of the '{@link #getIdent() <em>Ident</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdent()
+   * @generated
+   * @ordered
+   */
+  protected Identifier ident;
+
+  /**
    * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -100,6 +94,26 @@ public class EntityImpl extends ElementImpl implements Entity
    * @ordered
    */
   protected EList<Property> properties;
+
+  /**
+   * The cached value of the '{@link #getRepo() <em>Repo</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRepo()
+   * @generated
+   * @ordered
+   */
+  protected Repository repo;
+
+  /**
+   * The cached value of the '{@link #getControl() <em>Control</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getControl()
+   * @generated
+   * @ordered
+   */
+  protected Controller control;
 
   /**
    * <!-- begin-user-doc -->
@@ -153,31 +167,6 @@ public class EntityImpl extends ElementImpl implements Entity
    * @generated
    */
   @Override
-  public VTypes getType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setType(VTypes newType)
-  {
-    VTypes oldType = type;
-    type = newType == null ? TYPE_EDEFAULT : newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__TYPE, oldType, type));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Entity getExtends()
   {
     if (extends_ != null && extends_.eIsProxy())
@@ -223,6 +212,56 @@ public class EntityImpl extends ElementImpl implements Entity
    * @generated
    */
   @Override
+  public Identifier getIdent()
+  {
+    return ident;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetIdent(Identifier newIdent, NotificationChain msgs)
+  {
+    Identifier oldIdent = ident;
+    ident = newIdent;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__IDENT, oldIdent, newIdent);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setIdent(Identifier newIdent)
+  {
+    if (newIdent != ident)
+    {
+      NotificationChain msgs = null;
+      if (ident != null)
+        msgs = ((InternalEObject)ident).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AsamPackage.ENTITY__IDENT, null, msgs);
+      if (newIdent != null)
+        msgs = ((InternalEObject)newIdent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AsamPackage.ENTITY__IDENT, null, msgs);
+      msgs = basicSetIdent(newIdent, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__IDENT, newIdent, newIdent));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<Property> getProperties()
   {
     if (properties == null)
@@ -238,12 +277,118 @@ public class EntityImpl extends ElementImpl implements Entity
    * @generated
    */
   @Override
+  public Repository getRepo()
+  {
+    return repo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetRepo(Repository newRepo, NotificationChain msgs)
+  {
+    Repository oldRepo = repo;
+    repo = newRepo;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__REPO, oldRepo, newRepo);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setRepo(Repository newRepo)
+  {
+    if (newRepo != repo)
+    {
+      NotificationChain msgs = null;
+      if (repo != null)
+        msgs = ((InternalEObject)repo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AsamPackage.ENTITY__REPO, null, msgs);
+      if (newRepo != null)
+        msgs = ((InternalEObject)newRepo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AsamPackage.ENTITY__REPO, null, msgs);
+      msgs = basicSetRepo(newRepo, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__REPO, newRepo, newRepo));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Controller getControl()
+  {
+    return control;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetControl(Controller newControl, NotificationChain msgs)
+  {
+    Controller oldControl = control;
+    control = newControl;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__CONTROL, oldControl, newControl);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setControl(Controller newControl)
+  {
+    if (newControl != control)
+    {
+      NotificationChain msgs = null;
+      if (control != null)
+        msgs = ((InternalEObject)control).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AsamPackage.ENTITY__CONTROL, null, msgs);
+      if (newControl != null)
+        msgs = ((InternalEObject)newControl).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AsamPackage.ENTITY__CONTROL, null, msgs);
+      msgs = basicSetControl(newControl, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.ENTITY__CONTROL, newControl, newControl));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
+      case AsamPackage.ENTITY__IDENT:
+        return basicSetIdent(null, msgs);
       case AsamPackage.ENTITY__PROPERTIES:
         return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+      case AsamPackage.ENTITY__REPO:
+        return basicSetRepo(null, msgs);
+      case AsamPackage.ENTITY__CONTROL:
+        return basicSetControl(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -260,13 +405,17 @@ public class EntityImpl extends ElementImpl implements Entity
     {
       case AsamPackage.ENTITY__NOM:
         return getNom();
-      case AsamPackage.ENTITY__TYPE:
-        return getType();
       case AsamPackage.ENTITY__EXTENDS:
         if (resolve) return getExtends();
         return basicGetExtends();
+      case AsamPackage.ENTITY__IDENT:
+        return getIdent();
       case AsamPackage.ENTITY__PROPERTIES:
         return getProperties();
+      case AsamPackage.ENTITY__REPO:
+        return getRepo();
+      case AsamPackage.ENTITY__CONTROL:
+        return getControl();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -285,15 +434,21 @@ public class EntityImpl extends ElementImpl implements Entity
       case AsamPackage.ENTITY__NOM:
         setNom((String)newValue);
         return;
-      case AsamPackage.ENTITY__TYPE:
-        setType((VTypes)newValue);
-        return;
       case AsamPackage.ENTITY__EXTENDS:
         setExtends((Entity)newValue);
+        return;
+      case AsamPackage.ENTITY__IDENT:
+        setIdent((Identifier)newValue);
         return;
       case AsamPackage.ENTITY__PROPERTIES:
         getProperties().clear();
         getProperties().addAll((Collection<? extends Property>)newValue);
+        return;
+      case AsamPackage.ENTITY__REPO:
+        setRepo((Repository)newValue);
+        return;
+      case AsamPackage.ENTITY__CONTROL:
+        setControl((Controller)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -312,14 +467,20 @@ public class EntityImpl extends ElementImpl implements Entity
       case AsamPackage.ENTITY__NOM:
         setNom(NOM_EDEFAULT);
         return;
-      case AsamPackage.ENTITY__TYPE:
-        setType(TYPE_EDEFAULT);
-        return;
       case AsamPackage.ENTITY__EXTENDS:
         setExtends((Entity)null);
         return;
+      case AsamPackage.ENTITY__IDENT:
+        setIdent((Identifier)null);
+        return;
       case AsamPackage.ENTITY__PROPERTIES:
         getProperties().clear();
+        return;
+      case AsamPackage.ENTITY__REPO:
+        setRepo((Repository)null);
+        return;
+      case AsamPackage.ENTITY__CONTROL:
+        setControl((Controller)null);
         return;
     }
     super.eUnset(featureID);
@@ -337,12 +498,16 @@ public class EntityImpl extends ElementImpl implements Entity
     {
       case AsamPackage.ENTITY__NOM:
         return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
-      case AsamPackage.ENTITY__TYPE:
-        return type != TYPE_EDEFAULT;
       case AsamPackage.ENTITY__EXTENDS:
         return extends_ != null;
+      case AsamPackage.ENTITY__IDENT:
+        return ident != null;
       case AsamPackage.ENTITY__PROPERTIES:
         return properties != null && !properties.isEmpty();
+      case AsamPackage.ENTITY__REPO:
+        return repo != null;
+      case AsamPackage.ENTITY__CONTROL:
+        return control != null;
     }
     return super.eIsSet(featureID);
   }
@@ -360,8 +525,6 @@ public class EntityImpl extends ElementImpl implements Entity
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (nom: ");
     result.append(nom);
-    result.append(", type: ");
-    result.append(type);
     result.append(')');
     return result.toString();
   }

@@ -73,17 +73,17 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
       case AsamPackage.SERVER_INFO: return createServerInfo();
       case AsamPackage.DATABASE_INFO: return createDatabaseInfo();
       case AsamPackage.ENTITY: return createEntity();
+      case AsamPackage.IDENTIFIER: return createIdentifier();
       case AsamPackage.DTO: return createDTO();
       case AsamPackage.SERVICE: return createService();
       case AsamPackage.CONTROLLER: return createController();
+      case AsamPackage.SERVICE_ACTION: return createServiceAction();
+      case AsamPackage.CUSTOM_ACTION: return createCustomAction();
+      case AsamPackage.ACTION_PARAMETER: return createActionParameter();
       case AsamPackage.REPOSITORY: return createRepository();
-      case AsamPackage.REPOSITORY_METHOD: return createRepositoryMethod();
       case AsamPackage.FIND_BY_METHOD: return createFindByMethod();
       case AsamPackage.DELETE_BY_METHOD: return createDeleteByMethod();
       case AsamPackage.CUSTOM_QUERY_METHOD: return createCustomQueryMethod();
-      case AsamPackage.SERVICE_ACTION: return createServiceAction();
-      case AsamPackage.CONTROLLER_ACTION: return createControllerAction();
-      case AsamPackage.ACTION_PARAMETER: return createActionParameter();
       case AsamPackage.PROPERTY: return createProperty();
       case AsamPackage.TYPE: return createType();
       case AsamPackage.RTYPE: return createRType();
@@ -112,6 +112,8 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
         return createRDBMSFromString(eDataType, initialValue);
       case AsamPackage.DB_RELATIONS:
         return createdbRelationsFromString(eDataType, initialValue);
+      case AsamPackage.PARAM_TRASFERT:
+        return createParamTrasfertFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -135,6 +137,8 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
         return convertRDBMSToString(eDataType, instanceValue);
       case AsamPackage.DB_RELATIONS:
         return convertdbRelationsToString(eDataType, instanceValue);
+      case AsamPackage.PARAM_TRASFERT:
+        return convertParamTrasfertToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -230,6 +234,18 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
    * @generated
    */
   @Override
+  public Identifier createIdentifier()
+  {
+    IdentifierImpl identifier = new IdentifierImpl();
+    return identifier;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public DTO createDTO()
   {
     DTOImpl dto = new DTOImpl();
@@ -266,10 +282,10 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
    * @generated
    */
   @Override
-  public Repository createRepository()
+  public ServiceAction createServiceAction()
   {
-    RepositoryImpl repository = new RepositoryImpl();
-    return repository;
+    ServiceActionImpl serviceAction = new ServiceActionImpl();
+    return serviceAction;
   }
 
   /**
@@ -278,10 +294,34 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
    * @generated
    */
   @Override
-  public RepositoryMethod createRepositoryMethod()
+  public CustomAction createCustomAction()
   {
-    RepositoryMethodImpl repositoryMethod = new RepositoryMethodImpl();
-    return repositoryMethod;
+    CustomActionImpl customAction = new CustomActionImpl();
+    return customAction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ActionParameter createActionParameter()
+  {
+    ActionParameterImpl actionParameter = new ActionParameterImpl();
+    return actionParameter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Repository createRepository()
+  {
+    RepositoryImpl repository = new RepositoryImpl();
+    return repository;
   }
 
   /**
@@ -318,42 +358,6 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
   {
     CustomQueryMethodImpl customQueryMethod = new CustomQueryMethodImpl();
     return customQueryMethod;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ServiceAction createServiceAction()
-  {
-    ServiceActionImpl serviceAction = new ServiceActionImpl();
-    return serviceAction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ControllerAction createControllerAction()
-  {
-    ControllerActionImpl controllerAction = new ControllerActionImpl();
-    return controllerAction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ActionParameter createActionParameter()
-  {
-    ActionParameterImpl actionParameter = new ActionParameterImpl();
-    return actionParameter;
   }
 
   /**
@@ -500,6 +504,28 @@ public class AsamFactoryImpl extends EFactoryImpl implements AsamFactory
    * @generated
    */
   public String convertdbRelationsToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ParamTrasfert createParamTrasfertFromString(EDataType eDataType, String initialValue)
+  {
+    ParamTrasfert result = ParamTrasfert.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertParamTrasfertToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

@@ -3,6 +3,7 @@
  */
 package org.xtext.example.asam.asam;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package org.xtext.example.asam.asam;
  * @model
  * @generated
  */
-public interface CustomQueryMethod extends RepositoryMethod
+public interface CustomQueryMethod extends EObject
 {
   /**
    * Returns the value of the '<em><b>Query</b></em>' attribute.

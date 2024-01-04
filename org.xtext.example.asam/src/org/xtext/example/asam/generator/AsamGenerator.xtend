@@ -44,12 +44,24 @@ class AsamGenerator extends AbstractGenerator {
     override void doGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
         input.allContents.forEach[ element |
             if (element instanceof Entity) {
-            	val idField = if (element.nom !== null) {
-			        'private ' + getSimpleTypeName(entity.Id.type) + ' ' + entity.id.nom + ';'
+            	val idType = if (element.ident!== null) {
+			         extractVtypesValue2(element.ident.type.toString()) 
 			    	} else {
-			        'private int id;'
+			        'int '
 			    }
-                generateEntityClass(element as Entity, fsa,input);
+			    val idNom = if (element.ident!== null) {
+			         element.ident.nom.toString()
+			    	} else {
+			        'Id'
+			    }
+			    
+			    generateEntityClass(element as Entity, fsa,input, idType,idNom);
+			    if(element.repo!==null){
+			    	generateRepository(element,fsa,input,idType)
+			    }
+			    generateService(element,fsa,input)
+				generateController(element,fsa,input)
+			    
             }
         ]
         input.allContents.forEach[ element |
@@ -100,6 +112,194 @@ class AsamGenerator extends AbstractGenerator {
         
         
     }
+    
+    //generating controller for the entity
+    def void generateController(Entity entity ,IFileSystemAccess2 fsa, Resource input){
+    	val projectNameHolder = new ArrayList<String>()
+        input.allContents.forEach[element |
+            if (element instanceof Sboot) {
+                projectNameHolder.add(element.nom);
+            }
+        ]
+        val projectName = projectNameHolder.get(0)
+        val className = entity.nom
+    	
+    	val content = '''
+            package com.springboot.«projectName».controllers;
+
+            import org.springframework.stereotype.Service;
+            import com.springboot.«projectName».entities.«className»;
+            import com.springboot.«projectName».services.«className.toFirstUpper»Service;
+            import org.springframework.beans.factory.annotation.Autowired;
+            import org.springframework.web.bind.annotation.*;
+            
+            
+            @RestController
+            public class «className.toFirstUpper»Controller {
+				@Autowired
+                private final «className.toFirstUpper»Service «className.toFirstLower»Service;
+
+               
+
+                «IF entity.control.dparam!== null»«generateDeleteMethodController(entity)» «ENDIF»
+                «IF entity.control.fparam!== null»«generateFindMethodController(entity)» «ENDIF»
+                «IF entity.control.cparam!== null»«generateSaveMethodController(entity)» «ENDIF»
+                
+                @GetMapping("/api/«className.toFirstUpper»/deleteAll"
+                public ReponseEntity<String> deleteAll«className.toFirstUpper»s(){
+                	return «className.toFirstLower»Service.deleteAll«className.toFirstUpper»s();
+                }
+                @GetMapping("/api/«className.toFirstUpper»/findAll"
+                public List<«className»> findAll«className.toFirstUpper»s(){
+                	return «className.toFirstLower»Service.findAll«className.toFirstUpper»s();
+                }
+        '''
+
+        fsa.generateFile("src/main/java/com/springboot/" + projectName + "/controllers/" + className.toFirstUpper + "Controller.java", content)
+    	
+    }
+    
+    
+     //generating Service for the entity
+    def void generateService(Entity entity ,IFileSystemAccess2 fsa, Resource input){
+    	
+    	val projectNameHolder = new ArrayList<String>()
+        input.allContents.forEach[element |
+            if (element instanceof Sboot) {
+                projectNameHolder.add(element.nom);
+            }
+        ]
+        val projectName = projectNameHolder.get(0)
+        val className = entity.nom
+    	
+    	val content = '''
+            package com.springboot.«projectName».services;
+
+            import org.springframework.stereotype.Service;
+            import com.springboot.«projectName».entities.«className»;
+           	import com.springboot.«projectName».services.«className»Repository;
+            import org.springframework.beans.factory.annotation.Autowired;
+            import org.springframework.web.bind.annotation.*;
+
+
+            @Service
+            public class «className.toFirstUpper»Controller {
+				@Autowired
+                private final «className»Repository «className»Repo;
+
+               
+
+                «IF entity.control.dparam!== null»«generateDeleteMethod(entity)» «ENDIF»
+                «IF entity.control.fparam!== null»«generateFindMethod(entity)» «ENDIF»
+                «IF entity.control.cparam!== null»«generateSaveMethod(entity)» «ENDIF»
+                
+                public ReponseEntity<String> deleteAll«className.toFirstUpper»s(){
+                	«className»Repo.deleteAll«className.toFirstUpper»s();
+                	return new ReponseEntity<String>("all entities dleted from database",null,HttpStatus.OK);
+                }
+               
+                public List<«className»> findAll«className.toFirstUpper»s(){
+                	return «className»Repo.findAll();
+                }
+
+            }
+        '''
+
+        fsa.generateFile("src/main/java/com/springboot/" + projectName + "/controllers/" + className.toFirstUpper + "Controller.java", content)
+    	
+    	
+    }
+    
+    //Basic crud  operations for service
+   
+    def String generateFindMethod(Entity entity){
+    	val findContent='''
+    	public «entity.nom» find«entity.nom.toFirstUpper»( «extractVtypesValue2(entity.ident.type.toString())» id)
+    	{
+    		return «entity.nom»Repo.findById(id);
+    	}
+    	'''
+    	findContent
+    }
+    
+    def String generateSaveMethod(Entity entity){
+    	val saveContent='''
+    	public void  save«entity.nom.toFirstUpper»( «entity.nom» element)
+    	{
+    		 «entity.nom»Repo.save(element);
+    	}
+    	'''
+    	saveContent
+    }
+    def String generateDeleteMethod(Entity entity){
+    	val deleteContent='''
+    	public void  delete«entity.nom.toFirstUpper»(«extractVtypesValue2(entity.ident.type.toString())» id )
+    	{
+    		 «entity.nom»Repo.deleteById(id);
+    	}
+    	'''
+    	deleteContent
+    }
+   
+   
+       //Basic crud  operations for controller
+       
+        def String generateFindMethodController(Entity entity){
+	    	val findContent='''
+	    	@GetMapping("/api/«entity.nom.toFirstUpper»"/findById)
+	    	public «entity.nom» find«entity.nom.toFirstUpper»(@RequestParam «extractVtypesValue2(entity.ident.type.toString())» id)
+	    	{
+	    		return «entity.nom»Service.save«entity.nom.toFirstUpper»(ent);
+	    	}
+	    	'''
+	    	findContent
+    }
+    
+    def String generateSaveMethodController(Entity entity){
+    	val saveContent='''
+    	@PostMapping("/api/«entity.nom.toFirstUpper»"/save«entity.nom.toFirstUpper»")
+    	public void  save«entity.nom.toFirstUpper»( @RequestBody «entity.nom» element)
+    	{
+    		 «entity.nom»Service.save(element);
+    	}
+    	'''
+    	saveContent
+    }
+    def String generateDeleteMethodController(Entity entity){
+    	val deleteContent='''
+    	@DeleteMaping("/api/«entity.nom.toFirstUpper»"/delete«entity.nom.toFirstUpper»ById")
+    	public void  delete«entity.nom.toFirstUpper»(«extractVtypesValue2(entity.ident.type.toString())» id )
+    	{
+    		 «entity.nom.toFirstUpper»Repository.deleteById(id);
+    	}
+    	'''
+    	deleteContent
+    }
+   
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //hibernate dielect for .properties
     
@@ -344,6 +544,15 @@ wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-w
 	    // Extract the content between the parentheses
 	    return vtypesPart.substring(0, vtypesPart.length() - 1)
 	}
+	 def String extractVtypesValue2(String typeString) {
+	    // Get the string representation of TypeImpl
+	    
+	    // Split the string by whitespace and get the last part
+	    val parts = typeString.split("\\s+")
+		val vtypesPart = parts.last	
+	    // Extract the content between the parentheses
+	    return vtypesPart.substring(0, vtypesPart.length() )
+	}
 	
 	//generating test folder
 	 
@@ -423,6 +632,11 @@ wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-w
 	    }
  }
  
+  
+ 
+ 
+ 
+ 
  
  
  
@@ -470,10 +684,52 @@ wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-w
     }
  		
  		
+ 	def generateRepository(Entity entity, IFileSystemAccess2 fsa,Resource input,String idType){
+ 		val projectNameHolder = new ArrayList<String>()
+    	input.allContents.forEach[element|
+    		if(element instanceof Sboot){
+ 			projectNameHolder.add(element.nom);    		}
+    	]
+    	val projectName=projectNameHolder.get(0)
+        val className = entity.nom;
+         val content = '''
+    package com.springboot.«projectName».repository;
+
+    import lombok.*;
+    import java.util.*;
+    import org.springframework.data.jpa.repository.JpaRepository;
+    import org.springframework.stereotype.Repository;
+    import com.springboot.«projectName».entities.«className»;
+    
+    @Repository
+    public interface «className»Repository extends JpaRepository<«className»,«idType»{
+    	«FOR method : entity.repo.findBy»
+    	   List<«entity.nom»> findBy«method.property.toFirstUpper»(«extractVtypesValue2(method.ptype.toString())» «method.property»);
+    	«ENDFOR»
+    	
+    	«FOR method : entity.repo.deleteBy»
+    	   void deleteBy«method.property.toFirstUpper»(«extractVtypesValue2(method.ptype.toString())» «method.property»);
+    	«ENDFOR»
+    	
+    	«FOR method : entity.repo.customQueryMethod»
+    			«method.query»
+    	«ENDFOR»
+    
+    	
+    	
+    }
+''';
+	 val folderPath = "src/main/java/com/springboot/"+projectName+"/repositories";
+        val filePath = folderPath + "/" + className + ".java";
+        
+        fsa.generateFile(filePath, content);
+	
+        
+ 		
+ 	}
  
  
- 
-	def generateEntityClass(Entity entity, IFileSystemAccess2 fsa,Resource input) {
+	def generateEntityClass(Entity entity, IFileSystemAccess2 fsa,Resource input,String idType,String idNom) {
     	val projectNameHolder = new ArrayList<String>()
     	input.allContents.forEach[element|
     		if(element instanceof Sboot){
@@ -496,9 +752,15 @@ wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-w
     @Table(name = "«className»")
     @Builder
     public class «className» «IF extendsClause !== null»extends «extendsClause» «ENDIF»{
+    	
+    	@Id
+    	private «idType» «idNom»;
         «FOR property : properties»
             private «getSimpleTypeName(property.type)» «property.nom»;
         «ENDFOR»
+         public «idType» get«idNom.toFirstUpper»() {
+             return «idNom»;
+         }
 
         «FOR property : properties»
             public «getSimpleTypeName(property.type)» get«property.nom.toFirstUpper»() {
