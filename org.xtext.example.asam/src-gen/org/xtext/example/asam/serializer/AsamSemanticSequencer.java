@@ -159,13 +159,20 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         entity=[Entity|ID] 
-	 *         baseUrl=PATH? 
-	 *         cactions+=CustomAction* 
-	 *         cparam=ParamTrasfert? 
-	 *         fparam=ParamTrasfert? 
-	 *         dparam=ParamTrasfert?
-	 *     )
+	 *         (baseUrl=PATH ((cparam=ParamTrasfert dparam=ParamTrasfert) | dparam=ParamTrasfert)) | 
+	 *         (((baseUrl=PATH cactions+=CustomAction+) | cactions+=CustomAction+) ((cparam=ParamTrasfert dparam=ParamTrasfert) | dparam=ParamTrasfert)) | 
+	 *         (
+	 *             (
+	 *                 (baseUrl=PATH ((cactions+=CustomAction+ cparam=ParamTrasfert) | cparam=ParamTrasfert)) | 
+	 *                 (cactions+=CustomAction+ cparam=ParamTrasfert) | 
+	 *                 cparam=ParamTrasfert
+	 *             )? 
+	 *             fparam=ParamTrasfert 
+	 *             dparam=ParamTrasfert
+	 *         ) | 
+	 *         (cparam=ParamTrasfert dparam=ParamTrasfert) | 
+	 *         dparam=ParamTrasfert
+	 *     )?
 	 * </pre>
 	 */
 	protected void sequence_Controller(ISerializationContext context, Controller semanticObject) {

@@ -587,34 +587,30 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.Controller");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cControllerKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cMappingToKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cEntityAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cEntityEntityCrossReference_2_0 = (CrossReference)cEntityAssignment_2.eContents().get(0);
-		private final RuleCall cEntityEntityIDTerminalRuleCall_2_0_1 = (RuleCall)cEntityEntityCrossReference_2_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cBaseUrlAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cBaseUrlPATHTerminalRuleCall_4_0 = (RuleCall)cBaseUrlAssignment_4.eContents().get(0);
-		private final Assignment cCactionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cCactionsCustomActionParserRuleCall_5_0 = (RuleCall)cCactionsAssignment_5.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cBaseUrlAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBaseUrlPATHTerminalRuleCall_2_0 = (RuleCall)cBaseUrlAssignment_2.eContents().get(0);
+		private final Assignment cCactionsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cCactionsCustomActionParserRuleCall_3_0 = (RuleCall)cCactionsAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCreateKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Keyword cEntityKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Assignment cCparamAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cCparamParamTrasfertEnumRuleCall_4_2_0 = (RuleCall)cCparamAssignment_4_2.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cFindKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cEntityKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cFparamAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cFparamParamTrasfertEnumRuleCall_5_2_0 = (RuleCall)cFparamAssignment_5_2.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cCreateKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cDeleteKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
 		private final Keyword cEntityKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
-		private final Assignment cCparamAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
-		private final RuleCall cCparamParamTrasfertEnumRuleCall_6_2_0 = (RuleCall)cCparamAssignment_6_2.eContents().get(0);
-		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cFindKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Keyword cEntityKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
-		private final Assignment cFparamAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
-		private final RuleCall cFparamParamTrasfertEnumRuleCall_7_2_0 = (RuleCall)cFparamAssignment_7_2.eContents().get(0);
-		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
-		private final Keyword cDeleteKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
-		private final Keyword cEntityKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
-		private final Assignment cDparamAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
-		private final RuleCall cDparamParamTrasfertEnumRuleCall_8_2_0 = (RuleCall)cDparamAssignment_8_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cDparamAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
+		private final RuleCall cDparamParamTrasfertEnumRuleCall_6_2_0 = (RuleCall)cDparamAssignment_6_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Controller:
-		//    'controller' 'mappingTo' entity=[Entity] '{'
+		//    'controller'  '{'
 		//        baseUrl=PATH?
 		//        cactions+=CustomAction*
 		//        ('create' 'entity:' cparam=ParamTrasfert )?
@@ -623,7 +619,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//     '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'controller' 'mappingTo' entity=[Entity] '{'
+		//'controller'  '{'
 		//    baseUrl=PATH?
 		//    cactions+=CustomAction*
 		//    ('create' 'entity:' cparam=ParamTrasfert )?
@@ -635,80 +631,68 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'controller'
 		public Keyword getControllerKeyword_0() { return cControllerKeyword_0; }
 		
-		//'mappingTo'
-		public Keyword getMappingToKeyword_1() { return cMappingToKeyword_1; }
-		
-		//entity=[Entity]
-		public Assignment getEntityAssignment_2() { return cEntityAssignment_2; }
-		
-		//[Entity]
-		public CrossReference getEntityEntityCrossReference_2_0() { return cEntityEntityCrossReference_2_0; }
-		
-		//ID
-		public RuleCall getEntityEntityIDTerminalRuleCall_2_0_1() { return cEntityEntityIDTerminalRuleCall_2_0_1; }
-		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
 		//baseUrl=PATH?
-		public Assignment getBaseUrlAssignment_4() { return cBaseUrlAssignment_4; }
+		public Assignment getBaseUrlAssignment_2() { return cBaseUrlAssignment_2; }
 		
 		//PATH
-		public RuleCall getBaseUrlPATHTerminalRuleCall_4_0() { return cBaseUrlPATHTerminalRuleCall_4_0; }
+		public RuleCall getBaseUrlPATHTerminalRuleCall_2_0() { return cBaseUrlPATHTerminalRuleCall_2_0; }
 		
 		//cactions+=CustomAction*
-		public Assignment getCactionsAssignment_5() { return cCactionsAssignment_5; }
+		public Assignment getCactionsAssignment_3() { return cCactionsAssignment_3; }
 		
 		//CustomAction
-		public RuleCall getCactionsCustomActionParserRuleCall_5_0() { return cCactionsCustomActionParserRuleCall_5_0; }
+		public RuleCall getCactionsCustomActionParserRuleCall_3_0() { return cCactionsCustomActionParserRuleCall_3_0; }
 		
 		//('create' 'entity:' cparam=ParamTrasfert )?
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_4() { return cGroup_4; }
 		
 		//'create'
-		public Keyword getCreateKeyword_6_0() { return cCreateKeyword_6_0; }
+		public Keyword getCreateKeyword_4_0() { return cCreateKeyword_4_0; }
+		
+		//'entity:'
+		public Keyword getEntityKeyword_4_1() { return cEntityKeyword_4_1; }
+		
+		//cparam=ParamTrasfert
+		public Assignment getCparamAssignment_4_2() { return cCparamAssignment_4_2; }
+		
+		//ParamTrasfert
+		public RuleCall getCparamParamTrasfertEnumRuleCall_4_2_0() { return cCparamParamTrasfertEnumRuleCall_4_2_0; }
+		
+		//('find' 'entity:' fparam=ParamTrasfert)?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//'find'
+		public Keyword getFindKeyword_5_0() { return cFindKeyword_5_0; }
+		
+		//'entity:'
+		public Keyword getEntityKeyword_5_1() { return cEntityKeyword_5_1; }
+		
+		//fparam=ParamTrasfert
+		public Assignment getFparamAssignment_5_2() { return cFparamAssignment_5_2; }
+		
+		//ParamTrasfert
+		public RuleCall getFparamParamTrasfertEnumRuleCall_5_2_0() { return cFparamParamTrasfertEnumRuleCall_5_2_0; }
+		
+		//('delete' 'entity:' dparam=ParamTrasfert)?
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//'delete'
+		public Keyword getDeleteKeyword_6_0() { return cDeleteKeyword_6_0; }
 		
 		//'entity:'
 		public Keyword getEntityKeyword_6_1() { return cEntityKeyword_6_1; }
 		
-		//cparam=ParamTrasfert
-		public Assignment getCparamAssignment_6_2() { return cCparamAssignment_6_2; }
-		
-		//ParamTrasfert
-		public RuleCall getCparamParamTrasfertEnumRuleCall_6_2_0() { return cCparamParamTrasfertEnumRuleCall_6_2_0; }
-		
-		//('find' 'entity:' fparam=ParamTrasfert)?
-		public Group getGroup_7() { return cGroup_7; }
-		
-		//'find'
-		public Keyword getFindKeyword_7_0() { return cFindKeyword_7_0; }
-		
-		//'entity:'
-		public Keyword getEntityKeyword_7_1() { return cEntityKeyword_7_1; }
-		
-		//fparam=ParamTrasfert
-		public Assignment getFparamAssignment_7_2() { return cFparamAssignment_7_2; }
-		
-		//ParamTrasfert
-		public RuleCall getFparamParamTrasfertEnumRuleCall_7_2_0() { return cFparamParamTrasfertEnumRuleCall_7_2_0; }
-		
-		//('delete' 'entity:' dparam=ParamTrasfert)?
-		public Group getGroup_8() { return cGroup_8; }
-		
-		//'delete'
-		public Keyword getDeleteKeyword_8_0() { return cDeleteKeyword_8_0; }
-		
-		//'entity:'
-		public Keyword getEntityKeyword_8_1() { return cEntityKeyword_8_1; }
-		
 		//dparam=ParamTrasfert
-		public Assignment getDparamAssignment_8_2() { return cDparamAssignment_8_2; }
+		public Assignment getDparamAssignment_6_2() { return cDparamAssignment_6_2; }
 		
 		//ParamTrasfert
-		public RuleCall getDparamParamTrasfertEnumRuleCall_8_2_0() { return cDparamParamTrasfertEnumRuleCall_8_2_0; }
+		public RuleCall getDparamParamTrasfertEnumRuleCall_6_2_0() { return cDparamParamTrasfertEnumRuleCall_6_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 	public class ServiceActionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.asam.Asam.ServiceAction");
@@ -1709,7 +1693,7 @@ public class AsamGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Controller:
-	//    'controller' 'mappingTo' entity=[Entity] '{'
+	//    'controller'  '{'
 	//        baseUrl=PATH?
 	//        cactions+=CustomAction*
 	//        ('create' 'entity:' cparam=ParamTrasfert )?

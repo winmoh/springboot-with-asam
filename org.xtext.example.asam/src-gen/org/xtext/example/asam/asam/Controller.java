@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.Controller#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Controller#getBaseUrl <em>Base Url</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Controller#getCactions <em>Cactions</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Controller#getCparam <em>Cparam</em>}</li>
@@ -30,28 +29,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Controller extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Entity</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Entity</em>' reference.
-   * @see #setEntity(Entity)
-   * @see org.xtext.example.asam.asam.AsamPackage#getController_Entity()
-   * @model
-   * @generated
-   */
-  Entity getEntity();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.Controller#getEntity <em>Entity</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Entity</em>' reference.
-   * @see #getEntity()
-   * @generated
-   */
-  void setEntity(Entity value);
-
   /**
    * Returns the value of the '<em><b>Base Url</b></em>' attribute.
    * <!-- begin-user-doc -->

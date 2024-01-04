@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.Controller;
 import org.xtext.example.asam.asam.CustomAction;
-import org.xtext.example.asam.asam.Entity;
 import org.xtext.example.asam.asam.ParamTrasfert;
 
 /**
@@ -33,7 +32,6 @@ import org.xtext.example.asam.asam.ParamTrasfert;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getBaseUrl <em>Base Url</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getCactions <em>Cactions</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ControllerImpl#getCparam <em>Cparam</em>}</li>
@@ -45,16 +43,6 @@ import org.xtext.example.asam.asam.ParamTrasfert;
  */
 public class ControllerImpl extends MinimalEObjectImpl.Container implements Controller
 {
-  /**
-   * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEntity()
-   * @generated
-   * @ordered
-   */
-  protected Entity entity;
-
   /**
    * The default value of the '{@link #getBaseUrl() <em>Base Url</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -164,51 +152,6 @@ public class ControllerImpl extends MinimalEObjectImpl.Container implements Cont
   protected EClass eStaticClass()
   {
     return AsamPackage.Literals.CONTROLLER;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Entity getEntity()
-  {
-    if (entity != null && entity.eIsProxy())
-    {
-      InternalEObject oldEntity = (InternalEObject)entity;
-      entity = (Entity)eResolveProxy(oldEntity);
-      if (entity != oldEntity)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AsamPackage.CONTROLLER__ENTITY, oldEntity, entity));
-      }
-    }
-    return entity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Entity basicGetEntity()
-  {
-    return entity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setEntity(Entity newEntity)
-  {
-    Entity oldEntity = entity;
-    entity = newEntity;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.CONTROLLER__ENTITY, oldEntity, entity));
   }
 
   /**
@@ -352,9 +295,6 @@ public class ControllerImpl extends MinimalEObjectImpl.Container implements Cont
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__ENTITY:
-        if (resolve) return getEntity();
-        return basicGetEntity();
       case AsamPackage.CONTROLLER__BASE_URL:
         return getBaseUrl();
       case AsamPackage.CONTROLLER__CACTIONS:
@@ -380,9 +320,6 @@ public class ControllerImpl extends MinimalEObjectImpl.Container implements Cont
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__ENTITY:
-        setEntity((Entity)newValue);
-        return;
       case AsamPackage.CONTROLLER__BASE_URL:
         setBaseUrl((String)newValue);
         return;
@@ -413,9 +350,6 @@ public class ControllerImpl extends MinimalEObjectImpl.Container implements Cont
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__ENTITY:
-        setEntity((Entity)null);
-        return;
       case AsamPackage.CONTROLLER__BASE_URL:
         setBaseUrl(BASE_URL_EDEFAULT);
         return;
@@ -445,8 +379,6 @@ public class ControllerImpl extends MinimalEObjectImpl.Container implements Cont
   {
     switch (featureID)
     {
-      case AsamPackage.CONTROLLER__ENTITY:
-        return entity != null;
       case AsamPackage.CONTROLLER__BASE_URL:
         return BASE_URL_EDEFAULT == null ? baseUrl != null : !BASE_URL_EDEFAULT.equals(baseUrl);
       case AsamPackage.CONTROLLER__CACTIONS:

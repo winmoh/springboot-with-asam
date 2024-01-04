@@ -946,32 +946,15 @@ ruleController returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getControllerAccess().getControllerKeyword_0());
 		}
-		otherlv_1='mappingTo'
+		otherlv_1='{'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getControllerAccess().getMappingToKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getControllerAccess().getLeftCurlyBracketKeyword_1());
 		}
 		(
 			(
+				lv_baseUrl_2_0=RULE_PATH
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getControllerRule());
-					}
-				}
-				otherlv_2=RULE_ID
-				{
-					newLeafNode(otherlv_2, grammarAccess.getControllerAccess().getEntityEntityCrossReference_2_0());
-				}
-			)
-		)
-		otherlv_3='{'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getControllerAccess().getLeftCurlyBracketKeyword_3());
-		}
-		(
-			(
-				lv_baseUrl_4_0=RULE_PATH
-				{
-					newLeafNode(lv_baseUrl_4_0, grammarAccess.getControllerAccess().getBaseUrlPATHTerminalRuleCall_4_0());
+					newLeafNode(lv_baseUrl_2_0, grammarAccess.getControllerAccess().getBaseUrlPATHTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
@@ -980,7 +963,7 @@ ruleController returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"baseUrl",
-						lv_baseUrl_4_0,
+						lv_baseUrl_2_0,
 						"org.xtext.example.asam.Asam.PATH");
 				}
 			)
@@ -988,9 +971,9 @@ ruleController returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getControllerAccess().getCactionsCustomActionParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getControllerAccess().getCactionsCustomActionParserRuleCall_3_0());
 				}
-				lv_cactions_5_0=ruleCustomAction
+				lv_cactions_3_0=ruleCustomAction
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getControllerRule());
@@ -998,27 +981,27 @@ ruleController returns [EObject current=null]
 					add(
 						$current,
 						"cactions",
-						lv_cactions_5_0,
+						lv_cactions_3_0,
 						"org.xtext.example.asam.Asam.CustomAction");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
 		(
-			otherlv_6='create'
+			otherlv_4='create'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getControllerAccess().getCreateKeyword_6_0());
+				newLeafNode(otherlv_4, grammarAccess.getControllerAccess().getCreateKeyword_4_0());
 			}
-			otherlv_7='entity:'
+			otherlv_5='entity:'
 			{
-				newLeafNode(otherlv_7, grammarAccess.getControllerAccess().getEntityKeyword_6_1());
+				newLeafNode(otherlv_5, grammarAccess.getControllerAccess().getEntityKeyword_4_1());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getControllerAccess().getCparamParamTrasfertEnumRuleCall_6_2_0());
+						newCompositeNode(grammarAccess.getControllerAccess().getCparamParamTrasfertEnumRuleCall_4_2_0());
 					}
-					lv_cparam_8_0=ruleParamTrasfert
+					lv_cparam_6_0=ruleParamTrasfert
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getControllerRule());
@@ -1026,7 +1009,7 @@ ruleController returns [EObject current=null]
 						set(
 							$current,
 							"cparam",
-							lv_cparam_8_0,
+							lv_cparam_6_0,
 							"org.xtext.example.asam.Asam.ParamTrasfert");
 						afterParserOrEnumRuleCall();
 					}
@@ -1034,20 +1017,20 @@ ruleController returns [EObject current=null]
 			)
 		)?
 		(
-			otherlv_9='find'
+			otherlv_7='find'
 			{
-				newLeafNode(otherlv_9, grammarAccess.getControllerAccess().getFindKeyword_7_0());
+				newLeafNode(otherlv_7, grammarAccess.getControllerAccess().getFindKeyword_5_0());
 			}
-			otherlv_10='entity:'
+			otherlv_8='entity:'
 			{
-				newLeafNode(otherlv_10, grammarAccess.getControllerAccess().getEntityKeyword_7_1());
+				newLeafNode(otherlv_8, grammarAccess.getControllerAccess().getEntityKeyword_5_1());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getControllerAccess().getFparamParamTrasfertEnumRuleCall_7_2_0());
+						newCompositeNode(grammarAccess.getControllerAccess().getFparamParamTrasfertEnumRuleCall_5_2_0());
 					}
-					lv_fparam_11_0=ruleParamTrasfert
+					lv_fparam_9_0=ruleParamTrasfert
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getControllerRule());
@@ -1055,7 +1038,7 @@ ruleController returns [EObject current=null]
 						set(
 							$current,
 							"fparam",
-							lv_fparam_11_0,
+							lv_fparam_9_0,
 							"org.xtext.example.asam.Asam.ParamTrasfert");
 						afterParserOrEnumRuleCall();
 					}
@@ -1063,20 +1046,20 @@ ruleController returns [EObject current=null]
 			)
 		)?
 		(
-			otherlv_12='delete'
+			otherlv_10='delete'
 			{
-				newLeafNode(otherlv_12, grammarAccess.getControllerAccess().getDeleteKeyword_8_0());
+				newLeafNode(otherlv_10, grammarAccess.getControllerAccess().getDeleteKeyword_6_0());
 			}
-			otherlv_13='entity:'
+			otherlv_11='entity:'
 			{
-				newLeafNode(otherlv_13, grammarAccess.getControllerAccess().getEntityKeyword_8_1());
+				newLeafNode(otherlv_11, grammarAccess.getControllerAccess().getEntityKeyword_6_1());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getControllerAccess().getDparamParamTrasfertEnumRuleCall_8_2_0());
+						newCompositeNode(grammarAccess.getControllerAccess().getDparamParamTrasfertEnumRuleCall_6_2_0());
 					}
-					lv_dparam_14_0=ruleParamTrasfert
+					lv_dparam_12_0=ruleParamTrasfert
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getControllerRule());
@@ -1084,16 +1067,16 @@ ruleController returns [EObject current=null]
 						set(
 							$current,
 							"dparam",
-							lv_dparam_14_0,
+							lv_dparam_12_0,
 							"org.xtext.example.asam.Asam.ParamTrasfert");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)?
-		otherlv_15='}'
+		otherlv_13='}'
 		{
-			newLeafNode(otherlv_15, grammarAccess.getControllerAccess().getRightCurlyBracketKeyword_9());
+			newLeafNode(otherlv_13, grammarAccess.getControllerAccess().getRightCurlyBracketKeyword_7());
 		}
 	)
 ;

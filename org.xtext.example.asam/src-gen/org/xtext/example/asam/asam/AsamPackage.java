@@ -511,22 +511,13 @@ public interface AsamPackage extends EPackage
   int CONTROLLER = 10;
 
   /**
-   * The feature id for the '<em><b>Entity</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTROLLER__ENTITY = 0;
-
-  /**
    * The feature id for the '<em><b>Base Url</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROLLER__BASE_URL = 1;
+  int CONTROLLER__BASE_URL = 0;
 
   /**
    * The feature id for the '<em><b>Cactions</b></em>' containment reference list.
@@ -535,7 +526,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER__CACTIONS = 2;
+  int CONTROLLER__CACTIONS = 1;
 
   /**
    * The feature id for the '<em><b>Cparam</b></em>' attribute.
@@ -544,7 +535,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER__CPARAM = 3;
+  int CONTROLLER__CPARAM = 2;
 
   /**
    * The feature id for the '<em><b>Fparam</b></em>' attribute.
@@ -553,7 +544,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER__FPARAM = 4;
+  int CONTROLLER__FPARAM = 3;
 
   /**
    * The feature id for the '<em><b>Dparam</b></em>' attribute.
@@ -562,7 +553,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER__DPARAM = 5;
+  int CONTROLLER__DPARAM = 4;
 
   /**
    * The number of structural features of the '<em>Controller</em>' class.
@@ -571,7 +562,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER_FEATURE_COUNT = 6;
+  int CONTROLLER_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.ServiceActionImpl <em>Service Action</em>}' class.
@@ -1550,17 +1541,6 @@ public interface AsamPackage extends EPackage
   EClass getController();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.Controller#getEntity <em>Entity</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Entity</em>'.
-   * @see org.xtext.example.asam.asam.Controller#getEntity()
-   * @see #getController()
-   * @generated
-   */
-  EReference getController_Entity();
-
-  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Controller#getBaseUrl <em>Base Url</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2427,14 +2407,6 @@ public interface AsamPackage extends EPackage
      * @generated
      */
     EClass CONTROLLER = eINSTANCE.getController();
-
-    /**
-     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTROLLER__ENTITY = eINSTANCE.getController_Entity();
 
     /**
      * The meta object literal for the '<em><b>Base Url</b></em>' attribute feature.

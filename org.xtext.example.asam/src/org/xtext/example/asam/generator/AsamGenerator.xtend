@@ -132,11 +132,14 @@ class AsamGenerator extends AbstractGenerator {
             import com.springboot.«projectName».services.«className.toFirstUpper»Service;
             import org.springframework.beans.factory.annotation.Autowired;
             import org.springframework.web.bind.annotation.*;
+            import java.util.*;
+            import org.springframework.http.*;
             
             
             @RestController
+            @RequestMapping("«IF entity.control.baseUrl!== null»«entity.control.baseUrl»«ELSE»/api/«className.toFirstUpper» «ENDIF»")
             public class «className.toFirstUpper»Controller {
-				@Autowired
+            	@Autowired
                 private final «className.toFirstUpper»Service «className.toFirstLower»Service;
 
                
@@ -145,11 +148,11 @@ class AsamGenerator extends AbstractGenerator {
                 «IF entity.control.fparam!== null»«generateFindMethodController(entity)» «ENDIF»
                 «IF entity.control.cparam!== null»«generateSaveMethodController(entity)» «ENDIF»
                 
-                @GetMapping("/api/«className.toFirstUpper»/deleteAll"
+                @GetMapping("/deleteAll"
                 public ReponseEntity<String> deleteAll«className.toFirstUpper»s(){
                 	return «className.toFirstLower»Service.deleteAll«className.toFirstUpper»s();
                 }
-                @GetMapping("/api/«className.toFirstUpper»/findAll"
+                @GetMapping("/findAll"
                 public List<«className»> findAll«className.toFirstUpper»s(){
                 	return «className.toFirstLower»Service.findAll«className.toFirstUpper»s();
                 }
@@ -179,12 +182,13 @@ class AsamGenerator extends AbstractGenerator {
             import com.springboot.«projectName».entities.«className»;
            	import com.springboot.«projectName».services.«className»Repository;
             import org.springframework.beans.factory.annotation.Autowired;
+            import org.springframework.http.*;
             import org.springframework.web.bind.annotation.*;
-
+			import java.util.*;
 
             @Service
-            public class «className.toFirstUpper»Controller {
-				@Autowired
+            public class «className.toFirstUpper»Service {
+            	@Autowired
                 private final «className»Repository «className»Repo;
 
                
@@ -195,7 +199,7 @@ class AsamGenerator extends AbstractGenerator {
                 
                 public ReponseEntity<String> deleteAll«className.toFirstUpper»s(){
                 	«className»Repo.deleteAll«className.toFirstUpper»s();
-                	return new ReponseEntity<String>("all entities dleted from database",null,HttpStatus.OK);
+                	return new ReponseEntity<String>("all «className.toFirstUpper» was deleted from database",null,HttpStatus.OK);
                 }
                
                 public List<«className»> findAll«className.toFirstUpper»s(){
@@ -205,7 +209,7 @@ class AsamGenerator extends AbstractGenerator {
             }
         '''
 
-        fsa.generateFile("src/main/java/com/springboot/" + projectName + "/controllers/" + className.toFirstUpper + "Controller.java", content)
+        fsa.generateFile("src/main/java/com/springboot/" + projectName + "/services/" + className.toFirstUpper + "Service.java", content)
     	
     	
     }
@@ -233,9 +237,13 @@ class AsamGenerator extends AbstractGenerator {
     }
     def String generateDeleteMethod(Entity entity){
     	val deleteContent='''
-    	public void  delete«entity.nom.toFirstUpper»(«extractVtypesValue2(entity.ident.type.toString())» id )
+    	public ReponseEntity<String>  delete«entity.nom.toFirstUpper»(«extractVtypesValue2(entity.ident.type.toString())» id )
     	{
-    		 «entity.nom»Repo.deleteById(id);
+    		 if(«entity.nom»Repo.isEmpty()){
+    		 	return new ReponseEntity<String>("No «entity.nom.toFirstUpper» with this id ",null,HttpStatus.OK);
+    		 }
+    		 return new ReponseEntity<String>("«entity.nom.toFirstUpper» deleted succefully",null,HttpStatus.OK);
+    		 	
     	}
     	'''
     	deleteContent
@@ -246,7 +254,7 @@ class AsamGenerator extends AbstractGenerator {
        
         def String generateFindMethodController(Entity entity){
 	    	val findContent='''
-	    	@GetMapping("/api/«entity.nom.toFirstUpper»"/findById)
+	    	@GetMapping("/findById)
 	    	public «entity.nom» find«entity.nom.toFirstUpper»(@RequestParam «extractVtypesValue2(entity.ident.type.toString())» id)
 	    	{
 	    		return «entity.nom»Service.save«entity.nom.toFirstUpper»(ent);
@@ -257,20 +265,20 @@ class AsamGenerator extends AbstractGenerator {
     
     def String generateSaveMethodController(Entity entity){
     	val saveContent='''
-    	@PostMapping("/api/«entity.nom.toFirstUpper»"/save«entity.nom.toFirstUpper»")
-    	public void  save«entity.nom.toFirstUpper»( @RequestBody «entity.nom» element)
+    	@PostMapping("save«entity.nom.toFirstUpper»")
+    	public ReponseEntity<String>  save«entity.nom.toFirstUpper»( @RequestBody «entity.nom» element)
     	{
-    		 «entity.nom»Service.save(element);
+    		 return «entity.nom»Service.save(element);
     	}
     	'''
     	saveContent
     }
     def String generateDeleteMethodController(Entity entity){
     	val deleteContent='''
-    	@DeleteMaping("/api/«entity.nom.toFirstUpper»"/delete«entity.nom.toFirstUpper»ById")
-    	public void  delete«entity.nom.toFirstUpper»(«extractVtypesValue2(entity.ident.type.toString())» id )
+    	@DeleteMaping("/delete«entity.nom.toFirstUpper»ById")
+    	public ReponseEntity<String>  delete«entity.nom.toFirstUpper»(«extractVtypesValue2(entity.ident.type.toString())» id )
     	{
-    		 «entity.nom.toFirstUpper»Repository.deleteById(id);
+    		 return «entity.nom.toFirstUpper»Repository.deleteById(id);
     	}
     	'''
     	deleteContent

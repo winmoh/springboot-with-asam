@@ -178,22 +178,42 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("import org.springframework.web.bind.annotation.*;");
     _builder.newLine();
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.append("import org.springframework.http.*;");
+    _builder.newLine();
     _builder.newLine();
     _builder.newLine();
     _builder.append("@RestController");
     _builder.newLine();
+    _builder.append("@RequestMapping(\"");
+    {
+      String _baseUrl = entity.getControl().getBaseUrl();
+      boolean _tripleNotEquals = (_baseUrl != null);
+      if (_tripleNotEquals) {
+        String _baseUrl_1 = entity.getControl().getBaseUrl();
+        _builder.append(_baseUrl_1);
+      } else {
+        _builder.append("/api/");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(className);
+        _builder.append(_firstUpper_1);
+        _builder.append(" ");
+      }
+    }
+    _builder.append("\")");
+    _builder.newLineIfNotEmpty();
     _builder.append("public class ");
-    String _firstUpper_1 = StringExtensions.toFirstUpper(className);
-    _builder.append(_firstUpper_1);
+    String _firstUpper_2 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_2);
     _builder.append("Controller {");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t\t");
+    _builder.append("\t");
     _builder.append("@Autowired");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("private final ");
-    String _firstUpper_2 = StringExtensions.toFirstUpper(className);
-    _builder.append(_firstUpper_2, "    ");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_3, "    ");
     _builder.append("Service ");
     String _firstLower = StringExtensions.toFirstLower(className);
     _builder.append(_firstLower, "    ");
@@ -206,8 +226,8 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("    ");
     {
       ParamTrasfert _dparam = entity.getControl().getDparam();
-      boolean _tripleNotEquals = (_dparam != null);
-      if (_tripleNotEquals) {
+      boolean _tripleNotEquals_1 = (_dparam != null);
+      if (_tripleNotEquals_1) {
         String _generateDeleteMethodController = this.generateDeleteMethodController(entity);
         _builder.append(_generateDeleteMethodController, "    ");
         _builder.append(" ");
@@ -217,8 +237,8 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("    ");
     {
       ParamTrasfert _fparam = entity.getControl().getFparam();
-      boolean _tripleNotEquals_1 = (_fparam != null);
-      if (_tripleNotEquals_1) {
+      boolean _tripleNotEquals_2 = (_fparam != null);
+      if (_tripleNotEquals_2) {
         String _generateFindMethodController = this.generateFindMethodController(entity);
         _builder.append(_generateFindMethodController, "    ");
         _builder.append(" ");
@@ -228,8 +248,8 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("    ");
     {
       ParamTrasfert _cparam = entity.getControl().getCparam();
-      boolean _tripleNotEquals_2 = (_cparam != null);
-      if (_tripleNotEquals_2) {
+      boolean _tripleNotEquals_3 = (_cparam != null);
+      if (_tripleNotEquals_3) {
         String _generateSaveMethodController = this.generateSaveMethodController(entity);
         _builder.append(_generateSaveMethodController, "    ");
         _builder.append(" ");
@@ -239,11 +259,8 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("    ");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("@GetMapping(\"/api/");
-    String _firstUpper_3 = StringExtensions.toFirstUpper(className);
-    _builder.append(_firstUpper_3, "    ");
-    _builder.append("/deleteAll\"");
-    _builder.newLineIfNotEmpty();
+    _builder.append("@GetMapping(\"/deleteAll\"");
+    _builder.newLine();
     _builder.append("    ");
     _builder.append("public ReponseEntity<String> deleteAll");
     String _firstUpper_4 = StringExtensions.toFirstUpper(className);
@@ -263,17 +280,14 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("@GetMapping(\"/api/");
-    String _firstUpper_6 = StringExtensions.toFirstUpper(className);
-    _builder.append(_firstUpper_6, "    ");
-    _builder.append("/findAll\"");
-    _builder.newLineIfNotEmpty();
+    _builder.append("@GetMapping(\"/findAll\"");
+    _builder.newLine();
     _builder.append("    ");
     _builder.append("public List<");
     _builder.append(className, "    ");
     _builder.append("> findAll");
-    String _firstUpper_7 = StringExtensions.toFirstUpper(className);
-    _builder.append(_firstUpper_7, "    ");
+    String _firstUpper_6 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_6, "    ");
     _builder.append("s(){");
     _builder.newLineIfNotEmpty();
     _builder.append("    \t");
@@ -281,16 +295,16 @@ public class AsamGenerator extends AbstractGenerator {
     String _firstLower_2 = StringExtensions.toFirstLower(className);
     _builder.append(_firstLower_2, "    \t");
     _builder.append("Service.findAll");
-    String _firstUpper_8 = StringExtensions.toFirstUpper(className);
-    _builder.append(_firstUpper_8, "    \t");
+    String _firstUpper_7 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_7, "    \t");
     _builder.append("s();");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
     final String content = _builder.toString();
-    String _firstUpper_9 = StringExtensions.toFirstUpper(className);
-    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/controllers/") + _firstUpper_9);
+    String _firstUpper_8 = StringExtensions.toFirstUpper(className);
+    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/controllers/") + _firstUpper_8);
     String _plus_1 = (_plus + "Controller.java");
     fsa.generateFile(_plus_1, content);
   }
@@ -328,8 +342,12 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("import org.springframework.beans.factory.annotation.Autowired;");
     _builder.newLine();
+    _builder.append("import org.springframework.http.*;");
+    _builder.newLine();
     _builder.append("import org.springframework.web.bind.annotation.*;");
     _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("import java.util.*;");
     _builder.newLine();
     _builder.newLine();
     _builder.append("@Service");
@@ -337,9 +355,9 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("public class ");
     String _firstUpper = StringExtensions.toFirstUpper(className);
     _builder.append(_firstUpper);
-    _builder.append("Controller {");
+    _builder.append("Service {");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t\t");
+    _builder.append("\t");
     _builder.append("@Autowired");
     _builder.newLine();
     _builder.append("    ");
@@ -402,8 +420,11 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("s();");
     _builder.newLineIfNotEmpty();
     _builder.append("    \t");
-    _builder.append("return new ReponseEntity<String>(\"all entities dleted from database\",null,HttpStatus.OK);");
-    _builder.newLine();
+    _builder.append("return new ReponseEntity<String>(\"all ");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_3, "    \t");
+    _builder.append(" was deleted from database\",null,HttpStatus.OK);");
+    _builder.newLineIfNotEmpty();
     _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
@@ -413,8 +434,8 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("public List<");
     _builder.append(className, "    ");
     _builder.append("> findAll");
-    String _firstUpper_3 = StringExtensions.toFirstUpper(className);
-    _builder.append(_firstUpper_3, "    ");
+    String _firstUpper_4 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_4, "    ");
     _builder.append("s(){");
     _builder.newLineIfNotEmpty();
     _builder.append("    \t");
@@ -429,9 +450,9 @@ public class AsamGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     final String content = _builder.toString();
-    String _firstUpper_4 = StringExtensions.toFirstUpper(className);
-    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/controllers/") + _firstUpper_4);
-    String _plus_1 = (_plus + "Controller.java");
+    String _firstUpper_5 = StringExtensions.toFirstUpper(className);
+    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/services/") + _firstUpper_5);
+    String _plus_1 = (_plus + "Service.java");
     fsa.generateFile(_plus_1, content);
   }
 
@@ -497,7 +518,7 @@ public class AsamGenerator extends AbstractGenerator {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("public void  delete");
+      _builder.append("public ReponseEntity<String>  delete");
       String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
       _builder.append(_firstUpper);
       _builder.append("(");
@@ -508,10 +529,28 @@ public class AsamGenerator extends AbstractGenerator {
       _builder.append("{");
       _builder.newLine();
       _builder.append("\t ");
+      _builder.append("if(");
       String _nom = entity.getNom();
       _builder.append(_nom, "\t ");
-      _builder.append("Repo.deleteById(id);");
+      _builder.append("Repo.isEmpty()){");
       _builder.newLineIfNotEmpty();
+      _builder.append("\t \t");
+      _builder.append("return new ReponseEntity<String>(\"No ");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1, "\t \t");
+      _builder.append(" with this id \",null,HttpStatus.OK);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t ");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("return new ReponseEntity<String>(\"");
+      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_2, "\t ");
+      _builder.append(" deleted succefully\",null,HttpStatus.OK);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t \t");
+      _builder.newLine();
       _builder.append("}");
       _builder.newLine();
       final String deleteContent = _builder.toString();
@@ -524,17 +563,14 @@ public class AsamGenerator extends AbstractGenerator {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("@GetMapping(\"/api/");
-      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
-      _builder.append(_firstUpper);
-      _builder.append("\"/findById)");
-      _builder.newLineIfNotEmpty();
+      _builder.append("@GetMapping(\"/findById)");
+      _builder.newLine();
       _builder.append("public ");
       String _nom = entity.getNom();
       _builder.append(_nom);
       _builder.append(" find");
-      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
-      _builder.append(_firstUpper_1);
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
       _builder.append("(@RequestParam ");
       String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
       _builder.append(_extractVtypesValue2);
@@ -547,8 +583,8 @@ public class AsamGenerator extends AbstractGenerator {
       String _nom_1 = entity.getNom();
       _builder.append(_nom_1, "\t");
       _builder.append("Service.save");
-      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
-      _builder.append(_firstUpper_2, "\t");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1, "\t");
       _builder.append("(ent);");
       _builder.newLineIfNotEmpty();
       _builder.append("}");
@@ -563,17 +599,14 @@ public class AsamGenerator extends AbstractGenerator {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("@PostMapping(\"/api/");
+      _builder.append("@PostMapping(\"save");
       String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
       _builder.append(_firstUpper);
-      _builder.append("\"/save");
-      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
-      _builder.append(_firstUpper_1);
       _builder.append("\")");
       _builder.newLineIfNotEmpty();
-      _builder.append("public void  save");
-      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
-      _builder.append(_firstUpper_2);
+      _builder.append("public ReponseEntity<String>  save");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1);
       _builder.append("( @RequestBody ");
       String _nom = entity.getNom();
       _builder.append(_nom);
@@ -582,6 +615,7 @@ public class AsamGenerator extends AbstractGenerator {
       _builder.append("{");
       _builder.newLine();
       _builder.append("\t ");
+      _builder.append("return ");
       String _nom_1 = entity.getNom();
       _builder.append(_nom_1, "\t ");
       _builder.append("Service.save(element);");
@@ -598,17 +632,14 @@ public class AsamGenerator extends AbstractGenerator {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("@DeleteMaping(\"/api/");
+      _builder.append("@DeleteMaping(\"/delete");
       String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
       _builder.append(_firstUpper);
-      _builder.append("\"/delete");
-      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
-      _builder.append(_firstUpper_1);
       _builder.append("ById\")");
       _builder.newLineIfNotEmpty();
-      _builder.append("public void  delete");
-      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
-      _builder.append(_firstUpper_2);
+      _builder.append("public ReponseEntity<String>  delete");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1);
       _builder.append("(");
       String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
       _builder.append(_extractVtypesValue2);
@@ -617,8 +648,9 @@ public class AsamGenerator extends AbstractGenerator {
       _builder.append("{");
       _builder.newLine();
       _builder.append("\t ");
-      String _firstUpper_3 = StringExtensions.toFirstUpper(entity.getNom());
-      _builder.append(_firstUpper_3, "\t ");
+      _builder.append("return ");
+      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_2, "\t ");
       _builder.append("Repository.deleteById(id);");
       _builder.newLineIfNotEmpty();
       _builder.append("}");

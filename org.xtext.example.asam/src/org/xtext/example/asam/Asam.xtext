@@ -59,7 +59,7 @@ Service:
     '}';
 
 Controller:
-    'controller' 'mappingTo' entity=[Entity] '{'
+    'controller'  '{'
         baseUrl=PATH?
         cactions+=CustomAction*
         ('create' 'entity:' cparam=ParamTrasfert )?

@@ -741,20 +741,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EReference getController_Entity()
-  {
-    return (EReference)controllerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getController_BaseUrl()
   {
-    return (EAttribute)controllerEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -765,7 +754,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EReference getController_Cactions()
   {
-    return (EReference)controllerEClass.getEStructuralFeatures().get(2);
+    return (EReference)controllerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -776,7 +765,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EAttribute getController_Cparam()
   {
-    return (EAttribute)controllerEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -787,7 +776,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EAttribute getController_Fparam()
   {
-    return (EAttribute)controllerEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -798,7 +787,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EAttribute getController_Dparam()
   {
-    return (EAttribute)controllerEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1354,7 +1343,6 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     createEReference(serviceEClass, SERVICE__ACTIONS);
 
     controllerEClass = createEClass(CONTROLLER);
-    createEReference(controllerEClass, CONTROLLER__ENTITY);
     createEAttribute(controllerEClass, CONTROLLER__BASE_URL);
     createEReference(controllerEClass, CONTROLLER__CACTIONS);
     createEAttribute(controllerEClass, CONTROLLER__CPARAM);
@@ -1507,7 +1495,6 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     initEReference(getService_Actions(), this.getServiceAction(), null, "actions", null, 0, -1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(controllerEClass, Controller.class, "Controller", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getController_Entity(), this.getEntity(), null, "entity", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getController_BaseUrl(), ecorePackage.getEString(), "baseUrl", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getController_Cactions(), this.getCustomAction(), null, "cactions", null, 0, -1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getController_Cparam(), this.getParamTrasfert(), "cparam", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
