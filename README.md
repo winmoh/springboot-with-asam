@@ -46,16 +46,16 @@ also it will take into consideration different types of architectures.So ,it is 
 
 Introduction, problématique, Solution proposée, Architecture de la solution,Métamodèles choisies, transformations... et conclusion
 
-### *Architecture de la solution
+### *Architecture de la solution*
 
 
-### *Métamodèles choisies
+### *Métamodèles choisies*
 
 
-### *Transformations
+### *Transformations*
 
 
-### *Conclusion
+### *Conclusion*
 
 
 
