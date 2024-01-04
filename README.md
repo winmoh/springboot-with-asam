@@ -19,9 +19,11 @@ transformations and model-to-text transformations.
 ##### <li>DSL Input:
 
 > Users input API configurations using a concise DSL syntax that defines entities,database connection properties  .\
-##### <li> Model Representation:
+##### <li> MetaModel Definition:
 >The DSL processes the user input, creating an abstract model that accurately represents the structure and behavior of the desired API, including specified entities and operations.
-##### <li>Model-to-Text Transformation:
+>##### <li> Grammar building:
+>The DSL processes the user input, creating an abstract model that accurately represents the structure and behavior of the desired API, including specified entities and operations.
+##### <li>Validation:
 >The abstract model undergoes a model-to-text transformation, where templates are used to generate text-based artifacts, such as Java code and configuration files.
 ##### <li>Generated Code:
 >The output of the model-to-text transformation is the generation of source code for the CRUD operations, including controllers, data models, and repository interfaces.
