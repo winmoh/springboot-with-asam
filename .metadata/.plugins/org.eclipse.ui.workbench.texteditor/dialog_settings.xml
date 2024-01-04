@@ -6,8 +6,13 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="generateRepository"/>
+		<item key="selection" value="dle"/>
 		<list key="findhistory">
+			<item value="dle"/>
+			<item value="Repository"/>
+			<item value="&lt;&lt;if"/>
+			<item value="ident.type"/>
+			<item value="upper"/>
 			<item value="generateRepository"/>
 			<item value="find"/>
 			<item value="extr"/>
@@ -18,8 +23,6 @@
 			<item value="getSimpleTypeName"/>
 			<item value="outputFolder"/>
 			<item value="outpu"/>
-			<item value="Actio"/>
-			<item value="att"/>
 		</list>
 		<list key="replacehistory">
 		</list>
