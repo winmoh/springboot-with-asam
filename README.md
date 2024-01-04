@@ -23,7 +23,8 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 ##### <li> different software architectures(serverless,microservices,event-driven,Master-slave....)......
 
 
-### *ASAM DSL as dsl*
+
+### *ASAM DSL as dsl/solution architecture*
 #### <h3 align="center">1- HIGH-LEVEL OVERVIEW</li></h1>
 ##### <li>DSL Input:
 
