@@ -1,4 +1,4 @@
-## DSL for spring boot restful APIs generation ***aaelBoot***
+## DSL for spring boot restful APIs generation ***ASAM DSL***
 ### *problem formalization*
 Building spring boot applications is task that full stack and software developers do almost every day,
 also these  applications have many similarities in terms of business logic,entities and also dependencies,other side most of the real world 
@@ -8,13 +8,13 @@ the necessary logic for crud manipulations.
 
 ### *solution*
 In our pursuit of formal tooling, we have identified that Model Driven Engineering (MDE) aligns well with the objectives of addressing the challenges 
-faced by aaelBoot. The aim of aaelBoot is to streamline the development process by providing a high-level Domain-Specific Language (DSL) that reduces 
+faced by ASAM DSL. The aim of ASAM DSL is to streamline the development process by providing a high-level Domain-Specific Language (DSL) that reduces 
 redundancy and simplifies the generation of basic code.
-Under the umbrella of aaelBoot, we propose an integrated solution employing Model Driven Engineering principles. This solution, also named aaelBoot, 
+Under the umbrella of ASAM DSL, we propose an integrated solution employing Model Driven Engineering principles. This solution, also named ASAM DSL, 
 offers a unified approach for creating CRUD (Create, Read, Update, Delete) RESTful APIs with basic unit tests. Leveraging MDE methodologies the solution will enable  model-to-model 
 transformations and model-to-text transformations.
 
-### *aaelBoot as dsl*
+### *ASAM DSL as dsl*
 #### <h3 align="center">1- HIGH-LEVEL OVERVIEW</li></h1>
 ##### <li>DSL Input:
 
@@ -26,7 +26,7 @@ transformations and model-to-text transformations.
 ##### <li>Generated Code:
 >The output of the model-to-text transformation is the generation of source code for the CRUD operations, including controllers, data models, and repository interfaces.
 ##### <li>Unit Testing Generation:
->As part of the code generation process, aaelBoot supports the generation of basic unit tests to ensure the functionality and integrity of the generated API code.
+>As part of the code generation process, ASAM DSL supports the generation of basic unit tests to ensure the functionality and integrity of the generated API code.
 ##### <li>Application.properties Configuration:
 >Users can configure additional settings, such as database connections and logging levels, via an application.properties file.
 
@@ -38,7 +38,7 @@ will exposes REST resources from CRUD operations can be modelled as the one show
 
 #### <h3 align="center">3-OBJECTIVES</h1>
 
-the first version of aaelBoot is restricted to crud manipulations restful apis in an MVC architecture with the necessary database configuration.This is
+the first version of ASAM DSL is restricted to crud manipulations restful apis in an MVC architecture with the necessary database configuration.This is
 not the final point of the project ,next versions will surely take into consideration other types of api(caching ,fetching and cleaning ,security config  ......),
 also it will take into consideration different types of architectures.So ,it is a matter of evolution and progress .
 
