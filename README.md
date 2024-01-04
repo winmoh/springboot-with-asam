@@ -1,4 +1,6 @@
 ## DSL for spring boot restful APIs generation ***ASAM DSL***
+### *Introduction*
+Model-Driven Engineering (MDE) is an approach to software development that emphasizes the use of models to design and implement systems. In MDE, abstract representations, or models, capture the essential aspects of a system, ranging from its structure to its behavior. These models serve as a foundation for generating executable code, documentation, and other artifacts, streamlining the development process and fostering higher-level abstractions. Domain-Specific Languages (DSLs) play a pivotal role in MDE, providing specialized, expressive syntax tailored to a particular problem domain. DSLs allow developers to articulate solutions in a language that closely aligns with the concepts of their specific application domain, enabling more intuitive and efficient development within that context. Together, MDE and DSLs contribute to increased productivity, code quality, and maintainability by promoting a model-centric and domain-specific approach to software engineering.
 ### *problem formalization*
 Building spring boot applications is task that full stack and software developers do almost every day,
 also these  applications have many similarities in terms of business logic,entities and also dependencies,other side most of the real world 
