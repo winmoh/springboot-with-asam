@@ -44,6 +44,22 @@ the first version of ASAM DSL is restricted to crud manipulations restful apis i
 not the final point of the project ,next versions will surely take into consideration other types of api(caching ,fetching and cleaning ,security config  ......),
 also it will take into consideration different types of architectures.So ,it is a matter of evolution and progress .
 
+Introduction, problématique, Solution proposée, Architecture de la solution,Métamodèles choisies, transformations... et conclusion
+
+### *Architecture de la solution
+
+
+### *Métamodèles choisies
+
+
+### *Transformations
+
+
+### *Conclusion
+
+
+
+
 
 
 
