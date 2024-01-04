@@ -33,42 +33,42 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 >ASAM DSL allows the definition of Spring Boot RESTful APIs through a concise and expressive syntax. The DSL encompasses various aspects of API development, including project configuration, entity modeling, data transfer objects (DTOs), controllers, repositories, and custom actions.
 
 >#### <li>Project Definition:
- Define a Spring Boot project using the 'project' keyword, specifying the project name ('nom') and optional configuration settings.
+Define a Spring Boot project using the 'project' keyword, specifying the project name ('nom') and optional configuration settings.
+
 >##### <li>Entity Modeling:
-  
-  Entities are defined using the 'entity' keyword, specifying the entity name ('nom'), identifier details, properties, repository, and controller.
-  ##### <li>Data Transfer Objects (DTOs):
-  
-  DTOs are defined using the 'dto' keyword, specifying the DTO name ('nom') and its properties.
-  ##### <li>Controllers:
-  
-  Controllers are defined using the 'controller' keyword, allowing the specification of base URLs, custom actions, and CRUD operations.
-  ##### <li>Custom Actions:
-  
-  Custom actions are defined using the 'service' keyword, providing details such as HTTP method, path, return type, implementation, and parameters.
-  ##### <li>Repositories:
-  
-  Repositories are defined using the 'repository' keyword, encompassing custom query methods, 'find by' methods, and 'delete by' methods.
-  ##### <li>Configuration:
-  
-  Configuration settings, including server and database details, are defined using the 'config' keyword.
-  ##### <li>Data Types:
-  
-  Various data types, including primitive types and enumerations, are supported.
-  ##### <li>Relationships:
-  
-  Entity relationships, such as Many-to-Many ('M2M'), Many-to-One ('M2O'), and One-to-Many ('O2M'), can be specified.
-  ##### <li>HTTP Methods and Database Types:
-  
-  HTTP methods ('GET', 'POST', 'PUT', 'DELETE', 'PATCH') and database types (e.g., 'MYSQL', 'POSTGRES') are supported.
-  ##### <li>Parameter Transfer Types:
-  
-  Different parameter transfer types, such as 'RequestBody', 'RequestParam', and 'PathVariable', are available for custom actions.
-  ##### <li>Validation and Defaults:
-  
-  Validation constraints and default values for properties can be specified.
-  
-  The DSL aims to provide a declarative and intuitive syntax for describing the structure and behavior of Spring Boot RESTful APIs, facilitating rapid development and easy customization.
+Entities are defined using the 'entity' keyword, specifying the entity name ('nom'), identifier details, properties, repository, and controller.
+
+>##### <li>Data Transfer Objects (DTOs):
+DTOs are defined using the 'dto' keyword, specifying the DTO name ('nom') and its properties.
+
+>##### <li>Controllers:
+Controllers are defined using the 'controller' keyword, allowing the specification of base URLs, custom actions, and CRUD operations.
+
+>##### <li>Custom Actions:
+Custom actions are defined using the 'service' keyword, providing details such as HTTP method, path, return type, implementation, and parameters.
+
+>##### <li>Repositories:
+Repositories are defined using the 'repository' keyword, encompassing custom query methods, 'find by' methods, and 'delete by' methods.
+
+>##### <li>Configuration:
+Configuration settings, including server and database details, are defined using the 'config' keyword.
+
+>##### <li>Data Types:
+Various data types, including primitive types and enumerations, are supported.
+
+>##### <li>Relationships:
+Entity relationships, such as Many-to-Many ('M2M'), Many-to-One ('M2O'), and One-to-Many ('O2M'), can be specified.
+
+>##### <li>HTTP Methods and Database Types:
+HTTP methods ('GET', 'POST', 'PUT', 'DELETE', 'PATCH') and database types (e.g., 'MYSQL', 'POSTGRES') are supported.
+
+>##### <li>Parameter Transfer Types:
+Different parameter transfer types, such as 'RequestBody', 'RequestParam', and 'PathVariable', are available for custom actions.
+
+>##### <li>Validation and Defaults:
+Validation constraints and default values for properties can be specified.
+
+>The DSL aims to provide a declarative and intuitive syntax for describing the structure and behavior of Spring Boot RESTful APIs, facilitating rapid development and easy customization.
 
 
 ##### <li> Grammar building:
