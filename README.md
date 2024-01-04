@@ -13,8 +13,15 @@ In our pursuit of formal tooling, we have identified that Model Driven Engineeri
 faced by ASAM DSL. The aim of ASAM DSL is to streamline the development process by providing a high-level Domain-Specific Language (DSL) that reduces 
 redundancy and simplifies the generation of basic code.
 Under the umbrella of ASAM DSL, we propose an integrated solution employing Model Driven Engineering principles. This solution, also named ASAM DSL, 
-offers a unified approach for creating CRUD (Create, Read, Update, Delete) RESTful APIs with basic unit tests. Leveraging MDE methodologies the solution will enable  model-to-model 
+offers a unified approach for creating CRUD (Create, Read, Update, Delete) RESTful APIs . Leveraging MDE methodologies the solution will enable  model-to-model 
 transformations and model-to-text transformations.
+ASAM solution is now on the beginning of the way as the objectives is tio cover many aspects of spring boot functionnalities and features.The first Version of ASAM is now targeting crud restfull apis in a monolyth architecture,but for sure the next versions would support :
+##### <li> unit test
+##### <li> integration tests
+##### <li> batch processing 
+##### <li> IAM(identity and access management ) 
+##### <li> different software architectures(serverless,microservices,event-driven,Master-slave....)......
+
 
 ### *ASAM DSL as dsl*
 #### <h3 align="center">1- HIGH-LEVEL OVERVIEW</li></h1>
