@@ -196,7 +196,7 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 ##### <li>5-Code Generation:
 >In our Xtext DSL project for generating Spring Boot RESTful APIs, the code generation step is a pivotal process that translates high-level DSL representations into executable Spring Boot code.We used  the Xtend language   in order to  write the code  generator from the proposed DSL. Xtend is a statically-typed programming language that was initially released with Xtext. We wrote different code templates  in order to automatically generate all the Spring Boot Java files that were necessary. 
 The code will be generated to repect the format of maven spring boot project for perfoming crud operation in a format that respect the best practices of basic spring boot monolyth project.The image Below is an example of an output format:<br>
-![target architecture](im1111.JPG)
+![target architecture](im1111.PNG)
 ##### <li>Web integration of ASAM:
 >Web integrationnis one of the objectives of the project ,ASAM solution is designed to be accesible from a web applictaion that is already developped and closely would be in production the web interface is supposed to provide an intuitive interface to interact woth ASAM dsl and get result in jar file.
 
