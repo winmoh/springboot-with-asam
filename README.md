@@ -30,7 +30,7 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 
 >ASAM DSL allows the definition of Spring Boot RESTful APIs through a concise and expressive syntax. The DSL encompasses various aspects of API development, including project configuration, entity modeling,      >data >transfer objects (DTOs), controllers, repositories, and custom actions.
 
->#### <li>Project Definition:
+>##### <li>Project Definition:
 >Define a Spring Boot project using the 'project' keyword, specifying the project name ('nom') and optional configuration settings.
 
 >##### <li>Entity Modeling:
@@ -72,7 +72,7 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 >In the context of Model-Driven Engineering (MDE), a meta-model serves as a foundational abstraction that defines the structure and semantics of a modeling language. In our DSL for Spring Boot RESTful API generation, the meta-model acts as a conceptual framework, capturing the essential concepts and relationships inherent to the representation of a software project.
 >ASAM is defined under the meta model represented below:
 
-##### <li> Grammar building:
+##### <li>3-Grammar building:
 >The gramar to align with the dedicated meta-model,it enables the precise representation of key project elements in a textual format. Developers can articulate project structures, including entities, data transfer objects (DTOs), repositories, and their relationships, employing an intuitive syntax. Configuration settings, server specifications, and database details are seamlessly integrated, ensuring comprehensive project definitions. This grammar acts as a bridge between the high-level abstraction provided by the DSL and the underlying meta-model, facilitating the creation of Spring Boot applications through a concise and expressive textual syntax.
 >our grammar is the follwing:
 <pre>
@@ -188,9 +188,13 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
     enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";
     enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" | PathVariable="PathVariable";
 </pre>
-##### <li>Validation:
->The abstract model undergoes a model-to-text transformation, where templates are used to generate text-based artifacts, such as Java code and configuration files.
-##### <li>Generated Code:
+##### <li>4-Validation:
+>In our Xtext DSL project for generating Spring Boot RESTful APIs, the validation step is a critical phase ensuring both syntactic and semantic accuracy within our defined language. During validation, the Xtext framework meticulously analyzes the DSL code against our specified grammar rules and performs additional checks we've defined. This process is instrumental in identifying and preemptively addressing errors early in the development cycle, delivering immediate feedback to users as they compose code. The effectiveness of our validation significantly contributes to the reliability and maintainability of our DSL projects, ensuring strict adherence to our language specifications and preempting potential runtime issues. By rigorously enforcing consistency and correctness in our DSL code, the validation step serves as a linchpin in elevating the overall quality of our Xtext DSL project, cultivating a resilient and error-free environment tailored for generating robust Spring Boot RESTful APIs,there two types of validators are provided by the project:
+##### <li> Automatic Validation(Lexer/Parser: Syntactical Validation,Linker: Cross-reference Validation,Serializer: Concrete Syntax Validation)
+##### <li> Custom Validation
+
+
+##### <li>5Generated Code:
 >The output of the model-to-text transformation is the generation of source code for the CRUD operations, including controllers, data models, and repository interfaces.
 ##### <li>Unit Testing Generation:
 >As part of the code generation process, ASAM DSL supports the generation of basic unit tests to ensure the functionality and integrity of the generated API code.
