@@ -68,10 +68,138 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 
 >The DSL aims to provide a declarative and intuitive syntax for describing the structure and behavior of Spring Boot RESTful APIs, facilitating rapid development and easy customization.
 
-##### <li> MetaModel Definition:
+##### <li> 2-MetaModel Definition:
+>In the context of Model-Driven Engineering (MDE), a meta-model serves as a foundational abstraction that defines the structure and semantics of a modeling language. In our DSL for Spring Boot RESTful API generation, the meta-model acts as a conceptual framework, capturing the essential concepts and relationships inherent to the representation of a software project.
+>ASAM is defined under the meta model represented below:
 
 ##### <li> Grammar building:
->The DSL processes the user input, creating an abstract model that accurately represents the structure and behavior of the desired API, including specified entities and operations.
+>The gramar to align with the dedicated meta-model,it enables the precise representation of key project elements in a textual format. Developers can articulate project structures, including entities, data transfer objects (DTOs), repositories, and their relationships, employing an intuitive syntax. Configuration settings, server specifications, and database details are seamlessly integrated, ensuring comprehensive project definitions. This grammar acts as a bridge between the high-level abstraction provided by the DSL and the underlying meta-model, facilitating the creation of Spring Boot applications through a concise and expressive textual syntax.
+>our grammar is the follwing:
+  '''
+      grammar org.xtext.example.asam.Asam with org.eclipse.xtext.common.Terminals
+
+generate asam "http://www.xtext.org/example/asam/Asam"
+
+Sboot:
+    'project' nom=ID
+    configuration=Configuration?
+    elements+=Element*;
+
+Element:
+    Entity |  DTO | Repository | EntityRelationship ;
+
+
+EntityRelationship:
+	'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
+//java.lang.IllegalArgumentException: The sources EClass 'Entity' does not expose the feature 'ActionParameter.nom'
+Configuration:
+    'config' '{'
+        server=ServerInfo?
+        database=DatabaseInfo
+    '}';
+
+ServerInfo:
+    'server' '{'
+        ('port' port=INT)
+        ('cpath' path=PATH)?
+    '}';
+
+DatabaseInfo:
+    'database' '{'
+        'dbms' type=RDBMS
+        'dname' nom=ID
+        'dport' port=INT
+        'username' username=ID
+        'password' password=ID
+    '}';
+
+Entity:
+	
+    'entity' nom=ID ('inherits' extends=[Entity])? '{'
+    	ident=Identifier
+        properties+=Property*
+        repo=Repository?
+        control=Controller
+    '}';
+
+Identifier:
+	'Id' nom=ID type=VTypes
+;
+
+DTO:
+    'dto' nom=ID '{'
+        properties+=Property*
+    '}';
+
+
+Controller:
+    'controller'  '{'
+        baseUrl=PATH?
+        cactions+=CustomAction*
+        ('create' 'entity:' cparam=ParamTrasfert )?
+        ('find' 'entity:' fparam=ParamTrasfert)?
+        ('delete' 'entity:' dparam=ParamTrasfert)?
+     '}';
+
+
+CustomAction:
+	
+    'service' nom=ID '{'
+    	'http' method=HttpMethods 
+    	'path' spath=PATH
+        'returns' returnType=RType ':' returnName=ID
+        ('implementation' implementation=STRING)?
+        'params' '(' (parameters+=ActionParameter)* ')'
+    '}'
+	
+      ;
+
+
+ActionParameter:
+     httpM=ParamTrasfert 'as'  type=Type ':' nom=ID';' ;
+
+Repository:
+    'repository'  '{'
+        findBy+=FindByMethod*
+        deleteBy+=DeleteByMethod*
+        customQueryMethod+=CustomQueryMethod*
+    '}';
+
+
+
+FindByMethod:
+    'find' 'by' property=ID':' ptype=VTypes; //('And' prop=ID)?;
+
+DeleteByMethod:
+    'delete' 'by' property=ID':' ptype=VTypes; //('And' prop=ID)?;
+
+CustomQueryMethod:
+    'customQuery' '{' query=STRING '}';
+
+
+
+Property:
+    nom=ID ':' type=Type ('default' defaultValue=STRING)?;
+
+Type:
+    Vtypes=VTypes | ListType | SetType;
+
+RType:
+    Vypes=VTypes | ListType | ID;
+
+ListType: 'List<' type=Type '>';
+SetType: 'Set<' type=Type '>';
+
+terminal PATH: ('/' ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '_')*)*;
+
+enum VTypes  : FLOAT='float' | LONG="long" | INTEGER="int" | CHAR="char" | BOOLEAN="boolean" | BYTE="byte" | STRING="String";
+
+enum HttpMethods: GET="Get" | DELETE="Delete" | POST="Post" | PUT="Put" | PATCH="Patch";
+
+enum RDBMS: MYSQL="Mysql" | POSTGRES="Postgres" | MARIADB="Mariadb" | H2="h2" | ORACLE="Oracle";
+
+enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";
+enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" |PathVariable="PathVariable";'''
 ##### <li>Validation:
 >The abstract model undergoes a model-to-text transformation, where templates are used to generate text-based artifacts, such as Java code and configuration files.
 ##### <li>Generated Code:
