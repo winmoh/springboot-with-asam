@@ -201,6 +201,51 @@ The code will be generated to repect the format of maven spring boot project for
 >Web integrationnis one of the objectives of the project ,ASAM solution is designed to be accesible from a web applictaion that is already developped and closely would be in production the web interface is supposed to provide an intuitive interface to interact woth ASAM dsl and get result in jar file.
 
 ### *Transformation M2T*
+##### ASAM DSL Spring Boot Code Generation
+
+ASAM solution use xtend language to implement a  Model-to-Text (M2T) transformation for generating code from a Domain-Specific Language (DSL) named ASAM. The resulting code is tailored for a Spring Boot application, incorporating Java Persistence API (JPA) entities, repositories, Data Transfer Objects (DTOs), controllers, services, and related configurations.
+
+##### Entity Generation (`generateEntityClass`)
+
+- Generates Java entity classes annotated with JPA annotations (`@Entity` and `@Table`).
+- Includes fields for each property specified in the ASAM DSL.
+
+##### Repository Generation (`generateRepository`)
+
+- Creates Spring Data JPA repositories for each entity.
+- Repositories extend `JpaRepository` and include methods for basic CRUD operations and custom queries.
+
+##### DTO Generation (`generateDtoClass`)
+
+- Generates DTOs based on DSL's DTO definitions.
+- Utilizes Lombok's `@Builder` annotation for a convenient builder pattern.
+- Generates getter and setter methods for each DTO property.
+
+##### Controller and Service Generation (`generateController` and `generateService`)
+
+- Creates controllers and services for each entity.
+- Controllers handle HTTP requests, while services encapsulate business logic.
+- Generates methods in controllers for CRUD operations and custom actions specified in the DSL.
+
+##### Properties File Generation (`generatePropertiesFile1`, `generatePropertiesH2`, `generatePropertiesOracle`)
+
+- Generates properties files to configure the Spring Boot application.
+- Different files are generated based on the specified database type in the DSL configuration.
+
+##### POM.xml Generation (`generatePomXml`)
+
+- Generates the POM.xml file for Maven, including dependencies based on the chosen database type.
+
+##### Test Folder Generation (`generateTestFolder`)
+
+- Generates a placeholder test class within the test folder.
+
+##### Main Class Generation (`generateMainClass`)
+
+- Generates a main class for the Spring Boot application, including the `@SpringBootApplication` annotation.
+
+This M2T transformation automates the generation of boilerplate code, promoting consistency and reducing effort when setting up a new Spring Boot project based on the ASAM DSL specifications.
+
 
     
 
