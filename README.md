@@ -70,7 +70,7 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 ##### <li> 2-MetaModel Definition:
 >In the context of Model-Driven Engineering (MDE), a meta-model serves as a foundational abstraction that defines the structure and semantics of a modeling language. In our DSL for Spring Boot RESTful API generation, the meta-model acts as a conceptual framework, capturing the essential concepts and relationships inherent to the representation of a software project.
 >ASAM is defined under the meta model represented below:<br>
-![target architecture](metamodel.PNG)
+![target architecture](metamodel.png)
 
 
 
