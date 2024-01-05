@@ -189,23 +189,21 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
     enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" | PathVariable="PathVariable";
 </pre>
 ##### <li>4-Validation:
->In our Xtext DSL project for generating Spring Boot RESTful APIs, the validation step is a critical phase ensuring both syntactic and semantic accuracy within our defined language. During validation, the Xtext framework meticulously analyzes the DSL code against our specified grammar rules and performs additional checks we've defined. This process is instrumental in identifying and preemptively addressing errors early in the development cycle, delivering immediate feedback to users as they compose code. The effectiveness of our validation significantly contributes to the reliability and maintainability of our DSL projects, ensuring strict adherence to our language specifications and preempting potential runtime issues. By rigorously enforcing consistency and correctness in our DSL code, the validation step serves as a linchpin in elevating the overall quality of our Xtext DSL project, cultivating a resilient and error-free environment tailored for generating robust Spring Boot RESTful APIs,there two types of validators are provided by the project:
--Automatic Validation(Lexer/Parser: Syntactical Validation,Linker: Cross-reference Validation,Serializer: Concrete Syntax Validation)
+>In our Xtext DSL project for generating Spring Boot RESTful APIs, the validation step is a critical phase ensuring both syntactic and semantic accuracy within our defined language. During validation, the Xtext framework meticulously analyzes the DSL code against our specified grammar rules and performs additional checks we've defined. This process is instrumental in identifying and preemptively addressing errors early in the development cycle, delivering immediate feedback to users as they compose code. The effectiveness of our validation significantly contributes to the reliability and maintainability of our DSL projects, ensuring strict adherence to our language specifications and preempting potential runtime issues. By rigorously enforcing consistency and correctness in our DSL code, the validation step serves as a linchpin in elevating the overall quality of our Xtext DSL project, cultivating a resilient and error-free environment tailored for generating robust Spring Boot RESTful APIs,there two types of validators are provided by the project:<br>
+-Automatic Validation(Lexer/Parser: Syntactical Validation,Linker: Cross-reference Validation,Serializer: Concrete Syntax Validation)<br>
 -Custom Validation
 
 
-##### <li>5Generated Code:
->The output of the model-to-text transformation is the generation of source code for the CRUD operations, including controllers, data models, and repository interfaces.
-##### <li>Unit Testing Generation:
+##### <li>5-Code Generation:
+>In our Xtext DSL project for generating Spring Boot RESTful APIs, the code generation step is a pivotal process that translates high-level DSL representations into executable Spring Boot code.We used  the Xtend language   in order to  write the code  generator from the proposed DSL. Xtend is a statically-typed programming language that was initially released with Xtext. We wrote different code templates  in order to automatically generate all the Spring Boot Java files that were necessary. 
+The code will be generated to repect the format of maven spring boot project for perfoming crud operation in a format that respect the best practices of basic spring boot monolyth project.The image Below is an example of an output format:
+![target architecture](images/im1111.JPG)
+##### <li>Web integration of ASAM:
+>Web integrationnis one of the objectives of the project ,ASAM solution is designed to be accesible from a web applictaion that is already developped and closely would be in production the web interface is supposed to provide an intuitive interface to interact woth ASAM dsl and get result in jar file.
+
+##### <li>Web integration of ASAM:
 >As part of the code generation process, ASAM DSL supports the generation of basic unit tests to ensure the functionality and integrity of the generated API code.
-##### <li>Application.properties Configuration:
->Users can configure additional settings, such as database connections and logging levels, via an application.properties file.
 
-#### <h3 align="center">2- THE TARGET ARCHITECTURE OF THE DSL</h1>
-the objective of dsl wil be to generate a restful spring boot application that provides customized restful logic for crud operations.The generated  application 
-will exposes REST resources from CRUD operations can be modelled as the one shown in Fig below that shows an example applied on an entity called order.
-
-![target architecture](images/im1.JPG)
 
 #### <h3 align="center">3-OBJECTIVES</h1>
 
