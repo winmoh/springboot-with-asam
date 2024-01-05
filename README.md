@@ -75,6 +75,7 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 ##### <li> Grammar building:
 >The gramar to align with the dedicated meta-model,it enables the precise representation of key project elements in a textual format. Developers can articulate project structures, including entities, data transfer objects (DTOs), repositories, and their relationships, employing an intuitive syntax. Configuration settings, server specifications, and database details are seamlessly integrated, ensuring comprehensive project definitions. This grammar acts as a bridge between the high-level abstraction provided by the DSL and the underlying meta-model, facilitating the creation of Spring Boot applications through a concise and expressive textual syntax.
 >our grammar is the follwing:
+
 ```antlr
 grammar org.xtext.example.asam.Asam with org.eclipse.xtext.common.Terminals;
 
@@ -186,9 +187,9 @@ enum HttpMethods: GET="Get" | DELETE="Delete" | POST="Post" | PUT="Put" | PATCH=
 enum RDBMS: MYSQL="Mysql" | POSTGRES="Postgres" | MARIADB="Mariadb" | H2="h2" | ORACLE="Oracle";
 
 enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";
-enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" | PathVariable="PathVariable"
-'''
-##### <li>Validation:
+enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" | PathVariable="PathVariable";
+
+<Li>##### <li>Validation:
 >The abstract model undergoes a model-to-text transformation, where templates are used to generate text-based artifacts, such as Java code and configuration files.
 ##### <li>Generated Code:
 >The output of the model-to-text transformation is the generation of source code for the CRUD operations, including controllers, data models, and repository interfaces.
