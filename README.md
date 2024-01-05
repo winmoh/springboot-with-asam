@@ -75,8 +75,8 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 ##### <li> Grammar building:
 >The gramar to align with the dedicated meta-model,it enables the precise representation of key project elements in a textual format. Developers can articulate project structures, including entities, data transfer objects (DTOs), repositories, and their relationships, employing an intuitive syntax. Configuration settings, server specifications, and database details are seamlessly integrated, ensuring comprehensive project definitions. This grammar acts as a bridge between the high-level abstraction provided by the DSL and the underlying meta-model, facilitating the creation of Spring Boot applications through a concise and expressive textual syntax.
 >our grammar is the follwing:
-  '''
-      grammar org.xtext.example.asam.Asam with org.eclipse.xtext.common.Terminals
+```antlr
+grammar org.xtext.example.asam.Asam with org.eclipse.xtext.common.Terminals;
 
 generate asam "http://www.xtext.org/example/asam/Asam"
 
@@ -86,12 +86,11 @@ Sboot:
     elements+=Element*;
 
 Element:
-    Entity |  DTO | Repository | EntityRelationship ;
-
+    Entity | DTO | Repository | EntityRelationship ;
 
 EntityRelationship:
-	'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
-//java.lang.IllegalArgumentException: The sources EClass 'Entity' does not expose the feature 'ActionParameter.nom'
+    'relation' type=dbRelations 'between' source=[Entity] 'and' target=[Entity];
+
 Configuration:
     'config' '{'
         server=ServerInfo?
@@ -114,23 +113,20 @@ DatabaseInfo:
     '}';
 
 Entity:
-	
     'entity' nom=ID ('inherits' extends=[Entity])? '{'
-    	ident=Identifier
+        ident=Identifier
         properties+=Property*
         repo=Repository?
         control=Controller
     '}';
 
 Identifier:
-	'Id' nom=ID type=VTypes
-;
+    'Id' nom=ID type=VTypes;
 
 DTO:
     'dto' nom=ID '{'
         properties+=Property*
     '}';
-
 
 Controller:
     'controller'  '{'
@@ -141,22 +137,17 @@ Controller:
         ('delete' 'entity:' dparam=ParamTrasfert)?
      '}';
 
-
 CustomAction:
-	
     'service' nom=ID '{'
-    	'http' method=HttpMethods 
-    	'path' spath=PATH
+        'http' method=HttpMethods 
+        'path' spath=PATH
         'returns' returnType=RType ':' returnName=ID
         ('implementation' implementation=STRING)?
         'params' '(' (parameters+=ActionParameter)* ')'
-    '}'
-	
-      ;
-
+    '}';
 
 ActionParameter:
-     httpM=ParamTrasfert 'as'  type=Type ':' nom=ID';' ;
+    httpM=ParamTrasfert 'as'  type=Type ':' nom=ID';' ;
 
 Repository:
     'repository'  '{'
@@ -165,18 +156,14 @@ Repository:
         customQueryMethod+=CustomQueryMethod*
     '}';
 
-
-
 FindByMethod:
-    'find' 'by' property=ID':' ptype=VTypes; //('And' prop=ID)?;
+    'find' 'by' property=ID':' ptype=VTypes;
 
 DeleteByMethod:
-    'delete' 'by' property=ID':' ptype=VTypes; //('And' prop=ID)?;
+    'delete' 'by' property=ID':' ptype=VTypes;
 
 CustomQueryMethod:
     'customQuery' '{' query=STRING '}';
-
-
 
 Property:
     nom=ID ':' type=Type ('default' defaultValue=STRING)?;
@@ -199,7 +186,9 @@ enum HttpMethods: GET="Get" | DELETE="Delete" | POST="Post" | PUT="Put" | PATCH=
 enum RDBMS: MYSQL="Mysql" | POSTGRES="Postgres" | MARIADB="Mariadb" | H2="h2" | ORACLE="Oracle";
 
 enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";
-enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" |PathVariable="PathVariable";'''
+enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" | PathVariable="PathVariable";
+'''
+  
 ##### <li>Validation:
 >The abstract model undergoes a model-to-text transformation, where templates are used to generate text-based artifacts, such as Java code and configuration files.
 ##### <li>Generated Code:
