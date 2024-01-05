@@ -186,9 +186,8 @@ enum HttpMethods: GET="Get" | DELETE="Delete" | POST="Post" | PUT="Put" | PATCH=
 enum RDBMS: MYSQL="Mysql" | POSTGRES="Postgres" | MARIADB="Mariadb" | H2="h2" | ORACLE="Oracle";
 
 enum dbRelations: M2M="ManyToMany" | M2O="ManyToOne" | O2M="OneToMany";
-enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" | PathVariable="PathVariable";
+enum ParamTrasfert: RequestBody="RequestBody" | RequestParam="RequestParam" | PathVariable="PathVariable"
 '''
-  
 ##### <li>Validation:
 >The abstract model undergoes a model-to-text transformation, where templates are used to generate text-based artifacts, such as Java code and configuration files.
 ##### <li>Generated Code:
