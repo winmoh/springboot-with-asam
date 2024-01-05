@@ -25,7 +25,6 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 
 
 ### *ASAM DSL as dsl/solution architecture*
-#### <h3 align="center">1- HIGH-LEVEL OVERVIEW</li></h1>
 ##### <li>1-DSL Input:
 
 >ASAM DSL allows the definition of Spring Boot RESTful APIs through a concise and expressive syntax. The DSL encompasses various aspects of API development, including project configuration, entity modeling,      >data >transfer objects (DTOs), controllers, repositories, and custom actions.
@@ -201,10 +200,9 @@ The code will be generated to repect the format of maven spring boot project for
 ##### <li>Web integration of ASAM:
 >Web integrationnis one of the objectives of the project ,ASAM solution is designed to be accesible from a web applictaion that is already developped and closely would be in production the web interface is supposed to provide an intuitive interface to interact woth ASAM dsl and get result in jar file.
 
-##### <li>Web integration of ASAM:
->As part of the code generation process, ASAM DSL supports the generation of basic unit tests to ensure the functionality and integrity of the generated API code.
+### *Transformation M2T*
 
-
+    
 #### <h3 align="center">3-OBJECTIVES</h1>
 
 the first version of ASAM DSL is restricted to crud manipulations restful apis in an MVC architecture with the necessary database configuration.This is
@@ -213,14 +211,26 @@ also it will take into consideration different types of architectures.So ,it is 
 
 Introduction, problématique, Solution proposée, Architecture de la solution,Métamodèles choisies, transformations... et conclusion
 
-### *Architecture de la solution*
+### *Tools*
+#### Xtext
 
+- **Purpose:** Xtext is a language development framework that facilitates the creation of Domain-Specific Languages (DSLs) and their corresponding Integrated Development Environments (IDEs).
+- **Role in ASAM DSL Project:** Xtext is the core technology responsible for defining the syntax and semantics of ASAM DSL. It enables the creation of a textual DSL with specific grammar rules and supports automatic generation of a rich and customizable editor for ASAM DSL.
 
-### *Métamodèles choisies*
+#### Xtend
 
+- **Purpose:** Xtend is a programming language that compiles to Java source code. It is designed to be concise and expressive, providing additional features and enhancements compared to Java.
+- **Role in ASAM DSL Project:** Xtend is often used for writing code generation templates in the context of Model-to-Text (M2T) transformations. It allows you to generate CRUD operations and other code based on the ASAM DSL models, enhancing the expressiveness and conciseness of your code.
 
-### *Transformations*
+#### EMF (Eclipse Modeling Framework)
 
+- **Purpose:** EMF is a modeling framework within the Eclipse ecosystem. It provides tools and runtime support for building and managing structured data models.
+- **Role in ASAM DSL Project:** EMF is likely used for defining and manipulating models in your project. It provides the infrastructure for creating, editing, saving, and loading models in a consistent way. In the context of your ASAM DSL, EMF is essential for handling the underlying data structures that represent the DSL models.
+
+#### ANTLR (ANother Tool for Language Recognition)
+
+- **Purpose:** ANTLR is a powerful parser generator that is sometimes used in combination with Xtext to define the lexer and parser rules for the DSL.
+- **Role in Xtext Projects:** ANTLR helps in specifying the grammar rules for the DSL, and Xtext can use ANTLR-generated parsers under the hood.
 
 ### *Conclusion*
 
