@@ -305,8 +305,8 @@ the images below would show the structure of the output and also the content if 
 ![output example](images/serv1.PNG)<br>
 ![output example](images/serv2.PNG)<br>
 ![output example](images/controller.PNG)<br>
-![output example](images/maiClass.PNG)<br>
-![output example](images/pom1.PNG)<br>
+![output example](images/maiCalss.PNG)<br>
+![output example](images/pom.PNG)<br>
 ![output example](images/pom2.PNG)<br>
 ![output example](images/testClass.PNG)<br>
 ![output example](images/ressources.PNG)<br>
