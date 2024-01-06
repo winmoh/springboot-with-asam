@@ -292,11 +292,11 @@ ASAM solution use xtend language to implement a  Model-to-Text (M2T) transformat
 <br>
 ### *ASAM use overview:*
 >>##### input example(test.asam):
-![input example](images/im1.PNG) ![input example](images/im2.PNG)
+![input example](/images/im1.PNG) ![input example](images/im2.PNG)
 <br><br>
 ##### output of the example aove(test.asam):
 the images below would show the structure of the output and also the content if each file in the project genrator to help the user understand more ASAM:
-![input example](images/im1.PNG)<br>
+![input example](/images/im1.PNG)<br>
 ![input example](images/im1.PNG)<br>
 ![input example](images/im1.PNG)<br>
 ![input example](images/im1.PNG)<br>
