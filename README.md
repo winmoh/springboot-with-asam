@@ -201,7 +201,11 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 The code will be generated to repect the format of maven spring boot project for perfoming crud operation in a format that respect the best practices of basic spring boot monolyth project.The image Below is an example of an output format:<br>
 ![target architecture](im1111.PNG)
 ##### <li>Web integration of ASAM:
->Web integrationnis one of the objectives of the project ,ASAM solution is designed to be accesible from a web applictaion that is already developped and closely would be in production the web interface is supposed to provide an intuitive interface to interact woth ASAM dsl and get result in jar file.
+>Web integration is one of the objectives of the project ,ASAM solution is designed to be accesible from a web applictaion that is already developped and closely would be in production the web interface is supposed to provide an intuitive interface to interact woth ASAM dsl and get result in jar file.
+>The asam web solution is accessible from a web application that provide a presentation of the asam solution and key concepts manifested in the language ,and mainly give code editor that enable sthe users to write their code that  should respect asam dsl and as result the user could get the result of its code either as errors reports if the input doesn't respect asam syntax or a zip  that package the resulted spring boot project the web app is prsented in the folloing images images:
+<span style="background-color: yellow;">This is the highlighted text with a yellow background.</span>
+>
+
 
 ### *Transformation M2T*
 ##### ASAM DSL Spring Boot Code Generation
