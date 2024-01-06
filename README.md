@@ -66,6 +66,9 @@ ASAM solution is now on the beginning of the way as the objectives is tio cover 
 >Validation constraints and default values for properties can be specified.
 
 >The DSL aims to provide a declarative and intuitive syntax for describing the structure and behavior of Spring Boot RESTful APIs, facilitating rapid development and easy customization.
+ASAM is dsl that aims to be ituitive and users master from the first use.
+the images below show an example of an ASAM valid input:
+>>>![target architecture](IMG-20240106-WA0003.jpg)
 
 ##### <li> 2-MetaModel Definition:
 >In the context of Model-Driven Engineering (MDE), a meta-model serves as a foundational abstraction that defines the structure and semantics of a modeling language. In our DSL for Spring Boot RESTful API generation, the meta-model acts as a conceptual framework, capturing the essential concepts and relationships inherent to the representation of a software project.
