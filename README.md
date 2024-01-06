@@ -290,9 +290,10 @@ ASAM solution use xtend language to implement a  Model-to-Text (M2T) transformat
     - **Role in Xtext Projects:** ANTLR helps in specifying the grammar rules for the DSL, and Xtext can use ANTLR-generated parsers under the hood.
 </pre>
 <br>
-### *ASAM use overview:*
->>##### input example(test.asam):
-![input example](/images/im1.PNG) ![input example](images/im2.PNG)
+### *ASAM use overview:*<br>
+>>##### input example(test.asam):<bR>
+ ![input example](images/im1.PNG) 
+![input example](images/im2.PNG)
 <br><br>
 ##### output of the example aove(test.asam):
 the images below would show the structure of the output and also the content if each file in the project genrator to help the user understand more ASAM:
