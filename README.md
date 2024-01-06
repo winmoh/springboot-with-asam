@@ -319,8 +319,11 @@ the images below would show the structure of the output and also the content if 
 ![output example](images/testClass.PNG)<br>
 ##### application.properties file 
 ![output example](images/ressources.PNG)<br>
-#
 
+#### a second inctance of our dsl:
+the images below show avalid instance of asam dsl so that the user can understand how get max of profit from the asam solution and get a full spring boot project:<br>
+![output example](images/ex1.PNG)<br>
+![output example](images/ex2.PNG)<br>
 
 
 ### *Conclusion*
