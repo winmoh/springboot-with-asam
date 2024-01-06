@@ -289,6 +289,11 @@ ASAM solution use xtend language to implement a  Model-to-Text (M2T) transformat
     - **Purpose:** ANTLR is a powerful parser generator that is sometimes used in combination with Xtext to define the lexer and parser rules for the DSL.
     - **Role in Xtext Projects:** ANTLR helps in specifying the grammar rules for the DSL, and Xtext can use ANTLR-generated parsers under the hood.
 </pre>
+<br>
+### *ASAM use overview:*
+##### input example(test.asam):
+![input example](im1.PNG)
+
 ### *Conclusion*
 In conclusion, our ASAM DSL project leverages powerful tools and frameworks to streamline the development of Spring Boot RESTful APIs. Xtext serves as the backbone, empowering the creation of a Domain-Specific Language (DSL) with a tailored syntax and semantics. Xtend enhances expressiveness through concise code generation templates, while EMF ensures robust model handling within the Eclipse ecosystem. The integrated solution follows Model-Driven Engineering (MDE) principles, enabling seamless model-to-model and model-to-text transformations. Together, these technologies contribute to a cohesive, efficient, and maintainable approach for developing CRUD operations in Spring Boot, aligning perfectly with our project's objectives. Refer to the sections above for detailed information on each component, empowering you to dive into our DSL project with confidence.
 
