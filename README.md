@@ -291,8 +291,17 @@ ASAM solution use xtend language to implement a  Model-to-Text (M2T) transformat
 </pre>
 <br>
 ### *ASAM use overview:*
-##### input example(test.asam):
-![input example](im1.PNG)
+>>##### input example(test.asam):
+![input example](images/im1.PNG) ![input example](images/im2.PNG)
+<br><br>
+##### output of the example aove(test.asam):
+the images below would show the structure of the output and also the content if each file in the project genrator to help the user understand more ASAM:
+![input example](images/im1.PNG)<br>
+![input example](images/im1.PNG)<br>
+![input example](images/im1.PNG)<br>
+![input example](images/im1.PNG)<br>
+
+
 
 ### *Conclusion*
 In conclusion, our ASAM DSL project leverages powerful tools and frameworks to streamline the development of Spring Boot RESTful APIs. Xtext serves as the backbone, empowering the creation of a Domain-Specific Language (DSL) with a tailored syntax and semantics. Xtend enhances expressiveness through concise code generation templates, while EMF ensures robust model handling within the Eclipse ecosystem. The integrated solution follows Model-Driven Engineering (MDE) principles, enabling seamless model-to-model and model-to-text transformations. Together, these technologies contribute to a cohesive, efficient, and maintainable approach for developing CRUD operations in Spring Boot, aligning perfectly with our project's objectives. Refer to the sections above for detailed information on each component, empowering you to dive into our DSL project with confidence.
