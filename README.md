@@ -206,7 +206,7 @@ The code will be generated to repect the format of maven spring boot project for
 
 >>>==**Main page of ASAM web APP:**==
 >>>![target architecture](IMG-20240106-WA0004.jpg)<br><br>
->==**ASAM description:**==
+> ** ==ASAM description:== **
 >>>![target architecture](IMG-20240106-WA0005.jpg)<br><br>
 >==**ASAM input/output overview:**==
 >>>![target architecture](IMG-20240106-WA0006.jpg)<br><br>
