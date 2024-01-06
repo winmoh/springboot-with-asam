@@ -291,8 +291,9 @@ ASAM solution use xtend language to implement a  Model-to-Text (M2T) transformat
 </pre>
 <br>
 ### *ASAM use overview:*<br>
-##### input example (test.asam):<bR>
-![input example](images/im1111.PNG)
+##### input example (test.asam):<br>
+
+![input example](images/im1.PNG)
 ![input example](images/im2.PNG)
 <br><br>
 ##### output of the example above (test.asam):
