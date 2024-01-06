@@ -292,7 +292,7 @@ ASAM solution use xtend language to implement a  Model-to-Text (M2T) transformat
 <br>
 ### *ASAM use overview:*<br>
 ##### input example(test.asam):<bR>
-![input example](https://github.com/winmoh/springboot-with-asam/blob/step2/images/im1.PNG)
+![input example](im1111.PNG)
 ![input example](images/im2.PNG)
 <br><br>
 ##### output of the example aove(test.asam):
