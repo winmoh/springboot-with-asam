@@ -202,16 +202,16 @@ The code will be generated to repect the format of maven spring boot project for
 ![target architecture](im1111.PNG)
 ##### <li>Web integration of ASAM:
 >Web integration is one of the objectives of the project ,ASAM solution is designed to be accesible from a web applictaion that is already developped and closely would be in production the web interface is supposed to provide an intuitive interface to interact woth ASAM dsl and get result in jar file.
->The asam web solution is accessible from a web application that provide a presentation of the asam solution and key concepts manifested in the language ,and mainly give code editor that enable sthe users to write their code that  should respect asam dsl and as result the user could get the result of its code either as errors reports if the input doesn't respect asam syntax or a zip  that package the resulted spring boot project the web app is prsented in the folloing images images:
-<span style="background-color: yellow;">This is the highlighted text with a yellow background.</span><br>
->**Main page of ASAM web APP:**
->>>![target architecture](IMG-20240106-WA0004.jpg)
->**ASAM description:**
->>>![target architecture](IMG-20240106-WA0005.jpg)
->**ASAM input/output overview:**
->![target architecture](IMG-20240106-WA0006.jpg)
->**ASAM code editor:**
->>>![target architecture](IMG-20240106-WA0003.jpg)
+>The asam web solution is accessible from a web application that provide a presentation of the asam solution and key concepts manifested in the language ,and mainly give code editor that enable sthe users to write their code that  should respect asam dsl and as result the user could get the result of its code either as errors reports if the input doesn't respect asam syntax or a zip  that package the resulted spring boot project the web app is prsented in the folloing images images:<br><br>
+
+>==**Main page of ASAM web APP:**==
+>>>![target architecture](IMG-20240106-WA0004.jpg)<br><br>
+>==**ASAM description:**==
+>>>![target architecture](IMG-20240106-WA0005.jpg)<br><br>
+>==**ASAM input/output overview:**==
+>![target architecture](IMG-20240106-WA0006.jpg)<br><br>
+>==**ASAM code editor:**==
+>>>![target architecture](IMG-20240106-WA0003.jpg)<br><br>
 
 
 ### *Transformation M2T*
