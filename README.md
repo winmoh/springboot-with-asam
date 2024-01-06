@@ -298,10 +298,18 @@ ASAM solution use xtend language to implement a  Model-to-Text (M2T) transformat
 <br><br>
 ##### output of the example above (test.asam):
 the images below would show the structure of the output and also the content if each file in the project generator to help the user understand more ASAM:
-![output example](images/im1.PNG)<br>
-![output example](images/im1.PNG)<br>
-![output example](images/im1.PNG)<br>
-![output example](images/im1.PNG)<br>
+![output example](images/structure.PNG)<br>
+![output example](images/centity.PNG)<br>
+![output example](images/dto1.PNG)<br>
+![output example](images/dto2.PNG)<br>
+![output example](images/serv1.PNG)<br>
+![output example](images/serv2.PNG)<br>
+![output example](images/controller.PNG)<br>
+![output example](images/maiClass.PNG)<br>
+![output example](images/pom1.PNG)<br>
+![output example](images/pom2.PNG)<br>
+![output example](images/testClass.PNG)<br>
+![output example](images/ressources.PNG)<br>
 #
 
 
