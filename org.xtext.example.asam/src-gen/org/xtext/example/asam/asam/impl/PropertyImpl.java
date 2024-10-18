@@ -24,7 +24,7 @@ import org.xtext.example.asam.asam.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.impl.PropertyImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.PropertyImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.PropertyImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.PropertyImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
@@ -34,24 +34,24 @@ import org.xtext.example.asam.asam.Type;
 public class PropertyImpl extends MinimalEObjectImpl.Container implements Property
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String NOM_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String nom = NOM_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -110,9 +110,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public String getName()
+  public String getNom()
   {
-    return name;
+    return nom;
   }
 
   /**
@@ -121,12 +121,12 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setNom(String newNom)
   {
-    String oldName = name;
-    name = newName;
+    String oldNom = nom;
+    nom = newNom;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.PROPERTY__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.PROPERTY__NOM, oldNom, nom));
   }
 
   /**
@@ -230,8 +230,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case AsamPackage.PROPERTY__NAME:
-        return getName();
+      case AsamPackage.PROPERTY__NOM:
+        return getNom();
       case AsamPackage.PROPERTY__TYPE:
         return getType();
       case AsamPackage.PROPERTY__DEFAULT_VALUE:
@@ -250,8 +250,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case AsamPackage.PROPERTY__NAME:
-        setName((String)newValue);
+      case AsamPackage.PROPERTY__NOM:
+        setNom((String)newValue);
         return;
       case AsamPackage.PROPERTY__TYPE:
         setType((Type)newValue);
@@ -273,8 +273,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case AsamPackage.PROPERTY__NAME:
-        setName(NAME_EDEFAULT);
+      case AsamPackage.PROPERTY__NOM:
+        setNom(NOM_EDEFAULT);
         return;
       case AsamPackage.PROPERTY__TYPE:
         setType((Type)null);
@@ -296,8 +296,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
-      case AsamPackage.PROPERTY__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AsamPackage.PROPERTY__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.PROPERTY__TYPE:
         return type != null;
       case AsamPackage.PROPERTY__DEFAULT_VALUE:
@@ -317,8 +317,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (nom: ");
+    result.append(nom);
     result.append(", defaultValue: ");
     result.append(defaultValue);
     result.append(')');

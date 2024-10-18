@@ -87,6 +87,14 @@ public class AsamSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AsamPackage.ENTITY_RELATIONSHIP:
+      {
+        EntityRelationship entityRelationship = (EntityRelationship)theEObject;
+        T result = caseEntityRelationship(entityRelationship);
+        if (result == null) result = caseElement(entityRelationship);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AsamPackage.CONFIGURATION:
       {
         Configuration configuration = (Configuration)theEObject;
@@ -116,6 +124,13 @@ public class AsamSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AsamPackage.IDENTIFIER:
+      {
+        Identifier identifier = (Identifier)theEObject;
+        T result = caseIdentifier(identifier);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AsamPackage.DTO:
       {
         DTO dto = (DTO)theEObject;
@@ -136,7 +151,27 @@ public class AsamSwitch<T> extends Switch<T>
       {
         Controller controller = (Controller)theEObject;
         T result = caseController(controller);
-        if (result == null) result = caseElement(controller);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AsamPackage.SERVICE_ACTION:
+      {
+        ServiceAction serviceAction = (ServiceAction)theEObject;
+        T result = caseServiceAction(serviceAction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AsamPackage.CUSTOM_ACTION:
+      {
+        CustomAction customAction = (CustomAction)theEObject;
+        T result = caseCustomAction(customAction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AsamPackage.ACTION_PARAMETER:
+      {
+        ActionParameter actionParameter = (ActionParameter)theEObject;
+        T result = caseActionParameter(actionParameter);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -148,18 +183,10 @@ public class AsamSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case AsamPackage.REPOSITORY_METHOD:
-      {
-        RepositoryMethod repositoryMethod = (RepositoryMethod)theEObject;
-        T result = caseRepositoryMethod(repositoryMethod);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case AsamPackage.FIND_BY_METHOD:
       {
         FindByMethod findByMethod = (FindByMethod)theEObject;
         T result = caseFindByMethod(findByMethod);
-        if (result == null) result = caseRepositoryMethod(findByMethod);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -167,7 +194,6 @@ public class AsamSwitch<T> extends Switch<T>
       {
         DeleteByMethod deleteByMethod = (DeleteByMethod)theEObject;
         T result = caseDeleteByMethod(deleteByMethod);
-        if (result == null) result = caseRepositoryMethod(deleteByMethod);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -175,28 +201,6 @@ public class AsamSwitch<T> extends Switch<T>
       {
         CustomQueryMethod customQueryMethod = (CustomQueryMethod)theEObject;
         T result = caseCustomQueryMethod(customQueryMethod);
-        if (result == null) result = caseRepositoryMethod(customQueryMethod);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case AsamPackage.SERVICE_ACTION:
-      {
-        ServiceAction serviceAction = (ServiceAction)theEObject;
-        T result = caseServiceAction(serviceAction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case AsamPackage.CONTROLLER_ACTION:
-      {
-        ControllerAction controllerAction = (ControllerAction)theEObject;
-        T result = caseControllerAction(controllerAction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case AsamPackage.ACTION_PARAMETER:
-      {
-        ActionParameter actionParameter = (ActionParameter)theEObject;
-        T result = caseActionParameter(actionParameter);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -275,6 +279,22 @@ public class AsamSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Entity Relationship</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entity Relationship</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntityRelationship(EntityRelationship object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -339,6 +359,22 @@ public class AsamSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIdentifier(Identifier object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>DTO</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -387,6 +423,54 @@ public class AsamSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Service Action</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Service Action</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseServiceAction(ServiceAction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Custom Action</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Custom Action</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCustomAction(CustomAction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Action Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Action Parameter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseActionParameter(ActionParameter object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Repository</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -398,22 +482,6 @@ public class AsamSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRepository(Repository object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Repository Method</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Repository Method</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRepositoryMethod(RepositoryMethod object)
   {
     return null;
   }
@@ -462,54 +530,6 @@ public class AsamSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCustomQueryMethod(CustomQueryMethod object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Service Action</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Service Action</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseServiceAction(ServiceAction object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Controller Action</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Controller Action</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseControllerAction(ControllerAction object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Action Parameter</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Action Parameter</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseActionParameter(ActionParameter object)
   {
     return null;
   }

@@ -5,12 +5,15 @@ package org.xtext.example.asam.asam.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -27,6 +30,7 @@ import org.xtext.example.asam.asam.Property;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.impl.DTOImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.DTOImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  *
@@ -34,6 +38,26 @@ import org.xtext.example.asam.asam.Property;
  */
 public class DTOImpl extends ElementImpl implements DTO
 {
+  /**
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected static final String NOM_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected String nom = NOM_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -63,6 +87,31 @@ public class DTOImpl extends ElementImpl implements DTO
   protected EClass eStaticClass()
   {
     return AsamPackage.Literals.DTO;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getNom()
+  {
+    return nom;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNom(String newNom)
+  {
+    String oldNom = nom;
+    nom = newNom;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.DTO__NOM, oldNom, nom));
   }
 
   /**
@@ -106,6 +155,8 @@ public class DTOImpl extends ElementImpl implements DTO
   {
     switch (featureID)
     {
+      case AsamPackage.DTO__NOM:
+        return getNom();
       case AsamPackage.DTO__PROPERTIES:
         return getProperties();
     }
@@ -123,6 +174,9 @@ public class DTOImpl extends ElementImpl implements DTO
   {
     switch (featureID)
     {
+      case AsamPackage.DTO__NOM:
+        setNom((String)newValue);
+        return;
       case AsamPackage.DTO__PROPERTIES:
         getProperties().clear();
         getProperties().addAll((Collection<? extends Property>)newValue);
@@ -141,6 +195,9 @@ public class DTOImpl extends ElementImpl implements DTO
   {
     switch (featureID)
     {
+      case AsamPackage.DTO__NOM:
+        setNom(NOM_EDEFAULT);
+        return;
       case AsamPackage.DTO__PROPERTIES:
         getProperties().clear();
         return;
@@ -158,10 +215,29 @@ public class DTOImpl extends ElementImpl implements DTO
   {
     switch (featureID)
     {
+      case AsamPackage.DTO__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.DTO__PROPERTIES:
         return properties != null && !properties.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (nom: ");
+    result.append(nom);
+    result.append(')');
+    return result.toString();
   }
 
 } //DTOImpl

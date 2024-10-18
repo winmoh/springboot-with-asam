@@ -3,10 +3,38 @@
  */
 package org.xtext.example.asam.generator;
 
+import com.google.common.base.Objects;
+import java.util.ArrayList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.example.asam.asam.Configuration;
+import org.xtext.example.asam.asam.CustomQueryMethod;
+import org.xtext.example.asam.asam.DTO;
+import org.xtext.example.asam.asam.DatabaseInfo;
+import org.xtext.example.asam.asam.DeleteByMethod;
+import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.FindByMethod;
+import org.xtext.example.asam.asam.Identifier;
+import org.xtext.example.asam.asam.ListType;
+import org.xtext.example.asam.asam.ParamTrasfert;
+import org.xtext.example.asam.asam.Property;
+import org.xtext.example.asam.asam.RDBMS;
+import org.xtext.example.asam.asam.RType;
+import org.xtext.example.asam.asam.Repository;
+import org.xtext.example.asam.asam.Sboot;
+import org.xtext.example.asam.asam.ServerInfo;
+import org.xtext.example.asam.asam.SetType;
+import org.xtext.example.asam.asam.Type;
 
 /**
  * Generates code from your model files on save.
@@ -16,6 +44,1766 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 @SuppressWarnings("all")
 public class AsamGenerator extends AbstractGenerator {
   @Override
-  public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+  public void beforeGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+  }
+
+  @Override
+  public void doGenerate(final Resource input, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Entity)) {
+        String _xifexpression = null;
+        Identifier _ident = ((Entity)element).getIdent();
+        boolean _tripleNotEquals = (_ident != null);
+        if (_tripleNotEquals) {
+          _xifexpression = this.extractVtypesValue2(((Entity)element).getIdent().getType().toString());
+        } else {
+          _xifexpression = "int ";
+        }
+        final String idType = _xifexpression;
+        String _xifexpression_1 = null;
+        Identifier _ident_1 = ((Entity)element).getIdent();
+        boolean _tripleNotEquals_1 = (_ident_1 != null);
+        if (_tripleNotEquals_1) {
+          _xifexpression_1 = ((Entity)element).getIdent().getNom().toString();
+        } else {
+          _xifexpression_1 = "Id";
+        }
+        final String idNom = _xifexpression_1;
+        this.generateEntityClass(((Entity) element), fsa, input, idType, idNom);
+        Repository _repo = ((Entity)element).getRepo();
+        boolean _tripleNotEquals_2 = (_repo != null);
+        if (_tripleNotEquals_2) {
+          this.generateRepository(((Entity)element), fsa, input, idType);
+        }
+        this.generateService(((Entity)element), fsa, input);
+        this.generateController(((Entity)element), fsa, input);
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final Procedure1<EObject> _function_1 = (EObject element) -> {
+      if ((element instanceof DTO)) {
+        this.generateDtoClass(((DTO) element), fsa, input);
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_1);
+    final ArrayList<Configuration> projectNameHolder = new ArrayList<Configuration>();
+    final Procedure1<EObject> _function_2 = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getConfiguration());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_2);
+    final Configuration config = projectNameHolder.get(0);
+    final ArrayList<String> projectNameH = new ArrayList<String>();
+    final Procedure1<EObject> _function_3 = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameH.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function_3);
+    final String projectName = projectNameH.get(0);
+    this.generateMainClass(fsa, input, config);
+    this.generateMavenFiles(fsa, input);
+    this.generateTestFolder(fsa, input);
+    boolean _notEquals = (!Objects.equal(config, null));
+    if (_notEquals) {
+      this.generatePropertiesFile1(config, fsa);
+      String _elvis = null;
+      DatabaseInfo _database = config.getDatabase();
+      RDBMS _type = null;
+      if (_database!=null) {
+        _type=_database.getType();
+      }
+      String _string = null;
+      if (_type!=null) {
+        _string=_type.toString();
+      }
+      if (_string != null) {
+        _elvis = _string;
+      } else {
+        _elvis = "mysql";
+      }
+      final String dbmsType = _elvis;
+      RDBMS _type_1 = config.getDatabase().getType();
+      boolean _matched = false;
+      if (Objects.equal(_type_1, "h2")) {
+        _matched=true;
+        this.generatePropertiesH2(config, fsa);
+      }
+      if (!_matched) {
+        if (Objects.equal(_type_1, "oracle")) {
+          _matched=true;
+          this.generatePropertiesOracle(config, fsa);
+        }
+      }
+      if (!_matched) {
+        this.generatePropertiesFile1(config, fsa);
+      }
+    }
+    this.generatePomXml(config, fsa, projectName);
+  }
+
+  public void generateController(final Entity entity, final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = entity.getNom();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".controllers;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import org.springframework.stereotype.Service;");
+    _builder.newLine();
+    _builder.append("import com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".entities.");
+    _builder.append(className);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".services.");
+    String _firstUpper = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper);
+    _builder.append("Service;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import org.springframework.beans.factory.annotation.Autowired;");
+    _builder.newLine();
+    _builder.append("import org.springframework.web.bind.annotation.*;");
+    _builder.newLine();
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.append("import org.springframework.http.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@RestController");
+    _builder.newLine();
+    _builder.append("@RequestMapping(\"");
+    {
+      String _baseUrl = entity.getControl().getBaseUrl();
+      boolean _tripleNotEquals = (_baseUrl != null);
+      if (_tripleNotEquals) {
+        String _baseUrl_1 = entity.getControl().getBaseUrl();
+        _builder.append(_baseUrl_1);
+      } else {
+        _builder.append("/api/");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(className);
+        _builder.append(_firstUpper_1);
+        _builder.append(" ");
+      }
+    }
+    _builder.append("\")");
+    _builder.newLineIfNotEmpty();
+    _builder.append("public class ");
+    String _firstUpper_2 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_2);
+    _builder.append("Controller {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("@Autowired");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private final ");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_3, "    ");
+    _builder.append("Service ");
+    String _firstLower = StringExtensions.toFirstLower(className);
+    _builder.append(_firstLower, "    ");
+    _builder.append("Service;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("   ");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    {
+      ParamTrasfert _dparam = entity.getControl().getDparam();
+      boolean _tripleNotEquals_1 = (_dparam != null);
+      if (_tripleNotEquals_1) {
+        String _generateDeleteMethodController = this.generateDeleteMethodController(entity);
+        _builder.append(_generateDeleteMethodController, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    {
+      ParamTrasfert _fparam = entity.getControl().getFparam();
+      boolean _tripleNotEquals_2 = (_fparam != null);
+      if (_tripleNotEquals_2) {
+        String _generateFindMethodController = this.generateFindMethodController(entity);
+        _builder.append(_generateFindMethodController, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    {
+      ParamTrasfert _cparam = entity.getControl().getCparam();
+      boolean _tripleNotEquals_3 = (_cparam != null);
+      if (_tripleNotEquals_3) {
+        String _generateSaveMethodController = this.generateSaveMethodController(entity);
+        _builder.append(_generateSaveMethodController, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@GetMapping(\"/deleteAll\"");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public ReponseEntity<String> deleteAll");
+    String _firstUpper_4 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_4, "    ");
+    _builder.append("s(){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append("return ");
+    String _firstLower_1 = StringExtensions.toFirstLower(className);
+    _builder.append(_firstLower_1, "    \t");
+    _builder.append("Service.deleteAll");
+    String _firstUpper_5 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_5, "    \t");
+    _builder.append("s();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@GetMapping(\"/findAll\"");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public List<");
+    _builder.append(className, "    ");
+    _builder.append("> findAll");
+    String _firstUpper_6 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_6, "    ");
+    _builder.append("s(){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append("return ");
+    String _firstLower_2 = StringExtensions.toFirstLower(className);
+    _builder.append(_firstLower_2, "    \t");
+    _builder.append("Service.findAll");
+    String _firstUpper_7 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_7, "    \t");
+    _builder.append("s();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    String _firstUpper_8 = StringExtensions.toFirstUpper(className);
+    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/controllers/") + _firstUpper_8);
+    String _plus_1 = (_plus + "Controller.java");
+    fsa.generateFile(_plus_1, content);
+  }
+
+  public void generateService(final Entity entity, final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = entity.getNom();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".services;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import org.springframework.stereotype.Service;");
+    _builder.newLine();
+    _builder.append("import com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".entities.");
+    _builder.append(className);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("           \t");
+    _builder.append("import com.springboot.");
+    _builder.append(projectName, "           \t");
+    _builder.append(".services.");
+    _builder.append(className, "           \t");
+    _builder.append("Repository;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import org.springframework.beans.factory.annotation.Autowired;");
+    _builder.newLine();
+    _builder.append("import org.springframework.http.*;");
+    _builder.newLine();
+    _builder.append("import org.springframework.web.bind.annotation.*;");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Service");
+    _builder.newLine();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper);
+    _builder.append("Service {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("@Autowired");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private final ");
+    _builder.append(className, "    ");
+    _builder.append("Repository ");
+    _builder.append(className, "    ");
+    _builder.append("Repo;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("   ");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    {
+      ParamTrasfert _dparam = entity.getControl().getDparam();
+      boolean _tripleNotEquals = (_dparam != null);
+      if (_tripleNotEquals) {
+        String _generateDeleteMethod = this.generateDeleteMethod(entity);
+        _builder.append(_generateDeleteMethod, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    {
+      ParamTrasfert _fparam = entity.getControl().getFparam();
+      boolean _tripleNotEquals_1 = (_fparam != null);
+      if (_tripleNotEquals_1) {
+        String _generateFindMethod = this.generateFindMethod(entity);
+        _builder.append(_generateFindMethod, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    {
+      ParamTrasfert _cparam = entity.getControl().getCparam();
+      boolean _tripleNotEquals_2 = (_cparam != null);
+      if (_tripleNotEquals_2) {
+        String _generateSaveMethod = this.generateSaveMethod(entity);
+        _builder.append(_generateSaveMethod, "    ");
+        _builder.append(" ");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public ReponseEntity<String> deleteAll");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_1, "    ");
+    _builder.append("s(){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append(className, "    \t");
+    _builder.append("Repo.deleteAll");
+    String _firstUpper_2 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_2, "    \t");
+    _builder.append("s();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append("return new ReponseEntity<String>(\"all ");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_3, "    \t");
+    _builder.append(" was deleted from database\",null,HttpStatus.OK);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public List<");
+    _builder.append(className, "    ");
+    _builder.append("> findAll");
+    String _firstUpper_4 = StringExtensions.toFirstUpper(className);
+    _builder.append(_firstUpper_4, "    ");
+    _builder.append("s(){");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    \t");
+    _builder.append("return ");
+    _builder.append(className, "    \t");
+    _builder.append("Repo.findAll();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    String _firstUpper_5 = StringExtensions.toFirstUpper(className);
+    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/services/") + _firstUpper_5);
+    String _plus_1 = (_plus + "Service.java");
+    fsa.generateFile(_plus_1, content);
+  }
+
+  public String generateFindMethod(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("public ");
+      String _nom = entity.getNom();
+      _builder.append(_nom);
+      _builder.append(" find");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("( ");
+      String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
+      _builder.append(_extractVtypesValue2);
+      _builder.append(" id)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("return ");
+      String _nom_1 = entity.getNom();
+      _builder.append(_nom_1, "\t");
+      _builder.append("Repo.findById(id);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String findContent = _builder.toString();
+      _xblockexpression = findContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateSaveMethod(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("public void  save");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("( ");
+      String _nom = entity.getNom();
+      _builder.append(_nom);
+      _builder.append(" element)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t ");
+      String _nom_1 = entity.getNom();
+      _builder.append(_nom_1, "\t ");
+      _builder.append("Repo.save(element);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String saveContent = _builder.toString();
+      _xblockexpression = saveContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateDeleteMethod(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("public ReponseEntity<String>  delete");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("(");
+      String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
+      _builder.append(_extractVtypesValue2);
+      _builder.append(" id )");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("if(");
+      String _nom = entity.getNom();
+      _builder.append(_nom, "\t ");
+      _builder.append("Repo.isEmpty()){");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t \t");
+      _builder.append("return new ReponseEntity<String>(\"No ");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1, "\t \t");
+      _builder.append(" with this id \",null,HttpStatus.OK);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t ");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("return new ReponseEntity<String>(\"");
+      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_2, "\t ");
+      _builder.append(" deleted succefully\",null,HttpStatus.OK);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t \t");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      final String deleteContent = _builder.toString();
+      _xblockexpression = deleteContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateFindMethodController(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("@GetMapping(\"/findById)");
+      _builder.newLine();
+      _builder.append("public ");
+      String _nom = entity.getNom();
+      _builder.append(_nom);
+      _builder.append(" find");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("(@RequestParam ");
+      String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
+      _builder.append(_extractVtypesValue2);
+      _builder.append(" id)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("return ");
+      String _nom_1 = entity.getNom();
+      _builder.append(_nom_1, "\t");
+      _builder.append("Service.save");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1, "\t");
+      _builder.append("(ent);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String findContent = _builder.toString();
+      _xblockexpression = findContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateSaveMethodController(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("@PostMapping(\"save");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("\")");
+      _builder.newLineIfNotEmpty();
+      _builder.append("public ReponseEntity<String>  save");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1);
+      _builder.append("( @RequestBody ");
+      String _nom = entity.getNom();
+      _builder.append(_nom);
+      _builder.append(" element)");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("return ");
+      String _nom_1 = entity.getNom();
+      _builder.append(_nom_1, "\t ");
+      _builder.append("Service.save(element);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String saveContent = _builder.toString();
+      _xblockexpression = saveContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String generateDeleteMethodController(final Entity entity) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("@DeleteMaping(\"/delete");
+      String _firstUpper = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper);
+      _builder.append("ById\")");
+      _builder.newLineIfNotEmpty();
+      _builder.append("public ReponseEntity<String>  delete");
+      String _firstUpper_1 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_1);
+      _builder.append("(");
+      String _extractVtypesValue2 = this.extractVtypesValue2(entity.getIdent().getType().toString());
+      _builder.append(_extractVtypesValue2);
+      _builder.append(" id )");
+      _builder.newLineIfNotEmpty();
+      _builder.append("{");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("return ");
+      String _firstUpper_2 = StringExtensions.toFirstUpper(entity.getNom());
+      _builder.append(_firstUpper_2, "\t ");
+      _builder.append("Repository.deleteById(id);");
+      _builder.newLineIfNotEmpty();
+      _builder.append("}");
+      _builder.newLine();
+      final String deleteContent = _builder.toString();
+      _xblockexpression = deleteContent;
+    }
+    return _xblockexpression;
+  }
+
+  public String getHibernateDialect(final String dbmsType) {
+    if (dbmsType != null) {
+      switch (dbmsType) {
+        case "Mysql":
+          return "org.hibernate.dialect.MySQL5Dialect";
+        case "Postgres":
+          return "org.hibernate.dialect.PostgreSQLDialect";
+        case "Mariadb":
+          return "org.hibernate.dialect.MariaDBDialect";
+        case "h2":
+          return "org.hibernate.dialect.H2Dialect";
+        case "Oracle":
+          return "org.hibernate.dialect.Oracle12cDialect";
+        default:
+          return "org.hibernate.dialect.MySQL5Dialect";
+      }
+    } else {
+      return "org.hibernate.dialect.MySQL5Dialect";
+    }
+  }
+
+  public void generatePomXml(final Configuration config, final IFileSystemAccess2 fsa, final String prjName) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+    _builder.newLine();
+    _builder.append("<project xmlns=\"http://maven.apache.org/POM/4.0.0\"");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<modelVersion>4.0.0</modelVersion>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<parent>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<artifactId>spring-boot-starter-parent</artifactId>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<version>2.5.0</version> <!-- Use the latest version -->");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<relativePath/> <!-- lookup parent from repository -->");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("</parent>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<groupId>com.springboot</groupId>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<artifactId>");
+    _builder.append(prjName, "    ");
+    _builder.append("</artifactId>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("<version>0.0.1-SNAPSHOT</version>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<name>");
+    _builder.append(prjName, "    ");
+    _builder.append("</name>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("<description>Demo project for Spring Boot</description>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<properties>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<java.version>17</java.version>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("</properties>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<dependencies>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<!-- Spring Boot Starter Dependencies -->");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<dependency>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>spring-boot-starter-data-jpa</artifactId>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</dependency>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<dependency>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>spring-boot-starter-web</artifactId>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</dependency>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<dependency>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.projectlombok</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>lombok</artifactId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<optional>true</optional>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</dependency>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<dependency>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>spring-boot-starter-test</artifactId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<scope>test</scope>");
+    _builder.newLine();
+    _builder.append("         ");
+    _builder.append("</dependency>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.newLine();
+    _builder.append("        ");
+    DatabaseInfo _database = config.getDatabase();
+    RDBMS _type = null;
+    if (_database!=null) {
+      _type=_database.getType();
+    }
+    String _generateDatabaseDependencies = this.generateDatabaseDependencies(_type.toString());
+    _builder.append(_generateDatabaseDependencies, "        ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("</dependencies>");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("<build>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("<plugins>");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("<plugin>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<artifactId>spring-boot-maven-plugin</artifactId>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("<configuration>");
+    _builder.newLine();
+    _builder.append("              ");
+    _builder.append("<excludes>");
+    _builder.newLine();
+    _builder.append("                ");
+    _builder.append("<exclude>");
+    _builder.newLine();
+    _builder.append("                  ");
+    _builder.append("<groupId>org.projectlombok</groupId>");
+    _builder.newLine();
+    _builder.append("                  ");
+    _builder.append("<artifactId>lombok</artifactId>");
+    _builder.newLine();
+    _builder.append("                ");
+    _builder.append("</exclude>");
+    _builder.newLine();
+    _builder.append("              ");
+    _builder.append("</excludes>");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("</configuration>");
+    _builder.newLine();
+    _builder.append("          ");
+    _builder.append("</plugin>");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("</plugins>");
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("</build>");
+    _builder.newLine();
+    _builder.append("</project>");
+    _builder.newLine();
+    final String pomContent = _builder.toString();
+    fsa.generateFile("pom.xml", pomContent);
+  }
+
+  public String generateDatabaseDependencies(final String dbmsType) {
+    if (dbmsType != null) {
+      switch (dbmsType) {
+        case "Mysql":
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("<!-- MySQL Database Driver -->");
+          _builder.newLine();
+          _builder.append("<dependency>");
+          _builder.newLine();
+          _builder.append("      ");
+          _builder.append("<groupId>com.mysql</groupId>");
+          _builder.newLine();
+          _builder.append("      ");
+          _builder.append("<artifactId>mysql-connector-j</artifactId>");
+          _builder.newLine();
+          _builder.append("      ");
+          _builder.append("<scope>runtime</scope>");
+          _builder.newLine();
+          _builder.append("    ");
+          _builder.append("</dependency>");
+          _builder.newLine();
+          return _builder.toString();
+        case "Postgres":
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("<!-- PostgreSQL Database Driver -->");
+          _builder_1.newLine();
+          _builder_1.append("<dependency>");
+          _builder_1.newLine();
+          _builder_1.append("      ");
+          _builder_1.append("<groupId>org.postgresql</groupId>");
+          _builder_1.newLine();
+          _builder_1.append("      ");
+          _builder_1.append("<artifactId>postgresql</artifactId>");
+          _builder_1.newLine();
+          _builder_1.append("      ");
+          _builder_1.append("<scope>runtime</scope>");
+          _builder_1.newLine();
+          _builder_1.append("</dependency>");
+          _builder_1.newLine();
+          return _builder_1.toString();
+        case "Mariadb":
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("<!-- PostgreSQL Database Driver -->");
+          _builder_2.newLine();
+          _builder_2.append("<dependency>");
+          _builder_2.newLine();
+          _builder_2.append("      ");
+          _builder_2.append("<groupId>org.mariadb.jdbc</groupId>");
+          _builder_2.newLine();
+          _builder_2.append("      ");
+          _builder_2.append("<artifactId>mariadb-java-client</artifactId>");
+          _builder_2.newLine();
+          _builder_2.append("      ");
+          _builder_2.append("<scope>runtime</scope>");
+          _builder_2.newLine();
+          _builder_2.append("    ");
+          _builder_2.append("</dependency>");
+          _builder_2.newLine();
+          return _builder_2.toString();
+        case "Oracle":
+          StringConcatenation _builder_3 = new StringConcatenation();
+          _builder_3.append("                    ");
+          _builder_3.append("<!-- PostgreSQL Database Driver -->");
+          _builder_3.newLine();
+          _builder_3.append("<dependency>");
+          _builder_3.newLine();
+          _builder_3.append("  ");
+          _builder_3.append("<groupId>com.oracle.database.jdbc</groupId>");
+          _builder_3.newLine();
+          _builder_3.append("  ");
+          _builder_3.append("<artifactId>ojdbc11</artifactId>");
+          _builder_3.newLine();
+          _builder_3.append("  ");
+          _builder_3.append("<scope>runtime</scope>");
+          _builder_3.newLine();
+          _builder_3.append("</dependency>");
+          _builder_3.newLine();
+          return _builder_3.toString();
+        case "h2":
+          StringConcatenation _builder_4 = new StringConcatenation();
+          _builder_4.append("<!-- PostgreSQL Database Driver -->");
+          _builder_4.newLine();
+          _builder_4.append(" ");
+          _builder_4.append("<dependency>");
+          _builder_4.newLine();
+          _builder_4.append("      ");
+          _builder_4.append("<groupId>com.h2database</groupId>");
+          _builder_4.newLine();
+          _builder_4.append("      ");
+          _builder_4.append("<artifactId>h2</artifactId>");
+          _builder_4.newLine();
+          _builder_4.append("      ");
+          _builder_4.append("<scope>runtime</scope>");
+          _builder_4.newLine();
+          _builder_4.append(" ");
+          _builder_4.append("</dependency>");
+          _builder_4.newLine();
+          return _builder_4.toString();
+        default:
+          return "";
+      }
+    } else {
+      return "";
+    }
+  }
+
+  public void generatePropertiesH2(final Configuration config, final IFileSystemAccess2 fsa) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("# Server Configuration");
+    _builder.newLine();
+    _builder.append("server.port = ");
+    int _xifexpression = (int) 0;
+    if ((Objects.equal(config.getServer(), null) || (config.getServer().getPort() == 0))) {
+      _xifexpression = 8080;
+    } else {
+      _xifexpression = config.getServer().getPort();
+    }
+    _builder.append(_xifexpression);
+    _builder.newLineIfNotEmpty();
+    _builder.append("server.cpath = ");
+    String _elvis = null;
+    ServerInfo _server = config.getServer();
+    String _path = null;
+    if (_server!=null) {
+      _path=_server.getPath();
+    }
+    if (_path != null) {
+      _elvis = _path;
+    } else {
+      _elvis = "/api";
+    }
+    _builder.append(_elvis);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Database Configuration");
+    _builder.newLine();
+    _builder.append("spring.datasource.url = jdbc:");
+    Object _elvis_1 = null;
+    DatabaseInfo _database = config.getDatabase();
+    RDBMS _type = null;
+    if (_database!=null) {
+      _type=_database.getType();
+    }
+    if (_type != null) {
+      _elvis_1 = _type;
+    } else {
+      _elvis_1 = "h2";
+    }
+    _builder.append(((Object)_elvis_1));
+    _builder.append(":mem:");
+    String _elvis_2 = null;
+    DatabaseInfo _database_1 = config.getDatabase();
+    String _nom = null;
+    if (_database_1!=null) {
+      _nom=_database_1.getNom();
+    }
+    if (_nom != null) {
+      _elvis_2 = _nom;
+    } else {
+      _elvis_2 = "dbname";
+    }
+    _builder.append(_elvis_2);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.username = ");
+    String _elvis_3 = null;
+    DatabaseInfo _database_2 = config.getDatabase();
+    String _username = null;
+    if (_database_2!=null) {
+      _username=_database_2.getUsername();
+    }
+    if (_username != null) {
+      _elvis_3 = _username;
+    } else {
+      _elvis_3 = "root";
+    }
+    _builder.append(_elvis_3);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.password = ");
+    String _elvis_4 = null;
+    DatabaseInfo _database_3 = config.getDatabase();
+    String _password = null;
+    if (_database_3!=null) {
+      _password=_database_3.getPassword();
+    }
+    if (_password != null) {
+      _elvis_4 = _password;
+    } else {
+      _elvis_4 = "password";
+    }
+    _builder.append(_elvis_4);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Hibernate Configuration");
+    _builder.newLine();
+    _builder.append("spring.jpa.hibernate.ddl-auto = update");
+    _builder.newLine();
+    _builder.append("spring.jpa.show-sql = true");
+    _builder.newLine();
+    _builder.append("spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.");
+    DatabaseInfo _database_4 = config.getDatabase();
+    RDBMS _type_1 = null;
+    if (_database_4!=null) {
+      _type_1=_database_4.getType();
+    }
+    String _hibernateDialect = this.getHibernateDialect(_type_1.toString());
+    _builder.append(_hibernateDialect);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Additional Hibernate Properties");
+    _builder.newLine();
+    _builder.append("# Add any additional Hibernate properties as needed");
+    _builder.newLine();
+    final String propertiesContent = _builder.toString();
+    final String pomFilePath = "src/main/resources/application.properties";
+    fsa.generateFile(pomFilePath, propertiesContent);
+  }
+
+  public void generatePropertiesOracle(final Configuration config, final IFileSystemAccess2 fsa) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("# Server Configuration");
+    _builder.newLine();
+    _builder.append("server.port = ");
+    int _xifexpression = (int) 0;
+    if ((Objects.equal(config.getServer(), null) || (config.getServer().getPort() == 0))) {
+      _xifexpression = 8080;
+    } else {
+      _xifexpression = config.getServer().getPort();
+    }
+    _builder.append(_xifexpression);
+    _builder.newLineIfNotEmpty();
+    _builder.append("server.cpath = ");
+    String _elvis = null;
+    ServerInfo _server = config.getServer();
+    String _path = null;
+    if (_server!=null) {
+      _path=_server.getPath();
+    }
+    if (_path != null) {
+      _elvis = _path;
+    } else {
+      _elvis = "/api";
+    }
+    _builder.append(_elvis);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Database Configuration");
+    _builder.newLine();
+    _builder.append("spring.datasource.url = jdbc:oracle:thin:@localhost:");
+    int _xifexpression_1 = (int) 0;
+    if ((Objects.equal(config.getDatabase(), null) || (config.getDatabase().getPort() == 0))) {
+      _xifexpression_1 = 1521;
+    } else {
+      _xifexpression_1 = config.getDatabase().getPort();
+    }
+    _builder.append(_xifexpression_1);
+    _builder.append("/");
+    String _elvis_1 = null;
+    DatabaseInfo _database = config.getDatabase();
+    String _nom = null;
+    if (_database!=null) {
+      _nom=_database.getNom();
+    }
+    if (_nom != null) {
+      _elvis_1 = _nom;
+    } else {
+      _elvis_1 = "dbname";
+    }
+    _builder.append(_elvis_1);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.username = ");
+    String _elvis_2 = null;
+    DatabaseInfo _database_1 = config.getDatabase();
+    String _username = null;
+    if (_database_1!=null) {
+      _username=_database_1.getUsername();
+    }
+    if (_username != null) {
+      _elvis_2 = _username;
+    } else {
+      _elvis_2 = "root";
+    }
+    _builder.append(_elvis_2);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.password = ");
+    String _elvis_3 = null;
+    DatabaseInfo _database_2 = config.getDatabase();
+    String _password = null;
+    if (_database_2!=null) {
+      _password=_database_2.getPassword();
+    }
+    if (_password != null) {
+      _elvis_3 = _password;
+    } else {
+      _elvis_3 = "password";
+    }
+    _builder.append(_elvis_3);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Hibernate Configuration");
+    _builder.newLine();
+    _builder.append("spring.jpa.hibernate.ddl-auto = update");
+    _builder.newLine();
+    _builder.append("spring.jpa.show-sql = true");
+    _builder.newLine();
+    _builder.append("spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.");
+    DatabaseInfo _database_3 = config.getDatabase();
+    RDBMS _type = null;
+    if (_database_3!=null) {
+      _type=_database_3.getType();
+    }
+    String _hibernateDialect = this.getHibernateDialect(_type.toString());
+    _builder.append(_hibernateDialect);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Additional Hibernate Properties");
+    _builder.newLine();
+    _builder.append("# Add any additional Hibernate properties as needed");
+    _builder.newLine();
+    final String propertiesContent = _builder.toString();
+    final String pomFilePath = "src/main/resources/application.properties";
+    fsa.generateFile(pomFilePath, propertiesContent);
+  }
+
+  public void generatePropertiesFile1(final Configuration config, final IFileSystemAccess2 fsa) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("# Server Configuration");
+    _builder.newLine();
+    _builder.append("server.port = ");
+    int _xifexpression = (int) 0;
+    if ((Objects.equal(config.getServer(), null) || (config.getServer().getPort() == 0))) {
+      _xifexpression = 8080;
+    } else {
+      _xifexpression = config.getServer().getPort();
+    }
+    _builder.append(_xifexpression);
+    _builder.newLineIfNotEmpty();
+    _builder.append("server.cpath = ");
+    String _elvis = null;
+    ServerInfo _server = config.getServer();
+    String _path = null;
+    if (_server!=null) {
+      _path=_server.getPath();
+    }
+    if (_path != null) {
+      _elvis = _path;
+    } else {
+      _elvis = "/api";
+    }
+    _builder.append(_elvis);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Database Configuration");
+    _builder.newLine();
+    _builder.append("spring.datasource.url = jdbc:");
+    Object _elvis_1 = null;
+    DatabaseInfo _database = config.getDatabase();
+    RDBMS _type = null;
+    if (_database!=null) {
+      _type=_database.getType();
+    }
+    if (_type != null) {
+      _elvis_1 = _type;
+    } else {
+      _elvis_1 = "mysql";
+    }
+    _builder.append(((Object)_elvis_1));
+    _builder.append("://localhost:");
+    int _xifexpression_1 = (int) 0;
+    if ((Objects.equal(config.getDatabase(), null) || (config.getDatabase().getPort() == 0))) {
+      _xifexpression_1 = 3306;
+    } else {
+      _xifexpression_1 = config.getDatabase().getPort();
+    }
+    _builder.append(_xifexpression_1);
+    _builder.append("/");
+    String _elvis_2 = null;
+    DatabaseInfo _database_1 = config.getDatabase();
+    String _nom = null;
+    if (_database_1!=null) {
+      _nom=_database_1.getNom();
+    }
+    if (_nom != null) {
+      _elvis_2 = _nom;
+    } else {
+      _elvis_2 = "dbname";
+    }
+    _builder.append(_elvis_2);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.username = ");
+    String _elvis_3 = null;
+    DatabaseInfo _database_2 = config.getDatabase();
+    String _username = null;
+    if (_database_2!=null) {
+      _username=_database_2.getUsername();
+    }
+    if (_username != null) {
+      _elvis_3 = _username;
+    } else {
+      _elvis_3 = "root";
+    }
+    _builder.append(_elvis_3);
+    _builder.newLineIfNotEmpty();
+    _builder.append("spring.datasource.password = ");
+    String _elvis_4 = null;
+    DatabaseInfo _database_3 = config.getDatabase();
+    String _password = null;
+    if (_database_3!=null) {
+      _password=_database_3.getPassword();
+    }
+    if (_password != null) {
+      _elvis_4 = _password;
+    } else {
+      _elvis_4 = "password";
+    }
+    _builder.append(_elvis_4);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Hibernate Configuration");
+    _builder.newLine();
+    _builder.append("spring.jpa.hibernate.ddl-auto = update");
+    _builder.newLine();
+    _builder.append("spring.jpa.show-sql = true");
+    _builder.newLine();
+    _builder.append("spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.");
+    DatabaseInfo _database_4 = config.getDatabase();
+    RDBMS _type_1 = null;
+    if (_database_4!=null) {
+      _type_1=_database_4.getType();
+    }
+    String _hibernateDialect = this.getHibernateDialect(_type_1.toString());
+    _builder.append(_hibernateDialect);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("# Additional Hibernate Properties");
+    _builder.newLine();
+    _builder.append("# Add any additional Hibernate properties as needed");
+    _builder.newLine();
+    final String propertiesContent = _builder.toString();
+    final String pomFilePath = "src/main/resources/application.properties";
+    fsa.generateFile(pomFilePath, propertiesContent);
+  }
+
+  public void generateMavenFiles(final IFileSystemAccess2 fsa, final Resource input) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.5/apache-maven-3.9.5-bin.zip");
+    _builder.newLine();
+    _builder.append("wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar");
+    _builder.newLine();
+    final String pomContent = _builder.toString();
+    final String pomFilePath = "mvn/wrapper/maven-wrapper.properties";
+    fsa.generateFile(pomFilePath, pomContent);
+  }
+
+  public String extractVtypesValue(final String typeString) {
+    final String[] parts = typeString.split("\\s+");
+    final String vtypesPart = IterableExtensions.<String>last(((Iterable<String>)Conversions.doWrapArray(parts)));
+    int _length = vtypesPart.length();
+    int _minus = (_length - 1);
+    return vtypesPart.substring(0, _minus);
+  }
+
+  public String extractVtypesValue2(final String typeString) {
+    final String[] parts = typeString.split("\\s+");
+    final String vtypesPart = IterableExtensions.<String>last(((Iterable<String>)Conversions.doWrapArray(parts)));
+    return vtypesPart.substring(0, vtypesPart.length());
+  }
+
+  public void generateTestFolder(final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import org.junit.jupiter.api.Test;");
+    _builder.newLine();
+    _builder.append("import org.springframework.boot.test.context.SpringBootTest;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@SpringBootTest");
+    _builder.newLine();
+    _builder.append("class ");
+    String _firstUpper = StringExtensions.toFirstUpper(projectName);
+    _builder.append(_firstUpper);
+    _builder.append("ApplicationTests {");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("@Test");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("void contextLoads() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String content2 = _builder.toString();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(projectName);
+    String _plus = ((("src/test/java/com/springboot/" + projectName) + "/") + _firstUpper_1);
+    final String fpath = (_plus + "ApplicationTests.java");
+    fsa.generateFile(fpath, content2);
+  }
+
+  public void generateMainClass(final IFileSystemAccess2 fsa, final Resource input, final Configuration configuration) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".");
+    RDBMS _type = configuration.getDatabase().getType();
+    _builder.append(_type);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import org.springframework.boot.SpringApplication;");
+    _builder.newLine();
+    _builder.append("import org.springframework.boot.autoconfigure.SpringBootApplication;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@SpringBootApplication");
+    _builder.newLine();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(projectName);
+    _builder.append(_firstUpper);
+    _builder.append("Application {");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public static void main(String[] args) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("SpringApplication.run(");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(projectName);
+    _builder.append(_firstUpper_1, "        ");
+    _builder.append("Application.class, args);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String content2 = _builder.toString();
+    String _firstUpper_2 = StringExtensions.toFirstUpper(projectName);
+    String _plus = ((("src/main/java/com/springboot/" + projectName) + "/") + _firstUpper_2);
+    final String fpath = (_plus + "Application.java");
+    fsa.generateFile(fpath, content2);
+  }
+
+  public String getSimpleTypeName(final Type type) {
+    if ((type instanceof ListType)) {
+      String _simpleTypeName = this.getSimpleTypeName(((ListType)type).getType());
+      String _plus = ("List<" + _simpleTypeName);
+      return (_plus + ">");
+    } else {
+      if ((type instanceof SetType)) {
+        String _simpleTypeName_1 = this.getSimpleTypeName(((SetType)type).getType());
+        String _plus_1 = ("Set<" + _simpleTypeName_1);
+        return (_plus_1 + ">");
+      } else {
+        if ((type instanceof RType)) {
+          return ((RType)type).getVypes().toString();
+        } else {
+          return this.extractVtypesValue(type.toString());
+        }
+      }
+    }
+  }
+
+  public void generateDtoClass(final DTO Dto, final IFileSystemAccess2 fsa, final Resource input) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = Dto.getNom();
+    final EList<Property> properties = Dto.getProperties();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".DTO;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import lombok.*;");
+    _builder.newLine();
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Builder");
+    _builder.newLine();
+    _builder.append("public class ");
+    _builder.append(className);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    {
+      for(final Property property : properties) {
+        _builder.append("    ");
+        _builder.append("private ");
+        String _simpleTypeName = this.getSimpleTypeName(property.getType());
+        _builder.append(_simpleTypeName, "    ");
+        _builder.append(" ");
+        String _nom = property.getNom();
+        _builder.append(_nom, "    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    {
+      for(final Property property_1 : properties) {
+        _builder.append("    ");
+        _builder.append("public ");
+        String _simpleTypeName_1 = this.getSimpleTypeName(property_1.getType());
+        _builder.append(_simpleTypeName_1, "    ");
+        _builder.append(" get");
+        String _firstUpper = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper, "    ");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("    ");
+        _builder.append("return ");
+        String _nom_1 = property_1.getNom();
+        _builder.append(_nom_1, "        ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.newLine();
+        _builder.append("    ");
+        _builder.append("public void set");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper_1, "    ");
+        _builder.append("(");
+        String _simpleTypeName_2 = this.getSimpleTypeName(property_1.getType());
+        _builder.append(_simpleTypeName_2, "    ");
+        _builder.append(" ");
+        String _nom_2 = property_1.getNom();
+        _builder.append(_nom_2, "    ");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("    ");
+        _builder.append("this.");
+        String _nom_3 = property_1.getNom();
+        _builder.append(_nom_3, "        ");
+        _builder.append(" = ");
+        String _nom_4 = property_1.getNom();
+        _builder.append(_nom_4, "        ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    final String folderPath = (("src/main/java/com/springboot/" + projectName) + "/DTO");
+    final String filePath = (((folderPath + "/") + className) + ".java");
+    fsa.generateFile(filePath, content);
+  }
+
+  public void generateRepository(final Entity entity, final IFileSystemAccess2 fsa, final Resource input, final String idType) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = entity.getNom();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".repository;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import lombok.*;");
+    _builder.newLine();
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.append("import org.springframework.data.jpa.repository.JpaRepository;");
+    _builder.newLine();
+    _builder.append("import org.springframework.stereotype.Repository;");
+    _builder.newLine();
+    _builder.append("import com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".entities.");
+    _builder.append(className);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("@Repository");
+    _builder.newLine();
+    _builder.append("public interface ");
+    _builder.append(className);
+    _builder.append("Repository extends JpaRepository<");
+    _builder.append(className);
+    _builder.append(",");
+    _builder.append(idType);
+    _builder.append("{");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<FindByMethod> _findBy = entity.getRepo().getFindBy();
+      for(final FindByMethod method : _findBy) {
+        _builder.append("\t");
+        _builder.append("List<");
+        String _nom = entity.getNom();
+        _builder.append(_nom, "\t");
+        _builder.append("> findBy");
+        String _firstUpper = StringExtensions.toFirstUpper(method.getProperty());
+        _builder.append(_firstUpper, "\t");
+        _builder.append("(");
+        String _extractVtypesValue2 = this.extractVtypesValue2(method.getPtype().toString());
+        _builder.append(_extractVtypesValue2, "\t");
+        _builder.append(" ");
+        String _property = method.getProperty();
+        _builder.append(_property, "\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<DeleteByMethod> _deleteBy = entity.getRepo().getDeleteBy();
+      for(final DeleteByMethod method_1 : _deleteBy) {
+        _builder.append("\t");
+        _builder.append("void deleteBy");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(method_1.getProperty());
+        _builder.append(_firstUpper_1, "\t");
+        _builder.append("(");
+        String _extractVtypesValue2_1 = this.extractVtypesValue2(method_1.getPtype().toString());
+        _builder.append(_extractVtypesValue2_1, "\t");
+        _builder.append(" ");
+        String _property_1 = method_1.getProperty();
+        _builder.append(_property_1, "\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<CustomQueryMethod> _customQueryMethod = entity.getRepo().getCustomQueryMethod();
+      for(final CustomQueryMethod method_2 : _customQueryMethod) {
+        _builder.append("\t");
+        String _query = method_2.getQuery();
+        _builder.append(_query, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    final String folderPath = (("src/main/java/com/springboot/" + projectName) + "/repositories");
+    final String filePath = (((folderPath + "/") + className) + ".java");
+    fsa.generateFile(filePath, content);
+  }
+
+  public void generateEntityClass(final Entity entity, final IFileSystemAccess2 fsa, final Resource input, final String idType, final String idNom) {
+    final ArrayList<String> projectNameHolder = new ArrayList<String>();
+    final Procedure1<EObject> _function = (EObject element) -> {
+      if ((element instanceof Sboot)) {
+        projectNameHolder.add(((Sboot)element).getNom());
+      }
+    };
+    IteratorExtensions.<EObject>forEach(input.getAllContents(), _function);
+    final String projectName = projectNameHolder.get(0);
+    final String className = entity.getNom();
+    final EList<Property> properties = entity.getProperties();
+    final Entity extendsClause = entity.getExtends();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.springboot.");
+    _builder.append(projectName);
+    _builder.append(".entities;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import jakarta.persistence.Entity;");
+    _builder.newLine();
+    _builder.append("import jakarta.persistence.Table;");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("import lombok.*;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.append("@Entity");
+    _builder.newLine();
+    _builder.append("@Table(name = \"");
+    _builder.append(className);
+    _builder.append("\")");
+    _builder.newLineIfNotEmpty();
+    _builder.append("@Builder");
+    _builder.newLine();
+    _builder.append("public class ");
+    _builder.append(className);
+    _builder.append(" ");
+    {
+      if ((extendsClause != null)) {
+        _builder.append("extends ");
+        _builder.append(extendsClause);
+        _builder.append(" ");
+      }
+    }
+    _builder.append("{");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("@Id");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private ");
+    _builder.append(idType, "\t");
+    _builder.append(" ");
+    _builder.append(idNom, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    {
+      for(final Property property : properties) {
+        _builder.append("    ");
+        _builder.append("private ");
+        String _simpleTypeName = this.getSimpleTypeName(property.getType());
+        _builder.append(_simpleTypeName, "    ");
+        _builder.append(" ");
+        String _nom = property.getNom();
+        _builder.append(_nom, "    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("     ");
+    _builder.append("public ");
+    _builder.append(idType, "     ");
+    _builder.append(" get");
+    String _firstUpper = StringExtensions.toFirstUpper(idNom);
+    _builder.append(_firstUpper, "     ");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("         ");
+    _builder.append("return ");
+    _builder.append(idNom, "         ");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("     ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      for(final Property property_1 : properties) {
+        _builder.append("    ");
+        _builder.append("public ");
+        String _simpleTypeName_1 = this.getSimpleTypeName(property_1.getType());
+        _builder.append(_simpleTypeName_1, "    ");
+        _builder.append(" get");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper_1, "    ");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("    ");
+        _builder.append("return ");
+        String _nom_1 = property_1.getNom();
+        _builder.append(_nom_1, "        ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.newLine();
+        _builder.append("    ");
+        _builder.append("public void set");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(property_1.getNom());
+        _builder.append(_firstUpper_2, "    ");
+        _builder.append("(");
+        String _simpleTypeName_2 = this.getSimpleTypeName(property_1.getType());
+        _builder.append(_simpleTypeName_2, "    ");
+        _builder.append(" ");
+        String _nom_2 = property_1.getNom();
+        _builder.append(_nom_2, "    ");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("    ");
+        _builder.append("this.");
+        String _nom_3 = property_1.getNom();
+        _builder.append(_nom_3, "        ");
+        _builder.append(" = ");
+        String _nom_4 = property_1.getNom();
+        _builder.append(_nom_4, "        ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    final String content = _builder.toString();
+    final String folderPath = (("src/main/java/com/springboot/" + projectName) + "/entities");
+    final String filePath = (((folderPath + "/") + className) + ".java");
+    fsa.generateFile(filePath, content);
   }
 }

@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.CustomQueryMethod;
@@ -25,7 +26,7 @@ import org.xtext.example.asam.asam.CustomQueryMethod;
  *
  * @generated
  */
-public class CustomQueryMethodImpl extends RepositoryMethodImpl implements CustomQueryMethod
+public class CustomQueryMethodImpl extends MinimalEObjectImpl.Container implements CustomQueryMethod
 {
   /**
    * The default value of the '{@link #getQuery() <em>Query</em>}' attribute.

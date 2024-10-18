@@ -16,19 +16,21 @@ import org.xtext.example.asam.asam.AsamFactory;
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.Configuration;
 import org.xtext.example.asam.asam.Controller;
-import org.xtext.example.asam.asam.ControllerAction;
+import org.xtext.example.asam.asam.CustomAction;
 import org.xtext.example.asam.asam.CustomQueryMethod;
 import org.xtext.example.asam.asam.DatabaseInfo;
 import org.xtext.example.asam.asam.DeleteByMethod;
 import org.xtext.example.asam.asam.Element;
 import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.EntityRelationship;
 import org.xtext.example.asam.asam.FindByMethod;
 import org.xtext.example.asam.asam.HttpMethods;
+import org.xtext.example.asam.asam.Identifier;
 import org.xtext.example.asam.asam.ListType;
+import org.xtext.example.asam.asam.ParamTrasfert;
 import org.xtext.example.asam.asam.Property;
 import org.xtext.example.asam.asam.RType;
 import org.xtext.example.asam.asam.Repository;
-import org.xtext.example.asam.asam.RepositoryMethod;
 import org.xtext.example.asam.asam.Sboot;
 import org.xtext.example.asam.asam.ServerInfo;
 import org.xtext.example.asam.asam.Service;
@@ -36,6 +38,7 @@ import org.xtext.example.asam.asam.ServiceAction;
 import org.xtext.example.asam.asam.SetType;
 import org.xtext.example.asam.asam.Type;
 import org.xtext.example.asam.asam.VTypes;
+import org.xtext.example.asam.asam.dbRelations;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,6 +61,13 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   private EClass elementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass entityRelationshipEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -92,6 +102,13 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass identifierEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass dtoEClass = null;
 
   /**
@@ -113,14 +130,28 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass repositoryEClass = null;
+  private EClass serviceActionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass repositoryMethodEClass = null;
+  private EClass customActionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass actionParameterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass repositoryEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -142,27 +173,6 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   private EClass customQueryMethodEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass serviceActionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass controllerActionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass actionParameterEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -219,6 +229,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   private EEnum rdbmsEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum dbRelationsEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum paramTrasfertEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -299,7 +323,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getSboot_Name()
+  public EAttribute getSboot_Nom()
   {
     return (EAttribute)sbootEClass.getEStructuralFeatures().get(0);
   }
@@ -343,9 +367,42 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getElement_Name()
+  public EClass getEntityRelationship()
   {
-    return (EAttribute)elementEClass.getEStructuralFeatures().get(0);
+    return entityRelationshipEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getEntityRelationship_Type()
+  {
+    return (EAttribute)entityRelationshipEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntityRelationship_Source()
+  {
+    return (EReference)entityRelationshipEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntityRelationship_Target()
+  {
+    return (EReference)entityRelationshipEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -442,7 +499,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getDatabaseInfo_Name()
+  public EAttribute getDatabaseInfo_Nom()
   {
     return (EAttribute)databaseInfoEClass.getEStructuralFeatures().get(1);
   }
@@ -497,9 +554,31 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getEntity_Nom()
+  {
+    return (EAttribute)entityEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getEntity_Extends()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(0);
+    return (EReference)entityEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntity_Ident()
+  {
+    return (EReference)entityEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -510,7 +589,62 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EReference getEntity_Properties()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(1);
+    return (EReference)entityEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntity_Repo()
+  {
+    return (EReference)entityEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntity_Control()
+  {
+    return (EReference)entityEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIdentifier()
+  {
+    return identifierEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getIdentifier_Nom()
+  {
+    return (EAttribute)identifierEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getIdentifier_Type()
+  {
+    return (EAttribute)identifierEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -530,9 +664,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getDTO_Nom()
+  {
+    return (EAttribute)dtoEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getDTO_Properties()
   {
-    return (EReference)dtoEClass.getEStructuralFeatures().get(0);
+    return (EReference)dtoEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -552,9 +697,20 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EAttribute getService_Nom()
+  {
+    return (EAttribute)serviceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getService_Entity()
   {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(0);
+    return (EReference)serviceEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -565,7 +721,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
   @Override
   public EReference getService_Actions()
   {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(1);
+    return (EReference)serviceEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -585,20 +741,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EReference getController_Entity()
-  {
-    return (EReference)controllerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getController_BaseUrl()
   {
-    return (EAttribute)controllerEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -607,9 +752,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EReference getController_Actions()
+  public EReference getController_Cactions()
   {
-    return (EReference)controllerEClass.getEStructuralFeatures().get(2);
+    return (EReference)controllerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -618,9 +763,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EClass getRepository()
+  public EAttribute getController_Cparam()
   {
-    return repositoryEClass;
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -629,9 +774,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EReference getRepository_Entity()
+  public EAttribute getController_Fparam()
   {
-    return (EReference)repositoryEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -640,108 +785,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EReference getRepository_Methods()
+  public EAttribute getController_Dparam()
   {
-    return (EReference)repositoryEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getRepositoryMethod()
-  {
-    return repositoryMethodEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getFindByMethod()
-  {
-    return findByMethodEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getFindByMethod_Property()
-  {
-    return (EAttribute)findByMethodEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getFindByMethod_Prop()
-  {
-    return (EAttribute)findByMethodEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getDeleteByMethod()
-  {
-    return deleteByMethodEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getDeleteByMethod_Property()
-  {
-    return (EAttribute)deleteByMethodEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getDeleteByMethod_Prop()
-  {
-    return (EAttribute)deleteByMethodEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getCustomQueryMethod()
-  {
-    return customQueryMethodEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getCustomQueryMethod_Query()
-  {
-    return (EAttribute)customQueryMethodEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)controllerEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -761,7 +807,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getServiceAction_Name()
+  public EAttribute getServiceAction_Nom()
   {
     return (EAttribute)serviceActionEClass.getEStructuralFeatures().get(0);
   }
@@ -816,9 +862,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EClass getControllerAction()
+  public EClass getCustomAction()
   {
-    return controllerActionEClass;
+    return customActionEClass;
   }
 
   /**
@@ -827,9 +873,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getControllerAction_Method()
+  public EAttribute getCustomAction_Method()
   {
-    return (EAttribute)controllerActionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)customActionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -838,9 +884,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getControllerAction_Name()
+  public EAttribute getCustomAction_Nom()
   {
-    return (EAttribute)controllerActionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)customActionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -849,9 +895,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getControllerAction_ServiceAction()
+  public EAttribute getCustomAction_Url()
   {
-    return (EAttribute)controllerActionEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)customActionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -860,20 +906,9 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getControllerAction_Url()
+  public EReference getCustomAction_Parameters()
   {
-    return (EAttribute)controllerActionEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getControllerAction_Parameters()
-  {
-    return (EReference)controllerActionEClass.getEStructuralFeatures().get(4);
+    return (EReference)customActionEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -893,7 +928,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getActionParameter_Name()
+  public EAttribute getActionParameter_Nom()
   {
     return (EAttribute)actionParameterEClass.getEStructuralFeatures().get(0);
   }
@@ -926,6 +961,138 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EClass getRepository()
+  {
+    return repositoryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRepository_FindBy()
+  {
+    return (EReference)repositoryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRepository_DeleteBy()
+  {
+    return (EReference)repositoryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRepository_CustomQueryMethod()
+  {
+    return (EReference)repositoryEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFindByMethod()
+  {
+    return findByMethodEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFindByMethod_Property()
+  {
+    return (EAttribute)findByMethodEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFindByMethod_Ptype()
+  {
+    return (EAttribute)findByMethodEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDeleteByMethod()
+  {
+    return deleteByMethodEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDeleteByMethod_Property()
+  {
+    return (EAttribute)deleteByMethodEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDeleteByMethod_Ptype()
+  {
+    return (EAttribute)deleteByMethodEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCustomQueryMethod()
+  {
+    return customQueryMethodEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCustomQueryMethod_Query()
+  {
+    return (EAttribute)customQueryMethodEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getProperty()
   {
     return propertyEClass;
@@ -937,7 +1104,7 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
-  public EAttribute getProperty_Name()
+  public EAttribute getProperty_Nom()
   {
     return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
   }
@@ -1080,6 +1247,28 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
    * @generated
    */
   @Override
+  public EEnum getdbRelations()
+  {
+    return dbRelationsEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getParamTrasfert()
+  {
+    return paramTrasfertEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public AsamFactory getAsamFactory()
   {
     return (AsamFactory)getEFactoryInstance();
@@ -1106,12 +1295,16 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     // Create classes and their features
     sbootEClass = createEClass(SBOOT);
-    createEAttribute(sbootEClass, SBOOT__NAME);
+    createEAttribute(sbootEClass, SBOOT__NOM);
     createEReference(sbootEClass, SBOOT__CONFIGURATION);
     createEReference(sbootEClass, SBOOT__ELEMENTS);
 
     elementEClass = createEClass(ELEMENT);
-    createEAttribute(elementEClass, ELEMENT__NAME);
+
+    entityRelationshipEClass = createEClass(ENTITY_RELATIONSHIP);
+    createEAttribute(entityRelationshipEClass, ENTITY_RELATIONSHIP__TYPE);
+    createEReference(entityRelationshipEClass, ENTITY_RELATIONSHIP__SOURCE);
+    createEReference(entityRelationshipEClass, ENTITY_RELATIONSHIP__TARGET);
 
     configurationEClass = createEClass(CONFIGURATION);
     createEReference(configurationEClass, CONFIGURATION__SERVER);
@@ -1123,65 +1316,75 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     databaseInfoEClass = createEClass(DATABASE_INFO);
     createEAttribute(databaseInfoEClass, DATABASE_INFO__TYPE);
-    createEAttribute(databaseInfoEClass, DATABASE_INFO__NAME);
+    createEAttribute(databaseInfoEClass, DATABASE_INFO__NOM);
     createEAttribute(databaseInfoEClass, DATABASE_INFO__PORT);
     createEAttribute(databaseInfoEClass, DATABASE_INFO__USERNAME);
     createEAttribute(databaseInfoEClass, DATABASE_INFO__PASSWORD);
 
     entityEClass = createEClass(ENTITY);
+    createEAttribute(entityEClass, ENTITY__NOM);
     createEReference(entityEClass, ENTITY__EXTENDS);
+    createEReference(entityEClass, ENTITY__IDENT);
     createEReference(entityEClass, ENTITY__PROPERTIES);
+    createEReference(entityEClass, ENTITY__REPO);
+    createEReference(entityEClass, ENTITY__CONTROL);
+
+    identifierEClass = createEClass(IDENTIFIER);
+    createEAttribute(identifierEClass, IDENTIFIER__NOM);
+    createEAttribute(identifierEClass, IDENTIFIER__TYPE);
 
     dtoEClass = createEClass(DTO);
+    createEAttribute(dtoEClass, DTO__NOM);
     createEReference(dtoEClass, DTO__PROPERTIES);
 
     serviceEClass = createEClass(SERVICE);
+    createEAttribute(serviceEClass, SERVICE__NOM);
     createEReference(serviceEClass, SERVICE__ENTITY);
     createEReference(serviceEClass, SERVICE__ACTIONS);
 
     controllerEClass = createEClass(CONTROLLER);
-    createEReference(controllerEClass, CONTROLLER__ENTITY);
     createEAttribute(controllerEClass, CONTROLLER__BASE_URL);
-    createEReference(controllerEClass, CONTROLLER__ACTIONS);
-
-    repositoryEClass = createEClass(REPOSITORY);
-    createEReference(repositoryEClass, REPOSITORY__ENTITY);
-    createEReference(repositoryEClass, REPOSITORY__METHODS);
-
-    repositoryMethodEClass = createEClass(REPOSITORY_METHOD);
-
-    findByMethodEClass = createEClass(FIND_BY_METHOD);
-    createEAttribute(findByMethodEClass, FIND_BY_METHOD__PROPERTY);
-    createEAttribute(findByMethodEClass, FIND_BY_METHOD__PROP);
-
-    deleteByMethodEClass = createEClass(DELETE_BY_METHOD);
-    createEAttribute(deleteByMethodEClass, DELETE_BY_METHOD__PROPERTY);
-    createEAttribute(deleteByMethodEClass, DELETE_BY_METHOD__PROP);
-
-    customQueryMethodEClass = createEClass(CUSTOM_QUERY_METHOD);
-    createEAttribute(customQueryMethodEClass, CUSTOM_QUERY_METHOD__QUERY);
+    createEReference(controllerEClass, CONTROLLER__CACTIONS);
+    createEAttribute(controllerEClass, CONTROLLER__CPARAM);
+    createEAttribute(controllerEClass, CONTROLLER__FPARAM);
+    createEAttribute(controllerEClass, CONTROLLER__DPARAM);
 
     serviceActionEClass = createEClass(SERVICE_ACTION);
-    createEAttribute(serviceActionEClass, SERVICE_ACTION__NAME);
+    createEAttribute(serviceActionEClass, SERVICE_ACTION__NOM);
     createEReference(serviceActionEClass, SERVICE_ACTION__RETURN_TYPE);
     createEReference(serviceActionEClass, SERVICE_ACTION__EXCEPTION_TYPE);
     createEAttribute(serviceActionEClass, SERVICE_ACTION__IMPLEMENTATION);
     createEReference(serviceActionEClass, SERVICE_ACTION__PARAMETERS);
 
-    controllerActionEClass = createEClass(CONTROLLER_ACTION);
-    createEAttribute(controllerActionEClass, CONTROLLER_ACTION__METHOD);
-    createEAttribute(controllerActionEClass, CONTROLLER_ACTION__NAME);
-    createEAttribute(controllerActionEClass, CONTROLLER_ACTION__SERVICE_ACTION);
-    createEAttribute(controllerActionEClass, CONTROLLER_ACTION__URL);
-    createEReference(controllerActionEClass, CONTROLLER_ACTION__PARAMETERS);
+    customActionEClass = createEClass(CUSTOM_ACTION);
+    createEAttribute(customActionEClass, CUSTOM_ACTION__METHOD);
+    createEAttribute(customActionEClass, CUSTOM_ACTION__NOM);
+    createEAttribute(customActionEClass, CUSTOM_ACTION__URL);
+    createEReference(customActionEClass, CUSTOM_ACTION__PARAMETERS);
 
     actionParameterEClass = createEClass(ACTION_PARAMETER);
-    createEAttribute(actionParameterEClass, ACTION_PARAMETER__NAME);
+    createEAttribute(actionParameterEClass, ACTION_PARAMETER__NOM);
     createEReference(actionParameterEClass, ACTION_PARAMETER__TYPE);
     createEAttribute(actionParameterEClass, ACTION_PARAMETER__DEFAULT_VALUE);
 
+    repositoryEClass = createEClass(REPOSITORY);
+    createEReference(repositoryEClass, REPOSITORY__FIND_BY);
+    createEReference(repositoryEClass, REPOSITORY__DELETE_BY);
+    createEReference(repositoryEClass, REPOSITORY__CUSTOM_QUERY_METHOD);
+
+    findByMethodEClass = createEClass(FIND_BY_METHOD);
+    createEAttribute(findByMethodEClass, FIND_BY_METHOD__PROPERTY);
+    createEAttribute(findByMethodEClass, FIND_BY_METHOD__PTYPE);
+
+    deleteByMethodEClass = createEClass(DELETE_BY_METHOD);
+    createEAttribute(deleteByMethodEClass, DELETE_BY_METHOD__PROPERTY);
+    createEAttribute(deleteByMethodEClass, DELETE_BY_METHOD__PTYPE);
+
+    customQueryMethodEClass = createEClass(CUSTOM_QUERY_METHOD);
+    createEAttribute(customQueryMethodEClass, CUSTOM_QUERY_METHOD__QUERY);
+
     propertyEClass = createEClass(PROPERTY);
-    createEAttribute(propertyEClass, PROPERTY__NAME);
+    createEAttribute(propertyEClass, PROPERTY__NOM);
     createEReference(propertyEClass, PROPERTY__TYPE);
     createEAttribute(propertyEClass, PROPERTY__DEFAULT_VALUE);
 
@@ -1200,6 +1403,8 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     vTypesEEnum = createEEnum(VTYPES);
     httpMethodsEEnum = createEEnum(HTTP_METHODS);
     rdbmsEEnum = createEEnum(RDBMS);
+    dbRelationsEEnum = createEEnum(DB_RELATIONS);
+    paramTrasfertEEnum = createEEnum(PARAM_TRASFERT);
   }
 
   /**
@@ -1231,26 +1436,27 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    entityRelationshipEClass.getESuperTypes().add(this.getElement());
     entityEClass.getESuperTypes().add(this.getElement());
     dtoEClass.getESuperTypes().add(this.getElement());
     serviceEClass.getESuperTypes().add(this.getElement());
-    controllerEClass.getESuperTypes().add(this.getElement());
     repositoryEClass.getESuperTypes().add(this.getElement());
-    findByMethodEClass.getESuperTypes().add(this.getRepositoryMethod());
-    deleteByMethodEClass.getESuperTypes().add(this.getRepositoryMethod());
-    customQueryMethodEClass.getESuperTypes().add(this.getRepositoryMethod());
     listTypeEClass.getESuperTypes().add(this.getType());
     listTypeEClass.getESuperTypes().add(this.getRType());
     setTypeEClass.getESuperTypes().add(this.getType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(sbootEClass, Sboot.class, "Sboot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSboot_Name(), ecorePackage.getEString(), "name", null, 0, 1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSboot_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSboot_Configuration(), this.getConfiguration(), null, "configuration", null, 0, 1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSboot_Elements(), this.getElement(), null, "elements", null, 0, -1, Sboot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(entityRelationshipEClass, EntityRelationship.class, "EntityRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEntityRelationship_Type(), this.getdbRelations(), "type", null, 0, 1, EntityRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEntityRelationship_Source(), this.getEntity(), null, "source", null, 0, 1, EntityRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEntityRelationship_Target(), this.getEntity(), null, "target", null, 0, 1, EntityRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConfiguration_Server(), this.getServerInfo(), null, "server", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1262,65 +1468,75 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
 
     initEClass(databaseInfoEClass, DatabaseInfo.class, "DatabaseInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDatabaseInfo_Type(), this.getRDBMS(), "type", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseInfo_Name(), ecorePackage.getEString(), "name", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDatabaseInfo_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDatabaseInfo_Port(), ecorePackage.getEInt(), "port", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDatabaseInfo_Username(), ecorePackage.getEString(), "username", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDatabaseInfo_Password(), ecorePackage.getEString(), "password", null, 0, 1, DatabaseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEntity_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Extends(), this.getEntity(), null, "extends", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEntity_Ident(), this.getIdentifier(), null, "ident", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Properties(), this.getProperty(), null, "properties", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEntity_Repo(), this.getRepository(), null, "repo", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEntity_Control(), this.getController(), null, "control", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIdentifier_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIdentifier_Type(), this.getVTypes(), "type", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dtoEClass, org.xtext.example.asam.asam.DTO.class, "DTO", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDTO_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, org.xtext.example.asam.asam.DTO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDTO_Properties(), this.getProperty(), null, "properties", null, 0, -1, org.xtext.example.asam.asam.DTO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getService_Entity(), this.getController(), null, "entity", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getService_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_Entity(), this.getEntity(), null, "entity", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getService_Actions(), this.getServiceAction(), null, "actions", null, 0, -1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(controllerEClass, Controller.class, "Controller", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getController_Entity(), this.getEntity(), null, "entity", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getController_BaseUrl(), ecorePackage.getEString(), "baseUrl", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getController_Actions(), this.getControllerAction(), null, "actions", null, 0, -1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(repositoryEClass, Repository.class, "Repository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRepository_Entity(), this.getEntity(), null, "entity", null, 0, 1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRepository_Methods(), this.getRepositoryMethod(), null, "methods", null, 0, -1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(repositoryMethodEClass, RepositoryMethod.class, "RepositoryMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(findByMethodEClass, FindByMethod.class, "FindByMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFindByMethod_Property(), ecorePackage.getEString(), "property", null, 0, 1, FindByMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFindByMethod_Prop(), ecorePackage.getEString(), "prop", null, 0, 1, FindByMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(deleteByMethodEClass, DeleteByMethod.class, "DeleteByMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDeleteByMethod_Property(), ecorePackage.getEString(), "property", null, 0, 1, DeleteByMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDeleteByMethod_Prop(), ecorePackage.getEString(), "prop", null, 0, 1, DeleteByMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(customQueryMethodEClass, CustomQueryMethod.class, "CustomQueryMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCustomQueryMethod_Query(), ecorePackage.getEString(), "query", null, 0, 1, CustomQueryMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getController_Cactions(), this.getCustomAction(), null, "cactions", null, 0, -1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getController_Cparam(), this.getParamTrasfert(), "cparam", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getController_Fparam(), this.getParamTrasfert(), "fparam", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getController_Dparam(), this.getParamTrasfert(), "dparam", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(serviceActionEClass, ServiceAction.class, "ServiceAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getServiceAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getServiceAction_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getServiceAction_ReturnType(), this.getRType(), null, "returnType", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getServiceAction_ExceptionType(), this.getType(), null, "exceptionType", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getServiceAction_Implementation(), ecorePackage.getEString(), "implementation", null, 0, 1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getServiceAction_Parameters(), this.getActionParameter(), null, "parameters", null, 0, -1, ServiceAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(controllerActionEClass, ControllerAction.class, "ControllerAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getControllerAction_Method(), this.getHttpMethods(), "method", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getControllerAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getControllerAction_ServiceAction(), ecorePackage.getEString(), "serviceAction", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getControllerAction_Url(), ecorePackage.getEString(), "url", null, 0, 1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getControllerAction_Parameters(), this.getActionParameter(), null, "parameters", null, 0, -1, ControllerAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(customActionEClass, CustomAction.class, "CustomAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCustomAction_Method(), this.getHttpMethods(), "method", null, 0, 1, CustomAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCustomAction_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, CustomAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCustomAction_Url(), ecorePackage.getEString(), "url", null, 0, 1, CustomAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCustomAction_Parameters(), this.getActionParameter(), null, "parameters", null, 0, -1, CustomAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(actionParameterEClass, ActionParameter.class, "ActionParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getActionParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, ActionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getActionParameter_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, ActionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getActionParameter_Type(), this.getType(), null, "type", null, 0, 1, ActionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getActionParameter_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 0, 1, ActionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(repositoryEClass, Repository.class, "Repository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRepository_FindBy(), this.getFindByMethod(), null, "findBy", null, 0, -1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRepository_DeleteBy(), this.getDeleteByMethod(), null, "deleteBy", null, 0, -1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRepository_CustomQueryMethod(), this.getCustomQueryMethod(), null, "customQueryMethod", null, 0, -1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(findByMethodEClass, FindByMethod.class, "FindByMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFindByMethod_Property(), ecorePackage.getEString(), "property", null, 0, 1, FindByMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFindByMethod_Ptype(), this.getVTypes(), "ptype", null, 0, 1, FindByMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(deleteByMethodEClass, DeleteByMethod.class, "DeleteByMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDeleteByMethod_Property(), ecorePackage.getEString(), "property", null, 0, 1, DeleteByMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDeleteByMethod_Ptype(), this.getVTypes(), "ptype", null, 0, 1, DeleteByMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(customQueryMethodEClass, CustomQueryMethod.class, "CustomQueryMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCustomQueryMethod_Query(), ecorePackage.getEString(), "query", null, 0, 1, CustomQueryMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getProperty_Nom(), ecorePackage.getEString(), "nom", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProperty_Type(), this.getType(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProperty_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1358,6 +1574,16 @@ public class AsamPackageImpl extends EPackageImpl implements AsamPackage
     addEEnumLiteral(rdbmsEEnum, org.xtext.example.asam.asam.RDBMS.MARIADB);
     addEEnumLiteral(rdbmsEEnum, org.xtext.example.asam.asam.RDBMS.H2);
     addEEnumLiteral(rdbmsEEnum, org.xtext.example.asam.asam.RDBMS.ORACLE);
+
+    initEEnum(dbRelationsEEnum, dbRelations.class, "dbRelations");
+    addEEnumLiteral(dbRelationsEEnum, dbRelations.M2M);
+    addEEnumLiteral(dbRelationsEEnum, dbRelations.M2O);
+    addEEnumLiteral(dbRelationsEEnum, dbRelations.O2M);
+
+    initEEnum(paramTrasfertEEnum, ParamTrasfert.class, "ParamTrasfert");
+    addEEnumLiteral(paramTrasfertEEnum, ParamTrasfert.REQUEST_BODY);
+    addEEnumLiteral(paramTrasfertEEnum, ParamTrasfert.REQUEST_PARAM);
+    addEEnumLiteral(paramTrasfertEEnum, ParamTrasfert.PATH_VARIABLE);
 
     // Create resource
     createResource(eNS_URI);

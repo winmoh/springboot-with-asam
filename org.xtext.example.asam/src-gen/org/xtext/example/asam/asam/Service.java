@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.Service#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Service#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Service#getActions <em>Actions</em>}</li>
  * </ul>
@@ -25,16 +26,38 @@ import org.eclipse.emf.common.util.EList;
 public interface Service extends Element
 {
   /**
+   * Returns the value of the '<em><b>Nom</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nom</em>' attribute.
+   * @see #setNom(String)
+   * @see org.xtext.example.asam.asam.AsamPackage#getService_Nom()
+   * @model
+   * @generated
+   */
+  String getNom();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Service#getNom <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nom</em>' attribute.
+   * @see #getNom()
+   * @generated
+   */
+  void setNom(String value);
+
+  /**
    * Returns the value of the '<em><b>Entity</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Entity</em>' reference.
-   * @see #setEntity(Controller)
+   * @see #setEntity(Entity)
    * @see org.xtext.example.asam.asam.AsamPackage#getService_Entity()
    * @model
    * @generated
    */
-  Controller getEntity();
+  Entity getEntity();
 
   /**
    * Sets the value of the '{@link org.xtext.example.asam.asam.Service#getEntity <em>Entity</em>}' reference.
@@ -44,7 +67,7 @@ public interface Service extends Element
    * @see #getEntity()
    * @generated
    */
-  void setEntity(Controller value);
+  void setEntity(Entity value);
 
   /**
    * Returns the value of the '<em><b>Actions</b></em>' containment reference list.

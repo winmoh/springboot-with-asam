@@ -23,7 +23,7 @@ import org.xtext.example.asam.asam.RDBMS;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.impl.DatabaseInfoImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.DatabaseInfoImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.DatabaseInfoImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.DatabaseInfoImpl#getPort <em>Port</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.DatabaseInfoImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.DatabaseInfoImpl#getPassword <em>Password</em>}</li>
@@ -54,24 +54,24 @@ public class DatabaseInfoImpl extends MinimalEObjectImpl.Container implements Da
   protected RDBMS type = TYPE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String NOM_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String nom = NOM_EDEFAULT;
 
   /**
    * The default value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -185,9 +185,9 @@ public class DatabaseInfoImpl extends MinimalEObjectImpl.Container implements Da
    * @generated
    */
   @Override
-  public String getName()
+  public String getNom()
   {
-    return name;
+    return nom;
   }
 
   /**
@@ -196,12 +196,12 @@ public class DatabaseInfoImpl extends MinimalEObjectImpl.Container implements Da
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setNom(String newNom)
   {
-    String oldName = name;
-    name = newName;
+    String oldNom = nom;
+    nom = newNom;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.DATABASE_INFO__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.DATABASE_INFO__NOM, oldNom, nom));
   }
 
   /**
@@ -291,8 +291,8 @@ public class DatabaseInfoImpl extends MinimalEObjectImpl.Container implements Da
     {
       case AsamPackage.DATABASE_INFO__TYPE:
         return getType();
-      case AsamPackage.DATABASE_INFO__NAME:
-        return getName();
+      case AsamPackage.DATABASE_INFO__NOM:
+        return getNom();
       case AsamPackage.DATABASE_INFO__PORT:
         return getPort();
       case AsamPackage.DATABASE_INFO__USERNAME:
@@ -316,8 +316,8 @@ public class DatabaseInfoImpl extends MinimalEObjectImpl.Container implements Da
       case AsamPackage.DATABASE_INFO__TYPE:
         setType((RDBMS)newValue);
         return;
-      case AsamPackage.DATABASE_INFO__NAME:
-        setName((String)newValue);
+      case AsamPackage.DATABASE_INFO__NOM:
+        setNom((String)newValue);
         return;
       case AsamPackage.DATABASE_INFO__PORT:
         setPort((Integer)newValue);
@@ -345,8 +345,8 @@ public class DatabaseInfoImpl extends MinimalEObjectImpl.Container implements Da
       case AsamPackage.DATABASE_INFO__TYPE:
         setType(TYPE_EDEFAULT);
         return;
-      case AsamPackage.DATABASE_INFO__NAME:
-        setName(NAME_EDEFAULT);
+      case AsamPackage.DATABASE_INFO__NOM:
+        setNom(NOM_EDEFAULT);
         return;
       case AsamPackage.DATABASE_INFO__PORT:
         setPort(PORT_EDEFAULT);
@@ -373,8 +373,8 @@ public class DatabaseInfoImpl extends MinimalEObjectImpl.Container implements Da
     {
       case AsamPackage.DATABASE_INFO__TYPE:
         return type != TYPE_EDEFAULT;
-      case AsamPackage.DATABASE_INFO__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AsamPackage.DATABASE_INFO__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.DATABASE_INFO__PORT:
         return port != PORT_EDEFAULT;
       case AsamPackage.DATABASE_INFO__USERNAME:
@@ -398,8 +398,8 @@ public class DatabaseInfoImpl extends MinimalEObjectImpl.Container implements Da
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (type: ");
     result.append(type);
-    result.append(", name: ");
-    result.append(name);
+    result.append(", nom: ");
+    result.append(nom);
     result.append(", port: ");
     result.append(port);
     result.append(", username: ");

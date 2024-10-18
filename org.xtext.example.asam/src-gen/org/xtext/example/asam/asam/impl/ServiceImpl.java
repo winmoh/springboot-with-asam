@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.asam.asam.AsamPackage;
-import org.xtext.example.asam.asam.Controller;
+import org.xtext.example.asam.asam.Entity;
 import org.xtext.example.asam.asam.Service;
 import org.xtext.example.asam.asam.ServiceAction;
 
@@ -31,6 +31,7 @@ import org.xtext.example.asam.asam.ServiceAction;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.impl.ServiceImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ServiceImpl#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.ServiceImpl#getActions <em>Actions</em>}</li>
  * </ul>
@@ -40,6 +41,26 @@ import org.xtext.example.asam.asam.ServiceAction;
 public class ServiceImpl extends ElementImpl implements Service
 {
   /**
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected static final String NOM_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNom()
+   * @generated
+   * @ordered
+   */
+  protected String nom = NOM_EDEFAULT;
+
+  /**
    * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -47,7 +68,7 @@ public class ServiceImpl extends ElementImpl implements Service
    * @generated
    * @ordered
    */
-  protected Controller entity;
+  protected Entity entity;
 
   /**
    * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
@@ -86,12 +107,37 @@ public class ServiceImpl extends ElementImpl implements Service
    * @generated
    */
   @Override
-  public Controller getEntity()
+  public String getNom()
+  {
+    return nom;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNom(String newNom)
+  {
+    String oldNom = nom;
+    nom = newNom;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.SERVICE__NOM, oldNom, nom));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Entity getEntity()
   {
     if (entity != null && entity.eIsProxy())
     {
       InternalEObject oldEntity = (InternalEObject)entity;
-      entity = (Controller)eResolveProxy(oldEntity);
+      entity = (Entity)eResolveProxy(oldEntity);
       if (entity != oldEntity)
       {
         if (eNotificationRequired())
@@ -106,7 +152,7 @@ public class ServiceImpl extends ElementImpl implements Service
    * <!-- end-user-doc -->
    * @generated
    */
-  public Controller basicGetEntity()
+  public Entity basicGetEntity()
   {
     return entity;
   }
@@ -117,9 +163,9 @@ public class ServiceImpl extends ElementImpl implements Service
    * @generated
    */
   @Override
-  public void setEntity(Controller newEntity)
+  public void setEntity(Entity newEntity)
   {
-    Controller oldEntity = entity;
+    Entity oldEntity = entity;
     entity = newEntity;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.SERVICE__ENTITY, oldEntity, entity));
@@ -166,6 +212,8 @@ public class ServiceImpl extends ElementImpl implements Service
   {
     switch (featureID)
     {
+      case AsamPackage.SERVICE__NOM:
+        return getNom();
       case AsamPackage.SERVICE__ENTITY:
         if (resolve) return getEntity();
         return basicGetEntity();
@@ -186,8 +234,11 @@ public class ServiceImpl extends ElementImpl implements Service
   {
     switch (featureID)
     {
+      case AsamPackage.SERVICE__NOM:
+        setNom((String)newValue);
+        return;
       case AsamPackage.SERVICE__ENTITY:
-        setEntity((Controller)newValue);
+        setEntity((Entity)newValue);
         return;
       case AsamPackage.SERVICE__ACTIONS:
         getActions().clear();
@@ -207,8 +258,11 @@ public class ServiceImpl extends ElementImpl implements Service
   {
     switch (featureID)
     {
+      case AsamPackage.SERVICE__NOM:
+        setNom(NOM_EDEFAULT);
+        return;
       case AsamPackage.SERVICE__ENTITY:
-        setEntity((Controller)null);
+        setEntity((Entity)null);
         return;
       case AsamPackage.SERVICE__ACTIONS:
         getActions().clear();
@@ -227,12 +281,31 @@ public class ServiceImpl extends ElementImpl implements Service
   {
     switch (featureID)
     {
+      case AsamPackage.SERVICE__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.SERVICE__ENTITY:
         return entity != null;
       case AsamPackage.SERVICE__ACTIONS:
         return actions != null && !actions.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (nom: ");
+    result.append(nom);
+    result.append(')');
+    return result.toString();
   }
 
 } //ServiceImpl

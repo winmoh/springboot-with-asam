@@ -69,13 +69,13 @@ public interface AsamPackage extends EPackage
   int SBOOT = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SBOOT__NAME = 0;
+  int SBOOT__NOM = 0;
 
   /**
    * The feature id for the '<em><b>Configuration</b></em>' containment reference.
@@ -115,22 +115,59 @@ public interface AsamPackage extends EPackage
   int ELEMENT = 1;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ELEMENT__NAME = 0;
-
-  /**
    * The number of structural features of the '<em>Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ELEMENT_FEATURE_COUNT = 1;
+  int ELEMENT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.EntityRelationshipImpl <em>Entity Relationship</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.asam.asam.impl.EntityRelationshipImpl
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getEntityRelationship()
+   * @generated
+   */
+  int ENTITY_RELATIONSHIP = 2;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_RELATIONSHIP__TYPE = ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Source</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_RELATIONSHIP__SOURCE = ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Target</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_RELATIONSHIP__TARGET = ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Entity Relationship</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_RELATIONSHIP_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.ConfigurationImpl <em>Configuration</em>}' class.
@@ -140,7 +177,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getConfiguration()
    * @generated
    */
-  int CONFIGURATION = 2;
+  int CONFIGURATION = 3;
 
   /**
    * The feature id for the '<em><b>Server</b></em>' containment reference.
@@ -177,7 +214,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getServerInfo()
    * @generated
    */
-  int SERVER_INFO = 3;
+  int SERVER_INFO = 4;
 
   /**
    * The feature id for the '<em><b>Port</b></em>' attribute.
@@ -214,7 +251,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getDatabaseInfo()
    * @generated
    */
-  int DATABASE_INFO = 4;
+  int DATABASE_INFO = 5;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -226,13 +263,13 @@ public interface AsamPackage extends EPackage
   int DATABASE_INFO__TYPE = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATABASE_INFO__NAME = 1;
+  int DATABASE_INFO__NOM = 1;
 
   /**
    * The feature id for the '<em><b>Port</b></em>' attribute.
@@ -278,16 +315,16 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 5;
+  int ENTITY = 6;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENTITY__NAME = ELEMENT__NAME;
+  int ENTITY__NOM = ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Extends</b></em>' reference.
@@ -296,7 +333,16 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__EXTENDS = ELEMENT_FEATURE_COUNT + 0;
+  int ENTITY__EXTENDS = ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__IDENT = ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -305,7 +351,25 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__PROPERTIES = ELEMENT_FEATURE_COUNT + 1;
+  int ENTITY__PROPERTIES = ELEMENT_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Repo</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__REPO = ELEMENT_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>Control</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__CONTROL = ELEMENT_FEATURE_COUNT + 5;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -314,7 +378,44 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+  int ENTITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 6;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.IdentifierImpl <em>Identifier</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.asam.asam.impl.IdentifierImpl
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getIdentifier()
+   * @generated
+   */
+  int IDENTIFIER = 7;
+
+  /**
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IDENTIFIER__NOM = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IDENTIFIER__TYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Identifier</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IDENTIFIER_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.DTOImpl <em>DTO</em>}' class.
@@ -324,16 +425,16 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getDTO()
    * @generated
    */
-  int DTO = 6;
+  int DTO = 8;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DTO__NAME = ELEMENT__NAME;
+  int DTO__NOM = ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -342,7 +443,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DTO__PROPERTIES = ELEMENT_FEATURE_COUNT + 0;
+  int DTO__PROPERTIES = ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>DTO</em>' class.
@@ -351,7 +452,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DTO_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+  int DTO_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.ServiceImpl <em>Service</em>}' class.
@@ -361,16 +462,16 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getService()
    * @generated
    */
-  int SERVICE = 7;
+  int SERVICE = 9;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE__NAME = ELEMENT__NAME;
+  int SERVICE__NOM = ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
@@ -379,7 +480,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE__ENTITY = ELEMENT_FEATURE_COUNT + 0;
+  int SERVICE__ENTITY = ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Actions</b></em>' containment reference list.
@@ -388,7 +489,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE__ACTIONS = ELEMENT_FEATURE_COUNT + 1;
+  int SERVICE__ACTIONS = ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Service</em>' class.
@@ -397,7 +498,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+  int SERVICE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.ControllerImpl <em>Controller</em>}' class.
@@ -407,25 +508,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getController()
    * @generated
    */
-  int CONTROLLER = 8;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTROLLER__NAME = ELEMENT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Entity</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTROLLER__ENTITY = ELEMENT_FEATURE_COUNT + 0;
+  int CONTROLLER = 10;
 
   /**
    * The feature id for the '<em><b>Base Url</b></em>' attribute.
@@ -434,16 +517,43 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER__BASE_URL = ELEMENT_FEATURE_COUNT + 1;
+  int CONTROLLER__BASE_URL = 0;
 
   /**
-   * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+   * The feature id for the '<em><b>Cactions</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROLLER__ACTIONS = ELEMENT_FEATURE_COUNT + 2;
+  int CONTROLLER__CACTIONS = 1;
+
+  /**
+   * The feature id for the '<em><b>Cparam</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER__CPARAM = 2;
+
+  /**
+   * The feature id for the '<em><b>Fparam</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER__FPARAM = 3;
+
+  /**
+   * The feature id for the '<em><b>Dparam</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER__DPARAM = 4;
 
   /**
    * The number of structural features of the '<em>Controller</em>' class.
@@ -452,174 +562,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.RepositoryImpl <em>Repository</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.asam.asam.impl.RepositoryImpl
-   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRepository()
-   * @generated
-   */
-  int REPOSITORY = 9;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REPOSITORY__NAME = ELEMENT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Entity</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REPOSITORY__ENTITY = ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Methods</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REPOSITORY__METHODS = ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Repository</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REPOSITORY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.RepositoryMethodImpl <em>Repository Method</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.asam.asam.impl.RepositoryMethodImpl
-   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRepositoryMethod()
-   * @generated
-   */
-  int REPOSITORY_METHOD = 10;
-
-  /**
-   * The number of structural features of the '<em>Repository Method</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REPOSITORY_METHOD_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.FindByMethodImpl <em>Find By Method</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.asam.asam.impl.FindByMethodImpl
-   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getFindByMethod()
-   * @generated
-   */
-  int FIND_BY_METHOD = 11;
-
-  /**
-   * The feature id for the '<em><b>Property</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FIND_BY_METHOD__PROPERTY = REPOSITORY_METHOD_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Prop</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FIND_BY_METHOD__PROP = REPOSITORY_METHOD_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Find By Method</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FIND_BY_METHOD_FEATURE_COUNT = REPOSITORY_METHOD_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.DeleteByMethodImpl <em>Delete By Method</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.asam.asam.impl.DeleteByMethodImpl
-   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getDeleteByMethod()
-   * @generated
-   */
-  int DELETE_BY_METHOD = 12;
-
-  /**
-   * The feature id for the '<em><b>Property</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DELETE_BY_METHOD__PROPERTY = REPOSITORY_METHOD_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Prop</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DELETE_BY_METHOD__PROP = REPOSITORY_METHOD_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Delete By Method</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DELETE_BY_METHOD_FEATURE_COUNT = REPOSITORY_METHOD_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.CustomQueryMethodImpl <em>Custom Query Method</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.asam.asam.impl.CustomQueryMethodImpl
-   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getCustomQueryMethod()
-   * @generated
-   */
-  int CUSTOM_QUERY_METHOD = 13;
-
-  /**
-   * The feature id for the '<em><b>Query</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CUSTOM_QUERY_METHOD__QUERY = REPOSITORY_METHOD_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Custom Query Method</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CUSTOM_QUERY_METHOD_FEATURE_COUNT = REPOSITORY_METHOD_FEATURE_COUNT + 1;
+  int CONTROLLER_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.ServiceActionImpl <em>Service Action</em>}' class.
@@ -629,16 +572,16 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getServiceAction()
    * @generated
    */
-  int SERVICE_ACTION = 14;
+  int SERVICE_ACTION = 11;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE_ACTION__NAME = 0;
+  int SERVICE_ACTION__NOM = 0;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -686,14 +629,14 @@ public interface AsamPackage extends EPackage
   int SERVICE_ACTION_FEATURE_COUNT = 5;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.ControllerActionImpl <em>Controller Action</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.CustomActionImpl <em>Custom Action</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.asam.asam.impl.ControllerActionImpl
-   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getControllerAction()
+   * @see org.xtext.example.asam.asam.impl.CustomActionImpl
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getCustomAction()
    * @generated
    */
-  int CONTROLLER_ACTION = 15;
+  int CUSTOM_ACTION = 12;
 
   /**
    * The feature id for the '<em><b>Method</b></em>' attribute.
@@ -702,25 +645,16 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER_ACTION__METHOD = 0;
+  int CUSTOM_ACTION__METHOD = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROLLER_ACTION__NAME = 1;
-
-  /**
-   * The feature id for the '<em><b>Service Action</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTROLLER_ACTION__SERVICE_ACTION = 2;
+  int CUSTOM_ACTION__NOM = 1;
 
   /**
    * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -729,7 +663,7 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER_ACTION__URL = 3;
+  int CUSTOM_ACTION__URL = 2;
 
   /**
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -738,16 +672,16 @@ public interface AsamPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTROLLER_ACTION__PARAMETERS = 4;
+  int CUSTOM_ACTION__PARAMETERS = 3;
 
   /**
-   * The number of structural features of the '<em>Controller Action</em>' class.
+   * The number of structural features of the '<em>Custom Action</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROLLER_ACTION_FEATURE_COUNT = 5;
+  int CUSTOM_ACTION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.ActionParameterImpl <em>Action Parameter</em>}' class.
@@ -757,16 +691,16 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getActionParameter()
    * @generated
    */
-  int ACTION_PARAMETER = 16;
+  int ACTION_PARAMETER = 13;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTION_PARAMETER__NAME = 0;
+  int ACTION_PARAMETER__NOM = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -796,6 +730,154 @@ public interface AsamPackage extends EPackage
   int ACTION_PARAMETER_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.RepositoryImpl <em>Repository</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.asam.asam.impl.RepositoryImpl
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRepository()
+   * @generated
+   */
+  int REPOSITORY = 14;
+
+  /**
+   * The feature id for the '<em><b>Find By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPOSITORY__FIND_BY = ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Delete By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPOSITORY__DELETE_BY = ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Custom Query Method</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPOSITORY__CUSTOM_QUERY_METHOD = ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Repository</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REPOSITORY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.FindByMethodImpl <em>Find By Method</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.asam.asam.impl.FindByMethodImpl
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getFindByMethod()
+   * @generated
+   */
+  int FIND_BY_METHOD = 15;
+
+  /**
+   * The feature id for the '<em><b>Property</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIND_BY_METHOD__PROPERTY = 0;
+
+  /**
+   * The feature id for the '<em><b>Ptype</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIND_BY_METHOD__PTYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Find By Method</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIND_BY_METHOD_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.DeleteByMethodImpl <em>Delete By Method</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.asam.asam.impl.DeleteByMethodImpl
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getDeleteByMethod()
+   * @generated
+   */
+  int DELETE_BY_METHOD = 16;
+
+  /**
+   * The feature id for the '<em><b>Property</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DELETE_BY_METHOD__PROPERTY = 0;
+
+  /**
+   * The feature id for the '<em><b>Ptype</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DELETE_BY_METHOD__PTYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Delete By Method</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DELETE_BY_METHOD_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.asam.asam.impl.CustomQueryMethodImpl <em>Custom Query Method</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.asam.asam.impl.CustomQueryMethodImpl
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getCustomQueryMethod()
+   * @generated
+   */
+  int CUSTOM_QUERY_METHOD = 17;
+
+  /**
+   * The feature id for the '<em><b>Query</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOM_QUERY_METHOD__QUERY = 0;
+
+  /**
+   * The number of structural features of the '<em>Custom Query Method</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOM_QUERY_METHOD_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.impl.PropertyImpl <em>Property</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -803,16 +885,16 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 17;
+  int PROPERTY = 18;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nom</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY__NAME = 0;
+  int PROPERTY__NOM = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -849,7 +931,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getType()
    * @generated
    */
-  int TYPE = 18;
+  int TYPE = 19;
 
   /**
    * The feature id for the '<em><b>Vtypes</b></em>' attribute.
@@ -886,7 +968,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRType()
    * @generated
    */
-  int RTYPE = 19;
+  int RTYPE = 20;
 
   /**
    * The feature id for the '<em><b>Vypes</b></em>' attribute.
@@ -914,7 +996,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getListType()
    * @generated
    */
-  int LIST_TYPE = 20;
+  int LIST_TYPE = 21;
 
   /**
    * The feature id for the '<em><b>Vtypes</b></em>' attribute.
@@ -960,7 +1042,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getSetType()
    * @generated
    */
-  int SET_TYPE = 21;
+  int SET_TYPE = 22;
 
   /**
    * The feature id for the '<em><b>Vtypes</b></em>' attribute.
@@ -997,7 +1079,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getVTypes()
    * @generated
    */
-  int VTYPES = 22;
+  int VTYPES = 23;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.HttpMethods <em>Http Methods</em>}' enum.
@@ -1007,7 +1089,7 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getHttpMethods()
    * @generated
    */
-  int HTTP_METHODS = 23;
+  int HTTP_METHODS = 24;
 
   /**
    * The meta object id for the '{@link org.xtext.example.asam.asam.RDBMS <em>RDBMS</em>}' enum.
@@ -1017,7 +1099,27 @@ public interface AsamPackage extends EPackage
    * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRDBMS()
    * @generated
    */
-  int RDBMS = 24;
+  int RDBMS = 25;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.asam.asam.dbRelations <em>db Relations</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.asam.asam.dbRelations
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getdbRelations()
+   * @generated
+   */
+  int DB_RELATIONS = 26;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.asam.asam.ParamTrasfert <em>Param Trasfert</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.asam.asam.ParamTrasfert
+   * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getParamTrasfert()
+   * @generated
+   */
+  int PARAM_TRASFERT = 27;
 
 
   /**
@@ -1031,15 +1133,15 @@ public interface AsamPackage extends EPackage
   EClass getSboot();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Sboot#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Sboot#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.Sboot#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.Sboot#getNom()
    * @see #getSboot()
    * @generated
    */
-  EAttribute getSboot_Name();
+  EAttribute getSboot_Nom();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.Sboot#getConfiguration <em>Configuration</em>}'.
@@ -1074,15 +1176,47 @@ public interface AsamPackage extends EPackage
   EClass getElement();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Element#getName <em>Name</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.asam.asam.EntityRelationship <em>Entity Relationship</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.Element#getName()
-   * @see #getElement()
+   * @return the meta object for class '<em>Entity Relationship</em>'.
+   * @see org.xtext.example.asam.asam.EntityRelationship
    * @generated
    */
-  EAttribute getElement_Name();
+  EClass getEntityRelationship();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.EntityRelationship#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.xtext.example.asam.asam.EntityRelationship#getType()
+   * @see #getEntityRelationship()
+   * @generated
+   */
+  EAttribute getEntityRelationship_Type();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.EntityRelationship#getSource <em>Source</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Source</em>'.
+   * @see org.xtext.example.asam.asam.EntityRelationship#getSource()
+   * @see #getEntityRelationship()
+   * @generated
+   */
+  EReference getEntityRelationship_Source();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.EntityRelationship#getTarget <em>Target</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Target</em>'.
+   * @see org.xtext.example.asam.asam.EntityRelationship#getTarget()
+   * @see #getEntityRelationship()
+   * @generated
+   */
+  EReference getEntityRelationship_Target();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.asam.asam.Configuration <em>Configuration</em>}'.
@@ -1170,15 +1304,15 @@ public interface AsamPackage extends EPackage
   EAttribute getDatabaseInfo_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DatabaseInfo#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DatabaseInfo#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.DatabaseInfo#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.DatabaseInfo#getNom()
    * @see #getDatabaseInfo()
    * @generated
    */
-  EAttribute getDatabaseInfo_Name();
+  EAttribute getDatabaseInfo_Nom();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DatabaseInfo#getPort <em>Port</em>}'.
@@ -1224,6 +1358,17 @@ public interface AsamPackage extends EPackage
   EClass getEntity();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Entity#getNom <em>Nom</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.Entity#getNom()
+   * @see #getEntity()
+   * @generated
+   */
+  EAttribute getEntity_Nom();
+
+  /**
    * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.Entity#getExtends <em>Extends</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1233,6 +1378,17 @@ public interface AsamPackage extends EPackage
    * @generated
    */
   EReference getEntity_Extends();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.Entity#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Ident</em>'.
+   * @see org.xtext.example.asam.asam.Entity#getIdent()
+   * @see #getEntity()
+   * @generated
+   */
+  EReference getEntity_Ident();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.Entity#getProperties <em>Properties</em>}'.
@@ -1246,6 +1402,60 @@ public interface AsamPackage extends EPackage
   EReference getEntity_Properties();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.Entity#getRepo <em>Repo</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Repo</em>'.
+   * @see org.xtext.example.asam.asam.Entity#getRepo()
+   * @see #getEntity()
+   * @generated
+   */
+  EReference getEntity_Repo();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.Entity#getControl <em>Control</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Control</em>'.
+   * @see org.xtext.example.asam.asam.Entity#getControl()
+   * @see #getEntity()
+   * @generated
+   */
+  EReference getEntity_Control();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.asam.asam.Identifier <em>Identifier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Identifier</em>'.
+   * @see org.xtext.example.asam.asam.Identifier
+   * @generated
+   */
+  EClass getIdentifier();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Identifier#getNom <em>Nom</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.Identifier#getNom()
+   * @see #getIdentifier()
+   * @generated
+   */
+  EAttribute getIdentifier_Nom();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Identifier#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.xtext.example.asam.asam.Identifier#getType()
+   * @see #getIdentifier()
+   * @generated
+   */
+  EAttribute getIdentifier_Type();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.asam.asam.DTO <em>DTO</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1254,6 +1464,17 @@ public interface AsamPackage extends EPackage
    * @generated
    */
   EClass getDTO();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DTO#getNom <em>Nom</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.DTO#getNom()
+   * @see #getDTO()
+   * @generated
+   */
+  EAttribute getDTO_Nom();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.DTO#getProperties <em>Properties</em>}'.
@@ -1275,6 +1496,17 @@ public interface AsamPackage extends EPackage
    * @generated
    */
   EClass getService();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Service#getNom <em>Nom</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.Service#getNom()
+   * @see #getService()
+   * @generated
+   */
+  EAttribute getService_Nom();
 
   /**
    * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.Service#getEntity <em>Entity</em>}'.
@@ -1309,17 +1541,6 @@ public interface AsamPackage extends EPackage
   EClass getController();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.Controller#getEntity <em>Entity</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Entity</em>'.
-   * @see org.xtext.example.asam.asam.Controller#getEntity()
-   * @see #getController()
-   * @generated
-   */
-  EReference getController_Entity();
-
-  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Controller#getBaseUrl <em>Base Url</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1331,142 +1552,48 @@ public interface AsamPackage extends EPackage
   EAttribute getController_BaseUrl();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.Controller#getActions <em>Actions</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.Controller#getCactions <em>Cactions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Actions</em>'.
-   * @see org.xtext.example.asam.asam.Controller#getActions()
+   * @return the meta object for the containment reference list '<em>Cactions</em>'.
+   * @see org.xtext.example.asam.asam.Controller#getCactions()
    * @see #getController()
    * @generated
    */
-  EReference getController_Actions();
+  EReference getController_Cactions();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.asam.asam.Repository <em>Repository</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Controller#getCparam <em>Cparam</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Repository</em>'.
-   * @see org.xtext.example.asam.asam.Repository
+   * @return the meta object for the attribute '<em>Cparam</em>'.
+   * @see org.xtext.example.asam.asam.Controller#getCparam()
+   * @see #getController()
    * @generated
    */
-  EClass getRepository();
+  EAttribute getController_Cparam();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.asam.asam.Repository#getEntity <em>Entity</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Controller#getFparam <em>Fparam</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Entity</em>'.
-   * @see org.xtext.example.asam.asam.Repository#getEntity()
-   * @see #getRepository()
+   * @return the meta object for the attribute '<em>Fparam</em>'.
+   * @see org.xtext.example.asam.asam.Controller#getFparam()
+   * @see #getController()
    * @generated
    */
-  EReference getRepository_Entity();
+  EAttribute getController_Fparam();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.Repository#getMethods <em>Methods</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Controller#getDparam <em>Dparam</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Methods</em>'.
-   * @see org.xtext.example.asam.asam.Repository#getMethods()
-   * @see #getRepository()
+   * @return the meta object for the attribute '<em>Dparam</em>'.
+   * @see org.xtext.example.asam.asam.Controller#getDparam()
+   * @see #getController()
    * @generated
    */
-  EReference getRepository_Methods();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.asam.asam.RepositoryMethod <em>Repository Method</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Repository Method</em>'.
-   * @see org.xtext.example.asam.asam.RepositoryMethod
-   * @generated
-   */
-  EClass getRepositoryMethod();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.asam.asam.FindByMethod <em>Find By Method</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Find By Method</em>'.
-   * @see org.xtext.example.asam.asam.FindByMethod
-   * @generated
-   */
-  EClass getFindByMethod();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.FindByMethod#getProperty <em>Property</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Property</em>'.
-   * @see org.xtext.example.asam.asam.FindByMethod#getProperty()
-   * @see #getFindByMethod()
-   * @generated
-   */
-  EAttribute getFindByMethod_Property();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.FindByMethod#getProp <em>Prop</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Prop</em>'.
-   * @see org.xtext.example.asam.asam.FindByMethod#getProp()
-   * @see #getFindByMethod()
-   * @generated
-   */
-  EAttribute getFindByMethod_Prop();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.asam.asam.DeleteByMethod <em>Delete By Method</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Delete By Method</em>'.
-   * @see org.xtext.example.asam.asam.DeleteByMethod
-   * @generated
-   */
-  EClass getDeleteByMethod();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DeleteByMethod#getProperty <em>Property</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Property</em>'.
-   * @see org.xtext.example.asam.asam.DeleteByMethod#getProperty()
-   * @see #getDeleteByMethod()
-   * @generated
-   */
-  EAttribute getDeleteByMethod_Property();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DeleteByMethod#getProp <em>Prop</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Prop</em>'.
-   * @see org.xtext.example.asam.asam.DeleteByMethod#getProp()
-   * @see #getDeleteByMethod()
-   * @generated
-   */
-  EAttribute getDeleteByMethod_Prop();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.asam.asam.CustomQueryMethod <em>Custom Query Method</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Custom Query Method</em>'.
-   * @see org.xtext.example.asam.asam.CustomQueryMethod
-   * @generated
-   */
-  EClass getCustomQueryMethod();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.CustomQueryMethod#getQuery <em>Query</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Query</em>'.
-   * @see org.xtext.example.asam.asam.CustomQueryMethod#getQuery()
-   * @see #getCustomQueryMethod()
-   * @generated
-   */
-  EAttribute getCustomQueryMethod_Query();
+  EAttribute getController_Dparam();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.asam.asam.ServiceAction <em>Service Action</em>}'.
@@ -1479,15 +1606,15 @@ public interface AsamPackage extends EPackage
   EClass getServiceAction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ServiceAction#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ServiceAction#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.ServiceAction#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.ServiceAction#getNom()
    * @see #getServiceAction()
    * @generated
    */
-  EAttribute getServiceAction_Name();
+  EAttribute getServiceAction_Nom();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.ServiceAction#getReturnType <em>Return Type</em>}'.
@@ -1534,69 +1661,58 @@ public interface AsamPackage extends EPackage
   EReference getServiceAction_Parameters();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.asam.asam.ControllerAction <em>Controller Action</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.asam.asam.CustomAction <em>Custom Action</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Controller Action</em>'.
-   * @see org.xtext.example.asam.asam.ControllerAction
+   * @return the meta object for class '<em>Custom Action</em>'.
+   * @see org.xtext.example.asam.asam.CustomAction
    * @generated
    */
-  EClass getControllerAction();
+  EClass getCustomAction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ControllerAction#getMethod <em>Method</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.CustomAction#getMethod <em>Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Method</em>'.
-   * @see org.xtext.example.asam.asam.ControllerAction#getMethod()
-   * @see #getControllerAction()
+   * @see org.xtext.example.asam.asam.CustomAction#getMethod()
+   * @see #getCustomAction()
    * @generated
    */
-  EAttribute getControllerAction_Method();
+  EAttribute getCustomAction_Method();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ControllerAction#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.CustomAction#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.ControllerAction#getName()
-   * @see #getControllerAction()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.CustomAction#getNom()
+   * @see #getCustomAction()
    * @generated
    */
-  EAttribute getControllerAction_Name();
+  EAttribute getCustomAction_Nom();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ControllerAction#getServiceAction <em>Service Action</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Service Action</em>'.
-   * @see org.xtext.example.asam.asam.ControllerAction#getServiceAction()
-   * @see #getControllerAction()
-   * @generated
-   */
-  EAttribute getControllerAction_ServiceAction();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ControllerAction#getUrl <em>Url</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.CustomAction#getUrl <em>Url</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Url</em>'.
-   * @see org.xtext.example.asam.asam.ControllerAction#getUrl()
-   * @see #getControllerAction()
+   * @see org.xtext.example.asam.asam.CustomAction#getUrl()
+   * @see #getCustomAction()
    * @generated
    */
-  EAttribute getControllerAction_Url();
+  EAttribute getCustomAction_Url();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.ControllerAction#getParameters <em>Parameters</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.CustomAction#getParameters <em>Parameters</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Parameters</em>'.
-   * @see org.xtext.example.asam.asam.ControllerAction#getParameters()
-   * @see #getControllerAction()
+   * @see org.xtext.example.asam.asam.CustomAction#getParameters()
+   * @see #getCustomAction()
    * @generated
    */
-  EReference getControllerAction_Parameters();
+  EReference getCustomAction_Parameters();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.asam.asam.ActionParameter <em>Action Parameter</em>}'.
@@ -1609,15 +1725,15 @@ public interface AsamPackage extends EPackage
   EClass getActionParameter();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ActionParameter#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.ActionParameter#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.ActionParameter#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.ActionParameter#getNom()
    * @see #getActionParameter()
    * @generated
    */
-  EAttribute getActionParameter_Name();
+  EAttribute getActionParameter_Nom();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.ActionParameter#getType <em>Type</em>}'.
@@ -1642,6 +1758,134 @@ public interface AsamPackage extends EPackage
   EAttribute getActionParameter_DefaultValue();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.asam.asam.Repository <em>Repository</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Repository</em>'.
+   * @see org.xtext.example.asam.asam.Repository
+   * @generated
+   */
+  EClass getRepository();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.Repository#getFindBy <em>Find By</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Find By</em>'.
+   * @see org.xtext.example.asam.asam.Repository#getFindBy()
+   * @see #getRepository()
+   * @generated
+   */
+  EReference getRepository_FindBy();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.Repository#getDeleteBy <em>Delete By</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Delete By</em>'.
+   * @see org.xtext.example.asam.asam.Repository#getDeleteBy()
+   * @see #getRepository()
+   * @generated
+   */
+  EReference getRepository_DeleteBy();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.asam.asam.Repository#getCustomQueryMethod <em>Custom Query Method</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Custom Query Method</em>'.
+   * @see org.xtext.example.asam.asam.Repository#getCustomQueryMethod()
+   * @see #getRepository()
+   * @generated
+   */
+  EReference getRepository_CustomQueryMethod();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.asam.asam.FindByMethod <em>Find By Method</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Find By Method</em>'.
+   * @see org.xtext.example.asam.asam.FindByMethod
+   * @generated
+   */
+  EClass getFindByMethod();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.FindByMethod#getProperty <em>Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Property</em>'.
+   * @see org.xtext.example.asam.asam.FindByMethod#getProperty()
+   * @see #getFindByMethod()
+   * @generated
+   */
+  EAttribute getFindByMethod_Property();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.FindByMethod#getPtype <em>Ptype</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ptype</em>'.
+   * @see org.xtext.example.asam.asam.FindByMethod#getPtype()
+   * @see #getFindByMethod()
+   * @generated
+   */
+  EAttribute getFindByMethod_Ptype();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.asam.asam.DeleteByMethod <em>Delete By Method</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Delete By Method</em>'.
+   * @see org.xtext.example.asam.asam.DeleteByMethod
+   * @generated
+   */
+  EClass getDeleteByMethod();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DeleteByMethod#getProperty <em>Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Property</em>'.
+   * @see org.xtext.example.asam.asam.DeleteByMethod#getProperty()
+   * @see #getDeleteByMethod()
+   * @generated
+   */
+  EAttribute getDeleteByMethod_Property();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.DeleteByMethod#getPtype <em>Ptype</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ptype</em>'.
+   * @see org.xtext.example.asam.asam.DeleteByMethod#getPtype()
+   * @see #getDeleteByMethod()
+   * @generated
+   */
+  EAttribute getDeleteByMethod_Ptype();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.asam.asam.CustomQueryMethod <em>Custom Query Method</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Custom Query Method</em>'.
+   * @see org.xtext.example.asam.asam.CustomQueryMethod
+   * @generated
+   */
+  EClass getCustomQueryMethod();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.CustomQueryMethod#getQuery <em>Query</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Query</em>'.
+   * @see org.xtext.example.asam.asam.CustomQueryMethod#getQuery()
+   * @see #getCustomQueryMethod()
+   * @generated
+   */
+  EAttribute getCustomQueryMethod_Query();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.asam.asam.Property <em>Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1652,15 +1896,15 @@ public interface AsamPackage extends EPackage
   EClass getProperty();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Property#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.asam.asam.Property#getNom <em>Nom</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.asam.asam.Property#getName()
+   * @return the meta object for the attribute '<em>Nom</em>'.
+   * @see org.xtext.example.asam.asam.Property#getNom()
    * @see #getProperty()
    * @generated
    */
-  EAttribute getProperty_Name();
+  EAttribute getProperty_Nom();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.asam.asam.Property#getType <em>Type</em>}'.
@@ -1788,6 +2032,26 @@ public interface AsamPackage extends EPackage
   EEnum getRDBMS();
 
   /**
+   * Returns the meta object for enum '{@link org.xtext.example.asam.asam.dbRelations <em>db Relations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>db Relations</em>'.
+   * @see org.xtext.example.asam.asam.dbRelations
+   * @generated
+   */
+  EEnum getdbRelations();
+
+  /**
+   * Returns the meta object for enum '{@link org.xtext.example.asam.asam.ParamTrasfert <em>Param Trasfert</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Param Trasfert</em>'.
+   * @see org.xtext.example.asam.asam.ParamTrasfert
+   * @generated
+   */
+  EEnum getParamTrasfert();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1821,12 +2085,12 @@ public interface AsamPackage extends EPackage
     EClass SBOOT = eINSTANCE.getSboot();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SBOOT__NAME = eINSTANCE.getSboot_Name();
+    EAttribute SBOOT__NOM = eINSTANCE.getSboot_Nom();
 
     /**
      * The meta object literal for the '<em><b>Configuration</b></em>' containment reference feature.
@@ -1855,12 +2119,38 @@ public interface AsamPackage extends EPackage
     EClass ELEMENT = eINSTANCE.getElement();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.EntityRelationshipImpl <em>Entity Relationship</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.asam.asam.impl.EntityRelationshipImpl
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getEntityRelationship()
+     * @generated
+     */
+    EClass ENTITY_RELATIONSHIP = eINSTANCE.getEntityRelationship();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ELEMENT__NAME = eINSTANCE.getElement_Name();
+    EAttribute ENTITY_RELATIONSHIP__TYPE = eINSTANCE.getEntityRelationship_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY_RELATIONSHIP__SOURCE = eINSTANCE.getEntityRelationship_Source();
+
+    /**
+     * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY_RELATIONSHIP__TARGET = eINSTANCE.getEntityRelationship_Target();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.ConfigurationImpl <em>Configuration</em>}' class.
@@ -1933,12 +2223,12 @@ public interface AsamPackage extends EPackage
     EAttribute DATABASE_INFO__TYPE = eINSTANCE.getDatabaseInfo_Type();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DATABASE_INFO__NAME = eINSTANCE.getDatabaseInfo_Name();
+    EAttribute DATABASE_INFO__NOM = eINSTANCE.getDatabaseInfo_Nom();
 
     /**
      * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
@@ -1975,12 +2265,28 @@ public interface AsamPackage extends EPackage
     EClass ENTITY = eINSTANCE.getEntity();
 
     /**
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENTITY__NOM = eINSTANCE.getEntity_Nom();
+
+    /**
      * The meta object literal for the '<em><b>Extends</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference ENTITY__EXTENDS = eINSTANCE.getEntity_Extends();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY__IDENT = eINSTANCE.getEntity_Ident();
 
     /**
      * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
@@ -1991,6 +2297,48 @@ public interface AsamPackage extends EPackage
     EReference ENTITY__PROPERTIES = eINSTANCE.getEntity_Properties();
 
     /**
+     * The meta object literal for the '<em><b>Repo</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY__REPO = eINSTANCE.getEntity_Repo();
+
+    /**
+     * The meta object literal for the '<em><b>Control</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY__CONTROL = eINSTANCE.getEntity_Control();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.IdentifierImpl <em>Identifier</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.asam.asam.impl.IdentifierImpl
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getIdentifier()
+     * @generated
+     */
+    EClass IDENTIFIER = eINSTANCE.getIdentifier();
+
+    /**
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IDENTIFIER__NOM = eINSTANCE.getIdentifier_Nom();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IDENTIFIER__TYPE = eINSTANCE.getIdentifier_Type();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.DTOImpl <em>DTO</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1999,6 +2347,14 @@ public interface AsamPackage extends EPackage
      * @generated
      */
     EClass DTO = eINSTANCE.getDTO();
+
+    /**
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DTO__NOM = eINSTANCE.getDTO_Nom();
 
     /**
      * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
@@ -2017,6 +2373,14 @@ public interface AsamPackage extends EPackage
      * @generated
      */
     EClass SERVICE = eINSTANCE.getService();
+
+    /**
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SERVICE__NOM = eINSTANCE.getService_Nom();
 
     /**
      * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
@@ -2045,14 +2409,6 @@ public interface AsamPackage extends EPackage
     EClass CONTROLLER = eINSTANCE.getController();
 
     /**
-     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTROLLER__ENTITY = eINSTANCE.getController_Entity();
-
-    /**
      * The meta object literal for the '<em><b>Base Url</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2061,118 +2417,36 @@ public interface AsamPackage extends EPackage
     EAttribute CONTROLLER__BASE_URL = eINSTANCE.getController_BaseUrl();
 
     /**
-     * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Cactions</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONTROLLER__ACTIONS = eINSTANCE.getController_Actions();
+    EReference CONTROLLER__CACTIONS = eINSTANCE.getController_Cactions();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.RepositoryImpl <em>Repository</em>}' class.
+     * The meta object literal for the '<em><b>Cparam</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.asam.asam.impl.RepositoryImpl
-     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRepository()
      * @generated
      */
-    EClass REPOSITORY = eINSTANCE.getRepository();
+    EAttribute CONTROLLER__CPARAM = eINSTANCE.getController_Cparam();
 
     /**
-     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Fparam</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference REPOSITORY__ENTITY = eINSTANCE.getRepository_Entity();
+    EAttribute CONTROLLER__FPARAM = eINSTANCE.getController_Fparam();
 
     /**
-     * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Dparam</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference REPOSITORY__METHODS = eINSTANCE.getRepository_Methods();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.RepositoryMethodImpl <em>Repository Method</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.asam.asam.impl.RepositoryMethodImpl
-     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRepositoryMethod()
-     * @generated
-     */
-    EClass REPOSITORY_METHOD = eINSTANCE.getRepositoryMethod();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.FindByMethodImpl <em>Find By Method</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.asam.asam.impl.FindByMethodImpl
-     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getFindByMethod()
-     * @generated
-     */
-    EClass FIND_BY_METHOD = eINSTANCE.getFindByMethod();
-
-    /**
-     * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FIND_BY_METHOD__PROPERTY = eINSTANCE.getFindByMethod_Property();
-
-    /**
-     * The meta object literal for the '<em><b>Prop</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FIND_BY_METHOD__PROP = eINSTANCE.getFindByMethod_Prop();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.DeleteByMethodImpl <em>Delete By Method</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.asam.asam.impl.DeleteByMethodImpl
-     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getDeleteByMethod()
-     * @generated
-     */
-    EClass DELETE_BY_METHOD = eINSTANCE.getDeleteByMethod();
-
-    /**
-     * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DELETE_BY_METHOD__PROPERTY = eINSTANCE.getDeleteByMethod_Property();
-
-    /**
-     * The meta object literal for the '<em><b>Prop</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DELETE_BY_METHOD__PROP = eINSTANCE.getDeleteByMethod_Prop();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.CustomQueryMethodImpl <em>Custom Query Method</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.asam.asam.impl.CustomQueryMethodImpl
-     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getCustomQueryMethod()
-     * @generated
-     */
-    EClass CUSTOM_QUERY_METHOD = eINSTANCE.getCustomQueryMethod();
-
-    /**
-     * The meta object literal for the '<em><b>Query</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CUSTOM_QUERY_METHOD__QUERY = eINSTANCE.getCustomQueryMethod_Query();
+    EAttribute CONTROLLER__DPARAM = eINSTANCE.getController_Dparam();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.ServiceActionImpl <em>Service Action</em>}' class.
@@ -2185,12 +2459,12 @@ public interface AsamPackage extends EPackage
     EClass SERVICE_ACTION = eINSTANCE.getServiceAction();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SERVICE_ACTION__NAME = eINSTANCE.getServiceAction_Name();
+    EAttribute SERVICE_ACTION__NOM = eINSTANCE.getServiceAction_Nom();
 
     /**
      * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
@@ -2225,14 +2499,14 @@ public interface AsamPackage extends EPackage
     EReference SERVICE_ACTION__PARAMETERS = eINSTANCE.getServiceAction_Parameters();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.ControllerActionImpl <em>Controller Action</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.CustomActionImpl <em>Custom Action</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.asam.asam.impl.ControllerActionImpl
-     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getControllerAction()
+     * @see org.xtext.example.asam.asam.impl.CustomActionImpl
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getCustomAction()
      * @generated
      */
-    EClass CONTROLLER_ACTION = eINSTANCE.getControllerAction();
+    EClass CUSTOM_ACTION = eINSTANCE.getCustomAction();
 
     /**
      * The meta object literal for the '<em><b>Method</b></em>' attribute feature.
@@ -2240,23 +2514,15 @@ public interface AsamPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONTROLLER_ACTION__METHOD = eINSTANCE.getControllerAction_Method();
+    EAttribute CUSTOM_ACTION__METHOD = eINSTANCE.getCustomAction_Method();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONTROLLER_ACTION__NAME = eINSTANCE.getControllerAction_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Service Action</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONTROLLER_ACTION__SERVICE_ACTION = eINSTANCE.getControllerAction_ServiceAction();
+    EAttribute CUSTOM_ACTION__NOM = eINSTANCE.getCustomAction_Nom();
 
     /**
      * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
@@ -2264,7 +2530,7 @@ public interface AsamPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONTROLLER_ACTION__URL = eINSTANCE.getControllerAction_Url();
+    EAttribute CUSTOM_ACTION__URL = eINSTANCE.getCustomAction_Url();
 
     /**
      * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
@@ -2272,7 +2538,7 @@ public interface AsamPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONTROLLER_ACTION__PARAMETERS = eINSTANCE.getControllerAction_Parameters();
+    EReference CUSTOM_ACTION__PARAMETERS = eINSTANCE.getCustomAction_Parameters();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.ActionParameterImpl <em>Action Parameter</em>}' class.
@@ -2285,12 +2551,12 @@ public interface AsamPackage extends EPackage
     EClass ACTION_PARAMETER = eINSTANCE.getActionParameter();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ACTION_PARAMETER__NAME = eINSTANCE.getActionParameter_Name();
+    EAttribute ACTION_PARAMETER__NOM = eINSTANCE.getActionParameter_Nom();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -2309,6 +2575,110 @@ public interface AsamPackage extends EPackage
     EAttribute ACTION_PARAMETER__DEFAULT_VALUE = eINSTANCE.getActionParameter_DefaultValue();
 
     /**
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.RepositoryImpl <em>Repository</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.asam.asam.impl.RepositoryImpl
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getRepository()
+     * @generated
+     */
+    EClass REPOSITORY = eINSTANCE.getRepository();
+
+    /**
+     * The meta object literal for the '<em><b>Find By</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REPOSITORY__FIND_BY = eINSTANCE.getRepository_FindBy();
+
+    /**
+     * The meta object literal for the '<em><b>Delete By</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REPOSITORY__DELETE_BY = eINSTANCE.getRepository_DeleteBy();
+
+    /**
+     * The meta object literal for the '<em><b>Custom Query Method</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REPOSITORY__CUSTOM_QUERY_METHOD = eINSTANCE.getRepository_CustomQueryMethod();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.FindByMethodImpl <em>Find By Method</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.asam.asam.impl.FindByMethodImpl
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getFindByMethod()
+     * @generated
+     */
+    EClass FIND_BY_METHOD = eINSTANCE.getFindByMethod();
+
+    /**
+     * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FIND_BY_METHOD__PROPERTY = eINSTANCE.getFindByMethod_Property();
+
+    /**
+     * The meta object literal for the '<em><b>Ptype</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FIND_BY_METHOD__PTYPE = eINSTANCE.getFindByMethod_Ptype();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.DeleteByMethodImpl <em>Delete By Method</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.asam.asam.impl.DeleteByMethodImpl
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getDeleteByMethod()
+     * @generated
+     */
+    EClass DELETE_BY_METHOD = eINSTANCE.getDeleteByMethod();
+
+    /**
+     * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DELETE_BY_METHOD__PROPERTY = eINSTANCE.getDeleteByMethod_Property();
+
+    /**
+     * The meta object literal for the '<em><b>Ptype</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DELETE_BY_METHOD__PTYPE = eINSTANCE.getDeleteByMethod_Ptype();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.CustomQueryMethodImpl <em>Custom Query Method</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.asam.asam.impl.CustomQueryMethodImpl
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getCustomQueryMethod()
+     * @generated
+     */
+    EClass CUSTOM_QUERY_METHOD = eINSTANCE.getCustomQueryMethod();
+
+    /**
+     * The meta object literal for the '<em><b>Query</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CUSTOM_QUERY_METHOD__QUERY = eINSTANCE.getCustomQueryMethod_Query();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.asam.asam.impl.PropertyImpl <em>Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2319,12 +2689,12 @@ public interface AsamPackage extends EPackage
     EClass PROPERTY = eINSTANCE.getProperty();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nom</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROPERTY__NAME = eINSTANCE.getProperty_Name();
+    EAttribute PROPERTY__NOM = eINSTANCE.getProperty_Nom();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -2435,6 +2805,26 @@ public interface AsamPackage extends EPackage
      * @generated
      */
     EEnum RDBMS = eINSTANCE.getRDBMS();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.dbRelations <em>db Relations</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.asam.asam.dbRelations
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getdbRelations()
+     * @generated
+     */
+    EEnum DB_RELATIONS = eINSTANCE.getdbRelations();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.asam.asam.ParamTrasfert <em>Param Trasfert</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.asam.asam.ParamTrasfert
+     * @see org.xtext.example.asam.asam.impl.AsamPackageImpl#getParamTrasfert()
+     * @generated
+     */
+    EEnum PARAM_TRASFERT = eINSTANCE.getParamTrasfert();
 
   }
 

@@ -14,8 +14,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.Repository#getEntity <em>Entity</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.Repository#getMethods <em>Methods</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.Repository#getFindBy <em>Find By</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.Repository#getDeleteBy <em>Delete By</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.Repository#getCustomQueryMethod <em>Custom Query Method</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.asam.asam.AsamPackage#getRepository()
@@ -25,37 +26,39 @@ import org.eclipse.emf.common.util.EList;
 public interface Repository extends Element
 {
   /**
-   * Returns the value of the '<em><b>Entity</b></em>' reference.
+   * Returns the value of the '<em><b>Find By</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.asam.asam.FindByMethod}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Entity</em>' reference.
-   * @see #setEntity(Entity)
-   * @see org.xtext.example.asam.asam.AsamPackage#getRepository_Entity()
-   * @model
-   * @generated
-   */
-  Entity getEntity();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.asam.asam.Repository#getEntity <em>Entity</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Entity</em>' reference.
-   * @see #getEntity()
-   * @generated
-   */
-  void setEntity(Entity value);
-
-  /**
-   * Returns the value of the '<em><b>Methods</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.asam.asam.RepositoryMethod}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Methods</em>' containment reference list.
-   * @see org.xtext.example.asam.asam.AsamPackage#getRepository_Methods()
+   * @return the value of the '<em>Find By</em>' containment reference list.
+   * @see org.xtext.example.asam.asam.AsamPackage#getRepository_FindBy()
    * @model containment="true"
    * @generated
    */
-  EList<RepositoryMethod> getMethods();
+  EList<FindByMethod> getFindBy();
+
+  /**
+   * Returns the value of the '<em><b>Delete By</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.asam.asam.DeleteByMethod}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Delete By</em>' containment reference list.
+   * @see org.xtext.example.asam.asam.AsamPackage#getRepository_DeleteBy()
+   * @model containment="true"
+   * @generated
+   */
+  EList<DeleteByMethod> getDeleteBy();
+
+  /**
+   * Returns the value of the '<em><b>Custom Query Method</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.asam.asam.CustomQueryMethod}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Custom Query Method</em>' containment reference list.
+   * @see org.xtext.example.asam.asam.AsamPackage#getRepository_CustomQueryMethod()
+   * @model containment="true"
+   * @generated
+   */
+  EList<CustomQueryMethod> getCustomQueryMethod();
 
 } // Repository

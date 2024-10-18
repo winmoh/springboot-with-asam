@@ -14,8 +14,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.asam.asam.Entity#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Entity#getExtends <em>Extends</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.Entity#getIdent <em>Ident</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.Entity#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.Entity#getRepo <em>Repo</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.Entity#getControl <em>Control</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.asam.asam.AsamPackage#getEntity()
@@ -24,6 +28,28 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Entity extends Element
 {
+  /**
+   * Returns the value of the '<em><b>Nom</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nom</em>' attribute.
+   * @see #setNom(String)
+   * @see org.xtext.example.asam.asam.AsamPackage#getEntity_Nom()
+   * @model
+   * @generated
+   */
+  String getNom();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Entity#getNom <em>Nom</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nom</em>' attribute.
+   * @see #getNom()
+   * @generated
+   */
+  void setNom(String value);
+
   /**
    * Returns the value of the '<em><b>Extends</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -47,6 +73,28 @@ public interface Entity extends Element
   void setExtends(Entity value);
 
   /**
+   * Returns the value of the '<em><b>Ident</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ident</em>' containment reference.
+   * @see #setIdent(Identifier)
+   * @see org.xtext.example.asam.asam.AsamPackage#getEntity_Ident()
+   * @model containment="true"
+   * @generated
+   */
+  Identifier getIdent();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Entity#getIdent <em>Ident</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ident</em>' containment reference.
+   * @see #getIdent()
+   * @generated
+   */
+  void setIdent(Identifier value);
+
+  /**
    * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.asam.asam.Property}.
    * <!-- begin-user-doc -->
@@ -57,5 +105,49 @@ public interface Entity extends Element
    * @generated
    */
   EList<Property> getProperties();
+
+  /**
+   * Returns the value of the '<em><b>Repo</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Repo</em>' containment reference.
+   * @see #setRepo(Repository)
+   * @see org.xtext.example.asam.asam.AsamPackage#getEntity_Repo()
+   * @model containment="true"
+   * @generated
+   */
+  Repository getRepo();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Entity#getRepo <em>Repo</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Repo</em>' containment reference.
+   * @see #getRepo()
+   * @generated
+   */
+  void setRepo(Repository value);
+
+  /**
+   * Returns the value of the '<em><b>Control</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Control</em>' containment reference.
+   * @see #setControl(Controller)
+   * @see org.xtext.example.asam.asam.AsamPackage#getEntity_Control()
+   * @model containment="true"
+   * @generated
+   */
+  Controller getControl();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.asam.asam.Entity#getControl <em>Control</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Control</em>' containment reference.
+   * @see #getControl()
+   * @generated
+   */
+  void setControl(Controller value);
 
 } // Entity

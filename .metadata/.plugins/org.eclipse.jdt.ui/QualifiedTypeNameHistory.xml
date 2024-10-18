@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.eclipse.xtext.validation.Check"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.Entity"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.Property"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.Controller"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.Service"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.AsamPackage.Literals"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.RDBMS"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.EntityRelationship"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.DatabaseInfo"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="org.xtext.example.asam.asam.ServiceAction"/>
+</qualifiedTypeNameHistroy>

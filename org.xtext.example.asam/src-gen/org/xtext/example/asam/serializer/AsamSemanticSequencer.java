@@ -18,13 +18,15 @@ import org.xtext.example.asam.asam.ActionParameter;
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.Configuration;
 import org.xtext.example.asam.asam.Controller;
-import org.xtext.example.asam.asam.ControllerAction;
+import org.xtext.example.asam.asam.CustomAction;
 import org.xtext.example.asam.asam.CustomQueryMethod;
 import org.xtext.example.asam.asam.DTO;
 import org.xtext.example.asam.asam.DatabaseInfo;
 import org.xtext.example.asam.asam.DeleteByMethod;
 import org.xtext.example.asam.asam.Entity;
+import org.xtext.example.asam.asam.EntityRelationship;
 import org.xtext.example.asam.asam.FindByMethod;
+import org.xtext.example.asam.asam.Identifier;
 import org.xtext.example.asam.asam.ListType;
 import org.xtext.example.asam.asam.Property;
 import org.xtext.example.asam.asam.RType;
@@ -60,8 +62,8 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case AsamPackage.CONTROLLER:
 				sequence_Controller(context, (Controller) semanticObject); 
 				return; 
-			case AsamPackage.CONTROLLER_ACTION:
-				sequence_ControllerAction(context, (ControllerAction) semanticObject); 
+			case AsamPackage.CUSTOM_ACTION:
+				sequence_CustomAction(context, (CustomAction) semanticObject); 
 				return; 
 			case AsamPackage.CUSTOM_QUERY_METHOD:
 				sequence_CustomQueryMethod(context, (CustomQueryMethod) semanticObject); 
@@ -78,8 +80,14 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case AsamPackage.ENTITY:
 				sequence_Entity(context, (Entity) semanticObject); 
 				return; 
+			case AsamPackage.ENTITY_RELATIONSHIP:
+				sequence_EntityRelationship(context, (EntityRelationship) semanticObject); 
+				return; 
 			case AsamPackage.FIND_BY_METHOD:
 				sequence_FindByMethod(context, (FindByMethod) semanticObject); 
+				return; 
+			case AsamPackage.IDENTIFIER:
+				sequence_Identifier(context, (Identifier) semanticObject); 
 				return; 
 			case AsamPackage.LIST_TYPE:
 				sequence_ListType(context, (ListType) semanticObject); 
@@ -122,7 +130,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ActionParameter returns ActionParameter
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type defaultValue=STRING?)
+	 *     (nom=ID type=Type defaultValue=STRING?)
 	 * </pre>
 	 */
 	protected void sequence_ActionParameter(ISerializationContext context, ActionParameter semanticObject) {
@@ -136,7 +144,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Configuration returns Configuration
 	 *
 	 * Constraint:
-	 *     ((server=ServerInfo database=DatabaseInfo) | database=DatabaseInfo)?
+	 *     (server=ServerInfo? database=DatabaseInfo)
 	 * </pre>
 	 */
 	protected void sequence_Configuration(ISerializationContext context, Configuration semanticObject) {
@@ -147,25 +155,24 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ControllerAction returns ControllerAction
-	 *
-	 * Constraint:
-	 *     (method=HttpMethods name=ID serviceAction=ID url=STRING? parameters+=ActionParameter*)
-	 * </pre>
-	 */
-	protected void sequence_ControllerAction(ISerializationContext context, ControllerAction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Element returns Controller
 	 *     Controller returns Controller
 	 *
 	 * Constraint:
-	 *     (name=ID entity=[Entity|ID] baseUrl=STRING? actions+=ControllerAction*)
+	 *     (
+	 *         (baseUrl=PATH ((cparam=ParamTrasfert dparam=ParamTrasfert) | dparam=ParamTrasfert)) | 
+	 *         (((baseUrl=PATH cactions+=CustomAction+) | cactions+=CustomAction+) ((cparam=ParamTrasfert dparam=ParamTrasfert) | dparam=ParamTrasfert)) | 
+	 *         (
+	 *             (
+	 *                 (baseUrl=PATH ((cactions+=CustomAction+ cparam=ParamTrasfert) | cparam=ParamTrasfert)) | 
+	 *                 (cactions+=CustomAction+ cparam=ParamTrasfert) | 
+	 *                 cparam=ParamTrasfert
+	 *             )? 
+	 *             fparam=ParamTrasfert 
+	 *             dparam=ParamTrasfert
+	 *         ) | 
+	 *         (cparam=ParamTrasfert dparam=ParamTrasfert) | 
+	 *         dparam=ParamTrasfert
+	 *     )?
 	 * </pre>
 	 */
 	protected void sequence_Controller(ISerializationContext context, Controller semanticObject) {
@@ -176,7 +183,20 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     RepositoryMethod returns CustomQueryMethod
+	 *     CustomAction returns CustomAction
+	 *
+	 * Constraint:
+	 *     (method=HttpMethods nom=ID url=STRING? parameters+=ActionParameter*)
+	 * </pre>
+	 */
+	protected void sequence_CustomAction(ISerializationContext context, CustomAction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     CustomQueryMethod returns CustomQueryMethod
 	 *
 	 * Constraint:
@@ -201,7 +221,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DTO returns DTO
 	 *
 	 * Constraint:
-	 *     (name=ID properties+=Property*)
+	 *     (nom=ID properties+=Property*)
 	 * </pre>
 	 */
 	protected void sequence_DTO(ISerializationContext context, DTO semanticObject) {
@@ -215,15 +235,15 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DatabaseInfo returns DatabaseInfo
 	 *
 	 * Constraint:
-	 *     (type=RDBMS name=ID port=INT username=ID password=ID)
+	 *     (type=RDBMS nom=ID port=INT username=ID password=ID)
 	 * </pre>
 	 */
 	protected void sequence_DatabaseInfo(ISerializationContext context, DatabaseInfo semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DATABASE_INFO__TYPE));
-			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DATABASE_INFO__NAME));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__NOM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DATABASE_INFO__NOM));
 			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__PORT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DATABASE_INFO__PORT));
 			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DATABASE_INFO__USERNAME) == ValueTransient.YES)
@@ -233,7 +253,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getDatabaseInfoAccess().getTypeRDBMSEnumRuleCall_3_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getDatabaseInfoAccess().getNameIDTerminalRuleCall_5_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDatabaseInfoAccess().getNomIDTerminalRuleCall_5_0(), semanticObject.getNom());
 		feeder.accept(grammarAccess.getDatabaseInfoAccess().getPortINTTerminalRuleCall_7_0(), semanticObject.getPort());
 		feeder.accept(grammarAccess.getDatabaseInfoAccess().getUsernameIDTerminalRuleCall_9_0(), semanticObject.getUsername());
 		feeder.accept(grammarAccess.getDatabaseInfoAccess().getPasswordIDTerminalRuleCall_11_0(), semanticObject.getPassword());
@@ -244,23 +264,49 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     RepositoryMethod returns DeleteByMethod
 	 *     DeleteByMethod returns DeleteByMethod
 	 *
 	 * Constraint:
-	 *     (property=ID prop=ID)
+	 *     (property=ID ptype=VTypes)
 	 * </pre>
 	 */
 	protected void sequence_DeleteByMethod(ISerializationContext context, DeleteByMethod semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DELETE_BY_METHOD__PROPERTY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DELETE_BY_METHOD__PROPERTY));
-			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DELETE_BY_METHOD__PROP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DELETE_BY_METHOD__PROP));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.DELETE_BY_METHOD__PTYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.DELETE_BY_METHOD__PTYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getDeleteByMethodAccess().getPropertyIDTerminalRuleCall_2_0(), semanticObject.getProperty());
-		feeder.accept(grammarAccess.getDeleteByMethodAccess().getPropIDTerminalRuleCall_4_0(), semanticObject.getProp());
+		feeder.accept(grammarAccess.getDeleteByMethodAccess().getPtypeVTypesEnumRuleCall_4_0(), semanticObject.getPtype());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Element returns EntityRelationship
+	 *     EntityRelationship returns EntityRelationship
+	 *
+	 * Constraint:
+	 *     (type=dbRelations source=[Entity|ID] target=[Entity|ID])
+	 * </pre>
+	 */
+	protected void sequence_EntityRelationship(ISerializationContext context, EntityRelationship semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.ENTITY_RELATIONSHIP__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.ENTITY_RELATIONSHIP__TYPE));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.ENTITY_RELATIONSHIP__SOURCE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.ENTITY_RELATIONSHIP__SOURCE));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.ENTITY_RELATIONSHIP__TARGET) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.ENTITY_RELATIONSHIP__TARGET));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEntityRelationshipAccess().getTypeDbRelationsEnumRuleCall_1_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getEntityRelationshipAccess().getSourceEntityIDTerminalRuleCall_3_0_1(), semanticObject.eGet(AsamPackage.Literals.ENTITY_RELATIONSHIP__SOURCE, false));
+		feeder.accept(grammarAccess.getEntityRelationshipAccess().getTargetEntityIDTerminalRuleCall_5_0_1(), semanticObject.eGet(AsamPackage.Literals.ENTITY_RELATIONSHIP__TARGET, false));
 		feeder.finish();
 	}
 	
@@ -272,7 +318,14 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Entity returns Entity
 	 *
 	 * Constraint:
-	 *     (name=ID extends=[Entity|ID]? properties+=Property*)
+	 *     (
+	 *         nom=ID 
+	 *         extends=[Entity|ID]? 
+	 *         ident=Identifier 
+	 *         properties+=Property* 
+	 *         repo=Repository? 
+	 *         control=Controller
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_Entity(ISerializationContext context, Entity semanticObject) {
@@ -283,23 +336,45 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     RepositoryMethod returns FindByMethod
 	 *     FindByMethod returns FindByMethod
 	 *
 	 * Constraint:
-	 *     (property=ID prop=ID)
+	 *     (property=ID ptype=VTypes)
 	 * </pre>
 	 */
 	protected void sequence_FindByMethod(ISerializationContext context, FindByMethod semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.FIND_BY_METHOD__PROPERTY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.FIND_BY_METHOD__PROPERTY));
-			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.FIND_BY_METHOD__PROP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.FIND_BY_METHOD__PROP));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.FIND_BY_METHOD__PTYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.FIND_BY_METHOD__PTYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getFindByMethodAccess().getPropertyIDTerminalRuleCall_2_0(), semanticObject.getProperty());
-		feeder.accept(grammarAccess.getFindByMethodAccess().getPropIDTerminalRuleCall_4_0(), semanticObject.getProp());
+		feeder.accept(grammarAccess.getFindByMethodAccess().getPtypeVTypesEnumRuleCall_4_0(), semanticObject.getPtype());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Identifier returns Identifier
+	 *
+	 * Constraint:
+	 *     (nom=ID type=VTypes)
+	 * </pre>
+	 */
+	protected void sequence_Identifier(ISerializationContext context, Identifier semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.IDENTIFIER__NOM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.IDENTIFIER__NOM));
+			if (transientValues.isValueTransient(semanticObject, AsamPackage.Literals.IDENTIFIER__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AsamPackage.Literals.IDENTIFIER__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIdentifierAccess().getNomIDTerminalRuleCall_1_0(), semanticObject.getNom());
+		feeder.accept(grammarAccess.getIdentifierAccess().getTypeVTypesEnumRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -332,7 +407,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Property returns Property
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type defaultValue=STRING?)
+	 *     (nom=ID type=Type defaultValue=STRING?)
 	 * </pre>
 	 */
 	protected void sequence_Property(ISerializationContext context, Property semanticObject) {
@@ -367,7 +442,11 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Repository returns Repository
 	 *
 	 * Constraint:
-	 *     (name=ID entity=[Entity|ID] methods+=RepositoryMethod*)
+	 *     (
+	 *         (findBy+=FindByMethod* deleteBy+=DeleteByMethod+ customQueryMethod+=CustomQueryMethod+) | 
+	 *         (findBy+=FindByMethod* customQueryMethod+=CustomQueryMethod+) | 
+	 *         customQueryMethod+=CustomQueryMethod+
+	 *     )?
 	 * </pre>
 	 */
 	protected void sequence_Repository(ISerializationContext context, Repository semanticObject) {
@@ -381,7 +460,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Sboot returns Sboot
 	 *
 	 * Constraint:
-	 *     (name=ID configuration=Configuration? elements+=Element*)
+	 *     (nom=ID configuration=Configuration? elements+=Element*)
 	 * </pre>
 	 */
 	protected void sequence_Sboot(ISerializationContext context, Sboot semanticObject) {
@@ -395,7 +474,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ServerInfo returns ServerInfo
 	 *
 	 * Constraint:
-	 *     ((port=INT path=PATH) | path=PATH)?
+	 *     (port=INT path=PATH?)
 	 * </pre>
 	 */
 	protected void sequence_ServerInfo(ISerializationContext context, ServerInfo semanticObject) {
@@ -409,7 +488,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ServiceAction returns ServiceAction
 	 *
 	 * Constraint:
-	 *     (name=ID returnType=RType exceptionType=Type? implementation=STRING? parameters+=ActionParameter*)
+	 *     (nom=ID returnType=RType exceptionType=Type? implementation=STRING? parameters+=ActionParameter*)
 	 * </pre>
 	 */
 	protected void sequence_ServiceAction(ISerializationContext context, ServiceAction semanticObject) {
@@ -424,7 +503,7 @@ public class AsamSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Service returns Service
 	 *
 	 * Constraint:
-	 *     (name=ID entity=[Controller|ID] actions+=ServiceAction*)
+	 *     (nom=ID entity=[Entity|ID] actions+=ServiceAction*)
 	 * </pre>
 	 */
 	protected void sequence_Service(ISerializationContext context, Service semanticObject) {

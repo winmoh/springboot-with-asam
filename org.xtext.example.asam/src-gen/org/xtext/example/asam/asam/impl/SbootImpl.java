@@ -32,7 +32,7 @@ import org.xtext.example.asam.asam.Sboot;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.asam.asam.impl.SbootImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.SbootImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.SbootImpl#getConfiguration <em>Configuration</em>}</li>
  *   <li>{@link org.xtext.example.asam.asam.impl.SbootImpl#getElements <em>Elements</em>}</li>
  * </ul>
@@ -42,24 +42,24 @@ import org.xtext.example.asam.asam.Sboot;
 public class SbootImpl extends MinimalEObjectImpl.Container implements Sboot
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String NOM_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getNom() <em>Nom</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getNom()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String nom = NOM_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' containment reference.
@@ -108,9 +108,9 @@ public class SbootImpl extends MinimalEObjectImpl.Container implements Sboot
    * @generated
    */
   @Override
-  public String getName()
+  public String getNom()
   {
-    return name;
+    return nom;
   }
 
   /**
@@ -119,12 +119,12 @@ public class SbootImpl extends MinimalEObjectImpl.Container implements Sboot
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setNom(String newNom)
   {
-    String oldName = name;
-    name = newName;
+    String oldNom = nom;
+    nom = newNom;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.SBOOT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.SBOOT__NOM, oldNom, nom));
   }
 
   /**
@@ -220,8 +220,8 @@ public class SbootImpl extends MinimalEObjectImpl.Container implements Sboot
   {
     switch (featureID)
     {
-      case AsamPackage.SBOOT__NAME:
-        return getName();
+      case AsamPackage.SBOOT__NOM:
+        return getNom();
       case AsamPackage.SBOOT__CONFIGURATION:
         return getConfiguration();
       case AsamPackage.SBOOT__ELEMENTS:
@@ -241,8 +241,8 @@ public class SbootImpl extends MinimalEObjectImpl.Container implements Sboot
   {
     switch (featureID)
     {
-      case AsamPackage.SBOOT__NAME:
-        setName((String)newValue);
+      case AsamPackage.SBOOT__NOM:
+        setNom((String)newValue);
         return;
       case AsamPackage.SBOOT__CONFIGURATION:
         setConfiguration((Configuration)newValue);
@@ -265,8 +265,8 @@ public class SbootImpl extends MinimalEObjectImpl.Container implements Sboot
   {
     switch (featureID)
     {
-      case AsamPackage.SBOOT__NAME:
-        setName(NAME_EDEFAULT);
+      case AsamPackage.SBOOT__NOM:
+        setNom(NOM_EDEFAULT);
         return;
       case AsamPackage.SBOOT__CONFIGURATION:
         setConfiguration((Configuration)null);
@@ -288,8 +288,8 @@ public class SbootImpl extends MinimalEObjectImpl.Container implements Sboot
   {
     switch (featureID)
     {
-      case AsamPackage.SBOOT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AsamPackage.SBOOT__NOM:
+        return NOM_EDEFAULT == null ? nom != null : !NOM_EDEFAULT.equals(nom);
       case AsamPackage.SBOOT__CONFIGURATION:
         return configuration != null;
       case AsamPackage.SBOOT__ELEMENTS:
@@ -309,8 +309,8 @@ public class SbootImpl extends MinimalEObjectImpl.Container implements Sboot
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (nom: ");
+    result.append(nom);
     result.append(')');
     return result.toString();
   }

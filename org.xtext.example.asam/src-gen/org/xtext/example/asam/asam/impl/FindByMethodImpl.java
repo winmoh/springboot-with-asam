@@ -8,9 +8,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.asam.asam.AsamPackage;
 import org.xtext.example.asam.asam.FindByMethod;
+import org.xtext.example.asam.asam.VTypes;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,12 +23,12 @@ import org.xtext.example.asam.asam.FindByMethod;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.asam.asam.impl.FindByMethodImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.xtext.example.asam.asam.impl.FindByMethodImpl#getProp <em>Prop</em>}</li>
+ *   <li>{@link org.xtext.example.asam.asam.impl.FindByMethodImpl#getPtype <em>Ptype</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMethod
+public class FindByMethodImpl extends MinimalEObjectImpl.Container implements FindByMethod
 {
   /**
    * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
@@ -49,24 +51,24 @@ public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMeth
   protected String property = PROPERTY_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getProp() <em>Prop</em>}' attribute.
+   * The default value of the '{@link #getPtype() <em>Ptype</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProp()
+   * @see #getPtype()
    * @generated
    * @ordered
    */
-  protected static final String PROP_EDEFAULT = null;
+  protected static final VTypes PTYPE_EDEFAULT = VTypes.FLOAT;
 
   /**
-   * The cached value of the '{@link #getProp() <em>Prop</em>}' attribute.
+   * The cached value of the '{@link #getPtype() <em>Ptype</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProp()
+   * @see #getPtype()
    * @generated
    * @ordered
    */
-  protected String prop = PROP_EDEFAULT;
+  protected VTypes ptype = PTYPE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -120,9 +122,9 @@ public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMeth
    * @generated
    */
   @Override
-  public String getProp()
+  public VTypes getPtype()
   {
-    return prop;
+    return ptype;
   }
 
   /**
@@ -131,12 +133,12 @@ public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMeth
    * @generated
    */
   @Override
-  public void setProp(String newProp)
+  public void setPtype(VTypes newPtype)
   {
-    String oldProp = prop;
-    prop = newProp;
+    VTypes oldPtype = ptype;
+    ptype = newPtype == null ? PTYPE_EDEFAULT : newPtype;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.FIND_BY_METHOD__PROP, oldProp, prop));
+      eNotify(new ENotificationImpl(this, Notification.SET, AsamPackage.FIND_BY_METHOD__PTYPE, oldPtype, ptype));
   }
 
   /**
@@ -151,8 +153,8 @@ public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMeth
     {
       case AsamPackage.FIND_BY_METHOD__PROPERTY:
         return getProperty();
-      case AsamPackage.FIND_BY_METHOD__PROP:
-        return getProp();
+      case AsamPackage.FIND_BY_METHOD__PTYPE:
+        return getPtype();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -170,8 +172,8 @@ public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMeth
       case AsamPackage.FIND_BY_METHOD__PROPERTY:
         setProperty((String)newValue);
         return;
-      case AsamPackage.FIND_BY_METHOD__PROP:
-        setProp((String)newValue);
+      case AsamPackage.FIND_BY_METHOD__PTYPE:
+        setPtype((VTypes)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -190,8 +192,8 @@ public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMeth
       case AsamPackage.FIND_BY_METHOD__PROPERTY:
         setProperty(PROPERTY_EDEFAULT);
         return;
-      case AsamPackage.FIND_BY_METHOD__PROP:
-        setProp(PROP_EDEFAULT);
+      case AsamPackage.FIND_BY_METHOD__PTYPE:
+        setPtype(PTYPE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -209,8 +211,8 @@ public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMeth
     {
       case AsamPackage.FIND_BY_METHOD__PROPERTY:
         return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
-      case AsamPackage.FIND_BY_METHOD__PROP:
-        return PROP_EDEFAULT == null ? prop != null : !PROP_EDEFAULT.equals(prop);
+      case AsamPackage.FIND_BY_METHOD__PTYPE:
+        return ptype != PTYPE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -228,8 +230,8 @@ public class FindByMethodImpl extends RepositoryMethodImpl implements FindByMeth
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (property: ");
     result.append(property);
-    result.append(", prop: ");
-    result.append(prop);
+    result.append(", ptype: ");
+    result.append(ptype);
     result.append(')');
     return result.toString();
   }
